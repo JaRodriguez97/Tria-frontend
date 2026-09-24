@@ -1,0 +1,627 @@
+<section
+  class="bg-surface font-body-md text-body-md text-on-surface min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-on-primary-container"
+>
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div
+      class="absolute -top-32 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary-container/15 rounded-full blur-3xl"
+    ></div>
+    <div
+      class="absolute bottom-20 left-1/4 w-80 h-80 bg-secondary-container/10 rounded-full blur-3xl"
+    ></div>
+  </div>
+  <header
+    class="fixed top-0 w-full z-50 pt-safe bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
+  >
+    <div
+      class="h-20 px-margin-mobile flex items-center justify-between gap-gutter-mobile"
+    >
+      <div class="flex items-center gap-space-sm min-w-0">
+        <img
+          alt="tria-logo.png"
+          class="h-8 w-auto object-contain flex-shrink-0"
+          src="https://lh3.googleusercontent.com/aida/AEtjO1VVnkiN_-OgmRGie5ZKZnXW7yZ2X_VAjsvY_IJYn41xFB-4yxjxzR5-r6rRU4LuE3eOIq5r8kQMURxhCNxevrUeRrolERPms664okx_V9Hf8io5zzGQDZV3EBfLQDOnVwF8jRet9_TmVLpqSbnGKnvTUuvbz9qQ6q275BELRrwL5s0t1KLZOXK7cxmNEF16lG2Sjqsfwi9gt0H8CfoaMz0uyulLyg1DwCklpqKGonxSbiL31TWvIXK4P9zZLFsFZw-VTjDzexLkLA"
+        />
+        <div class="flex flex-col min-w-0">
+          <div class="flex items-center gap-space-xs">
+            <span
+              class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight truncate"
+              >TRÍA</span
+            ><span
+              class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse flex-shrink-0"
+            ></span>
+          </div>
+          <span
+            class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant truncate"
+            >Inicio</span
+          >
+        </div>
+      </div>
+      <div class="flex items-center gap-space-sm flex-shrink-0">
+        <button
+          aria-label="Notificaciones"
+          class="w-11 h-11 rounded-full flex items-center justify-center bg-surface-container-high/60 backdrop-blur-md text-on-surface-variant hover:text-on-surface active:scale-95 transition-all"
+        >
+          <span class="material-symbols-outlined text-[20px]"
+            >notifications</span
+          >
+        </button>
+        <div
+          class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"
+        >
+          <span class="material-symbols-outlined text-on-primary text-[18px]"
+            >person</span
+          >
+        </div>
+      </div>
+    </div>
+  </header>
+  <main
+    class="flex-1 flex flex-col relative w-full pt-20 pb-32 bg-surface z-10"
+  >
+    <div class="flex flex-col w-full px-margin-mobile gap-space-md">
+      <!-- Resumen de Orden & Estatus -->
+      <section
+        class="w-full bg-surface-container-low rounded-lg p-space-md flex flex-col gap-space-sm shadow-xl relative overflow-hidden"
+      >
+        <div
+          class="absolute -right-10 -top-10 w-36 h-36 bg-primary-container/20 rounded-full blur-2xl pointer-events-none"
+        ></div>
+        <div class="flex items-center justify-between gap-space-xs">
+          <div class="flex items-center gap-space-xs">
+            <span
+              class="font-headline-sm text-headline-sm text-primary tracking-tight"
+              >Venta #0012</span
+            >
+            <span
+              class="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase tracking-wider"
+              >Abono Activo</span
+            >
+          </div>
+          <span class="font-label-sm text-label-sm text-on-surface-variant"
+            >09 Sep 2024 · 3:42 PM</span
+          >
+        </div>
+        <!-- Clienta Card Compacta -->
+        <div
+          class="flex items-center justify-between bg-surface-container rounded-DEFAULT p-space-sm mt-space-xs"
+        >
+          <div class="flex items-center gap-space-sm">
+            <div
+              class="w-9 h-9 rounded-full bg-tertiary-container flex items-center justify-center text-on-tertiary-container font-headline-sm text-headline-sm"
+            >
+              MR
+            </div>
+            <div class="flex flex-col">
+              <span
+                class="font-headline-sm text-[15px] leading-tight text-on-surface"
+                >María Rodríguez</span
+              >
+              <span class="font-body-sm text-body-sm text-on-surface-variant"
+                >+57 (314) 890-2134 · VIP Gold</span
+              >
+            </div>
+          </div>
+          <a
+            class="h-8 px-3 rounded-full bg-surface-container-high text-primary hover:bg-primary-container/40 flex items-center gap-1 active:scale-95 transition-all text-label-sm font-label-sm"
+            href="https://wa.me/573148902134?text=Hola%20Mar%C3%ADa%2C%20un%20gusto%20saludarte%20desde%20TR%C3%8DA.%20Te%20compartimos%20el%20resumen%20de%20tu%20compra%20%230012%20con%20saldo%20pendiente%20de%20%2470.000%20COP."
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <span class="material-symbols-outlined text-[16px]">chat</span>
+            <span>WhatsApp</span>
+          </a>
+        </div>
+      </section>
+      <!-- Bento Grid Financiero Trazable -->
+      <section class="grid grid-cols-2 gap-gutter-mobile">
+        <!-- Card Principal: Saldo Pendiente -->
+        <div
+          class="col-span-2 bg-gradient-to-br from-surface-container-high via-surface-container to-surface-container-lowest rounded-lg p-space-md shadow-lg flex flex-col justify-between relative overflow-hidden"
+        >
+          <div class="flex items-start justify-between">
+            <div>
+              <span
+                class="font-label-sm text-label-sm uppercase tracking-widest text-secondary"
+                >Saldo Pendiente por Cobrar</span
+              >
+              <div
+                class="font-headline-xl-mobile text-headline-xl-mobile text-primary font-bold mt-0.5 tracking-tight"
+              >
+                $70.000
+                <span class="text-body-sm font-body-sm text-on-surface-variant"
+                  >COP</span
+                >
+              </div>
+            </div>
+            <div
+              class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary"
+            >
+              <span class="material-symbols-outlined text-[22px]"
+                >pending_actions</span
+              >
+            </div>
+          </div>
+          <!-- Barra de Progreso de Pago -->
+          <div class="mt-space-md flex flex-col gap-1.5">
+            <div
+              class="w-full bg-surface-variant h-2 rounded-full overflow-hidden flex"
+            >
+              <div
+                class="bg-gradient-to-r from-secondary to-primary h-full rounded-full transition-all duration-700"
+                style="width: 41.6%"
+              ></div>
+            </div>
+            <div
+              class="flex justify-between items-center text-label-sm font-label-sm text-on-surface-variant"
+            >
+              <span>Cobrado: $50.000 COP (41.6%)</span>
+              <span>Total: $120.000 COP</span>
+            </div>
+          </div>
+        </div>
+        <!-- Módulo 1: Costo Mercancía (COGS) -->
+        <div
+          class="bg-surface-container-low rounded-lg p-space-md flex flex-col justify-between shadow-md"
+        >
+          <div
+            class="flex items-center justify-between text-on-surface-variant mb-1"
+          >
+            <span class="font-label-sm text-label-sm uppercase tracking-wider"
+              >Costo (COGS)</span
+            >
+            <span class="material-symbols-outlined text-[18px]"
+              >receipt_long</span
+            >
+          </div>
+          <div
+            class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-semibold"
+          >
+            $55.000
+          </div>
+          <span class="font-body-sm text-body-sm text-outline mt-1"
+            >Histórico asegurado</span
+          >
+        </div>
+        <!-- Módulo 2: Margen & Utilidad Bruta -->
+        <div
+          class="bg-surface-container-low rounded-lg p-space-md flex flex-col justify-between shadow-md"
+        >
+          <div
+            class="flex items-center justify-between text-on-surface-variant mb-1"
+          >
+            <span class="font-label-sm text-label-sm uppercase tracking-wider"
+              >Ganancia Bruta</span
+            >
+            <span class="material-symbols-outlined text-[18px] text-secondary"
+              >trending_up</span
+            >
+          </div>
+          <div
+            class="font-headline-lg-mobile text-headline-lg-mobile text-secondary font-semibold"
+          >
+            $65.000
+          </div>
+          <div class="flex items-center gap-1 mt-1">
+            <span
+              class="font-label-sm text-label-sm text-on-surface px-1.5 py-0.2 rounded-full bg-secondary-container"
+              >54.1%</span
+            >
+            <span class="font-body-sm text-body-sm text-outline">retorno</span>
+          </div>
+        </div>
+      </section>
+      <!-- CTA Registrador de Abono Rápido -->
+      <div class="w-full flex items-center gap-gutter-mobile">
+        <button
+          class="flex-1 h-12 rounded-full bg-gradient-to-r from-secondary to-primary text-on-primary font-headline-sm text-[15px] flex items-center justify-center gap-2 shadow-[0_8px_20px_rgba(254,180,176,0.22)] active:scale-95 transition-all"
+          id="openModalBtn"
+        >
+          <span class="material-symbols-outlined text-[20px]">add_circle</span>
+          <span>+ Registrar Nuevo Abono</span>
+        </button>
+        <a
+          aria-label="Cobro amigable por WhatsApp"
+          class="w-12 h-12 rounded-full bg-surface-container-high text-primary flex items-center justify-center active:scale-90 transition-transform shadow-md"
+          href="https://wa.me/573148902134?text=Estimada%20Mar%C3%ADa%2C%20le%20escribimos%20de%20boutique%20TR%C3%8DA%20para%20recordarle%20amablemente%20su%20saldo%20de%20%2470.000%20COP%20correspondiente%20a%20su%20pedido%20%230012.%20%C2%A1Quedamos%20atentos%20a%20su%20comprobante!"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <span class="material-symbols-outlined text-[22px]"
+            >send_to_mobile</span
+          >
+        </a>
+      </div>
+      <!-- Trazabilidad de Pagos (Timeline) -->
+      <section
+        class="bg-surface-container-low rounded-lg p-space-md flex flex-col gap-space-md shadow-lg"
+      >
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-[20px]"
+              >timeline</span
+            >
+            <span class="font-headline-sm text-headline-sm text-on-surface"
+              >Trazabilidad de Abonos</span
+            >
+          </div>
+          <span
+            class="font-label-sm text-label-sm text-outline uppercase tracking-wider"
+            >1 registro</span
+          >
+        </div>
+        <div
+          class="relative pl-6 flex flex-col gap-space-lg before:content-[''] before:absolute before:left-2 before:top-2 before:bottom-3 before:w-0.5 before:bg-surface-variant"
+        >
+          <!-- Evento 1: Abono Inicial -->
+          <div class="relative flex flex-col gap-1">
+            <div
+              class="absolute -left-[27px] top-0.5 w-4 h-4 rounded-full bg-primary flex items-center justify-center ring-4 ring-surface-container-low"
+            >
+              <div class="w-1.5 h-1.5 rounded-full bg-on-primary"></div>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="font-headline-sm text-[14px] text-on-surface"
+                >Abono Inicial (Apertura)</span
+              >
+              <span class="font-headline-sm text-[15px] text-primary font-bold"
+                >+$50.000 COP</span
+              >
+            </div>
+            <div
+              class="flex items-center gap-space-xs text-body-sm font-body-sm text-on-surface-variant"
+            >
+              <span class="material-symbols-outlined text-[15px] text-secondary"
+                >account_balance</span
+              >
+              <span>Bancolombia Transferencia · Ref #BC-99214</span>
+            </div>
+            <div
+              class="flex items-center justify-between text-label-sm font-label-sm text-outline mt-0.5"
+            >
+              <span>09 Sep · 3:42 PM</span>
+              <span
+                >Saldo resultante:
+                <strong class="text-on-surface font-medium"
+                  >$70.000</strong
+                ></span
+              >
+            </div>
+          </div>
+          <!-- Estado Vacío Invitación: Próximo Abono -->
+          <div
+            class="relative flex items-center justify-between p-space-sm rounded-DEFAULT bg-surface-container/60"
+            id="timelineSlot"
+          >
+            <div
+              class="absolute -left-[27px] top-3.5 w-4 h-4 rounded-full bg-surface-variant flex items-center justify-center ring-4 ring-surface-container-low"
+            >
+              <div class="w-1.5 h-1.5 rounded-full bg-outline"></div>
+            </div>
+            <div class="flex flex-col">
+              <span class="font-body-md text-body-md text-on-surface-variant"
+                >Siguiente Abono Pendiente</span
+              >
+              <span class="font-body-sm text-body-sm text-outline"
+                >Esperando desembolso de la clienta</span
+              >
+            </div>
+            <button
+              class="px-3 py-1 rounded-full bg-surface-container-highest text-secondary text-label-sm font-label-sm hover:bg-secondary-container transition-colors"
+              onclick="document.getElementById('openModalBtn').click()"
+            >
+              Cargar
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- Desglose de Productos Vendidos -->
+      <section class="flex flex-col gap-space-sm">
+        <div class="flex items-center justify-between px-space-xs">
+          <span class="font-headline-sm text-headline-sm text-on-surface"
+            >Artículos en la Orden</span
+          >
+          <span class="font-label-sm text-label-sm text-on-surface-variant"
+            >3 Items</span
+          >
+        </div>
+        <!-- Item 1: Vestido Satinado -->
+        <div
+          class="w-full bg-surface-container-low rounded-lg p-space-sm flex items-center gap-space-sm shadow-sm"
+        >
+          <img
+            class="w-16 h-16 rounded-DEFAULT object-cover flex-shrink-0 bg-surface-container"
+            data-alt="Vestido lencero satinado de seda color negro profundo en atelier de alta costura, iluminacion tenue de pasarela de moda minimalista, tonalidad calida y detalles en oro rosa"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuByZSBiqnCV07grsBi0ysCodBWwSNOMYgPsCgHo0sGo6nrbUXGdIsOvKfHQt_HO8ZiYBjDTmWCL_Zc_dievXq1R7hqLs_0Y_rCPr6_iIebrK2d-BWGZJx8p8S3VfG3YT-Yk5b7oOuzN0O054S3o38xQHzTi4msnoxebOSwXX0uJncdZQGuQquk3Nj41fzKDMg6qdPgjmz3_OO2NRJ9fa70r2-RaeM_bwDKdy8ota1DhKEKO_oiWfJbK"
+          />
+          <div class="flex-1 min-w-0">
+            <h4 class="font-headline-sm text-[14px] text-on-surface truncate">
+              Vestido Satinado Noir
+            </h4>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">
+              Talla M · Seda &amp; Encaje
+            </p>
+            <div class="flex items-center justify-between mt-1">
+              <span class="font-body-sm text-body-sm text-outline"
+                >Costo: $30.000</span
+              >
+              <span
+                class="font-headline-sm text-[14px] text-primary font-semibold"
+                >$65.000</span
+              >
+            </div>
+          </div>
+        </div>
+        <!-- Item 2: Perfume Yara -->
+        <div
+          class="w-full bg-surface-container-low rounded-lg p-space-sm flex items-center gap-space-sm shadow-sm"
+        >
+          <img
+            class="w-16 h-16 rounded-DEFAULT object-cover flex-shrink-0 bg-surface-container"
+            data-alt="Frasco de perfume rosado de lujo sobre pedestal de marmol ahumado oscuro con destellos de oro rosa, estilo boutique refinada de alta gama con suave iluminacion de estudio"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgLLtK0KIh0xssrB2z-u_JncDaZjwa52XZ1OHE6dNKZU-z7zPiWXYi8M3kbMSIT5mkMjW1h0QLdeSSQEhWKGvwxvkijsATVJSeTGwO_yk4m1TDuKZ8KQWTg9fQjbv6LL6bShKS7m2GBP6uKdLTOeUlLVnoSbXJy_S33CIGQCz1bxO_WSXVtg5cqDJXCD2aTJRGCqKpwFvObllwEbyXpJZEtQw0Fgszi5dVAuJ5t67UvlUUCPW7t252"
+          />
+          <div class="flex-1 min-w-0">
+            <h4 class="font-headline-sm text-[14px] text-on-surface truncate">
+              Perfume Yara Lattafa 100ml
+            </h4>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">
+              Edición Oriental Gourmand
+            </p>
+            <div class="flex items-center justify-between mt-1">
+              <span class="font-body-sm text-body-sm text-outline"
+                >Costo: $18.000</span
+              >
+              <span
+                class="font-headline-sm text-[14px] text-primary font-semibold"
+                >$40.000</span
+              >
+            </div>
+          </div>
+        </div>
+        <!-- Item 3: Labial Velvet -->
+        <div
+          class="w-full bg-surface-container-low rounded-lg p-space-sm flex items-center gap-space-sm shadow-sm"
+        >
+          <img
+            class="w-16 h-16 rounded-DEFAULT object-cover flex-shrink-0 bg-surface-container"
+            data-alt="Cosmetico labial de lujo en cilindro metalico dorado rosa abierto mostrando color carmin aterciopelado sobre fondo de seda oscura boutique contemporanea"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzszoxFfeip7XUD5IeuqdTWkcQw_rPQOVZh7W8j9buQRGzkLY28-yTgaiXYuJJiZgJxOT2WXvdKh5eqwC94eiawg-5zBYQXmVi6Oimjz6OkYdgX8Kx9NUd8An4LIxH1peWYaMuTfhAiYZ95AZ86aXe8eWUSm3ovEJy0ZBYPhURg8IfS8RICMsiVxRvwFYId0uNLq1AYaeZUOt-UqT6_pqG4O9oog2dhPzsrbb_fho48jtzcH7-V7tr"
+          />
+          <div class="flex-1 min-w-0">
+            <h4 class="font-headline-sm text-[14px] text-on-surface truncate">
+              Labial Velvet Matte Rose
+            </h4>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">
+              Tono 04 Nude Couture
+            </p>
+            <div class="flex items-center justify-between mt-1">
+              <span class="font-body-sm text-body-sm text-outline"
+                >Costo: $7.000</span
+              >
+              <span
+                class="font-headline-sm text-[14px] text-primary font-semibold"
+                >$15.000</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Modal / Bottom Sheet: Registrar Abono -->
+      <div
+        class="fixed inset-0 z-50 bg-black/75 backdrop-blur-md hidden items-end sm:items-center justify-center transition-opacity duration-300"
+        id="abonoModal"
+      >
+        <div
+          class="w-full sm:max-w-md bg-surface-container-low rounded-t-xl sm:rounded-xl p-space-lg flex flex-col gap-space-md shadow-2xl relative animate-in fade-in slide-in-from-bottom-6"
+        >
+          <!-- Modal Header -->
+          <div class="flex items-center justify-between">
+            <div class="flex flex-col">
+              <span
+                class="font-label-sm text-label-sm text-secondary uppercase tracking-widest"
+                >Cobranza Rápida</span
+              >
+              <h3
+                class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-semibold"
+              >
+                Registrar Abono
+              </h3>
+            </div>
+            <button
+              class="w-9 h-9 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:text-on-surface"
+              id="closeModalBtn"
+            >
+              <span class="material-symbols-outlined text-[20px]">close</span>
+            </button>
+          </div>
+          <!-- Montos Rápidos -->
+          <div class="flex flex-col gap-space-xs">
+            <label class="font-label-md text-label-md text-on-surface-variant"
+              >Sugerencias de Monto Rápido</label
+            >
+            <div class="grid grid-cols-3 gap-2">
+              <button
+                class="py-2 rounded-full bg-surface-container hover:bg-primary-container text-on-surface font-label-md text-label-md active:scale-95 transition-all text-center"
+                onclick="setMonto('20.000')"
+                type="button"
+              >
+                $20.000
+              </button>
+              <button
+                class="py-2 rounded-full bg-surface-container hover:bg-primary-container text-on-surface font-label-md text-label-md active:scale-95 transition-all text-center"
+                onclick="setMonto('30.000')"
+                type="button"
+              >
+                $30.000
+              </button>
+              <button
+                class="py-2 rounded-full bg-secondary-container text-secondary font-label-md text-label-md active:scale-95 transition-all text-center"
+                onclick="setMonto('70.000')"
+                type="button"
+              >
+                $70.000 (Total)
+              </button>
+            </div>
+          </div>
+          <!-- Input Monto Personalizado -->
+          <div class="flex flex-col gap-1">
+            <label
+              class="font-label-md text-label-md text-on-surface-variant"
+              for="montoInput"
+              >Valor del Abono (COP)</label
+            >
+            <div
+              class="flex items-center bg-surface-container rounded-full px-space-md py-2.5"
+            >
+              <span class="text-primary font-headline-sm mr-2">$</span>
+              <input
+                class="w-full bg-transparent text-on-surface font-headline-sm text-headline-sm focus:outline-none placeholder-outline"
+                id="montoInput"
+                placeholder="0"
+                type="text"
+                value="30.000"
+              />
+            </div>
+          </div>
+          <!-- Método de Pago -->
+          <div class="flex flex-col gap-1">
+            <label class="font-label-md text-label-md text-on-surface-variant"
+              >Medio de Recepción</label
+            >
+            <div class="grid grid-cols-2 gap-2">
+              <button
+                class="py-2.5 px-3 rounded-full bg-primary-container text-on-primary font-label-md text-label-md flex items-center justify-center gap-2"
+                type="button"
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >account_balance</span
+                >
+                <span>Transferencia</span>
+              </button>
+              <button
+                class="py-2.5 px-3 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-surface-container-high"
+                type="button"
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >payments</span
+                >
+                <span>Efectivo</span>
+              </button>
+            </div>
+          </div>
+          <!-- Botón de Confirmación -->
+          <button
+            class="w-full h-12 rounded-full bg-gradient-to-r from-secondary to-primary text-on-primary font-headline-sm text-[15px] flex items-center justify-center gap-2 shadow-lg active:scale-95 transition-all mt-space-xs"
+            id="guardarAbonoBtn"
+          >
+            <span class="material-symbols-outlined text-[20px]"
+              >check_circle</span
+            >
+            <span>Guardar y Actualizar Saldo</span>
+          </button>
+        </div>
+      </div>
+      <script>
+        (function () {
+          const modal = document.getElementById("abonoModal");
+          const openBtn = document.getElementById("openModalBtn");
+          const closeBtn = document.getElementById("closeModalBtn");
+          const saveBtn = document.getElementById("guardarAbonoBtn");
+          const montoInput = document.getElementById("montoInput");
+
+          openBtn.addEventListener("click", () => {
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+          });
+
+          closeBtn.addEventListener("click", () => {
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+          });
+
+          modal.addEventListener("click", (e) => {
+            if (e.target === modal) {
+              modal.classList.add("hidden");
+              modal.classList.remove("flex");
+            }
+          });
+
+          window.setMonto = function (val) {
+            if (montoInput) montoInput.value = val;
+          };
+
+          saveBtn.addEventListener("click", () => {
+            const val = montoInput.value;
+            const timelineSlot = document.getElementById("timelineSlot");
+            if (timelineSlot) {
+              timelineSlot.innerHTML = `
+            <div class="absolute -left-[27px] top-2 w-4 h-4 rounded-full bg-secondary flex items-center justify-center ring-4 ring-surface-container-low">
+              <div class="w-1.5 h-1.5 rounded-full bg-on-secondary"></div>
+            </div>
+            <div class="flex flex-col">
+              <span class="font-headline-sm text-[14px] text-on-surface">Nuevo Abono Registrado</span>
+              <span class="font-body-sm text-body-sm text-secondary font-medium">+$${val} COP · Transferencia</span>
+            </div>
+            <span class="text-label-sm font-label-sm text-outline">Ahora mismo</span>
+          `;
+            }
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+          });
+        })();
+      </script>
+    </div>
+  </main>
+  <div class="fixed bottom-0 w-full z-50 pointer-events-none pb-safe">
+    <nav
+      class="pointer-events-auto mx-auto mb-4 px-3 w-[calc(100%-1.5rem)] max-w-md h-20 rounded-full bg-surface-container-lowest/85 backdrop-blur-xl shadow-[0_12px_32px_-8px_rgba(159,98,95,0.28)] flex items-center justify-between"
+      data-active-classes="text-primary bg-primary-container/25"
+    >
+      <a
+        aria-current="page"
+        class="flex flex-col items-center justify-center w-14 h-14 rounded-full transition-all duration-200 active:scale-95 text-primary bg-primary-container/25"
+        data-path="inicio"
+        href="#"
+        ><span class="material-symbols-outlined text-[22px]">dashboard</span
+        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
+          >Inicio</span
+        ></a
+      ><a
+        class="flex flex-col items-center justify-center w-14 h-14 rounded-full text-on-surface-variant hover:text-on-surface transition-all duration-200 active:scale-95"
+        data-path="inventario"
+        href="#"
+        ><span class="material-symbols-outlined text-[22px]">inventory_2</span
+        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
+          >Stock</span
+        ></a
+      >
+      <div class="relative -top-3">
+        <a
+          class="flex flex-col items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-secondary via-primary to-primary-container text-on-primary shadow-[0_8px_24px_rgba(254,180,176,0.35)] active:scale-95 transition-transform"
+          data-path="ventas"
+          href="#"
+          ><span class="material-symbols-outlined text-[24px]"
+            >shopping_bag</span
+          ></a
+        >
+      </div>
+      <a
+        class="flex flex-col items-center justify-center w-14 h-14 rounded-full text-on-surface-variant hover:text-on-surface transition-all duration-200 active:scale-95"
+        data-path="clientes"
+        href="#"
+        ><span class="material-symbols-outlined text-[22px]">group</span
+        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
+          >Clientes</span
+        ></a
+      ><a
+        class="flex flex-col items-center justify-center w-14 h-14 rounded-full text-on-surface-variant hover:text-on-surface transition-all duration-200 active:scale-95"
+        data-path="mas"
+        href="#"
+        ><span class="material-symbols-outlined text-[22px]">grid_view</span
+        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
+          >Más</span
+        ></a
+      >
+    </nav>
+  </div>
+</section>

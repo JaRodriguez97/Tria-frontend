@@ -1,0 +1,703 @@
+<section
+  class="bg-surface font-body-md text-body-md text-on-surface min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-on-primary-container"
+>
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div
+      class="absolute -top-32 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary-container/15 rounded-full blur-3xl"
+    ></div>
+    <div
+      class="absolute bottom-20 left-1/4 w-80 h-80 bg-secondary-container/10 rounded-full blur-3xl"
+    ></div>
+  </div>
+  <header
+    class="fixed top-0 w-full z-50 pt-safe bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
+  >
+    <div
+      class="h-20 px-margin-mobile flex items-center justify-between gap-gutter-mobile"
+    >
+      <div class="flex items-center gap-space-sm min-w-0">
+        <img
+          alt="tria-logo.png"
+          class="h-8 w-auto object-contain flex-shrink-0"
+          src="https://lh3.googleusercontent.com/aida/AEtjO1VVnkiN_-OgmRGie5ZKZnXW7yZ2X_VAjsvY_IJYn41xFB-4yxjxzR5-r6rRU4LuE3eOIq5r8kQMURxhCNxevrUeRrolERPms664okx_V9Hf8io5zzGQDZV3EBfLQDOnVwF8jRet9_TmVLpqSbnGKnvTUuvbz9qQ6q275BELRrwL5s0t1KLZOXK7cxmNEF16lG2Sjqsfwi9gt0H8CfoaMz0uyulLyg1DwCklpqKGonxSbiL31TWvIXK4P9zZLFsFZw-VTjDzexLkLA"
+        />
+        <div class="flex flex-col min-w-0">
+          <div class="flex items-center gap-space-xs">
+            <span
+              class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight truncate"
+              >TRÍA</span
+            ><span
+              class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse flex-shrink-0"
+            ></span>
+          </div>
+          <span
+            class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant truncate"
+            >Inventario</span
+          >
+        </div>
+      </div>
+      <div class="flex items-center gap-space-sm flex-shrink-0">
+        <button
+          aria-label="Notificaciones"
+          class="w-11 h-11 rounded-full flex items-center justify-center bg-surface-container-high/60 backdrop-blur-md text-on-surface-variant hover:text-on-surface active:scale-95 transition-all"
+        >
+          <span class="material-symbols-outlined text-[20px]"
+            >notifications</span
+          >
+        </button>
+        <div
+          class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"
+        >
+          <span class="material-symbols-outlined text-on-primary text-[18px]"
+            >person</span
+          >
+        </div>
+      </div>
+    </div>
+  </header>
+  <main
+    class="flex-1 flex flex-col relative w-full pt-20 pb-32 bg-surface z-10"
+  >
+    <div class="flex flex-col w-full px-margin-mobile gap-space-md">
+      <!-- SECCIÓN 1: BUSCADOR ACTIVO CON CÓDIGO QR / BARRAS -->
+      <div class="flex flex-col gap-space-xs mt-space-xs">
+        <div class="relative flex items-center w-full">
+          <!-- Input de búsqueda táctil con fondo de cristal ahumado -->
+          <div
+            class="relative flex items-center w-full rounded-full bg-surface-container-high/60 backdrop-blur-xl shadow-md transition-all duration-300 focus-within:shadow-[0_0_20px_rgba(254,180,176,0.18)]"
+          >
+            <span
+              class="material-symbols-outlined text-primary ml-4 text-[20px] select-none"
+              >search</span
+            >
+            <input
+              class="w-full bg-transparent py-3 px-3 font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none"
+              id="live-search-input"
+              placeholder="Buscar referencia, código o aroma..."
+              type="text"
+              value="perfume"
+            />
+            <button
+              aria-label="Limpiar búsqueda"
+              class="flex items-center justify-center w-8 h-8 mr-2 rounded-full text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 active:scale-90 transition-transform"
+              id="btn-clear-search"
+            >
+              <span class="material-symbols-outlined text-[18px]">close</span>
+            </button>
+          </div>
+          <!-- Botón Escáner Holográfico con detalle de rose gold -->
+          <button
+            aria-label="Escanear código de barras o QR"
+            class="ml-2 flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-primary via-primary-container to-secondary-container flex items-center justify-center text-on-primary shadow-[0_4px_16px_rgba(159,98,95,0.35)] active:scale-95 transition-transform"
+            id="btn-scan"
+          >
+            <span class="material-symbols-outlined text-[22px]"
+              >barcode_scanner</span
+            >
+          </button>
+        </div>
+        <!-- Escáner activo pill sub-label -->
+        <div class="flex items-center justify-between px-3">
+          <div class="flex items-center gap-1.5">
+            <span
+              class="inline-block w-1.5 h-1.5 rounded-full bg-secondary animate-ping"
+            ></span>
+            <span
+              class="font-label-sm text-label-sm text-secondary tracking-widest uppercase"
+              >Lector Óptico Listo</span
+            >
+          </div>
+          <span class="font-label-sm text-label-sm text-on-surface-variant/80"
+            >Cód sugerido:
+            <strong class="text-primary font-semibold">#PRF-012</strong></span
+          >
+        </div>
+      </div>
+      <!-- SECCIÓN 2: SELECTORES DE FILTROS & UNIVERSO ACTIVO -->
+      <div class="flex flex-col gap-space-xs">
+        <!-- Fila 1: Filtros de Universo & Subcategoría -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-1 scroll-smooth">
+          <!-- Filtro Activo Universo BEAUTY -->
+          <div
+            class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-primary-container/30 text-primary shadow-[0_0_12px_rgba(254,180,176,0.2)] flex-shrink-0"
+          >
+            <span class="material-symbols-outlined text-[16px]"
+              >arrow_back_ios_new</span
+            >
+            <span class="font-label-sm text-label-sm tracking-wider uppercase"
+              >BEAUTY</span
+            >
+            <span
+              class="material-symbols-outlined text-[14px] cursor-pointer hover:opacity-80"
+              >check</span
+            >
+          </div>
+          <!-- Filtro Subcategoría Perfumería -->
+          <div
+            class="inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full bg-surface-container-high/80 text-on-surface-variant flex-shrink-0"
+          >
+            <span class="material-symbols-outlined text-[16px] text-tertiary"
+              >local_florist</span
+            >
+            <span class="font-label-sm text-label-sm">Perfumería</span>
+          </div>
+          <!-- Reset Chip -->
+          <button
+            class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-secondary-container/30 text-secondary hover:bg-secondary-container/50 active:scale-95 transition-all flex-shrink-0"
+            id="btn-reset-filters"
+          >
+            <span class="material-symbols-outlined text-[14px]">refresh</span>
+            <span class="font-label-sm text-label-sm">Limpiar (2)</span>
+          </button>
+        </div>
+        <!-- Fila 2: Segmentación por Estado de Stock -->
+        <div class="flex items-center gap-1.5 overflow-x-auto pb-1 pt-0.5">
+          <button
+            class="px-3 py-1 rounded-full bg-surface-container-high/60 text-on-surface-variant font-label-sm text-label-sm hover:text-on-surface flex-shrink-0"
+          >
+            Todos (18)
+          </button>
+          <button
+            class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm hover:text-on-surface flex-shrink-0"
+          >
+            En Stock (14)
+          </button>
+          <button
+            class="px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm flex-shrink-0 shadow-sm flex items-center gap-1"
+          >
+            <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+            Stock Bajo (≤3)
+          </button>
+          <button
+            class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm hover:text-on-surface flex-shrink-0"
+          >
+            Agotados (4)
+          </button>
+        </div>
+      </div>
+      <!-- SECCIÓN 3: CONTADOR EDITORIAL -->
+      <div class="flex items-center justify-between px-1">
+        <p class="font-body-sm text-body-sm text-on-surface-variant">
+          Mostrando
+          <span class="text-on-surface font-semibold">3 resultados</span> para
+          <span class="text-primary italic">"perfume"</span> en
+          <span class="text-tertiary uppercase font-label-sm">BEAUTY</span>
+        </p>
+        <button
+          class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors"
+        >
+          <span class="font-label-sm text-label-sm uppercase">Relevancia</span>
+          <span class="material-symbols-outlined text-[16px]">expand_more</span>
+        </button>
+      </div>
+      <!-- SECCIÓN 4: RESULTADOS (BENTO CARDS GLASSMORPHISM) -->
+      <div class="flex flex-col gap-space-sm" id="results-container">
+        <!-- CARD 1: Yara Onlyou (Stock Bajo - 3 u) -->
+        <div
+          class="group relative rounded-lg bg-surface-container-low/90 backdrop-blur-xl p-space-md shadow-md flex flex-col gap-space-sm overflow-hidden"
+        >
+          <!-- Glow ambiental sutil rose-gold -->
+          <div
+            class="absolute -right-10 -top-10 w-28 h-28 bg-primary-container/15 rounded-full blur-2xl pointer-events-none"
+          ></div>
+          <div class="flex items-start justify-between gap-space-sm">
+            <div class="flex gap-space-sm min-w-0">
+              <!-- Imagen Miniatura del Perfume Yara -->
+              <div
+                class="relative w-16 h-16 rounded-DEFAULT bg-surface-container overflow-hidden flex-shrink-0"
+              >
+                <img
+                  class="w-full h-full object-cover"
+                  data-alt="Luxury miniature perfume bottle with blush pink textured cap and rose gold accents photographed in soft warm studio lighting, reflecting neo-luxury aesthetic of TRÍA"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGtvmkhJssAubH1Tk4Tpv5T-9cPUjqPQDfLFq7jB6Jsty-h8pW8fdcWSsQfYst_d66K7f6942-GrLL-o0rSJOB_kaSUVGTT21P0-AGZAujStSWBYIapAUuQfKaRTNwy4nYT8OM2mhf86URiaOQOmGP_8tX6GG-7_KStZ1t8MzUdUIvKZcyDNSJRIwogykb-Vwm4BN8oKQ5kqSzfc3oAZOsLnCk7J91ew2paThRL2u83HvRaLCwiR-d"
+                />
+                <span
+                  class="absolute bottom-0 inset-x-0 bg-surface-container-lowest/80 backdrop-blur-xs font-label-sm text-label-sm text-[9px] text-center text-on-surface-variant py-0.5"
+                  >50ml</span
+                >
+              </div>
+              <!-- Metadata & Nombres -->
+              <div class="flex flex-col min-w-0 justify-center">
+                <div class="flex items-center gap-1.5">
+                  <span
+                    class="font-label-sm text-label-sm text-secondary uppercase tracking-widest"
+                    >#PRF-012</span
+                  >
+                  <span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+                  <span class="font-label-sm text-label-sm text-tertiary"
+                    >Yara Edition</span
+                  >
+                </div>
+                <h2
+                  class="font-headline-sm text-headline-sm text-on-surface truncate"
+                >
+                  Perfume Yara Onlyou 50ml
+                </h2>
+                <!-- Badge de Stock Crítico -->
+                <div class="flex items-center gap-1.5 mt-0.5">
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container/40 text-secondary font-label-sm text-label-sm text-[10px]"
+                  >
+                    <span
+                      class="material-symbols-outlined text-[12px] text-secondary"
+                      >warning</span
+                    >
+                    3 u (Stock Bajo)
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- PVP Destacado -->
+            <div class="flex flex-col items-end flex-shrink-0">
+              <span class="font-label-sm text-label-sm text-on-surface-variant"
+                >PVP Retail</span
+              >
+              <span
+                class="font-headline-sm text-headline-sm text-primary font-semibold"
+                >$25.000</span
+              >
+            </div>
+          </div>
+          <!-- Métricas Financieras (Costo, Ganancia, Margen) -->
+          <div
+            class="grid grid-cols-3 gap-2 p-2.5 rounded-DEFAULT bg-surface-container-high/40"
+          >
+            <div class="flex flex-col">
+              <span
+                class="font-label-sm text-label-sm text-on-surface-variant text-[10px]"
+                >Costo Base</span
+              >
+              <span
+                class="font-body-md text-body-md text-on-surface font-medium"
+                >$9.000</span
+              >
+            </div>
+            <div class="flex flex-col">
+              <span
+                class="font-label-sm text-label-sm text-on-surface-variant text-[10px]"
+                >Utilidad Neta</span
+              >
+              <span
+                class="font-body-md text-body-md text-secondary font-semibold"
+                >+$16.000</span
+              >
+            </div>
+            <div class="flex flex-col items-end">
+              <span
+                class="font-label-sm text-label-sm text-on-surface-variant text-[10px]"
+                >Margen</span
+              >
+              <span
+                class="inline-flex items-center px-1.5 py-0.5 rounded-full bg-secondary-container/50 text-on-secondary-container font-label-sm text-label-sm text-[10px] font-bold"
+                >64% Mg</span
+              >
+            </div>
+          </div>
+          <!-- Acción Rápida en Mostrador -->
+          <div class="flex items-center justify-between gap-2 pt-1">
+            <button
+              class="flex items-center gap-1.5 px-3 py-2 rounded-full bg-surface-variant/40 hover:bg-surface-variant text-on-surface-variant font-label-sm text-label-sm transition-all active:scale-95"
+            >
+              <span class="material-symbols-outlined text-[16px]"
+                >visibility</span
+              >
+              Ficha
+            </button>
+            <button
+              class="btn-quick-sale flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-full bg-gradient-to-r from-primary via-secondary to-primary-container text-on-primary font-label-md text-label-md font-semibold shadow-[0_4px_16px_rgba(254,180,176,0.25)] active:scale-98 transition-transform"
+              data-sku="#PRF-012"
+            >
+              <span class="material-symbols-outlined text-[18px]"
+                >add_shopping_cart</span
+              >
+              + Venta Rápida
+            </button>
+          </div>
+        </div>
+        <!-- CARD 2: Lattafa Sublime (En Stock - 8 u) -->
+        <div
+          class="group relative rounded-lg bg-surface-container-low/90 backdrop-blur-xl p-space-md shadow-md flex flex-col gap-space-sm overflow-hidden"
+        >
+          <div class="flex items-start justify-between gap-space-sm">
+            <div class="flex gap-space-sm min-w-0">
+              <!-- Miniatura Lattafa -->
+              <div
+                class="relative w-16 h-16 rounded-DEFAULT bg-surface-container overflow-hidden flex-shrink-0"
+              >
+                <img
+                  class="w-full h-full object-cover"
+                  data-alt="Editorial luxury perfume flacon bottle in smoked amber glass with rose gold metallic collar on velvet black pedestal, boutique cosmetics product photography"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFhKiB-NqYVf1rmZzsFL5mdCo_85Z7RNuxSagXa9V-NlbCZac1JEjXsoNAX9VXenEzxEb13r9gaMEsDnEbmrzsOd6oFjthEQ690D_Q-_TI7myF6dHkkB81TuD3Uxj4XchIj8PyCZrLZXaCfDNNMkFX6J1ZTAH15OHySlMfjNbRM8U9sggMiHd6AyUFeyxBejZiudYW8pGeivl1qWjyQLH1Ejz_rS8eio-VUK1E1GJuuqtMG9ScL2GR"
+                />
+                <span
+                  class="absolute bottom-0 inset-x-0 bg-surface-container-lowest/80 backdrop-blur-xs font-label-sm text-label-sm text-[9px] text-center text-on-surface-variant py-0.5"
+                  >100ml</span
+                >
+              </div>
+              <!-- Metadata -->
+              <div class="flex flex-col min-w-0 justify-center">
+                <div class="flex items-center gap-1.5">
+                  <span
+                    class="font-label-sm text-label-sm text-secondary uppercase tracking-widest"
+                    >#PRF-018</span
+                  >
+                  <span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+                  <span class="font-label-sm text-label-sm text-tertiary"
+                    >Lattafa Dubai</span
+                  >
+                </div>
+                <h2
+                  class="font-headline-sm text-headline-sm text-on-surface truncate"
+                >
+                  Floral Lattafa Sublime
+                </h2>
+                <div class="flex items-center gap-1.5 mt-0.5">
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm text-[10px]"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                    8 unidades disponibles
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-col items-end flex-shrink-0">
+              <span class="font-label-sm text-label-sm text-on-surface-variant"
+                >PVP Retail</span
+              >
+              <span
+                class="font-headline-sm text-headline-sm text-primary font-semibold"
+                >$42.000</span
+              >
+            </div>
+          </div>
+          <!-- Métricas Financieras -->
+          <div
+            class="grid grid-cols-3 gap-2 p-2.5 rounded-DEFAULT bg-surface-container-high/40"
+          >
+            <div class="flex flex-col">
+              <span
+                class="font-label-sm text-label-sm text-on-surface-variant text-[10px]"
+                >Costo Base</span
+              >
+              <span
+                class="font-body-md text-body-md text-on-surface font-medium"
+                >$18.000</span
+              >
+            </div>
+            <div class="flex flex-col">
+              <span
+                class="font-label-sm text-label-sm text-on-surface-variant text-[10px]"
+                >Utilidad Neta</span
+              >
+              <span
+                class="font-body-md text-body-md text-secondary font-semibold"
+                >+$24.000</span
+              >
+            </div>
+            <div class="flex flex-col items-end">
+              <span
+                class="font-label-sm text-label-sm text-on-surface-variant text-[10px]"
+                >Margen</span
+              >
+              <span
+                class="inline-flex items-center px-1.5 py-0.5 rounded-full bg-secondary-container/50 text-on-secondary-container font-label-sm text-label-sm text-[10px] font-bold"
+                >57% Mg</span
+              >
+            </div>
+          </div>
+          <!-- Acciones -->
+          <div class="flex items-center justify-between gap-2 pt-1">
+            <button
+              class="flex items-center gap-1.5 px-3 py-2 rounded-full bg-surface-variant/40 hover:bg-surface-variant text-on-surface-variant font-label-sm text-label-sm transition-all active:scale-95"
+            >
+              <span class="material-symbols-outlined text-[16px]"
+                >visibility</span
+              >
+              Ficha
+            </button>
+            <button
+              class="btn-quick-sale flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-full bg-gradient-to-r from-primary via-secondary to-primary-container text-on-primary font-label-md text-label-md font-semibold shadow-[0_4px_16px_rgba(254,180,176,0.25)] active:scale-98 transition-transform"
+              data-sku="#PRF-018"
+            >
+              <span class="material-symbols-outlined text-[18px]"
+                >add_shopping_cart</span
+              >
+              + Venta Rápida
+            </button>
+          </div>
+        </div>
+        <!-- CARD 3: Kit Perfume Miniatura & Bruma (AGOTADO - Estado Visual Requerido) -->
+        <div
+          class="relative rounded-lg bg-surface-container-low/50 backdrop-blur-md p-space-md shadow-sm flex flex-col gap-space-sm opacity-75"
+        >
+          <div class="flex items-start justify-between gap-space-sm">
+            <div class="flex gap-space-sm min-w-0">
+              <!-- Miniatura Desaturada -->
+              <div
+                class="relative w-16 h-16 rounded-DEFAULT bg-surface-container overflow-hidden flex-shrink-0 grayscale"
+              >
+                <img
+                  class="w-full h-full object-cover"
+                  data-alt="Monochrome luxury perfume mist and satin pouch kit in dramatic shadows, minimalist high fashion studio composition"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbthI4jzFpUWk5zprOQNUSSKhiCFexjAxWDhMzpEkG6Wl4BCwFaG25nJvVR_WlXXbrM7kX5yva3RNWx8JYkzpOlz_2_Jc_PPZmtiWejawSBXedGG8dZtfvHMVAlYqIB-J_nuMqY1lJ0VHahL0ddoHAisQ4CLlX_Gu4R1uIc_ZszV5_7ECENvhucbppiaouhsPaMGutWzQNLzCphaGeLt1x1NfgUfzRbw7VzXE1f9ZiDMB7czsrzlMe"
+                />
+                <div
+                  class="absolute inset-0 bg-surface-container-lowest/70 flex items-center justify-center"
+                >
+                  <span
+                    class="material-symbols-outlined text-outline text-[20px]"
+                    >block</span
+                  >
+                </div>
+              </div>
+              <!-- Metadata con estado AGOTADO -->
+              <div class="flex flex-col min-w-0 justify-center">
+                <div class="flex items-center gap-1.5">
+                  <span
+                    class="font-label-sm text-label-sm text-outline uppercase tracking-widest"
+                    >#PRF-003</span
+                  >
+                  <span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+                  <span class="font-label-sm text-label-sm text-outline"
+                    >Atelier Coffret</span
+                  >
+                </div>
+                <h2
+                  class="font-headline-sm text-headline-sm text-on-surface-variant truncate"
+                >
+                  Kit Miniatura &amp; Bruma
+                </h2>
+                <!-- Badge Agotado Exclusivo -->
+                <div class="flex items-center gap-1.5 mt-0.5">
+                  <span
+                    class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-error-container/30 text-error font-label-sm text-label-sm text-[10px]"
+                  >
+                    <span
+                      class="w-1.5 h-1.5 rounded-full bg-error animate-pulse"
+                    ></span>
+                    AGOTADO (0 u)
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-col items-end flex-shrink-0">
+              <span class="font-label-sm text-label-sm text-outline"
+                >Último PVP</span
+              >
+              <span
+                class="font-headline-sm text-headline-sm text-outline font-semibold line-through"
+                >$35.000</span
+              >
+            </div>
+          </div>
+          <!-- Información de reposición rápida -->
+          <div
+            class="flex items-center justify-between p-2.5 rounded-DEFAULT bg-surface-container-high/20 text-on-surface-variant"
+          >
+            <div class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[16px] text-tertiary"
+                >local_shipping</span
+              >
+              <span class="font-body-sm text-body-sm text-[11px]"
+                >Proveedor: Essences de Grasse (Plazo 48h)</span
+              >
+            </div>
+            <span class="font-label-sm text-label-sm text-secondary"
+              >Costo: $14.500</span
+            >
+          </div>
+          <!-- Botón de Reposición Prioritaria -->
+          <button
+            class="w-full py-2.5 px-4 rounded-full bg-surface-container-high text-tertiary hover:text-on-surface hover:bg-surface-variant flex items-center justify-center gap-2 font-label-md text-label-md active:scale-98 transition-all"
+          >
+            <span class="material-symbols-outlined text-[18px]">inventory</span>
+            Reponer Stock / Orden de Compra
+          </button>
+        </div>
+      </div>
+      <!-- SECCIÓN 5: EMPTY STATE ILUSTRATIVO / REGISTRO AL INSTANTE -->
+      <div
+        class="mt-space-xs relative rounded-lg bg-surface-container-low/70 backdrop-blur-xl p-space-md flex flex-col items-center text-center gap-space-sm overflow-hidden"
+      >
+        <!-- Luz de fondo suave -->
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-primary-container/10 via-transparent to-transparent pointer-events-none"
+        ></div>
+        <!-- Icono Ilustrativo Minimalista -->
+        <div
+          class="relative w-14 h-14 rounded-full bg-surface-container-high/80 flex items-center justify-center shadow-inner"
+        >
+          <span class="material-symbols-outlined text-primary text-[28px]"
+            >loupe</span
+          >
+          <span
+            class="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-secondary"
+          ></span>
+        </div>
+        <div class="flex flex-col gap-1 max-w-xs">
+          <h3 class="font-headline-sm text-headline-sm text-on-surface">
+            ¿No encuentras la referencia?
+          </h3>
+          <p class="font-body-sm text-body-sm text-on-surface-variant">
+            Registra el perfume al instante durante la atención en mostrador
+            para facturarlo sin demoras.
+          </p>
+        </div>
+        <!-- Botón de Acción Nuevo Producto -->
+        <button
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-surface-bright text-primary hover:bg-primary hover:text-on-primary font-label-md text-label-md font-semibold transition-all active:scale-95 shadow-sm"
+          id="btn-new-product"
+        >
+          <span class="material-symbols-outlined text-[18px]">add_circle</span>
+          + Crear Nuevo Producto
+        </button>
+      </div>
+      <!-- SECCIÓN 6: RESUMEN VALORIZADO FLOTANTE DE BÚSQUEDA -->
+      <div class="sticky bottom-24 z-20 w-full">
+        <div
+          class="w-full rounded-full bg-surface-container-lowest/90 backdrop-blur-xl px-4 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.5)] flex items-center justify-between"
+        >
+          <div class="flex items-center gap-2 min-w-0">
+            <div
+              class="w-7 h-7 rounded-full bg-secondary-container/50 flex items-center justify-center flex-shrink-0"
+            >
+              <span class="material-symbols-outlined text-secondary text-[16px]"
+                >point_of_sale</span
+              >
+            </div>
+            <div class="flex flex-col min-w-0">
+              <span
+                class="font-label-sm text-label-sm text-on-surface-variant truncate text-[10px] uppercase tracking-wider"
+                >Inventario Filtrado</span
+              >
+              <span
+                class="font-body-sm text-body-sm text-on-surface truncate font-semibold"
+                >3 ref · $560.000 COP retail</span
+              >
+            </div>
+          </div>
+          <button
+            class="flex items-center gap-1 px-3 py-1.5 rounded-full bg-surface-container-high/80 text-primary hover:bg-primary hover:text-on-primary font-label-sm text-label-sm transition-all active:scale-95 flex-shrink-0"
+            id="btn-export-quick"
+          >
+            <span class="material-symbols-outlined text-[14px]"
+              >receipt_long</span
+            >
+            <span>Balance</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Microinteracciones Táctiles y Lógica de Búsqueda -->
+    <script>
+      (function () {
+        const searchInput = document.getElementById("live-search-input");
+        const clearBtn = document.getElementById("btn-clear-search");
+        const resetBtn = document.getElementById("btn-reset-filters");
+        const scanBtn = document.getElementById("btn-scan");
+        const quickSaleBtns = document.querySelectorAll(".btn-quick-sale");
+
+        // Botón Limpiar Búsqueda con respuesta táctil
+        if (clearBtn && searchInput) {
+          clearBtn.addEventListener("click", () => {
+            searchInput.value = "";
+            searchInput.focus();
+            clearBtn.classList.add("scale-75");
+            setTimeout(() => clearBtn.classList.remove("scale-75"), 150);
+          });
+        }
+
+        // Botón Resetear Filtros
+        if (resetBtn) {
+          resetBtn.addEventListener("click", () => {
+            if (searchInput) searchInput.value = "";
+            resetBtn.classList.add("opacity-50");
+            setTimeout(() => resetBtn.classList.remove("opacity-50"), 250);
+          });
+        }
+
+        // Feedback táctil para Escáner
+        if (scanBtn) {
+          scanBtn.addEventListener("click", () => {
+            scanBtn.classList.add("scale-90");
+            setTimeout(() => {
+              scanBtn.classList.remove("scale-90");
+              if (searchInput) {
+                searchInput.value = "#PRF-012";
+              }
+            }, 180);
+          });
+        }
+
+        // Feedback en botón "+ Venta Rápida"
+        quickSaleBtns.forEach((btn) => {
+          btn.addEventListener("click", function (e) {
+            const sku = this.getAttribute("data-sku") || "";
+            const prevContent = this.innerHTML;
+            this.innerHTML =
+              '<span class="material-symbols-outlined text-[18px] animate-bounce">check</span> ¡Agregado!';
+            this.classList.add("opacity-90");
+
+            setTimeout(() => {
+              this.innerHTML = prevContent;
+              this.classList.remove("opacity-90");
+            }, 1200);
+          });
+        });
+      })();
+    </script>
+  </main>
+  <div class="fixed bottom-0 w-full z-50 pointer-events-none pb-safe">
+    <nav
+      class="pointer-events-auto mx-auto mb-4 px-3 w-[calc(100%-1.5rem)] max-w-md h-20 rounded-full bg-surface-container-lowest/85 backdrop-blur-xl shadow-[0_12px_32px_-8px_rgba(159,98,95,0.28)] flex items-center justify-between"
+      data-active-classes="text-primary bg-primary-container/25"
+    >
+      <a
+        class="flex flex-col items-center justify-center w-14 h-14 rounded-full text-on-surface-variant hover:text-on-surface transition-all duration-200 active:scale-95"
+        data-path="inicio"
+        href="#"
+        ><span class="material-symbols-outlined text-[22px]">dashboard</span
+        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
+          >Inicio</span
+        ></a
+      ><a
+        aria-current="page"
+        class="flex flex-col items-center justify-center w-14 h-14 rounded-full transition-all duration-200 active:scale-95 text-primary bg-primary-container/25"
+        data-path="inventario"
+        href="#"
+        ><span class="material-symbols-outlined text-[22px]">inventory_2</span
+        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
+          >Stock</span
+        ></a
+      >
+      <div class="relative -top-3">
+        <a
+          class="flex flex-col items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-secondary via-primary to-primary-container text-on-primary shadow-[0_8px_24px_rgba(254,180,176,0.35)] active:scale-95 transition-transform"
+          data-path="ventas"
+          href="#"
+          ><span class="material-symbols-outlined text-[24px]"
+            >shopping_bag</span
+          ></a
+        >
+      </div>
+      <a
+        class="flex flex-col items-center justify-center w-14 h-14 rounded-full text-on-surface-variant hover:text-on-surface transition-all duration-200 active:scale-95"
+        data-path="clientes"
+        href="#"
+        ><span class="material-symbols-outlined text-[22px]">group</span
+        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
+          >Clientes</span
+        ></a
+      ><a
+        class="flex flex-col items-center justify-center w-14 h-14 rounded-full text-on-surface-variant hover:text-on-surface transition-all duration-200 active:scale-95"
+        data-path="mas"
+        href="#"
+        ><span class="material-symbols-outlined text-[22px]">grid_view</span
+        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
+          >Más</span
+        ></a
+      >
+    </nav>
+  </div>
+</section>

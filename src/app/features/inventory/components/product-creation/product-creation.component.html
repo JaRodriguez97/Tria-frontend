@@ -1,0 +1,556 @@
+<header
+  class="fixed top-0 w-full z-50 pt-safe bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
+>
+  <div
+    class="h-16 px-margin-mobile flex items-center justify-between gap-space-sm"
+  >
+    <div class="flex items-center gap-space-sm min-w-0">
+      <button
+        aria-label="Regresar"
+        class="w-11 h-11 rounded-full flex items-center justify-center bg-surface-container-high/60 backdrop-blur-md text-on-surface active:scale-95 transition-all"
+        routerLink="/app/inventario"
+      >
+        <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+      </button>
+      <img
+        alt="tria-logo.png"
+        class="h-8 w-auto object-contain flex-shrink-0"
+        src="https://lh3.googleusercontent.com/aida/AEtjO1VVnkiN_-OgmRGie5ZKZnXW7yZ2X_VAjsvY_IJYn41xFB-4yxjxzR5-r6rRU4LuE3eOIq5r8kQMURxhCNxevrUeRrolERPms664okx_V9Hf8io5zzGQDZV3EBfLQDOnVwF8jRet9_TmVLpqSbnGKnvTUuvbz9qQ6q275BELRrwL5s0t1KLZOXK7cxmNEF16lG2Sjqsfwi9gt0H8CfoaMz0uyulLyg1DwCklpqKGonxSbiL31TWvIXK4P9zZLFsFZw-VTjDzexLkLA"
+      />
+      <h1
+        class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight truncate"
+      >
+        Nueva Pieza
+      </h1>
+    </div>
+    <div
+      class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0"
+    >
+      <span class="material-symbols-outlined text-on-primary text-[18px]"
+        >person</span
+      >
+    </div>
+  </div>
+</header>
+
+<main
+  class="flex-1 flex flex-col relative w-full pt-16 pb-safe bg-surface z-10 min-h-screen"
+>
+  <div class="flex flex-col w-full pb-36 px-margin-mobile space-y-space-lg">
+    <!-- Subheader Contextual Badge -->
+    <div class="flex items-center justify-between pt-space-sm">
+      <div class="flex items-center space-x-space-xs">
+        <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+        <span
+          class="font-label-sm text-label-sm uppercase tracking-wider text-primary"
+          >Boutique Atelier</span
+        >
+      </div>
+      <span
+        class="px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm tracking-wider uppercase"
+      >
+        Creación #084
+      </span>
+    </div>
+
+    <!-- BLOQUE 1: INFORMACIÓN BÁSICA -->
+    <section class="flex flex-col space-y-space-md">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-space-xs">
+          <span class="material-symbols-outlined text-primary text-[20px]"
+            >diamond</span
+          >
+          <h2
+            class="font-headline-sm text-headline-sm text-on-surface font-semibold"
+          >
+            1. Información Básica
+          </h2>
+        </div>
+        <span class="font-label-sm text-label-sm text-on-surface-variant"
+          >Obligatorio</span
+        >
+      </div>
+
+      <!-- Media Uploader Bento Card -->
+      <div
+        class="relative overflow-hidden rounded-lg bg-surface-container p-space-md shadow-xl"
+      >
+        <div
+          class="relative flex flex-col items-center justify-center p-space-lg rounded-DEFAULT bg-surface-container-low text-center group cursor-pointer active:scale-[0.99] transition-all"
+        >
+          <div
+            class="relative w-24 h-24 mb-space-sm rounded-full bg-surface-container-highest flex items-center justify-center shadow-[0_0_24px_rgba(254,180,176,0.15)]"
+          >
+            <div
+              class="w-20 h-20 rounded-full bg-surface-container flex items-center justify-center overflow-hidden"
+            >
+              <img
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                data-alt="High luxury black lace corset displayed in a minimal moody studio with soft rose-gold lighting, deep shadows, atelier atmosphere, fine silk details"
+                id="previewImg"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCfiybVgAayoh-loM0fv61wgiFkfzuYk02YcWx4gyR_K29SPMuTHAft7ohv55WHupmtE_56OXVD2umoWw0eazQD4IoD-5C-qPG8jgJ-O8qKzHoe9O3LdC24a4e4K1M-Oz9NBeDv9XnHgucvwF4Qrkv0-ghqpGgjGUL3Tnpi4tdHJpBACzhCdkP81NownMA33-VaupphWwGHumXaiI8NDExxXKnkVMLn9CCqZQxacnjIAKDb1ukFtC1"
+              />
+            </div>
+            <div
+              class="absolute -bottom-1 -right-1 w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-md"
+            >
+              <span class="material-symbols-outlined text-[16px]"
+                >photo_camera</span
+              >
+            </div>
+          </div>
+          <p class="font-headline-sm text-headline-sm text-primary font-medium">
+            Cargar Fotografía
+          </p>
+          <p
+            class="font-body-sm text-body-sm text-on-surface-variant mt-1 max-w-xs mx-auto"
+          >
+            Captura o selecciona prenda o cosmético TRÍA en alta resolución.
+          </p>
+          <span
+            class="mt-space-sm px-4 py-1.5 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm tracking-widest uppercase inline-block"
+          >
+            JPG / PNG / WebP
+          </span>
+        </div>
+      </div>
+
+      <!-- Inputs Textuales -->
+      <div class="space-y-space-sm">
+        <div>
+          <label
+            class="block font-label-md text-label-md text-on-surface-variant mb-space-xs"
+            for="prod-name"
+            >Nombre de la Pieza</label
+          >
+          <div
+            class="flex items-center px-4 py-3 rounded-full bg-surface-container-high text-on-surface shadow-sm focus-within:bg-surface-container-highest transition-colors"
+          >
+            <span
+              class="material-symbols-outlined text-primary text-[20px] mr-3"
+              >styler</span
+            >
+            <input
+              class="w-full bg-transparent font-body-md text-body-md text-on-surface placeholder:text-outline outline-none"
+              id="prod-name"
+              placeholder="Ej. Corset Noir Satinado"
+              type="text"
+              value="Corset Noir Satinado"
+            />
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-space-xs">
+            <label
+              class="font-label-md text-label-md text-on-surface-variant"
+              for="prod-sku"
+              >Código de Referencia / SKU</label
+            >
+            <span class="font-label-sm text-label-sm text-primary"
+              >Autogenerado</span
+            >
+          </div>
+          <div class="flex items-center gap-2">
+            <div
+              class="flex-1 flex items-center px-4 py-3 rounded-full bg-surface-container-high text-on-surface"
+            >
+              <span
+                class="material-symbols-outlined text-outline text-[18px] mr-2"
+                >qr_code_2</span
+              >
+              <input
+                class="w-full bg-transparent font-body-md text-body-md text-on-surface font-semibold tracking-wider outline-none"
+                id="prod-sku"
+                type="text"
+                [(ngModel)]="sku"
+              />
+            </div>
+            <button
+              class="px-4 py-3 rounded-full bg-surface-container-highest text-primary font-label-md text-label-md flex items-center gap-1 active:scale-95 transition-all"
+              (click)="regenerateSKU()"
+              type="button"
+            >
+              <span class="material-symbols-outlined text-[16px]">sync</span>
+              <span class="">Generar</span>
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <label
+            class="block font-label-md text-label-md text-on-surface-variant mb-space-xs"
+            for="prod-desc"
+            >Notas de Confección & Acabados</label
+          >
+          <div
+            class="px-4 py-3 rounded-2xl bg-surface-container-high text-on-surface"
+          >
+            <textarea
+              class="w-full bg-transparent font-body-md text-body-md text-on-surface placeholder:text-outline outline-none resize-none"
+              id="prod-desc"
+              placeholder="Detalles de patronaje, seda cruda o aroma..."
+              rows="2"
+            >
+Bustier estructurado en satén stretch italiano de 180g con ballenas metálicas flexibles y acabados en remate francés.</textarea
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOQUE 2: CLASIFICACIÓN TRÍA -->
+    <section class="flex flex-col space-y-space-md">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-space-xs">
+          <span class="material-symbols-outlined text-primary text-[20px]"
+            >category</span
+          >
+          <h2
+            class="font-headline-sm text-headline-sm text-on-surface font-semibold"
+          >
+            2. Clasificación TRÍA
+          </h2>
+        </div>
+        <span class="font-label-sm text-label-sm text-primary"
+          >Colección 2025</span
+        >
+      </div>
+
+      <!-- Tabs Universos TRÍA -->
+      <div
+        class="p-1 rounded-full bg-surface-container flex items-center justify-between shadow-inner"
+      >
+        <button
+          [ngClass]="
+            selectedUniverse === 'beauty'
+              ? 'bg-primary-container text-on-primary-container shadow-md'
+              : 'text-on-surface-variant'
+          "
+          class="universe-tab flex-1 py-2.5 rounded-full text-center font-label-md text-label-md tracking-wider transition-all"
+          (click)="setUniverse('beauty')"
+          type="button"
+        >
+          BEAUTY
+        </button>
+        <button
+          [ngClass]="
+            selectedUniverse === 'fashion'
+              ? 'bg-primary-container text-on-primary-container shadow-md'
+              : 'text-on-surface-variant'
+          "
+          class="universe-tab flex-1 py-2.5 rounded-full text-center font-label-md text-label-md tracking-wider transition-all"
+          (click)="setUniverse('fashion')"
+          type="button"
+        >
+          FASHION
+        </button>
+        <button
+          [ngClass]="
+            selectedUniverse === 'lingerie'
+              ? 'bg-primary-container text-on-primary-container shadow-md'
+              : 'text-on-surface-variant'
+          "
+          class="universe-tab flex-1 py-2.5 rounded-full text-center font-label-md text-label-md tracking-wider transition-all"
+          (click)="setUniverse('lingerie')"
+          type="button"
+        >
+          LINGERIE
+        </button>
+      </div>
+
+      <!-- Chips Subcategorías -->
+      <div class="flex flex-wrap gap-2 pt-1" id="subcat-container">
+        <button
+          *ngFor="let subcat of subcategories"
+          [ngClass]="
+            selectedSubcategory === subcat
+              ? 'bg-primary text-on-primary shadow-sm'
+              : 'bg-surface-container-high text-on-surface-variant'
+          "
+          class="subcat-chip px-4 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-wider active:scale-95 transition-all"
+          (click)="setSubcategory(subcat)"
+          type="button"
+        >
+          {{ subcat }}
+        </button>
+      </div>
+    </section>
+
+    <!-- BLOQUE 3: INFORMACIÓN COMERCIAL & CÁLCULOS -->
+    <section class="flex flex-col space-y-space-md">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-space-xs">
+          <span class="material-symbols-outlined text-primary text-[20px]"
+            >payments</span
+          >
+          <h2
+            class="font-headline-sm text-headline-sm text-on-surface font-semibold"
+          >
+            3. Comercial & Márgenes
+          </h2>
+        </div>
+        <span
+          class="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm tracking-wider"
+          >Cálculo Automático</span
+        >
+      </div>
+
+      <div class="grid grid-cols-2 gap-space-sm">
+        <div class="bg-surface-container p-space-md rounded-2xl">
+          <label
+            class="block font-label-sm text-label-sm text-on-surface-variant uppercase mb-1"
+            for="cost-input"
+            >Costo Unitario</label
+          >
+          <div class="flex items-center text-on-surface">
+            <span class="text-primary font-headline-sm text-headline-sm mr-1"
+              >$</span
+            >
+            <input
+              class="w-full bg-transparent font-headline-sm text-headline-sm text-on-surface font-bold outline-none"
+              id="cost-input"
+              [(ngModel)]="cost"
+              type="number"
+            />
+          </div>
+          <span class="text-outline font-body-sm text-body-sm block mt-1"
+            >COP Atelier</span
+          >
+        </div>
+
+        <div class="bg-surface-container p-space-md rounded-2xl">
+          <label
+            class="block font-label-sm text-label-sm text-primary uppercase mb-1"
+            for="price-input"
+            >PVP TRÍA</label
+          >
+          <div class="flex items-center text-on-surface">
+            <span class="text-primary font-headline-sm text-headline-sm mr-1"
+              >$</span
+            >
+            <input
+              class="w-full bg-transparent font-headline-sm text-headline-sm text-on-surface font-bold outline-none"
+              id="price-input"
+              [(ngModel)]="price"
+              type="number"
+            />
+          </div>
+          <span class="text-outline font-body-sm text-body-sm block mt-1"
+            >COP Boutique</span
+          >
+        </div>
+      </div>
+
+      <!-- Bento de Métricas en Tiempo Real -->
+      <div
+        class="grid grid-cols-3 gap-2 p-space-md rounded-2xl bg-surface-container-low shadow-md"
+      >
+        <div
+          class="flex flex-col items-center justify-center p-3 rounded-xl bg-surface-container text-center"
+        >
+          <span
+            class="font-label-sm text-label-sm text-outline uppercase tracking-wider mb-1"
+            >Ganancia</span
+          >
+          <span
+            class="font-headline-sm text-headline-sm text-primary font-bold"
+            id="unit-gain"
+            >{{ unitGain > 0 ? "+" : "" }}${{ unitGain | number }}</span
+          >
+          <span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5"
+            >Por prenda</span
+          >
+        </div>
+        <div
+          class="flex flex-col items-center justify-center p-3 rounded-xl bg-surface-container text-center"
+        >
+          <span
+            class="font-label-sm text-label-sm text-outline uppercase tracking-wider mb-1"
+            >Margen</span
+          >
+          <span
+            class="font-headline-sm text-headline-sm text-secondary font-bold"
+            id="unit-margin"
+            >{{ margin }}%</span
+          >
+          <span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5"
+            >Operativo</span
+          >
+        </div>
+        <div
+          class="flex flex-col items-center justify-center p-3 rounded-xl bg-surface-container text-center"
+        >
+          <span
+            class="font-label-sm text-label-sm text-outline uppercase tracking-wider mb-1"
+            >Retorno</span
+          >
+          <span
+            class="font-headline-sm text-headline-sm text-on-tertiary-container font-bold"
+            id="unit-mult"
+            >{{ multiplier }}x</span
+          >
+          <span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5"
+            >Multiplicador</span
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOQUE 4: INVENTARIO INICIAL & PROYECCIÓN -->
+    <section class="flex flex-col space-y-space-md">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-space-xs">
+          <span class="material-symbols-outlined text-primary text-[20px]"
+            >inventory_2</span
+          >
+          <h2
+            class="font-headline-sm text-headline-sm text-on-surface font-semibold"
+          >
+            4. Stock & Proyección
+          </h2>
+        </div>
+        <span class="font-label-sm text-label-sm text-on-surface-variant"
+          >Lote Inicial</span
+        >
+      </div>
+
+      <!-- Stepper Unidades -->
+      <div
+        class="flex items-center justify-between p-space-md rounded-2xl bg-surface-container"
+      >
+        <div>
+          <span
+            class="block font-headline-sm text-headline-sm text-on-surface font-semibold"
+            >Unidades Iniciales</span
+          >
+          <span class="font-body-sm text-body-sm text-on-surface-variant"
+            >Disponibles en vitrina</span
+          >
+        </div>
+        <div
+          class="flex items-center space-x-3 bg-surface-container-high px-3 py-1.5 rounded-full"
+        >
+          <button
+            class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface flex items-center justify-center active:scale-90 transition-transform"
+            (click)="modifyStock(-1)"
+            type="button"
+          >
+            <span class="material-symbols-outlined text-[18px]">remove</span>
+          </button>
+          <span
+            class="font-headline-sm text-headline-sm text-primary font-bold min-w-[32px] text-center"
+            id="stock-val"
+            >{{ currentStock }}</span
+          >
+          <button
+            class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center active:scale-90 transition-transform shadow-md"
+            (click)="modifyStock(1)"
+            type="button"
+          >
+            <span class="material-symbols-outlined text-[18px]">add</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Proyección Financiera Glass Card -->
+      <div
+        class="relative overflow-hidden rounded-lg bg-surface-container-high p-space-md shadow-xl"
+      >
+        <div class="flex items-center justify-between pb-space-sm">
+          <div class="flex items-center space-x-space-xs">
+            <span class="material-symbols-outlined text-primary text-[18px]"
+              >trending_up</span
+            >
+            <h3
+              class="font-label-md text-label-md text-on-surface font-semibold uppercase tracking-wider"
+            >
+              Proyección de Ciclo
+            </h3>
+          </div>
+          <span
+            class="px-2.5 py-0.5 rounded-full bg-surface-container-highest text-secondary font-label-sm text-label-sm tracking-widest uppercase"
+            >Lote Activo</span
+          >
+        </div>
+
+        <div class="space-y-space-sm pt-space-xs">
+          <div class="flex items-center justify-between">
+            <span class="font-body-md text-body-md text-on-surface-variant"
+              >Inversión Capital:</span
+            >
+            <span
+              class="font-body-lg text-body-lg text-on-surface font-medium"
+              id="proj-cost"
+              >${{ totalCost | number }} COP</span
+            >
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="font-body-md text-body-md text-on-surface-variant"
+              >Venta Bruta Estimada:</span
+            >
+            <span
+              class="font-body-lg text-body-lg text-secondary-fixed font-semibold"
+              id="proj-sales"
+              >${{ totalSales | number }} COP</span
+            >
+          </div>
+          <div class="h-[1px] bg-surface-variant my-1"></div>
+          <div class="flex items-center justify-between">
+            <span
+              class="font-headline-sm text-headline-sm text-on-surface font-semibold"
+              >Utilidad Proyectada:</span
+            >
+            <span
+              class="font-headline-lg-mobile text-headline-lg-mobile text-primary font-bold tracking-tight"
+              id="proj-gain"
+              >{{ totalGain >= 0 ? "+" : "" }}${{
+                totalGain | number
+              }}
+              COP</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FIJO INFERIOR CON RESPALDO -->
+    <div
+      class="fixed bottom-0 left-0 right-0 p-margin-mobile bg-surface-container-lowest/90 backdrop-blur-2xl z-40 space-y-2 max-w-lg mx-auto"
+    >
+      <button
+        class="w-full py-4 rounded-full bg-gradient-to-r from-primary via-secondary to-primary-fixed text-on-primary font-headline-sm text-headline-sm font-semibold tracking-wide shadow-[0_8px_30px_rgba(254,180,176,0.25)] flex items-center justify-center space-x-2 active:scale-95 transition-all"
+        (click)="submitProduct()"
+        type="button"
+        [disabled]="isSaving || isSaved"
+      >
+        <span
+          *ngIf="!isSaving && !isSaved"
+          class="material-symbols-outlined text-[20px]"
+          >check_circle</span
+        >
+        <span *ngIf="!isSaving && !isSaved">Guardar en Catálogo TRÍA</span>
+
+        <span
+          *ngIf="isSaving"
+          class="material-symbols-outlined animate-spin text-[20px]"
+          >progress_activity</span
+        >
+        <span *ngIf="isSaving">Guardando Registro...</span>
+
+        <span *ngIf="isSaved" class="material-symbols-outlined text-[20px]"
+          >verified</span
+        >
+        <span *ngIf="isSaved">¡Pieza Incorporada!</span>
+      </button>
+
+      <button
+        class="w-full py-2.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md tracking-wider uppercase text-center active:scale-95 transition-all"
+        routerLink="/app/inventario"
+        type="button"
+      >
+        Cancelar Descarte
+      </button>
+    </div>
+  </div>
+</main>

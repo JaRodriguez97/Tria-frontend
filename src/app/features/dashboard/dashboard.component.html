@@ -1,0 +1,776 @@
+<!-- Dashboard Module Shell -->
+<div
+  class="bg-surface font-body-md text-body-md text-on-surface min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-on-primary-container"
+>
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div
+      class="absolute -top-32 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary-container/15 rounded-full blur-3xl"
+    ></div>
+    <div
+      class="absolute bottom-20 left-1/4 w-80 h-80 bg-secondary-container/10 rounded-full blur-3xl"
+    ></div>
+  </div>
+  <header
+    class="fixed top-0 w-full z-50 pt-safe bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
+  >
+    <div
+      class="h-20 px-margin-mobile flex items-center justify-between gap-gutter-mobile"
+    >
+      <div class="flex items-center gap-space-sm min-w-0">
+        <img
+          alt="tria-logo.png"
+          class="h-8 w-auto object-contain flex-shrink-0"
+          src="https://lh3.googleusercontent.com/aida/AEtjO1VVnkiN_-OgmRGie5ZKZnXW7yZ2X_VAjsvY_IJYn41xFB-4yxjxzR5-r6rRU4LuE3eOIq5r8kQMURxhCNxevrUeRrolERPms664okx_V9Hf8io5zzGQDZV3EBfLQDOnVwF8jRet9_TmVLpqSbnGKnvTUuvbz9qQ6q275BELRrwL5s0t1KLZOXK7cxmNEF16lG2Sjqsfwi9gt0H8CfoaMz0uyulLyg1DwCklpqKGonxSbiL31TWvIXK4P9zZLFsFZw-VTjDzexLkLA"
+        />
+        <div class="flex flex-col min-w-0">
+          <div class="flex items-center gap-space-xs">
+            <span
+              class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight truncate"
+              >TRÍA</span
+            ><span
+              class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse flex-shrink-0"
+            ></span>
+          </div>
+          <span
+            class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant truncate"
+            >Inicio</span
+          >
+        </div>
+      </div>
+      <div class="flex items-center gap-space-sm flex-shrink-0">
+        <button
+          aria-label="Notificaciones"
+          class="w-11 h-11 rounded-full flex items-center justify-center bg-surface-container-high/60 backdrop-blur-md text-on-surface-variant hover:text-on-surface active:scale-95 transition-all"
+        >
+          <span class="material-symbols-outlined text-[20px]"
+            >notifications</span
+          >
+        </button>
+        <div
+          class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"
+        >
+          <span class="material-symbols-outlined text-on-primary text-[18px]"
+            >person</span
+          >
+        </div>
+      </div>
+    </div>
+  </header>
+  <main
+    class="flex-1 flex flex-col relative w-full pt-20 pb-32 bg-surface z-10"
+  >
+    <div class="flex flex-col w-full px-margin-mobile gap-space-lg">
+      <!-- Saludo & Estado de Boutique -->
+      <section
+        class="flex items-center justify-between gap-space-sm pt-space-xs"
+      >
+        <div class="flex flex-col min-w-0">
+          <div class="flex items-center gap-space-xs mb-1">
+            <span
+              class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-secondary-container/40 text-secondary font-label-sm text-label-sm backdrop-blur-md"
+            >
+              <span
+                class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"
+              ></span>
+              Boutique Abierta
+            </span>
+            <span class="font-label-sm text-label-sm text-on-surface-variant"
+              >09 Sep 2024</span
+            >
+          </div>
+          <h1
+            class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-tight truncate"
+          >
+            Buenos días,
+            <span class="text-primary italic font-serif">TRÍA</span>
+          </h1>
+        </div>
+        <!-- Monograma Rose Gold -->
+        <div
+          class="relative flex-shrink-0 w-12 h-12 rounded-full p-[1px] bg-gradient-to-br from-secondary via-primary-container to-secondary-container shadow-[0_4px_16px_rgba(254,180,176,0.25)]"
+        >
+          <div
+            class="w-full h-full rounded-full bg-surface-container-lowest flex items-center justify-center"
+          >
+            <span
+              class="font-headline-sm text-headline-sm text-primary font-bold tracking-wider"
+              >T</span
+            >
+          </div>
+        </div>
+      </section>
+      <!-- Selector de Período Horizontal Glass -->
+      <section class="overflow-x-auto pb-1 -mx-margin-mobile px-margin-mobile">
+        <div
+          class="flex items-center gap-space-xs min-w-max p-1 bg-surface-container-low/70 backdrop-blur-xl rounded-full"
+        >
+          <button
+            class="px-4 py-1.5 rounded-full bg-gradient-to-r from-secondary-container via-primary-container to-primary/80 text-on-primary-container font-label-md text-label-md shadow-[0_2px_8px_rgba(159,98,95,0.35)] transition-all"
+          >
+            Hoy
+          </button>
+          <button
+            class="px-4 py-1.5 rounded-full text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all active:scale-95"
+          >
+            Esta semana
+          </button>
+          <button
+            class="px-4 py-1.5 rounded-full text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all active:scale-95"
+          >
+            Este mes
+          </button>
+          <button
+            class="flex items-center gap-1 px-3 py-1.5 rounded-full text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all active:scale-95"
+          >
+            <span class="material-symbols-outlined text-[16px]"
+              >calendar_today</span
+            >
+            Personalizado
+          </button>
+        </div>
+      </section>
+      <!-- Bento Grid Financiero Neo-Luxury -->
+      <section class="flex flex-col gap-gutter-mobile">
+        <!-- Tarjeta Principal: Ventas Totales & Cobrado -->
+        <div
+          class="relative overflow-hidden rounded-lg bg-surface-container/60 backdrop-blur-2xl p-space-lg shadow-xl shadow-surface-container-lowest/40"
+        >
+          <div
+            class="absolute -right-8 -top-8 w-44 h-44 bg-primary/10 rounded-full blur-2xl pointer-events-none"
+          ></div>
+          <div class="flex items-start justify-between mb-space-md">
+            <div>
+              <span
+                class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant flex items-center gap-1.5"
+              >
+                <span class="material-symbols-outlined text-[14px] text-primary"
+                  >payments</span
+                >
+                Ventas Totales
+              </span>
+              <div class="flex items-baseline gap-2 mt-1">
+                <span
+                  class="font-headline-xl-mobile text-headline-xl-mobile text-on-surface font-semibold tracking-tight"
+                  >$1.280.000</span
+                >
+              </div>
+            </div>
+            <span
+              class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high/80 text-secondary font-label-sm text-label-sm shadow-sm"
+            >
+              <span class="material-symbols-outlined text-[14px]"
+                >trending_up</span
+              >
+              +14% vs ayer
+            </span>
+          </div>
+          <div
+            class="pt-space-sm mt-space-sm bg-surface-container-highest/30 rounded-DEFAULT p-3 flex items-center justify-between"
+          >
+            <div class="flex items-center gap-2">
+              <div
+                class="w-8 h-8 rounded-full bg-secondary-container/50 flex items-center justify-center text-secondary"
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >account_balance_wallet</span
+                >
+              </div>
+              <div class="flex flex-col">
+                <span
+                  class="font-label-sm text-label-sm text-on-surface-variant"
+                  >Dinero Cobrado</span
+                >
+                <span
+                  class="font-body-lg text-body-lg font-semibold text-secondary-fixed"
+                  >$1.195.000</span
+                >
+              </div>
+            </div>
+            <div class="text-right">
+              <span class="font-label-sm text-label-sm text-on-surface-variant"
+                >Tasa de Cierre</span
+              >
+              <span
+                class="block font-label-md text-label-md font-medium text-primary"
+                >93.3%</span
+              >
+            </div>
+          </div>
+        </div>
+        <!-- Mini Bento Split: Ganancia & Utilidad -->
+        <div class="grid grid-cols-2 gap-gutter-mobile">
+          <!-- Ganancia Bruta & Costo -->
+          <div
+            class="rounded-lg bg-surface-container/50 backdrop-blur-xl p-space-md flex flex-col justify-between"
+          >
+            <div
+              class="flex items-center justify-between text-on-surface-variant mb-space-xs"
+            >
+              <span class="font-label-sm text-label-sm uppercase tracking-wider"
+                >Margen Bruto</span
+              >
+              <span class="material-symbols-outlined text-[16px] text-secondary"
+                >auto_graph</span
+              >
+            </div>
+            <div>
+              <span
+                class="font-headline-sm text-headline-sm font-semibold text-on-surface block"
+                >$760.000</span
+              >
+              <span
+                class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 block truncate"
+                >Costo: $520.000</span
+              >
+            </div>
+            <div
+              class="mt-space-sm w-full bg-surface-container-highest/60 rounded-full h-1.5 overflow-hidden"
+            >
+              <div
+                class="bg-gradient-to-r from-secondary to-primary h-full rounded-full"
+                style="width: 59%"
+              ></div>
+            </div>
+          </div>
+          <!-- Utilidad Neta & Gastos -->
+          <div
+            class="rounded-lg bg-surface-container/50 backdrop-blur-xl p-space-md flex flex-col justify-between"
+          >
+            <div
+              class="flex items-center justify-between text-on-surface-variant mb-space-xs"
+            >
+              <span class="font-label-sm text-label-sm uppercase tracking-wider"
+                >Utilidad Neta</span
+              >
+              <span class="material-symbols-outlined text-[16px] text-primary"
+                >workspace_premium</span
+              >
+            </div>
+            <div>
+              <span
+                class="font-headline-sm text-headline-sm font-semibold text-secondary-fixed block"
+                >$660.000</span
+              >
+              <span
+                class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 block truncate"
+                >Gastos: -$100.000</span
+              >
+            </div>
+            <div class="mt-space-sm flex items-center justify-between">
+              <span class="font-label-sm text-label-sm text-secondary"
+                >51.5% retorno</span
+              >
+            </div>
+          </div>
+        </div>
+        <!-- Alerta Destacada: Saldo Pendiente -->
+        <div
+          class="rounded-lg bg-gradient-to-r from-secondary-container/40 via-surface-container-high/60 to-surface-container/80 backdrop-blur-xl p-space-md flex items-center justify-between gap-space-sm"
+        >
+          <div class="flex items-center gap-space-sm min-w-0">
+            <div
+              class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center flex-shrink-0 text-secondary shadow-inner"
+            >
+              <span class="material-symbols-outlined text-[20px]"
+                >pending_actions</span
+              >
+            </div>
+            <div class="flex flex-col min-w-0">
+              <span
+                class="font-label-sm text-label-sm uppercase tracking-widest text-secondary"
+                >Por Cobrar en Cartera</span
+              >
+              <span
+                class="font-headline-sm text-headline-sm text-on-surface font-semibold truncate"
+                >$85.000</span
+              >
+              <span
+                class="font-body-sm text-body-sm text-on-surface-variant truncate"
+                >4 clientas con saldo activo</span
+              >
+            </div>
+          </div>
+          <button
+            class="flex-shrink-0 w-9 h-9 rounded-full bg-surface-container-highest flex items-center justify-center text-primary hover:bg-primary hover:text-on-primary transition-colors active:scale-95"
+          >
+            <span class="material-symbols-outlined text-[18px]"
+              >arrow_forward</span
+            >
+          </button>
+        </div>
+      </section>
+      <!-- Barra de Acciones Rápidas Táctiles -->
+      <section class="flex flex-col gap-space-sm">
+        <!-- CTA Principal -->
+        <button
+          class="w-full h-14 rounded-full bg-gradient-to-r from-secondary via-primary to-primary-container text-on-primary-fixed font-headline-sm text-headline-sm font-semibold flex items-center justify-center gap-2 shadow-[0_8px_24px_rgba(254,180,176,0.3)] active:scale-[0.98] transition-all"
+        >
+          <span class="material-symbols-outlined text-[24px]"
+            >point_of_sale</span
+          >
+          + Registrar Venta
+        </button>
+        <!-- Sub-Acciones Horizontales -->
+        <div class="grid grid-cols-2 gap-space-xs">
+          <button
+            class="h-12 rounded-full bg-surface-container-high/50 hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center justify-center gap-2 backdrop-blur-md active:scale-95 transition-all"
+          >
+            <span class="material-symbols-outlined text-[18px] text-primary"
+              >add_box</span
+            >
+            Nuevo Producto
+          </button>
+          <button
+            class="h-12 rounded-full bg-surface-container-high/50 hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center justify-center gap-2 backdrop-blur-md active:scale-95 transition-all"
+          >
+            <span class="material-symbols-outlined text-[18px] text-secondary"
+              >post_add</span
+            >
+            Ingresar Stock
+          </button>
+          <button
+            class="h-12 rounded-full bg-surface-container-high/50 hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center justify-center gap-2 backdrop-blur-md active:scale-95 transition-all"
+          >
+            <span
+              class="material-symbols-outlined text-[18px] text-on-surface-variant"
+              >receipt_long</span
+            >
+            Registrar Gasto
+          </button>
+          <button
+            class="h-12 rounded-full bg-surface-container-high/50 hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center justify-center gap-2 backdrop-blur-md active:scale-95 transition-all"
+          >
+            <span class="material-symbols-outlined text-[18px] text-primary"
+              >contact_phone</span
+            >
+            Libreta Cuentas
+          </button>
+        </div>
+      </section>
+      <!-- Bento de Cuentas por Cobrar Urgentes -->
+      <section class="flex flex-col gap-space-sm">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-[20px]"
+              >crisis_alert</span
+            >
+            <h2
+              class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight"
+            >
+              Cobro Prioritario
+            </h2>
+          </div>
+          <span
+            class="font-label-sm text-label-sm text-secondary-fixed bg-secondary-container/40 px-2 py-0.5 rounded-full"
+            >4 pendientes</span
+          >
+        </div>
+        <!-- Card Preview de Cobro Inmediato (María Rodríguez) -->
+        <div
+          class="rounded-lg bg-surface-container/70 backdrop-blur-xl p-space-md flex flex-col gap-space-sm shadow-md shadow-surface-container-lowest/50"
+        >
+          <div class="flex items-start justify-between gap-space-sm">
+            <div class="flex items-center gap-3">
+              <div
+                class="relative w-11 h-11 rounded-full overflow-hidden bg-surface-container-highest flex-shrink-0"
+              >
+                <img
+                  class="w-full h-full object-cover"
+                  data-alt="High-fashion close portrait of a stylish woman with soft lighting and minimalist aesthetic, dark warm tone background reflecting haute couture luxury mood"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUaifabtt8D4fFqthznxP4p8rGw4BhF5su7DtUfUn_wJLTpKDzMRVGMs8AKrOUdkUp-220tgNJC2MHSCy6zTeB8DvhjTBmRegfzjP8_cvpfNQO-HSU53rM5YueTesM3WYqCkSGBQI6ffwgsQJhU_C8nEKqFA8B2M3u8jxxkKHHGtbfgPb3C0gOnlQLlWQNP30kSDHP44ZgrjWphRcyZZ6DqhFUltrSEOBPuZqIM3SKCMVvPqJMvfEc"
+                />
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span
+                  class="font-body-lg text-body-lg font-semibold text-on-surface truncate"
+                  >María Rodríguez</span
+                >
+                <span class="font-body-sm text-body-sm text-on-surface-variant"
+                  >Último abono: Hace 3 días</span
+                >
+              </div>
+            </div>
+            <div class="text-right flex-shrink-0">
+              <span
+                class="font-label-sm text-label-sm uppercase tracking-wider text-secondary"
+                >Pendiente</span
+              >
+              <span
+                class="block font-headline-sm text-headline-sm text-secondary-fixed font-semibold"
+                >$70.000</span
+              >
+            </div>
+          </div>
+          <div
+            class="flex items-center justify-between pt-space-xs bg-surface-container-low/50 rounded-DEFAULT p-2.5"
+          >
+            <div class="flex items-center gap-1.5 text-on-surface-variant">
+              <span class="material-symbols-outlined text-[16px] text-primary"
+                >inventory_2</span
+              >
+              <span class="font-body-sm text-body-sm truncate"
+                >Vestido Satinado Noir (Talla M)</span
+              >
+            </div>
+            <span
+              class="inline-flex px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm"
+            >
+              Abonado $30.000
+            </span>
+          </div>
+          <div class="grid grid-cols-2 gap-space-xs mt-1">
+            <a
+              class="h-11 rounded-full bg-surface-container-highest hover:bg-surface-bright text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors active:scale-95"
+              href="https://wa.me/?text=Hola%20Mar%C3%ADa,%20te%20saludamos%20de%20TR%C3%8DA%20para%20recordarte%20tu%20saldo%20pendiente..."
+              target="_blank"
+            >
+              <span class="material-symbols-outlined text-[18px] text-[#25D366]"
+                >chat</span
+              >
+              Recordar WhatsApp
+            </a>
+            <button
+              class="h-11 rounded-full bg-gradient-to-r from-secondary-container to-primary-container text-on-primary-container font-label-md text-label-md flex items-center justify-center gap-1.5 active:scale-95 transition-all"
+            >
+              <span class="material-symbols-outlined text-[18px]"
+                >add_card</span
+              >
+              Registrar Abono
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- Top Productos Vendidos -->
+      <section class="flex flex-col gap-space-sm">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-[20px]"
+              >stars</span
+            >
+            <h2
+              class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight"
+            >
+              Piezas Más Vendidas
+            </h2>
+          </div>
+          <span class="font-label-sm text-label-sm text-on-surface-variant"
+            >Top del Ciclo</span
+          >
+        </div>
+        <div class="flex flex-col gap-space-xs">
+          <!-- Item 1 -->
+          <div
+            class="rounded-DEFAULT bg-surface-container/60 backdrop-blur-md p-space-sm flex items-center justify-between gap-space-sm"
+          >
+            <div class="flex items-center gap-3 min-w-0">
+              <div
+                class="w-12 h-12 rounded-DEFAULT overflow-hidden bg-surface-container-high flex-shrink-0"
+              >
+                <img
+                  class="w-full h-full object-cover"
+                  data-alt="Luxury gold perfume bottle with fine mist on black velvet texture, dramatic warm side studio lighting, editorial beauty product photograph"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDogZwb7p-CIaFc-67GdFde3pInKx3rKQD_4IdgORMJysVuI8gEpAGDlKXwK1vQfktkvjcXk1Os7k_A2WdCJUK619yF5WYzwAtdlEdHXHILnSefLynjk1J7sIOE1oKd6oaZfUwx0fmgJmpX1I0ayyMXrwxiTegKcNJlymB7zJxFHs9oGKPOvkky9ET_MBBZVrjD3pVT_0y7rdGJKAkWttnFe-WECh3rQ_-wfHG8PDD4lX1kUHV6igP5"
+                />
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span
+                  class="font-body-md text-body-md font-medium text-on-surface truncate"
+                  >Perfume Yara Eau de Parfum</span
+                >
+                <span class="font-body-sm text-body-sm text-on-surface-variant"
+                  >$25.000 · Fragancia Signature</span
+                >
+              </div>
+            </div>
+            <div class="text-right flex-shrink-0">
+              <span
+                class="font-headline-sm text-headline-sm font-semibold text-primary"
+                >14</span
+              >
+              <span
+                class="block font-label-sm text-label-sm text-on-surface-variant"
+                >unidades</span
+              >
+            </div>
+          </div>
+          <!-- Item 2 -->
+          <div
+            class="rounded-DEFAULT bg-surface-container/60 backdrop-blur-md p-space-sm flex items-center justify-between gap-space-sm"
+          >
+            <div class="flex items-center gap-3 min-w-0">
+              <div
+                class="w-12 h-12 rounded-DEFAULT overflow-hidden bg-surface-container-high flex-shrink-0"
+              >
+                <img
+                  class="w-full h-full object-cover"
+                  data-alt="Black silk slip dress on elegant mannequin in atelier boutique with warm ambient lighting and soft rose reflections"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKuRAKCwAgu3qVH2TeFw1BFZLMRJjE7lGu-wfOBaE3D_N8K4Jtg71DPu_2fL6f2Wo6zLg62YA4meqQtyUjKpraUyWimxbcoPMYLhLRQYA-w6QlFt-gsogl0oDw7zOQUFO-D-9yxFb2Uc6eFj_ilseA76zSdmUY2dX7aa_Ll2qMOOZ7gJgheHo2-8ns9lDkebM9Wc3LGteJU2oj5j3UBG4KSV5Dt7OXm6JHvjl2IW6npE74B0pltIrc"
+                />
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span
+                  class="font-body-md text-body-md font-medium text-on-surface truncate"
+                  >Vestido Satinado Noir</span
+                >
+                <span class="font-body-sm text-body-sm text-on-surface-variant"
+                  >$80.000 · Colección Noche</span
+                >
+              </div>
+            </div>
+            <div class="text-right flex-shrink-0">
+              <span
+                class="font-headline-sm text-headline-sm font-semibold text-primary"
+                >6</span
+              >
+              <span
+                class="block font-label-sm text-label-sm text-on-surface-variant"
+                >unidades</span
+              >
+            </div>
+          </div>
+          <!-- Item 3 -->
+          <div
+            class="rounded-DEFAULT bg-surface-container/60 backdrop-blur-md p-space-sm flex items-center justify-between gap-space-sm"
+          >
+            <div class="flex items-center gap-3 min-w-0">
+              <div
+                class="w-12 h-12 rounded-DEFAULT overflow-hidden bg-surface-container-high flex-shrink-0"
+              >
+                <img
+                  class="w-full h-full object-cover"
+                  data-alt="Intricate black floral lace bodysuit resting on powdered blush satin background, moody atmospheric shadows, haute lingerie design"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCe4DdxPHJWiJnAkpFPYVHO3QIbrTtS0TqsrsZetzLGdq7xLbCjVMmU5JL7fFCBtNk-h8uZyfIsf6Me1oI5x1M1MHy4di4Gh_nCY5BXVv_-7Q-nX1XbjUydE7JttE9yXTeNr39F3cp0ktcdLzV3NbVlcwwHFxwx5sj-6b0oGJUwSDVkZaA-XunuFf5YImnIMoGqbP6tqmez7Hxh6pz9SyDIUpzWEJiCIAAY_J0N5V7JQhbwLwpRXKVZ"
+                />
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span
+                  class="font-body-md text-body-md font-medium text-on-surface truncate"
+                  >Body Encaje Noir Couture</span
+                >
+                <span class="font-body-sm text-body-sm text-on-surface-variant"
+                  >$45.000 · Lencería Fina</span
+                >
+              </div>
+            </div>
+            <div class="text-right flex-shrink-0">
+              <span
+                class="font-headline-sm text-headline-sm font-semibold text-primary"
+                >8</span
+              >
+              <span
+                class="block font-label-sm text-label-sm text-on-surface-variant"
+                >unidades</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Resumen de Inventario Atelier -->
+      <section
+        class="rounded-lg bg-surface-container/60 backdrop-blur-xl p-space-md flex flex-col gap-space-sm"
+      >
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary text-[20px]"
+              >warehouse</span
+            >
+            <h2
+              class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight"
+            >
+              Inventario Global
+            </h2>
+          </div>
+          <span
+            class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-container/50 text-secondary font-label-sm text-label-sm"
+          >
+            <span class="material-symbols-outlined text-[13px]">warning</span>
+            2 en stock crítico
+          </span>
+        </div>
+        <div class="grid grid-cols-3 gap-2 py-space-xs text-center">
+          <div
+            class="p-2 rounded-DEFAULT bg-surface-container-low/70 flex flex-col items-center"
+          >
+            <span class="font-label-sm text-label-sm text-on-surface-variant"
+              >Disponibles</span
+            >
+            <span
+              class="font-headline-sm text-headline-sm font-semibold text-on-surface mt-0.5"
+              >142</span
+            >
+            <span class="font-label-sm text-label-sm text-primary"
+              >uds. totales</span
+            >
+          </div>
+          <div
+            class="p-2 rounded-DEFAULT bg-surface-container-low/70 flex flex-col items-center"
+          >
+            <span class="font-label-sm text-label-sm text-on-surface-variant"
+              >Valor Costo</span
+            >
+            <span
+              class="font-headline-sm text-headline-sm font-semibold text-on-surface mt-0.5"
+              >$1.85M</span
+            >
+            <span class="font-label-sm text-label-sm text-on-surface-variant"
+              >Inversión</span
+            >
+          </div>
+          <div
+            class="p-2 rounded-DEFAULT bg-surface-container-low/70 flex flex-col items-center"
+          >
+            <span class="font-label-sm text-label-sm text-on-surface-variant"
+              >Potencial</span
+            >
+            <span
+              class="font-headline-sm text-headline-sm font-semibold text-secondary-fixed mt-0.5"
+              >$2.42M</span
+            >
+            <span class="font-label-sm text-label-sm text-secondary"
+              >Estimado</span
+            >
+          </div>
+        </div>
+      </section>
+      <!-- Actividad Reciente en Timeline de Boutique -->
+      <section class="flex flex-col gap-space-sm pb-space-md">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-[20px]"
+              >schedule</span
+            >
+            <h2
+              class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight"
+            >
+              Bitácora en Tiempo Real
+            </h2>
+          </div>
+          <button
+            class="font-label-sm text-label-sm text-primary hover:underline"
+          >
+            Ver todo
+          </button>
+        </div>
+        <div
+          class="relative pl-6 space-y-4 before:absolute before:left-2 before:top-2 before:bottom-2 before:w-[2px] before:bg-surface-container-highest"
+        >
+          <!-- Evento 1 -->
+          <div class="relative flex flex-col">
+            <span
+              class="absolute -left-6 top-1 w-3 h-3 rounded-full bg-primary ring-4 ring-surface"
+            ></span>
+            <div class="flex items-center justify-between text-on-surface">
+              <span class="font-body-md text-body-md font-medium"
+                >Venta Contado · Sofía Morales</span
+              >
+              <span class="font-label-sm text-label-sm text-secondary"
+                >+$80.000</span
+              >
+            </div>
+            <span class="font-body-sm text-body-sm text-on-surface-variant"
+              >1x Vestido Satinado Noir · Hace 18 min</span
+            >
+          </div>
+          <!-- Evento 2 -->
+          <div class="relative flex flex-col">
+            <span
+              class="absolute -left-6 top-1 w-3 h-3 rounded-full bg-secondary ring-4 ring-surface"
+            ></span>
+            <div class="flex items-center justify-between text-on-surface">
+              <span class="font-body-md text-body-md font-medium"
+                >Abono Recibido · Valentina Ríos</span
+              >
+              <span class="font-label-sm text-label-sm text-secondary-fixed"
+                >+$25.000</span
+              >
+            </div>
+            <span class="font-body-sm text-body-sm text-on-surface-variant"
+              >Transferencia Bancolombia · Hace 42 min</span
+            >
+          </div>
+          <!-- Evento 3 -->
+          <div class="relative flex flex-col">
+            <span
+              class="absolute -left-6 top-1 w-3 h-3 rounded-full bg-on-surface-variant ring-4 ring-surface"
+            ></span>
+            <div class="flex items-center justify-between text-on-surface">
+              <span class="font-body-md text-body-md font-medium"
+                >Gasto Operativo · Empaques de Seda</span
+              >
+              <span class="font-label-sm text-label-sm text-on-surface-variant"
+                >-$45.000</span
+              >
+            </div>
+            <span class="font-body-sm text-body-sm text-on-surface-variant"
+              >Caja Menor · Hace 2 horas</span
+            >
+          </div>
+        </div>
+      </section>
+    </div>
+    <script>
+      // Micro-interacción háptica visual en los botones del dashboard
+      document.querySelectorAll("button, a").forEach((el) => {
+        el.addEventListener("touchstart", () => {
+          el.style.transform = "scale(0.97)";
+          el.style.transition = "transform 0.1s ease";
+        });
+        el.addEventListener("touchend", () => {
+          el.style.transform = "";
+        });
+      });
+    </script>
+  </main>
+  <div class="fixed bottom-0 w-full z-50 pointer-events-none pb-safe">
+    <nav
+      class="pointer-events-auto mx-auto mb-4 px-3 w-[calc(100%-1.5rem)] max-w-md h-20 rounded-full bg-surface-container-lowest/85 backdrop-blur-xl shadow-[0_12px_32px_-8px_rgba(159,98,95,0.28)] flex items-center justify-between"
+      data-active-classes="text-primary bg-primary-container/25"
+    >
+      <a
+        aria-current="page"
+        class="flex flex-col items-center justify-center w-14 h-14 rounded-full transition-all duration-200 active:scale-95 text-primary bg-primary-container/25"
+        data-path="inicio"
+        routerLink="/app/inicio"
+        ><span class="material-symbols-outlined text-[22px]">dashboard</span
+        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
+          >Inicio</span
+        ></a
+      ><a
+        class="flex flex-col items-center justify-center w-14 h-14 rounded-full text-on-surface-variant hover:text-on-surface transition-all duration-200 active:scale-95"
+        data-path="inventario"
+        routerLink="/app/inventario"
+        ><span class="material-symbols-outlined text-[22px]">inventory_2</span
+        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
+          >Stock</span
+        ></a
+      >
+      <div class="relative -top-3">
+        <a
+          class="flex flex-col items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-secondary via-primary to-primary-container text-on-primary shadow-[0_8px_24px_rgba(254,180,176,0.35)] active:scale-95 transition-transform"
+          data-path="ventas"
+          routerLink="/app/ventas"
+          ><span class="material-symbols-outlined text-[24px]"
+            >shopping_bag</span
+          ></a
+        >
+      </div>
+      <a
+        class="flex flex-col items-center justify-center w-14 h-14 rounded-full text-on-surface-variant hover:text-on-surface transition-all duration-200 active:scale-95"
+        data-path="clientes"
+        routerLink="/app/clientes"
+        ><span class="material-symbols-outlined text-[22px]">group</span
+        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
+          >Clientes</span
+        ></a
+      ><a
+        class="flex flex-col items-center justify-center w-14 h-14 rounded-full text-on-surface-variant hover:text-on-surface transition-all duration-200 active:scale-95"
+        data-path="mas"
+        routerLink="/app/configuracion"
+        ><span class="material-symbols-outlined text-[22px]">grid_view</span
+        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
+          >Más</span
+        ></a
+      >
+    </nav>
+  </div>
+</div>

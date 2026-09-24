@@ -1,0 +1,768 @@
+<!-- Inventory Module Shell -->
+<section
+  class="bg-surface font-body-md text-body-md text-on-surface min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-on-primary-container"
+>
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div
+      class="absolute -top-32 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary-container/15 rounded-full blur-3xl"
+    ></div>
+    <div
+      class="absolute bottom-20 left-1/4 w-80 h-80 bg-secondary-container/10 rounded-full blur-3xl"
+    ></div>
+  </div>
+  <header
+    class="fixed top-0 w-full z-50 pt-safe bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
+  >
+    <div
+      class="h-20 px-margin-mobile flex items-center justify-between gap-gutter-mobile"
+    >
+      <div class="flex items-center gap-space-sm min-w-0">
+        <img
+          alt="tria-logo.png"
+          class="h-8 w-auto object-contain flex-shrink-0"
+          src="https://lh3.googleusercontent.com/aida/AEtjO1VVnkiN_-OgmRGie5ZKZnXW7yZ2X_VAjsvY_IJYn41xFB-4yxjxzR5-r6rRU4LuE3eOIq5r8kQMURxhCNxevrUeRrolERPms664okx_V9Hf8io5zzGQDZV3EBfLQDOnVwF8jRet9_TmVLpqSbnGKnvTUuvbz9qQ6q275BELRrwL5s0t1KLZOXK7cxmNEF16lG2Sjqsfwi9gt0H8CfoaMz0uyulLyg1DwCklpqKGonxSbiL31TWvIXK4P9zZLFsFZw-VTjDzexLkLA"
+        />
+        <div class="flex flex-col min-w-0">
+          <div class="flex items-center gap-space-xs">
+            <span
+              class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight truncate"
+              >TRÍA</span
+            ><span
+              class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse flex-shrink-0"
+            ></span>
+          </div>
+          <span
+            class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant truncate"
+            >Inventario</span
+          >
+        </div>
+      </div>
+      <div class="flex items-center gap-space-sm flex-shrink-0">
+        <button
+          aria-label="Notificaciones"
+          class="w-11 h-11 rounded-full flex items-center justify-center bg-surface-container-high/60 backdrop-blur-md text-on-surface-variant hover:text-on-surface active:scale-95 transition-all"
+        >
+          <span class="material-symbols-outlined text-[20px]"
+            >notifications</span
+          >
+        </button>
+        <div
+          class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"
+        >
+          <span class="material-symbols-outlined text-on-primary text-[18px]"
+            >person</span
+          >
+        </div>
+      </div>
+    </div>
+  </header>
+  <main
+    class="flex-1 flex flex-col relative w-full pt-20 pb-32 bg-surface z-10"
+  >
+    <div class="flex flex-col w-full">
+      <div class="flex flex-col gap-y-space-md px-margin-mobile">
+        <div class="flex items-center justify-between gap-gutter-mobile">
+          <div class="flex flex-col min-w-0">
+            <h1
+              class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-semibold tracking-tight"
+            >
+              Inventario General
+            </h1>
+            <div class="flex items-center gap-space-xs text-on-surface-variant">
+              <span class="w-2 h-2 rounded-full bg-secondary-fixed-dim"></span>
+              <p class="font-body-sm text-body-sm text-on-surface-variant">
+                48 Referencias · 142 Unidades
+              </p>
+            </div>
+          </div>
+          <button
+            class="relative group flex items-center justify-center gap-space-xs px-space-md py-space-sm rounded-full bg-gradient-to-br from-secondary via-primary to-primary-container text-on-primary font-label-md text-label-md shadow-md active:scale-95 transition-all duration-150 flex-shrink-0"
+            type="button"
+            routerLink="/app/inventario/nuevo"
+          >
+            <span class="material-symbols-outlined text-[18px]">add</span>
+            <span class="hidden sm:inline">Agregar Producto</span>
+            <span class="sm:hidden">Nuevo</span>
+          </button>
+        </div>
+        <div class="flex items-center gap-space-sm w-full">
+          <div class="relative flex-1 flex items-center">
+            <span
+              class="material-symbols-outlined absolute left-space-md text-[20px] text-outline pointer-events-none"
+              >search</span
+            >
+            <input
+              class="w-full h-12 pl-11 pr-space-md rounded-full bg-surface-container-high/60 backdrop-blur-md text-on-surface font-body-md text-body-md placeholder:text-outline focus:outline-none focus:bg-surface-container-highest transition-all duration-200"
+              id="inventorySearchInput"
+              placeholder="Buscar por nombre, subcategoría o código..."
+              type="text"
+            />
+          </div>
+          <button
+            aria-label="Filtros avanzados"
+            class="w-12 h-12 rounded-full flex items-center justify-center bg-surface-container-high/60 backdrop-blur-md text-on-surface hover:text-primary active:scale-95 transition-transform flex-shrink-0"
+            type="button"
+          >
+            <span class="material-symbols-outlined text-[22px]">tune</span>
+          </button>
+        </div>
+        <div
+          class="flex items-center gap-space-xs overflow-x-auto no-scrollbar py-space-xs -mx-margin-mobile px-margin-mobile"
+        >
+          <button
+            class="status-chip active flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-primary-container/30 text-primary font-label-md text-label-md whitespace-nowrap active:scale-95 transition-all duration-150"
+            data-filter="all"
+            type="button"
+          >
+            <span>Todos</span>
+            <span
+              class="text-on-surface-variant text-[11px] font-medium bg-surface-container-highest/60 px-1.5 py-0.5 rounded-full"
+              >48</span
+            >
+          </button>
+          <button
+            class="status-chip flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-surface-container-high/40 text-on-surface-variant hover:text-on-surface font-label-md text-label-md whitespace-nowrap active:scale-95 transition-all duration-150"
+            data-filter="available"
+            type="button"
+          >
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <span>Disponibles</span>
+            <span class="text-[11px] font-medium opacity-70">42</span>
+          </button>
+          <button
+            class="status-chip flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-surface-container-high/40 text-on-surface-variant hover:text-on-surface font-label-md text-label-md whitespace-nowrap active:scale-95 transition-all duration-150"
+            data-filter="low"
+            type="button"
+          >
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+            <span>Stock Bajo</span>
+            <span class="text-[11px] font-medium opacity-70">4</span>
+          </button>
+          <button
+            class="status-chip flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-surface-container-high/40 text-on-surface-variant hover:text-on-surface font-label-md text-label-md whitespace-nowrap active:scale-95 transition-all duration-150"
+            data-filter="out"
+            type="button"
+          >
+            <span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+            <span>Agotados</span>
+            <span class="text-[11px] font-medium opacity-70">2</span>
+          </button>
+        </div>
+        <div
+          class="flex flex-col gap-space-sm p-space-md rounded-lg bg-surface-container-low/70 backdrop-blur-xl"
+        >
+          <div
+            class="grid grid-cols-3 gap-space-xs p-1 rounded-full bg-surface-container-lowest/80"
+          >
+            <button
+              class="cat-pill active flex items-center justify-center gap-1.5 py-2 px-space-xs rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md font-medium transition-all duration-200"
+              data-cat="beauty"
+              type="button"
+            >
+              <span class="material-symbols-outlined text-[16px]">brush</span>
+              <span class="tracking-wide">BEAUTY</span>
+            </button>
+            <button
+              class="cat-pill flex items-center justify-center gap-1.5 py-2 px-space-xs rounded-full text-on-surface-variant hover:text-on-surface font-label-md text-label-md font-medium transition-all duration-200"
+              data-cat="fashion"
+              type="button"
+            >
+              <span class="material-symbols-outlined text-[16px]">styler</span>
+              <span class="tracking-wide">FASHION</span>
+            </button>
+            <button
+              class="cat-pill flex items-center justify-center gap-1.5 py-2 px-space-xs rounded-full text-on-surface-variant hover:text-on-surface font-label-md text-label-md font-medium transition-all duration-200"
+              data-cat="lingerie"
+              type="button"
+            >
+              <span class="material-symbols-outlined text-[16px]"
+                >favorite</span
+              >
+              <span class="tracking-wide">LINGERIE</span>
+            </button>
+          </div>
+          <div class="overflow-x-auto no-scrollbar pt-space-xs">
+            <div class="flex items-center gap-space-xs" id="subcatBeauty">
+              <span
+                class="px-space-sm py-1 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm whitespace-nowrap"
+                >Todas (16)</span
+              >
+              <span
+                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
+                >Perfumes</span
+              >
+              <span
+                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
+                >Maquillaje</span
+              >
+              <span
+                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
+                >Cuidado Facial</span
+              >
+              <span
+                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
+                >Uñas</span
+              >
+              <span
+                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
+                >Accesorios</span
+              >
+            </div>
+            <div class="hidden items-center gap-space-xs" id="subcatFashion">
+              <span
+                class="px-space-sm py-1 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm whitespace-nowrap"
+                >Todas (18)</span
+              >
+              <span
+                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
+                >Vestidos</span
+              >
+              <span
+                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
+                >Blusas</span
+              >
+              <span
+                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
+                >Tops</span
+              >
+              <span
+                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
+                >Faldas</span
+              >
+              <span
+                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
+                >Pantalones</span
+              >
+              <span
+                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
+                >Jeans</span
+              >
+              <span
+                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
+                >Bodys</span
+              >
+            </div>
+            <div class="hidden items-center gap-space-xs" id="subcatLingerie">
+              <span
+                class="px-space-sm py-1 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm whitespace-nowrap"
+                >Todas (14)</span
+              >
+              <span
+                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
+                >Conjuntos</span
+              >
+              <span
+                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
+                >Bodys Encaje</span
+              >
+              <span
+                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
+                >Brasieres</span
+              >
+              <span
+                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
+                >Panties</span
+              >
+              <span
+                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
+                >Baby Dolls</span
+              >
+              <span
+                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
+                >Pijamas Satén</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col gap-y-space-md">
+          <div
+            class="flex flex-col p-space-md rounded-lg bg-surface-container-low/75 backdrop-blur-xl shadow-md gap-space-md transition-all hover:bg-surface-container-low"
+          >
+            <div class="flex items-start gap-space-md">
+              <div
+                class="relative w-20 h-20 rounded-DEFAULT overflow-hidden bg-surface-container-highest flex-shrink-0"
+              >
+                <img
+                  class="w-full h-full object-cover"
+                  data-alt="Close-up luxury shot of Yara Onlyou perfume bottle in iridescent rose-gold glass with soft studio reflection against charcoal silk fabric, editorial high-end boutique look."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCSr_uKJc7y9_hFj20tuXckJuQSmBsQmGkrHTjMqxyHwnFPMAwb4iUfs0sKyEKmwhtpxxNB4dJwaFd943gj_de_ZCLt7yfGmxk8tOQKrdgZ6D91EuRjfTKhICbhJz1dMVrxLGqe8x43elAMdH4y26MrVN3hzayLWSst4Wvd6nunTxfbLjhcFcH208t7iWPyViIm9EPAMGjqPZMAHgvhKYzJmZqyTLS6dX30aauOyelp80QAjT8bbTc"
+                />
+                <span
+                  class="absolute top-1 left-1 px-1.5 py-0.5 rounded-full bg-surface-container-lowest/80 text-[10px] font-label-sm text-primary tracking-widest uppercase font-semibold"
+                  >TRÍA</span
+                >
+              </div>
+              <div
+                class="flex-1 min-w-0 flex flex-col justify-between self-stretch"
+              >
+                <div class="flex items-start justify-between gap-space-xs">
+                  <div class="min-w-0">
+                    <span
+                      class="font-label-sm text-label-sm uppercase tracking-wider text-secondary-container bg-surface-container-highest/50 px-2 py-0.5 rounded-full"
+                      >BEAUTY · Perfumes</span
+                    >
+                    <h2
+                      class="font-headline-sm text-headline-sm text-on-surface font-semibold truncate mt-1"
+                    >
+                      Perfume Yara Onlyou
+                    </h2>
+                    <p class="font-body-sm text-body-sm text-outline">
+                      Cód #PRF-012
+                    </p>
+                  </div>
+                  <span
+                    class="px-2.5 py-1 rounded-full bg-emerald-950/70 text-emerald-300 font-label-sm text-label-sm font-semibold tracking-wide flex items-center gap-1 flex-shrink-0"
+                  >
+                    <span
+                      class="w-1.5 h-1.5 rounded-full bg-emerald-400"
+                    ></span>
+                    3 unids
+                  </span>
+                </div>
+                <div class="flex items-baseline gap-space-sm pt-1">
+                  <span
+                    class="font-headline-sm text-headline-sm text-on-surface font-bold"
+                    >$25.000</span
+                  >
+                  <span class="font-body-sm text-body-sm text-outline"
+                    >Costo $9.000</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div
+              class="flex items-center justify-between pt-space-xs border-t-0 bg-surface-container-highest/30 p-space-sm rounded-DEFAULT"
+            >
+              <div class="flex items-center gap-space-xs">
+                <span
+                  class="material-symbols-outlined text-secondary text-[18px]"
+                  >trending_up</span
+                >
+                <span class="font-body-sm text-body-sm text-on-surface-variant"
+                  >Margen:
+                  <strong class="text-secondary">+$16.000 (64%)</strong></span
+                >
+              </div>
+              <button
+                class="flex items-center gap-1 px-space-md py-1.5 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md active:scale-95 transition-transform"
+                type="button"
+              >
+                <span class="material-symbols-outlined text-[16px]"
+                  >point_of_sale</span
+                >
+                <span>+ Vender</span>
+              </button>
+            </div>
+          </div>
+          <div
+            class="flex flex-col p-space-md rounded-lg bg-surface-container-low/75 backdrop-blur-xl shadow-md gap-space-md transition-all hover:bg-surface-container-low"
+          >
+            <div class="flex items-start gap-space-md">
+              <div
+                class="relative w-20 h-20 rounded-DEFAULT overflow-hidden bg-surface-container-highest flex-shrink-0"
+              >
+                <img
+                  class="w-full h-full object-cover"
+                  data-alt="Sophisticated black satin mini dress hanging gracefully against a warm rose-gold tinted velvet screen, boutique showroom lighting with sensual folds and soft shimmer."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbCdTooce6EQ5olLgnuxMvU04RvMOMoY7lTynISgRgNYBKKtNnByAeASP-lRhjLTg1b5owJkYCsYm6-g0Wr5Sd8tdeDVfcxTCy7RW9t3bdf8DbrmUIXWqGp0jTjWUSI_xK7WkEiOHP9Z2CJkPnszYeCI4LAAUy-A4hVLUgnukH3rzTIPJa_Nyfsx8S3Nf704oJjeHkA2_MWBKQ8M7FJ4iwNaNx1ecfm133-GCvzn5cUn8Opechh8AP"
+                />
+                <span
+                  class="absolute top-1 left-1 px-1.5 py-0.5 rounded-full bg-surface-container-lowest/80 text-[10px] font-label-sm text-primary tracking-widest uppercase font-semibold"
+                  >TRÍA</span
+                >
+              </div>
+              <div
+                class="flex-1 min-w-0 flex flex-col justify-between self-stretch"
+              >
+                <div class="flex items-start justify-between gap-space-xs">
+                  <div class="min-w-0">
+                    <span
+                      class="font-label-sm text-label-sm uppercase tracking-wider text-secondary-container bg-surface-container-highest/50 px-2 py-0.5 rounded-full"
+                      >FASHION · Vestidos</span
+                    >
+                    <h2
+                      class="font-headline-sm text-headline-sm text-on-surface font-semibold truncate mt-1"
+                    >
+                      Vestido Corto Satinado Noir
+                    </h2>
+                    <p class="font-body-sm text-body-sm text-outline">
+                      Cód #VES-089
+                    </p>
+                  </div>
+                  <span
+                    class="px-2.5 py-1 rounded-full bg-amber-950/70 text-amber-300 font-label-sm text-label-sm font-semibold tracking-wide flex items-center gap-1 flex-shrink-0"
+                  >
+                    <span
+                      class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"
+                    ></span>
+                    2 unids · Stock Bajo
+                  </span>
+                </div>
+                <div class="flex items-baseline gap-space-sm pt-1">
+                  <span
+                    class="font-headline-sm text-headline-sm text-on-surface font-bold"
+                    >$80.000</span
+                  >
+                  <span class="font-body-sm text-body-sm text-outline"
+                    >Costo $38.000</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div
+              class="flex items-center justify-between pt-space-xs border-t-0 bg-surface-container-highest/30 p-space-sm rounded-DEFAULT"
+            >
+              <div class="flex items-center gap-space-xs">
+                <span
+                  class="material-symbols-outlined text-secondary text-[18px]"
+                  >trending_up</span
+                >
+                <span class="font-body-sm text-body-sm text-on-surface-variant"
+                  >Margen:
+                  <strong class="text-secondary">+$42.000 (52%)</strong></span
+                >
+              </div>
+              <button
+                class="flex items-center gap-1 px-space-md py-1.5 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md active:scale-95 transition-transform"
+                type="button"
+              >
+                <span class="material-symbols-outlined text-[16px]"
+                  >point_of_sale</span
+                >
+                <span>+ Vender</span>
+              </button>
+            </div>
+          </div>
+          <div
+            class="flex flex-col p-space-md rounded-lg bg-surface-container-low/75 backdrop-blur-xl shadow-md gap-space-md transition-all hover:bg-surface-container-low"
+          >
+            <div class="flex items-start gap-space-md">
+              <div
+                class="relative w-20 h-20 rounded-DEFAULT overflow-hidden bg-surface-container-highest flex-shrink-0"
+              >
+                <img
+                  class="w-full h-full object-cover"
+                  data-alt="Detailed couture lace lingerie bodysuit in wine and deep rose tones presented over subtle metallic satin background with refined haute couture boutique styling."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAL91jTg9sVFIGLcbdciUYf94olOsHgpQm2yqaOFxUnyAqMkRLYC2pmJBI_IxpGo2w8fwEeDgkG2Ki1RBXKCW5NvkgrsN_H27o7GdOjYc-5zAhpkMLuEQWGJTpcgamlJHeinJVURHT_IVYfAnK4UqjGvSTzBggKY9X2v-Xgn9AAK53FwnY8QmNpNzhFTmWISoxTJ_csHoxI3VnM6gAz_ntoYC9v7Q62fO2n1D95rz3oPiNJDItck0d6"
+                />
+                <span
+                  class="absolute top-1 left-1 px-1.5 py-0.5 rounded-full bg-surface-container-lowest/80 text-[10px] font-label-sm text-primary tracking-widest uppercase font-semibold"
+                  >TRÍA</span
+                >
+              </div>
+              <div
+                class="flex-1 min-w-0 flex flex-col justify-between self-stretch"
+              >
+                <div class="flex items-start justify-between gap-space-xs">
+                  <div class="min-w-0">
+                    <span
+                      class="font-label-sm text-label-sm uppercase tracking-wider text-secondary-container bg-surface-container-highest/50 px-2 py-0.5 rounded-full"
+                      >LINGERIE · Bodys</span
+                    >
+                    <h2
+                      class="font-headline-sm text-headline-sm text-on-surface font-semibold truncate mt-1"
+                    >
+                      Body Encaje Imperial
+                    </h2>
+                    <p class="font-body-sm text-body-sm text-outline">
+                      Cód #LNG-044
+                    </p>
+                  </div>
+                  <span
+                    class="px-2.5 py-1 rounded-full bg-emerald-950/70 text-emerald-300 font-label-sm text-label-sm font-semibold tracking-wide flex items-center gap-1 flex-shrink-0"
+                  >
+                    <span
+                      class="w-1.5 h-1.5 rounded-full bg-emerald-400"
+                    ></span>
+                    5 unids
+                  </span>
+                </div>
+                <div class="flex items-baseline gap-space-sm pt-1">
+                  <span
+                    class="font-headline-sm text-headline-sm text-on-surface font-bold"
+                    >$55.000</span
+                  >
+                  <span class="font-body-sm text-body-sm text-outline"
+                    >Costo $22.000</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div
+              class="flex items-center justify-between pt-space-xs border-t-0 bg-surface-container-highest/30 p-space-sm rounded-DEFAULT"
+            >
+              <div class="flex items-center gap-space-xs">
+                <span
+                  class="material-symbols-outlined text-secondary text-[18px]"
+                  >trending_up</span
+                >
+                <span class="font-body-sm text-body-sm text-on-surface-variant"
+                  >Margen:
+                  <strong class="text-secondary">+$33.000 (60%)</strong></span
+                >
+              </div>
+              <button
+                class="flex items-center gap-1 px-space-md py-1.5 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md active:scale-95 transition-transform"
+                type="button"
+              >
+                <span class="material-symbols-outlined text-[16px]"
+                  >point_of_sale</span
+                >
+                <span>+ Vender</span>
+              </button>
+            </div>
+          </div>
+          <div
+            class="flex flex-col p-space-md rounded-lg bg-surface-container-low/50 backdrop-blur-xl opacity-90 gap-space-md"
+          >
+            <div class="flex items-start gap-space-md">
+              <div
+                class="relative w-20 h-20 rounded-DEFAULT overflow-hidden bg-surface-container-highest flex-shrink-0 grayscale"
+              >
+                <img
+                  class="w-full h-full object-cover"
+                  data-alt="Skincare luxury set in glass jars and rose mist bottles arranged on dark reflective marble slab with soft warm pink backlight, upscale spa boutique vibe."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFqUIVXROdCYU_2sRZD0tFmu3StDNZBNfmh6OfyX6vv-3B90-PQF02Tg73Pb0ZC9zWQTWuD2ELG4Cwm4fFctJqYG90HZXwWJs4ZyKrbHBJ-fzgtR5FMX6osUwXPv88LCWFyVDrKsWiXqvktcyrt4nJXfSJV6CnEj4QPTOI3URbQtP5e55-n4IMuFMkojCDukqfpv_eBL-ey1OV9n7Kv-xI9fNYNhQmbZ4yr4EtU8K7HTtwnQroe93z"
+                />
+                <div
+                  class="absolute inset-0 bg-surface-dim/60 flex items-center justify-center"
+                >
+                  <span class="material-symbols-outlined text-error text-[24px]"
+                    >block</span
+                  >
+                </div>
+              </div>
+              <div
+                class="flex-1 min-w-0 flex flex-col justify-between self-stretch"
+              >
+                <div class="flex items-start justify-between gap-space-xs">
+                  <div class="min-w-0">
+                    <span
+                      class="font-label-sm text-label-sm uppercase tracking-wider text-outline bg-surface-container-highest/40 px-2 py-0.5 rounded-full"
+                      >BEAUTY · Cuidado Facial</span
+                    >
+                    <h2
+                      class="font-headline-sm text-headline-sm text-on-surface/80 font-semibold truncate mt-1"
+                    >
+                      Kit Limpieza Facial Rose
+                    </h2>
+                    <p class="font-body-sm text-body-sm text-outline">
+                      Cód #KCK-003
+                    </p>
+                  </div>
+                  <span
+                    class="px-2.5 py-1 rounded-full bg-error-container text-error font-label-sm text-label-sm font-semibold tracking-wide flex items-center gap-1 flex-shrink-0"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                    0 unids · Agotado
+                  </span>
+                </div>
+                <div class="flex items-baseline gap-space-sm pt-1">
+                  <span
+                    class="font-headline-sm text-headline-sm text-on-surface/70 font-bold"
+                    >$42.000</span
+                  >
+                  <span class="font-body-sm text-body-sm text-outline"
+                    >Costo $18.000</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div
+              class="flex items-center justify-between pt-space-xs border-t-0 bg-surface-container-highest/20 p-space-sm rounded-DEFAULT"
+            >
+              <div class="flex items-center gap-space-xs">
+                <span class="material-symbols-outlined text-outline text-[18px]"
+                  >inventory_2</span
+                >
+                <span class="font-body-sm text-body-sm text-outline"
+                  >Sin existencias en boutique</span
+                >
+              </div>
+              <button
+                class="flex items-center gap-1 px-space-md py-1.5 rounded-full bg-surface-container-high text-secondary hover:text-on-surface font-label-md text-label-md active:scale-95 transition-transform"
+                type="button"
+              >
+                <span class="material-symbols-outlined text-[16px]"
+                  >add_shopping_cart</span
+                >
+                <span>Reponer Stock</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="p-space-lg rounded-lg bg-gradient-to-br from-surface-container-high via-surface-container to-surface-container-low shadow-lg flex flex-col gap-space-md"
+        >
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-space-xs">
+              <span class="material-symbols-outlined text-primary text-[20px]"
+                >account_balance_wallet</span
+              >
+              <span
+                class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant"
+                >Valorización del Inventario</span
+              >
+            </div>
+            <span class="font-label-sm text-label-sm text-secondary font-medium"
+              >Boutique TRÍA</span
+            >
+          </div>
+          <div class="grid grid-cols-2 gap-space-md">
+            <div
+              class="flex flex-col p-space-sm rounded-DEFAULT bg-surface-container-lowest/60"
+            >
+              <span class="font-body-sm text-body-sm text-outline"
+                >Inversión Costo</span
+              >
+              <span
+                class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight mt-0.5"
+                >$1.850.000</span
+              >
+              <span class="font-label-sm text-label-sm text-outline mt-1"
+                >142 unidades físicas</span
+              >
+            </div>
+            <div
+              class="flex flex-col p-space-sm rounded-DEFAULT bg-surface-container-lowest/60"
+            >
+              <span class="font-body-sm text-body-sm text-outline"
+                >Comercial Estimado</span
+              >
+              <span
+                class="font-headline-sm text-headline-sm text-secondary-fixed font-bold tracking-tight mt-0.5"
+                >$4.270.000</span
+              >
+              <span
+                class="font-label-sm text-label-sm text-emerald-400 mt-1 flex items-center gap-0.5"
+              >
+                <span class="material-symbols-outlined text-[12px]"
+                  >north_east</span
+                >
+                +$2.420.000 utilidad
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      (function () {
+        const catButtons = document.querySelectorAll(".cat-pill");
+        const subcats = {
+          beauty: document.getElementById("subcatBeauty"),
+          fashion: document.getElementById("subcatFashion"),
+          lingerie: document.getElementById("subcatLingerie"),
+        };
+
+        catButtons.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            catButtons.forEach((b) => {
+              b.classList.remove(
+                "active",
+                "bg-primary-container",
+                "text-on-primary-container",
+              );
+              b.classList.add("text-on-surface-variant");
+            });
+            btn.classList.add(
+              "active",
+              "bg-primary-container",
+              "text-on-primary-container",
+            );
+            btn.classList.remove("text-on-surface-variant");
+
+            const cat = btn.getAttribute("data-cat");
+            Object.keys(subcats).forEach((k) => {
+              if (k === cat) {
+                subcats[k].classList.remove("hidden");
+                subcats[k].classList.add("flex");
+              } else {
+                subcats[k].classList.add("hidden");
+                subcats[k].classList.remove("flex");
+              }
+            });
+          });
+        });
+
+        const statusChips = document.querySelectorAll(".status-chip");
+        statusChips.forEach((chip) => {
+          chip.addEventListener("click", () => {
+            statusChips.forEach((c) => {
+              c.classList.remove(
+                "active",
+                "bg-primary-container/30",
+                "text-primary",
+              );
+              c.classList.add(
+                "bg-surface-container-high/40",
+                "text-on-surface-variant",
+              );
+            });
+            chip.classList.remove(
+              "bg-surface-container-high/40",
+              "text-on-surface-variant",
+            );
+            chip.classList.add(
+              "active",
+              "bg-primary-container/30",
+              "text-primary",
+            );
+          });
+        });
+      })();
+    </script>
+  </main>
+  <div class="fixed bottom-0 w-full z-50 pointer-events-none pb-safe">
+    <nav
+      class="pointer-events-auto mx-auto mb-4 px-3 w-[calc(100%-1.5rem)] max-w-md h-20 rounded-full bg-surface-container-lowest/85 backdrop-blur-xl shadow-[0_12px_32px_-8px_rgba(159,98,95,0.28)] flex items-center justify-between"
+      data-active-classes="text-primary bg-primary-container/25"
+    >
+      <a
+        class="flex flex-col items-center justify-center w-14 h-14 rounded-full text-on-surface-variant hover:text-on-surface transition-all duration-200 active:scale-95"
+        data-path="inicio"
+        routerLink="/app/inicio"
+        ><span class="material-symbols-outlined text-[22px]">dashboard</span
+        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
+          >Inicio</span
+        ></a
+      ><a
+        aria-current="page"
+        class="flex flex-col items-center justify-center w-14 h-14 rounded-full transition-all duration-200 active:scale-95 text-primary bg-primary-container/25"
+        data-path="inventario"
+        routerLink="/app/inventario"
+        ><span class="material-symbols-outlined text-[22px]">inventory_2</span
+        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
+          >Stock</span
+        ></a
+      >
+      <div class="relative -top-3">
+        <a
+          class="flex flex-col items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-secondary via-primary to-primary-container text-on-primary shadow-[0_8px_24px_rgba(254,180,176,0.35)] active:scale-95 transition-transform"
+          data-path="ventas"
+          routerLink="/app/ventas"
+          ><span class="material-symbols-outlined text-[24px]"
+            >shopping_bag</span
+          ></a
+        >
+      </div>
+      <a
+        class="flex flex-col items-center justify-center w-14 h-14 rounded-full text-on-surface-variant hover:text-on-surface transition-all duration-200 active:scale-95"
+        data-path="clientes"
+        routerLink="/app/clientes"
+        ><span class="material-symbols-outlined text-[22px]">group</span
+        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
+          >Clientes</span
+        ></a
+      ><a
+        class="flex flex-col items-center justify-center w-14 h-14 rounded-full text-on-surface-variant hover:text-on-surface transition-all duration-200 active:scale-95"
+        data-path="mas"
+        routerLink="/app/configuracion"
+        ><span class="material-symbols-outlined text-[22px]">grid_view</span
+        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
+          >Más</span
+        ></a
+      >
+    </nav>
+  </div>
+</section>

@@ -1,0 +1,677 @@
+<section
+  class="bg-surface font-body-md text-body-md text-on-surface min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-on-primary-container"
+>
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div
+      class="absolute -top-32 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary-container/15 rounded-full blur-3xl"
+    ></div>
+    <div
+      class="absolute bottom-20 left-1/4 w-80 h-80 bg-secondary-container/10 rounded-full blur-3xl"
+    ></div>
+  </div>
+  <header
+    class="fixed top-0 w-full z-50 pt-safe bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
+  >
+    <div
+      class="h-20 px-margin-mobile flex items-center justify-between gap-gutter-mobile"
+    >
+      <div class="flex items-center gap-space-sm min-w-0">
+        <img
+          alt="tria-logo.png"
+          class="h-8 w-auto object-contain flex-shrink-0"
+          src="https://lh3.googleusercontent.com/aida/AEtjO1VVnkiN_-OgmRGie5ZKZnXW7yZ2X_VAjsvY_IJYn41xFB-4yxjxzR5-r6rRU4LuE3eOIq5r8kQMURxhCNxevrUeRrolERPms664okx_V9Hf8io5zzGQDZV3EBfLQDOnVwF8jRet9_TmVLpqSbnGKnvTUuvbz9qQ6q275BELRrwL5s0t1KLZOXK7cxmNEF16lG2Sjqsfwi9gt0H8CfoaMz0uyulLyg1DwCklpqKGonxSbiL31TWvIXK4P9zZLFsFZw-VTjDzexLkLA"
+        />
+        <div class="flex flex-col min-w-0">
+          <div class="flex items-center gap-space-xs">
+            <span
+              class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight truncate"
+              >TRÍA</span
+            ><span
+              class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse flex-shrink-0"
+            ></span>
+          </div>
+          <span
+            class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant truncate"
+            >Inventario</span
+          >
+        </div>
+      </div>
+      <div class="flex items-center gap-space-sm flex-shrink-0">
+        <button
+          aria-label="Notificaciones"
+          class="w-11 h-11 rounded-full flex items-center justify-center bg-surface-container-high/60 backdrop-blur-md text-on-surface-variant hover:text-on-surface active:scale-95 transition-all"
+        >
+          <span class="material-symbols-outlined text-[20px]"
+            >notifications</span
+          >
+        </button>
+        <div
+          class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"
+        >
+          <span class="material-symbols-outlined text-on-primary text-[18px]"
+            >person</span
+          >
+        </div>
+      </div>
+    </div>
+  </header>
+  <main
+    class="flex-1 flex flex-col relative w-full pt-20 pb-32 bg-surface z-10"
+  >
+    <div class="flex flex-col w-full px-margin-mobile pb-8 space-y-space-lg">
+      <!-- Header Card: Bottom-Sheet Aesthetic Frame -->
+      <section
+        class="w-full bg-surface-container-low rounded-lg p-space-md shadow-xl flex flex-col gap-space-sm relative overflow-hidden"
+      >
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-space-sm">
+            <a
+              aria-label="Volver"
+              class="w-9 h-9 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant active:scale-95 transition-transform"
+              href="#"
+            >
+              <span class="material-symbols-outlined text-[18px]"
+                >arrow_back_ios_new</span
+              >
+            </a>
+            <div class="flex flex-col">
+              <h2
+                class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-tight"
+              >
+                Registrar Abono
+              </h2>
+              <span class="font-label-sm text-label-sm text-on-surface-variant"
+                >Gestión directa de cartera</span
+              >
+            </div>
+          </div>
+          <span
+            class="px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase tracking-wider flex items-center gap-1.5 shadow-sm"
+          >
+            <span
+              class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"
+            ></span>
+            #0012 · Saldo Activo
+          </span>
+        </div>
+        <!-- Client Capsule -->
+        <div
+          class="mt-space-xs p-space-md rounded-DEFAULT bg-surface-container flex items-center justify-between"
+        >
+          <div class="flex items-center gap-space-md min-w-0">
+            <div class="relative flex-shrink-0">
+              <img
+                class="w-12 h-12 rounded-full object-cover shadow-md"
+                data-alt="High-end editorial fashion portrait of a sophisticated young woman Maria with natural dewy skin and silk slip dress against subtle dark studio lighting"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbz684EbQzNaOwyBQ64NoP2E2NN5snXpzBekHs9T06BTDFbFxLkzjS6p82sB7ImYx9MHGfoGt3gFtqTolM2DCpdWz4JewsBG50AQMWgeBC6KsGwUTlUlnYHiLXxuqRABfRHdISzorigx9vVilcDnI1CBKL58mrV-wFKmV-QNYcWd1degh-W3TZ7JlOOvFGdClfttuayNSkLg382ofPXLY1b6LmxtlfNcsCY-Ql0zaKyhtlEIZ7yjLy"
+              />
+              <span
+                class="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-primary flex items-center justify-center text-[9px] text-on-primary font-bold"
+                >★</span
+              >
+            </div>
+            <div class="flex flex-col min-w-0">
+              <div class="flex items-center gap-space-xs">
+                <span
+                  class="font-headline-sm text-headline-sm text-on-surface truncate"
+                  >María Rodríguez</span
+                >
+                <span
+                  class="px-2 py-0.5 rounded-full bg-tertiary-container text-on-tertiary-container font-label-sm text-label-sm"
+                  >VIP</span
+                >
+              </div>
+              <span
+                class="font-body-sm text-body-sm text-on-surface-variant truncate"
+                >+57 300 123 4567</span
+              >
+            </div>
+          </div>
+          <a
+            aria-label="Contactar por WhatsApp"
+            class="w-10 h-10 rounded-full bg-surface-variant text-primary flex items-center justify-center active:scale-95 transition-all shadow-sm flex-shrink-0"
+            href="https://wa.me/573001234567"
+            rel="noopener"
+            target="_blank"
+          >
+            <span class="material-symbols-outlined text-[20px]">chat</span>
+          </a>
+        </div>
+        <!-- Micro Alert: Vencimiento -->
+        <div
+          class="flex items-center justify-between px-space-md py-2 rounded-DEFAULT bg-error-container text-on-error-container"
+        >
+          <div class="flex items-center gap-space-xs">
+            <span class="material-symbols-outlined text-[16px] text-error"
+              >schedule</span
+            >
+            <span class="font-label-sm text-label-sm font-medium"
+              >Estado del saldo: En mora</span
+            >
+          </div>
+          <span
+            class="font-label-sm text-label-sm uppercase tracking-wider font-semibold"
+            >4 días vencido</span
+          >
+        </div>
+      </section>
+      <!-- Bento Ledger Snapshot -->
+      <section class="w-full grid grid-cols-3 gap-space-xs">
+        <!-- Card Total -->
+        <div
+          class="flex flex-col p-space-sm rounded-DEFAULT bg-surface-container-low"
+        >
+          <span
+            class="font-label-sm text-label-sm text-on-surface-variant uppercase truncate"
+            >Venta Original</span
+          >
+          <span class="font-headline-sm text-headline-sm text-on-surface mt-1"
+            >$120.000</span
+          >
+          <span
+            class="font-body-sm text-[10px] text-on-surface-variant truncate"
+            >3 artículos de lujo</span
+          >
+        </div>
+        <!-- Card Cobrado -->
+        <div
+          class="flex flex-col p-space-sm rounded-DEFAULT bg-surface-container-low"
+        >
+          <span
+            class="font-label-sm text-label-sm text-secondary uppercase truncate"
+            >Abonado</span
+          >
+          <span class="font-headline-sm text-headline-sm text-secondary mt-1"
+            >$50.000</span
+          >
+          <span
+            class="font-body-sm text-[10px] text-on-surface-variant truncate"
+            >41.6% pagado</span
+          >
+        </div>
+        <!-- Card Saldo Pendiente -->
+        <div
+          class="flex flex-col p-space-sm rounded-DEFAULT bg-surface-container shadow-md"
+        >
+          <span
+            class="font-label-sm text-label-sm text-primary uppercase truncate font-bold"
+            >Por Cobrar</span
+          >
+          <span
+            class="font-headline-sm text-headline-sm text-primary mt-1 font-bold tracking-tight"
+            >$70.000</span
+          >
+          <span class="font-body-sm text-[10px] text-primary-fixed-dim truncate"
+            >Saldo actual</span
+          >
+        </div>
+      </section>
+      <!-- Visual Article Strip -->
+      <section
+        class="w-full bg-surface-container-low rounded-DEFAULT p-space-sm flex items-center justify-between"
+      >
+        <div class="flex items-center gap-space-sm min-w-0">
+          <div class="flex -space-x-3 overflow-hidden flex-shrink-0">
+            <img
+              class="inline-block h-8 w-8 rounded-full object-cover shadow-sm"
+              data-alt="Couture satin blush pink slip dress hanging against dark textured atelier stone wall, luxury fashion product detail"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1DBxGAZpNQZLa6fXZxQRrQq2x7zLrwkMwnkjik9a0VYfFF0T4ggSTq1ieX9jRlad6NcDcqWYsxtw7hON7KpW7_a34GgbfZDKI9yiadUFrwy7MXWfuoVqJNLfB-hVbsltypb8CApRvPctZUPcyfk2CaFfiXo7xyyUpVA3zXdNCFO4AS1OmUxHZk91rop_bg7X0A5JY-ws8VJ1yOK1xrTXQ5IGUUCXsqZUbijm3SqVobfIgW3seXUuf"
+            />
+            <img
+              class="inline-block h-8 w-8 rounded-full object-cover shadow-sm"
+              data-alt="Bespoke luxury artisanal perfume glass bottle with warm amber liquid and minimalist black typography label"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmkqH7_3sGH0YIYrE4rDEy2KB0fJpdUESfCgQZHDuMJUDnjJBwd1ycIgWlIG5iDvn9dgHyuLWXYPItZgfB5gz6lkyRFKSUR_D2zDcZ_QFBC_OWiFN-vb0dPhhQGpQPK20hBYUg1630YtP5zfpVZfmd-RPs24MMzbTrYK6Juqt_xCcwLSJhgWAh4_VGDm1wMdlbBu3WY36SLvtk6yWzg5J4EtTApxPO26uXEAeG6mU_OpbtEz731X05"
+            />
+            <img
+              class="inline-block h-8 w-8 rounded-full object-cover shadow-sm"
+              data-alt="High-end velvet rose gold lipstick tube open showing vibrant matte pigment on dark luxury surface"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbIjfwFNSLX6GizqhOyoy77boYq-hFLRFtFtb3ugd1vvDwxq9K8yqfv7a5zePm48EF0vgyozObKt0usY1RHxWai-gsNwnDwMVKuc_mEm7yDhRFAh-gQHYtMX077-kda9velJscyksX3PeofHB8HJFzlClhMU27I5l55YFqk0ZFTPGb2a7G5xPNeKCbt9iq_cwYvNA3H7aTHJEQQpgoeR2BKUM993Rk6nWI3Y3J9Nmvwfzzl2cwPUSz"
+            />
+          </div>
+          <p class="font-body-sm text-body-sm text-on-surface-variant truncate">
+            Vestido Satinado + Perfume + Labial
+          </p>
+        </div>
+        <span
+          class="font-label-sm text-label-sm text-primary flex items-center gap-0.5 flex-shrink-0"
+        >
+          Ver nota
+          <span class="material-symbols-outlined text-[14px]"
+            >chevron_right</span
+          >
+        </span>
+      </section>
+      <!-- Interactive Payment Formulation Card -->
+      <section
+        class="w-full bg-surface-container-low rounded-lg p-space-md shadow-xl flex flex-col gap-space-md"
+      >
+        <!-- Payment Mode Switcher -->
+        <div
+          class="w-full bg-surface-container-highest p-1 rounded-full flex items-center justify-between"
+        >
+          <button
+            class="w-1/2 py-2 rounded-full font-label-md text-label-md text-on-primary bg-primary-container shadow-sm transition-all text-center"
+            id="tab-partial"
+            type="button"
+          >
+            Abono Parcial
+          </button>
+          <button
+            class="w-1/2 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all text-center"
+            id="tab-full"
+            type="button"
+          >
+            Pago Total ($70k)
+          </button>
+        </div>
+        <!-- Amount Entry Field -->
+        <div class="flex flex-col gap-space-xs text-center">
+          <label
+            class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant"
+            for="payment-input"
+          >
+            Monto a abonar hoy (COP)
+          </label>
+          <div
+            class="relative flex items-center justify-center bg-surface-container rounded-DEFAULT py-space-sm px-space-md"
+          >
+            <span
+              class="text-primary font-headline-lg-mobile text-headline-lg-mobile mr-1"
+              >$</span
+            >
+            <input
+              class="bg-transparent text-on-surface font-headline-xl-mobile text-headline-xl-mobile font-bold tracking-tight text-center focus:outline-none w-48 appearance-none selection:bg-primary selection:text-on-primary"
+              id="payment-input"
+              inputmode="numeric"
+              max="70000"
+              min="1000"
+              step="1000"
+              type="number"
+              value="20000"
+            />
+            <button
+              aria-label="Limpiar valor"
+              class="absolute right-3 w-7 h-7 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center active:scale-95"
+              id="clear-input"
+              type="button"
+            >
+              <span class="material-symbols-outlined text-[14px]">close</span>
+            </button>
+          </div>
+        </div>
+        <!-- Quick Amount Chips -->
+        <div class="flex flex-col gap-space-xs">
+          <span class="font-label-sm text-label-sm text-on-surface-variant"
+            >Sugerencias rápidas:</span
+          >
+          <div class="grid grid-cols-4 gap-space-xs">
+            <button
+              class="quick-chip py-2 rounded-full bg-surface-container text-on-surface text-center font-label-sm text-label-sm active:scale-95 transition-all shadow-sm"
+              data-val="20000"
+              type="button"
+            >
+              $20.000
+            </button>
+            <button
+              class="quick-chip py-2 rounded-full bg-surface-container text-on-surface text-center font-label-sm text-label-sm active:scale-95 transition-all shadow-sm"
+              data-val="30000"
+              type="button"
+            >
+              $30.000
+            </button>
+            <button
+              class="quick-chip py-2 rounded-full bg-surface-container text-on-surface text-center font-label-sm text-label-sm active:scale-95 transition-all shadow-sm"
+              data-val="50000"
+              type="button"
+            >
+              $50.000
+            </button>
+            <button
+              class="quick-chip py-2 rounded-full bg-secondary-container text-on-secondary-container text-center font-label-sm text-label-sm font-semibold active:scale-95 transition-all shadow-sm"
+              data-val="70000"
+              type="button"
+            >
+              Total $70k
+            </button>
+          </div>
+        </div>
+        <!-- Dynamic Glassmorphism Settlement Simulation -->
+        <div
+          class="p-space-md rounded-DEFAULT bg-surface-container flex flex-col gap-space-sm shadow-inner"
+        >
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-space-xs text-on-surface-variant">
+              <span class="material-symbols-outlined text-[18px]"
+                >payments</span
+              >
+              <span class="font-label-md text-label-md"
+                >Ingreso a registrar</span
+              >
+            </div>
+            <span
+              class="font-headline-sm text-headline-sm text-secondary font-bold"
+              id="display-payment"
+              >+$20.000 COP</span
+            >
+          </div>
+          <!-- Progressive Timeline Gauge -->
+          <div
+            class="w-full bg-surface-container-highest h-2 rounded-full overflow-hidden flex"
+          >
+            <div class="bg-secondary h-full" style="width: 41.6%"></div>
+            <div
+              class="bg-primary h-full transition-all duration-300"
+              id="bar-delta"
+              style="width: 16.6%"
+            ></div>
+          </div>
+          <div class="flex items-center justify-between pt-space-xs">
+            <div class="flex flex-col">
+              <span class="font-label-sm text-label-sm text-on-surface-variant"
+                >Saldo previo</span
+              >
+              <span class="font-body-md text-body-md text-outline line-through"
+                >$70.000 COP</span
+              >
+            </div>
+            <span class="material-symbols-outlined text-primary text-[18px]"
+              >trending_flat</span
+            >
+            <div class="flex flex-col text-right">
+              <span
+                class="font-label-sm text-label-sm text-primary font-semibold"
+                >Nuevo saldo restante</span
+              >
+              <span
+                class="font-headline-sm text-headline-sm text-primary font-bold tracking-tight"
+                id="display-remaining"
+                >$50.000 COP</span
+              >
+            </div>
+          </div>
+        </div>
+        <!-- Payment Method Selector -->
+        <div class="flex flex-col gap-space-xs">
+          <span
+            class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider"
+            >Método de recepción</span
+          >
+          <div class="grid gap-space-xs grid-cols-2" id="method-group">
+            <button
+              class="method-btn p-space-sm rounded-DEFAULT text-center flex flex-col items-center gap-1 active:scale-95 transition-all shadow-sm bg-primary-container text-on-primary"
+              data-method="cash"
+              type="button"
+            >
+              <span class="material-symbols-outlined text-secondary text-[20px]"
+                >point_of_sale</span
+              >
+              <span class="font-label-sm text-label-sm leading-tight"
+                >Efectivo en Caja</span
+              >
+            </button>
+            <button
+              class="method-btn p-space-sm rounded-DEFAULT bg-surface-container text-on-surface text-center flex flex-col items-center gap-1 active:scale-95 transition-all shadow-sm"
+              data-method="wallet"
+              type="button"
+            >
+              <span class="material-symbols-outlined text-secondary text-[20px]"
+                >smartphone</span
+              >
+              <span class="font-label-sm text-label-sm leading-tight"
+                >Nequi / Daviplata</span
+              >
+            </button>
+          </div>
+        </div>
+        <!-- Transaction Reference Input -->
+        <div class="flex flex-col gap-1">
+          <label
+            class="font-label-sm text-label-sm text-on-surface-variant"
+            for="ref-note"
+            >Referencia bancaria o nota interna (opcional)</label
+          >
+          <div
+            class="w-full bg-surface-container rounded-DEFAULT px-space-md py-2.5 flex items-center gap-space-sm"
+          >
+            <span class="material-symbols-outlined text-[18px] text-outline"
+              >tag</span
+            >
+            <input
+              class="bg-transparent text-on-surface font-body-md text-body-md placeholder:text-outline w-full focus:outline-none"
+              id="ref-note"
+              placeholder="Ej. Aprobación #492819 o Recibido en boutique"
+              type="text"
+            />
+          </div>
+        </div>
+        <!-- WhatsApp Confirmation Toggle -->
+        <label
+          class="flex items-center justify-between p-space-sm rounded-DEFAULT bg-surface-container cursor-pointer select-none"
+        >
+          <div class="flex items-center gap-space-sm min-w-0">
+            <div
+              class="w-8 h-8 rounded-full bg-surface-variant text-primary flex items-center justify-center flex-shrink-0"
+            >
+              <span class="material-symbols-outlined text-[18px]"
+                >forward_to_inbox</span
+              >
+            </div>
+            <div class="flex flex-col min-w-0">
+              <span class="font-label-md text-label-md text-on-surface truncate"
+                >Comprobante a WhatsApp</span
+              >
+              <span
+                class="font-body-sm text-body-sm text-on-surface-variant truncate"
+                >Enviar recibo digital a María</span
+              >
+            </div>
+          </div>
+          <input
+            checked=""
+            class="w-5 h-5 rounded-full accent-primary flex-shrink-0"
+            id="notify-wa"
+            type="checkbox"
+          />
+        </label>
+      </section>
+      <!-- CTA Action Deck -->
+      <section class="w-full flex flex-col gap-space-xs pt-space-xs">
+        <button
+          class="w-full py-4 px-space-lg rounded-full bg-primary text-on-primary font-headline-sm text-headline-sm font-bold tracking-wide shadow-lg active:scale-98 transition-all flex items-center justify-center gap-space-sm"
+          id="btn-submit"
+          type="button"
+        >
+          <span class="material-symbols-outlined text-[20px]"
+            >check_circle</span
+          >
+          <span id="cta-label" class="">Registrar Abono ($20.000 COP)</span>
+        </button>
+        <p
+          class="text-center font-body-sm text-body-sm text-on-surface-variant"
+          id="cta-subtext"
+        >
+          Saldo restante post-pago: $50.000 COP
+        </p>
+      </section>
+    </div>
+    <script>
+      (function () {
+        const TOTAL_DEBT = 70000;
+        const input = document.getElementById("payment-input");
+        const displayPay = document.getElementById("display-payment");
+        const displayRemaining = document.getElementById("display-remaining");
+        const barDelta = document.getElementById("bar-delta");
+        const ctaLabel = document.getElementById("cta-label");
+        const ctaSubtext = document.getElementById("cta-subtext");
+        const tabPartial = document.getElementById("tab-partial");
+        const tabFull = document.getElementById("tab-full");
+        const quickChips = document.querySelectorAll(".quick-chip");
+        const methodBtns = document.querySelectorAll(".method-btn");
+        const clearBtn = document.getElementById("clear-input");
+
+        // Default method selection
+        if (methodBtns.length > 0) {
+          methodBtns[0].classList.add(
+            "bg-primary-container",
+            "text-on-primary",
+          );
+          methodBtns[0].classList.remove(
+            "bg-surface-container",
+            "text-on-surface",
+          );
+        }
+
+        function formatCOP(num) {
+          return "$" + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+
+        function updateCalculations(val) {
+          let amount = parseInt(val, 10);
+          if (isNaN(amount) || amount < 0) amount = 0;
+          if (amount > TOTAL_DEBT) amount = TOTAL_DEBT;
+
+          const remaining = Math.max(0, TOTAL_DEBT - amount);
+          const deltaPercent = Math.min(58.4, (amount / 120000) * 100);
+
+          displayPay.textContent = "+" + formatCOP(amount) + " COP";
+          displayRemaining.textContent = formatCOP(remaining) + " COP";
+          barDelta.style.width = deltaPercent + "%";
+
+          if (amount === TOTAL_DEBT) {
+            ctaLabel.textContent =
+              "Liquidar Totalidad (" + formatCOP(amount) + ")";
+            ctaSubtext.textContent = "¡La cuenta quedará saldada al 100%!";
+            tabFull.classList.add("bg-primary-container", "text-on-primary");
+            tabFull.classList.remove("text-on-surface-variant");
+            tabPartial.classList.remove(
+              "bg-primary-container",
+              "text-on-primary",
+            );
+            tabPartial.classList.add("text-on-surface-variant");
+          } else {
+            ctaLabel.textContent =
+              "Registrar Abono (" + formatCOP(amount) + " COP)";
+            ctaSubtext.textContent =
+              "Saldo restante post-pago: " + formatCOP(remaining) + " COP";
+            tabPartial.classList.add("bg-primary-container", "text-on-primary");
+            tabPartial.classList.remove("text-on-surface-variant");
+            tabFull.classList.remove("bg-primary-container", "text-on-primary");
+            tabFull.classList.add("text-on-surface-variant");
+          }
+        }
+
+        input.addEventListener("input", function (e) {
+          updateCalculations(e.target.value);
+        });
+
+        clearBtn.addEventListener("click", function () {
+          input.value = "0";
+          updateCalculations(0);
+          input.focus();
+        });
+
+        tabPartial.addEventListener("click", function () {
+          input.value = "20000";
+          updateCalculations(20000);
+        });
+
+        tabFull.addEventListener("click", function () {
+          input.value = TOTAL_DEBT.toString();
+          updateCalculations(TOTAL_DEBT);
+        });
+
+        quickChips.forEach(function (chip) {
+          chip.addEventListener("click", function () {
+            const val = this.getAttribute("data-val");
+            input.value = val;
+            updateCalculations(val);
+          });
+        });
+
+        methodBtns.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            methodBtns.forEach(function (b) {
+              b.classList.remove("bg-primary-container", "text-on-primary");
+              b.classList.add("bg-surface-container", "text-on-surface");
+            });
+            this.classList.add("bg-primary-container", "text-on-primary");
+            this.classList.remove("bg-surface-container", "text-on-surface");
+          });
+        });
+
+        document
+          .getElementById("btn-submit")
+          .addEventListener("click", function () {
+            const currentVal = parseInt(input.value, 10) || 0;
+            if (currentVal <= 0) {
+              input.focus();
+              return;
+            }
+            this.innerHTML =
+              '<span class="material-symbols-outlined animate-spin text-[20px]">sync</span><span>Procesando pago...</span>';
+            setTimeout(() => {
+              this.innerHTML =
+                '<span class="material-symbols-outlined text-[20px]">task_alt</span><span>¡Abono Asentado con Éxito!</span>';
+              this.classList.remove("bg-primary");
+              this.classList.add(
+                "bg-secondary-container",
+                "text-on-secondary-container",
+              );
+            }, 700);
+          });
+      })();
+    </script>
+  </main>
+  <div class="fixed bottom-0 w-full z-50 pointer-events-none pb-safe">
+    <nav
+      class="pointer-events-auto mx-auto mb-4 px-3 w-[calc(100%-1.5rem)] max-w-md h-20 rounded-full bg-surface-container-lowest/85 backdrop-blur-xl shadow-[0_12px_32px_-8px_rgba(159,98,95,0.28)] flex items-center justify-between"
+      data-active-classes="text-primary bg-primary-container/25"
+    >
+      <a
+        class="flex flex-col items-center justify-center w-14 h-14 rounded-full text-on-surface-variant hover:text-on-surface transition-all duration-200 active:scale-95"
+        data-path="inicio"
+        href="#"
+        ><span class="material-symbols-outlined text-[22px]">dashboard</span
+        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
+          >Inicio</span
+        ></a
+      ><a
+        aria-current="page"
+        class="flex flex-col items-center justify-center w-14 h-14 rounded-full transition-all duration-200 active:scale-95 text-primary bg-primary-container/25"
+        data-path="inventario"
+        href="#"
+        ><span class="material-symbols-outlined text-[22px]">inventory_2</span
+        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
+          >Stock</span
+        ></a
+      >
+      <div class="relative -top-3">
+        <a
+          class="flex flex-col items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-secondary via-primary to-primary-container text-on-primary shadow-[0_8px_24px_rgba(254,180,176,0.35)] active:scale-95 transition-transform"
+          data-path="ventas"
+          href="#"
+          ><span class="material-symbols-outlined text-[24px]"
+            >shopping_bag</span
+          ></a
+        >
+      </div>
+      <a
+        class="flex flex-col items-center justify-center w-14 h-14 rounded-full text-on-surface-variant hover:text-on-surface transition-all duration-200 active:scale-95"
+        data-path="clientes"
+        href="#"
+        ><span class="material-symbols-outlined text-[22px]">group</span
+        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
+          >Clientes</span
+        ></a
+      ><a
+        class="flex flex-col items-center justify-center w-14 h-14 rounded-full text-on-surface-variant hover:text-on-surface transition-all duration-200 active:scale-95"
+        data-path="mas"
+        href="#"
+        ><span class="material-symbols-outlined text-[22px]">grid_view</span
+        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
+          >Más</span
+        ></a
+      >
+    </nav>
+  </div>
+</section>

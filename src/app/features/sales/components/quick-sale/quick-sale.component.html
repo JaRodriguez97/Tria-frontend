@@ -1,0 +1,661 @@
+<section
+  class="bg-surface font-body-md text-body-md text-on-surface min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-on-primary-container"
+>
+  <header
+    class="fixed top-0 w-full z-50 pt-safe bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
+  >
+    <div
+      class="h-16 px-margin-mobile flex items-center justify-between gap-space-sm"
+    >
+      <div class="flex items-center gap-space-sm min-w-0">
+        <button
+          aria-label="Regresar"
+          class="w-11 h-11 rounded-full flex items-center justify-center bg-surface-container-high/60 backdrop-blur-md text-on-surface active:scale-95 transition-all"
+          onclick="history.back()"
+        >
+          <span class="material-symbols-outlined text-[20px]"
+            >arrow_back</span
+          ></button
+        ><img
+          alt="tria-logo.png"
+          class="h-8 w-auto object-contain flex-shrink-0"
+          src="https://lh3.googleusercontent.com/aida/AEtjO1VVnkiN_-OgmRGie5ZKZnXW7yZ2X_VAjsvY_IJYn41xFB-4yxjxzR5-r6rRU4LuE3eOIq5r8kQMURxhCNxevrUeRrolERPms664okx_V9Hf8io5zzGQDZV3EBfLQDOnVwF8jRet9_TmVLpqSbnGKnvTUuvbz9qQ6q275BELRrwL5s0t1KLZOXK7cxmNEF16lG2Sjqsfwi9gt0H8CfoaMz0uyulLyg1DwCklpqKGonxSbiL31TWvIXK4P9zZLFsFZw-VTjDzexLkLA"
+        />
+        <h1
+          class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight truncate"
+        >
+          Nueva Venta
+        </h1>
+      </div>
+      <div
+        class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0"
+      >
+        <span class="material-symbols-outlined text-on-primary text-[18px]"
+          >person</span
+        >
+      </div>
+    </div>
+  </header>
+  <main
+    class="flex-1 flex flex-col relative w-full pt-16 pb-safe bg-surface z-10"
+  >
+    <div class="flex flex-col w-full pb-28 space-y-space-md">
+      <!-- Top Rapid Banner & Agility Badge -->
+      <div
+        class="px-margin-mobile flex items-center justify-between pt-space-sm"
+      >
+        <div class="flex items-center gap-space-xs">
+          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+          <span
+            class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant"
+            >Atelier Pos · Mostrador</span
+          >
+        </div>
+        <div
+          class="flex items-center gap-space-xs bg-surface-container-high px-3 py-1 rounded-full shadow-sm"
+        >
+          <span
+            class="material-symbols-outlined text-[14px] text-primary"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >timer</span
+          >
+          <span
+            class="font-label-sm text-label-sm font-semibold text-primary"
+            id="speed-timer"
+            >00:14s</span
+          >
+        </div>
+      </div>
+      <!-- Instant Product Search Bar with Scan CTA -->
+      <div class="px-margin-mobile">
+        <div
+          class="relative flex items-center bg-surface-container-low rounded-full shadow-md overflow-hidden"
+        >
+          <span
+            class="material-symbols-outlined text-outline ml-4 text-[20px] flex-shrink-0"
+            >search</span
+          >
+          <input
+            class="w-full bg-transparent py-3.5 pl-3 pr-12 text-on-surface placeholder:text-outline font-body-md text-body-md focus:outline-none truncate"
+            placeholder="Buscar prenda, perfume o código..."
+            type="text"
+            value="Yara Onlyou #024"
+          />
+          <button
+            aria-label="Escanear Código de Barras"
+            class="absolute right-1.5 w-9 h-9 rounded-full bg-surface-variant flex items-center justify-center text-primary active:scale-90 transition-transform"
+            type="button"
+          >
+            <span class="material-symbols-outlined text-[18px]"
+              >barcode_scanner</span
+            >
+          </button>
+        </div>
+      </div>
+      <!-- Category Filter Pills -->
+      <div
+        class="px-margin-mobile overflow-x-auto no-scrollbar flex items-center gap-space-xs"
+      >
+        <button
+          class="px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md flex-shrink-0 active:scale-95 transition-all"
+        >
+          Todos
+        </button>
+        <button
+          class="px-4 py-1.5 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md font-semibold flex-shrink-0 active:scale-95 transition-all shadow-sm"
+        >
+          BEAUTY
+        </button>
+        <button
+          class="px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md flex-shrink-0 active:scale-95 transition-all"
+        >
+          FASHION
+        </button>
+        <button
+          class="px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md flex-shrink-0 active:scale-95 transition-all"
+        >
+          LINGERIE
+        </button>
+        <button
+          class="px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md flex-shrink-0 active:scale-95 transition-all"
+        >
+          ACCESORIOS
+        </button>
+      </div>
+      <!-- Selected Live Product Bento Tile -->
+      <div class="px-margin-mobile">
+        <div
+          class="bg-surface-container rounded-lg p-space-md shadow-lg relative overflow-hidden flex flex-col gap-space-md"
+        >
+          <!-- Glow ambient backdrop -->
+          <div
+            class="absolute -right-10 -top-10 w-36 h-36 rounded-full bg-primary-container/20 blur-3xl pointer-events-none"
+          ></div>
+          <div class="flex items-start gap-space-md relative z-10">
+            <div
+              class="relative w-20 h-24 rounded-DEFAULT overflow-hidden bg-surface-container-highest flex-shrink-0 shadow-md"
+            >
+              <img
+                class="w-full h-full object-cover"
+                data-alt="High-end perfume bottle luxury product presentation, warm blush pink ambient studio lighting, rose gold accents with silk fabric backdrop in dark neo-luxury aesthetic"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_Z54eF9euwz9-x62s633U-GMAMuoMEkCbjRQEXMA_xyiEGa0YQGAawbQjh-B6lgFryqvM1RxB492L_JukbloJWy3aCQmSWFu_g558NPfMcz6h1RqF_WcbpmB09dmI_gmzAVI5jVvh_CcgwrXhTCoe9GOO-coWIQ3FJBcU5qw0cewsEz0rMlZAGeVWuNIYZqH40H2-Mt3P1OR48zisa18j3xIhIVqlX724N2ho4MvVZa_3FbwCTXAt"
+              />
+              <span
+                class="absolute top-1 left-1 bg-surface-container-lowest/80 backdrop-blur-md px-1.5 py-0.5 rounded-full text-[10px] font-label-sm font-semibold text-secondary tracking-wider"
+                >#024</span
+              >
+            </div>
+            <div
+              class="flex-1 min-w-0 flex flex-col justify-between h-24 py-0.5"
+            >
+              <div>
+                <div class="flex items-center justify-between gap-1">
+                  <span
+                    class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold"
+                    >BEAUTY · Fragancia</span
+                  >
+                  <span
+                    class="flex items-center gap-1 bg-surface-container-highest px-2 py-0.5 rounded-full text-on-surface-variant font-label-sm text-label-sm"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                    3 en stock
+                  </span>
+                </div>
+                <h2
+                  class="font-headline-sm text-headline-sm font-semibold text-on-surface truncate mt-0.5"
+                >
+                  Perfume Yara Onlyou
+                </h2>
+                <p
+                  class="font-body-sm text-body-sm text-on-surface-variant truncate"
+                >
+                  50ml Eau de Parfum • Edición Atelier
+                </p>
+              </div>
+              <div class="flex items-baseline gap-space-xs">
+                <span
+                  class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary"
+                  >$120.000</span
+                >
+                <span
+                  class="font-body-sm text-body-sm text-outline line-through"
+                  >$135.000</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Stepper & Tactical Stock Status -->
+          <div
+            class="pt-space-xs flex items-center justify-between bg-surface-container-low/70 rounded-full px-space-md py-2 relative z-10"
+          >
+            <div class="flex items-center gap-2">
+              <span
+                class="material-symbols-outlined text-primary text-[18px]"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >verified</span
+              >
+              <span
+                class="font-label-md text-label-md text-on-surface font-medium"
+                >Cantidad orden</span
+              >
+            </div>
+            <div class="flex items-center gap-space-md">
+              <button
+                aria-label="Disminuir"
+                class="w-8 h-8 rounded-full bg-surface-variant text-on-surface flex items-center justify-center font-bold text-body-lg active:scale-90 transition-transform select-none"
+                id="btn-dec"
+                type="button"
+              >
+                −
+              </button>
+              <span
+                class="font-headline-sm text-headline-sm font-semibold text-on-surface w-4 text-center"
+                id="qty-val"
+                >1</span
+              >
+              <button
+                aria-label="Aumentar"
+                class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-body-lg active:scale-90 transition-transform select-none"
+                id="btn-inc"
+                type="button"
+              >
+                +
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Client Assignment Selector -->
+      <div class="px-margin-mobile flex flex-col space-y-space-xs">
+        <div class="flex items-center justify-between">
+          <span
+            class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold"
+            >Asignar Clienta</span
+          >
+          <span class="font-label-sm text-label-sm text-secondary"
+            >Obligatorio para abonos</span
+          >
+        </div>
+        <!-- Express Client Chips -->
+        <div class="grid grid-cols-1 gap-2">
+          <!-- Active Client Selection Card -->
+          <div
+            class="bg-surface-container-high rounded-DEFAULT p-3 shadow-md flex items-center justify-between transition-all"
+            id="client-card"
+          >
+            <div class="flex items-center gap-space-sm min-w-0">
+              <div
+                class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-headline-sm text-headline-sm font-semibold flex-shrink-0"
+              >
+                MR
+              </div>
+              <div class="min-w-0">
+                <div class="flex items-center gap-1.5">
+                  <p
+                    class="font-headline-sm text-body-lg font-semibold text-on-surface truncate"
+                  >
+                    María Rodríguez
+                  </p>
+                  <span
+                    class="px-1.5 py-0.5 rounded-full bg-primary/20 text-primary font-label-sm text-[10px] uppercase font-bold"
+                    >Frecuente</span
+                  >
+                </div>
+                <p
+                  class="font-body-sm text-body-sm text-on-surface-variant truncate"
+                >
+                  +57 300 123 4567 • Historial: 14 compras
+                </p>
+              </div>
+            </div>
+            <a
+              aria-label="Contactar por WhatsApp"
+              class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-secondary active:scale-90 transition-transform flex-shrink-0 ml-2 shadow-sm"
+              href="https://wa.me/573001234567"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <span class="material-symbols-outlined text-[18px]">chat</span>
+            </a>
+          </div>
+          <div class="flex gap-2">
+            <button
+              class="flex-1 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md flex items-center justify-center gap-1 active:scale-95 transition-transform"
+              type="button"
+            >
+              <span class="material-symbols-outlined text-[16px]"
+                >person_add</span
+              >
+              Nueva Clienta
+            </button>
+            <button
+              class="flex-1 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md flex items-center justify-center gap-1 active:scale-95 transition-transform"
+              type="button"
+            >
+              <span class="material-symbols-outlined text-[16px]"
+                >storefront</span
+              >
+              Mostrador Anónimo
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Payment Mode Selector: 3 Big Interactive Visual Tabs -->
+      <div class="px-margin-mobile flex flex-col space-y-space-xs">
+        <span
+          class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold"
+          >Forma de Pago</span
+        >
+        <div class="grid grid-cols-3 gap-2" id="payment-tabs">
+          <!-- Full Payment -->
+          <button
+            class="p-3 rounded-DEFAULT bg-surface-container text-left flex flex-col justify-between gap-2 transition-all active:scale-95"
+            id="tab-full"
+            onclick="setPaymentMode('full')"
+            type="button"
+          >
+            <span
+              class="material-symbols-outlined text-outline text-[20px]"
+              id="icon-full"
+              >task_alt</span
+            >
+            <div>
+              <p
+                class="font-label-md text-label-md font-semibold text-on-surface"
+              >
+                Pagado
+              </p>
+              <p class="font-body-sm text-body-sm text-outline">
+                100% cubierto
+              </p>
+            </div>
+          </button>
+          <!-- Installment / Abono (Active by default) -->
+          <button
+            class="p-3 rounded-DEFAULT bg-primary-container/30 shadow-md text-left flex flex-col justify-between gap-2 transition-all active:scale-95"
+            id="tab-abono"
+            onclick="setPaymentMode('abono')"
+            type="button"
+          >
+            <div class="flex items-center justify-between w-full">
+              <span
+                class="material-symbols-outlined text-primary text-[20px]"
+                id="icon-abono"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >payments</span
+              >
+              <span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+            </div>
+            <div>
+              <p class="font-label-md text-label-md font-semibold text-primary">
+                Abono
+              </p>
+              <p class="font-body-sm text-body-sm text-secondary">
+                Pago parcial
+              </p>
+            </div>
+          </button>
+          <!-- Fiado (Credit) -->
+          <button
+            class="p-3 rounded-DEFAULT bg-surface-container text-left flex flex-col justify-between gap-2 transition-all active:scale-95"
+            id="tab-fiado"
+            onclick="setPaymentMode('fiado')"
+            type="button"
+          >
+            <span
+              class="material-symbols-outlined text-outline text-[20px]"
+              id="icon-fiado"
+              >credit_score</span
+            >
+            <div>
+              <p
+                class="font-label-md text-label-md font-semibold text-on-surface"
+              >
+                Fiado
+              </p>
+              <p class="font-body-sm text-body-sm text-outline">100% crédito</p>
+            </div>
+          </button>
+        </div>
+      </div>
+      <!-- Dynamic Financial Breakdown & Interactive Abono Numeric Control -->
+      <div class="px-margin-mobile">
+        <div
+          class="bg-surface-container rounded-lg p-space-md flex flex-col space-y-space-md shadow-lg transition-all"
+          id="abono-container"
+        >
+          <!-- Numeric Abono Live Input Field -->
+          <div class="flex flex-col space-y-1">
+            <div class="flex items-center justify-between">
+              <label
+                class="font-label-md text-label-md font-medium text-secondary"
+                for="abono-input"
+                >Monto Abonado Hoy</label
+              >
+              <span class="font-label-sm text-label-sm text-primary"
+                >Efectivo / Transferencia</span
+              >
+            </div>
+            <div
+              class="relative flex items-center bg-surface-container-low rounded-full px-4 py-2 shadow-inner"
+            >
+              <span
+                class="font-headline-sm text-headline-sm text-primary font-bold mr-1"
+                >$</span
+              >
+              <input
+                class="w-full bg-transparent font-headline-sm text-headline-sm text-on-surface font-bold focus:outline-none"
+                id="abono-input"
+                step="5000"
+                type="number"
+                value="50000"
+              />
+              <span
+                class="font-label-sm text-label-sm text-outline uppercase font-semibold"
+                >COP</span
+              >
+            </div>
+          </div>
+          <!-- Quick Preset Chip Selectors for Abono -->
+          <div class="flex items-center gap-2 overflow-x-auto no-scrollbar">
+            <span class="font-label-sm text-label-sm text-outline flex-shrink-0"
+              >Sugerido:</span
+            >
+            <button
+              class="px-3 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm active:scale-95 transition-transform"
+              onclick="setAbonoAmount(30000)"
+              type="button"
+            >
+              $30.000
+            </button>
+            <button
+              class="px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold active:scale-95 transition-transform"
+              onclick="setAbonoAmount(50000)"
+              type="button"
+            >
+              $50.000
+            </button>
+            <button
+              class="px-3 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm active:scale-95 transition-transform"
+              onclick="setAbonoAmount(60000)"
+              type="button"
+            >
+              50% ($60k)
+            </button>
+            <button
+              class="px-3 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm active:scale-95 transition-transform"
+              onclick="setAbonoAmount(100000)"
+              type="button"
+            >
+              $100.000
+            </button>
+          </div>
+          <!-- Live Calculation Matrix -->
+          <div
+            class="bg-surface-container-lowest/80 rounded-DEFAULT p-3.5 space-y-2"
+          >
+            <div class="flex justify-between items-center text-body-sm">
+              <span class="text-on-surface-variant"
+                >Valor Total de Compra:</span
+              >
+              <span class="font-semibold text-on-surface" id="txt-subtotal"
+                >$120.000</span
+              >
+            </div>
+            <div class="flex justify-between items-center text-body-sm">
+              <span class="text-secondary font-medium">Abono Recibido:</span>
+              <span class="font-semibold text-secondary" id="txt-paid"
+                >-$50.000</span
+              >
+            </div>
+            <div class="h-px bg-surface-variant w-full my-1"></div>
+            <div class="flex justify-between items-center">
+              <div class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[16px] text-error"
+                  >pending_actions</span
+                >
+                <span
+                  class="font-label-md text-label-md font-semibold text-error"
+                  >Saldo por Cobrar:</span
+                >
+              </div>
+              <span
+                class="font-headline-sm text-headline-sm font-bold text-error"
+                id="txt-pending"
+                >$70.000</span
+              >
+            </div>
+          </div>
+          <!-- Policy Guardrail Note -->
+          <div
+            class="flex items-start gap-2 bg-secondary-container/40 p-2.5 rounded-DEFAULT"
+          >
+            <span
+              class="material-symbols-outlined text-[16px] text-secondary mt-0.5 flex-shrink-0"
+              >shield</span
+            >
+            <p
+              class="font-body-sm text-body-sm text-on-secondary-container leading-tight"
+            >
+              El saldo pendiente de $70.000 quedará registrado en el historial
+              de María Rodríguez con recordatorio automático en 15 días.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Floating Sticky Action Button (Neo-Luxury Pill) -->
+      <div
+        class="fixed bottom-3 left-0 right-0 px-margin-mobile z-40 max-w-md mx-auto"
+      >
+        <button
+          class="w-full py-4 rounded-full bg-gradient-to-r from-primary-container via-primary to-secondary text-on-primary font-headline-sm text-headline-sm font-bold flex items-center justify-center gap-2 shadow-2xl active:scale-98 transition-all"
+          id="btn-submit"
+          onclick="confirmSale()"
+          type="button"
+        >
+          <span
+            class="material-symbols-outlined text-[22px]"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >check_circle</span
+          >
+          <span id="submit-text">Registrar Abono ($50.000)</span>
+        </button>
+      </div>
+    </div>
+    <script>
+      let currentTotal = 120000;
+      let currentQty = 1;
+      let unitPrice = 120000;
+      let currentMode = "abono";
+
+      const abonoInput = document.getElementById("abono-input");
+      const txtSubtotal = document.getElementById("txt-subtotal");
+      const txtPaid = document.getElementById("txt-paid");
+      const txtPending = document.getElementById("txt-pending");
+      const submitText = document.getElementById("submit-text");
+      const qtyVal = document.getElementById("qty-val");
+
+      function formatMoney(amount) {
+        return "$" + amount.toLocaleString("es-CO");
+      }
+
+      function updateMath() {
+        currentTotal = unitPrice * currentQty;
+        let abono = parseInt(abonoInput.value) || 0;
+
+        if (currentMode === "full") {
+          abono = currentTotal;
+        } else if (currentMode === "fiado") {
+          abono = 0;
+        } else {
+          if (abono > currentTotal) abono = currentTotal;
+          if (abono < 0) abono = 0;
+        }
+
+        const pending = currentTotal - abono;
+
+        txtSubtotal.textContent = formatMoney(currentTotal);
+        txtPaid.textContent = "-" + formatMoney(abono);
+        txtPending.textContent = formatMoney(pending);
+
+        if (currentMode === "full") {
+          submitText.textContent = `Cobro Total (${formatMoney(currentTotal)})`;
+        } else if (currentMode === "fiado") {
+          submitText.textContent = `Registrar Fiado (${formatMoney(currentTotal)})`;
+        } else {
+          submitText.textContent = `Registrar Abono (${formatMoney(abono)})`;
+        }
+      }
+
+      function setAbonoAmount(val) {
+        abonoInput.value = val;
+        updateMath();
+      }
+
+      function setPaymentMode(mode) {
+        currentMode = mode;
+        const tabFull = document.getElementById("tab-full");
+        const tabAbono = document.getElementById("tab-abono");
+        const tabFiado = document.getElementById("tab-fiado");
+        const abonoContainer = document.getElementById("abono-container");
+
+        // Reset base styles
+        [tabFull, tabAbono, tabFiado].forEach((tab) => {
+          tab.className =
+            "p-3 rounded-DEFAULT bg-surface-container text-left flex flex-col justify-between gap-2 transition-all active:scale-95";
+        });
+
+        if (mode === "full") {
+          tabFull.className =
+            "p-3 rounded-DEFAULT bg-primary-container/30 shadow-md text-left flex flex-col justify-between gap-2 transition-all active:scale-95";
+          abonoInput.value = currentTotal;
+          abonoInput.disabled = true;
+        } else if (mode === "abono") {
+          tabAbono.className =
+            "p-3 rounded-DEFAULT bg-primary-container/30 shadow-md text-left flex flex-col justify-between gap-2 transition-all active:scale-95";
+          abonoInput.disabled = false;
+          if (!abonoInput.value || parseInt(abonoInput.value) === 0) {
+            abonoInput.value = 50000;
+          }
+        } else if (mode === "fiado") {
+          tabFiado.className =
+            "p-3 rounded-DEFAULT bg-secondary-container/40 shadow-md text-left flex flex-col justify-between gap-2 transition-all active:scale-95";
+          abonoInput.value = 0;
+          abonoInput.disabled = true;
+        }
+        updateMath();
+      }
+
+      document.getElementById("btn-inc").addEventListener("click", () => {
+        if (currentQty < 3) {
+          currentQty++;
+          qtyVal.textContent = currentQty;
+          updateMath();
+        }
+      });
+
+      document.getElementById("btn-dec").addEventListener("click", () => {
+        if (currentQty > 1) {
+          currentQty--;
+          qtyVal.textContent = currentQty;
+          updateMath();
+        }
+      });
+
+      abonoInput.addEventListener("input", () => {
+        if (currentMode === "abono") {
+          updateMath();
+        }
+      });
+
+      function confirmSale() {
+        const btn = document.getElementById("btn-submit");
+        const originalContent = btn.innerHTML;
+        btn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[22px]">progress_activity</span><span>Guardando venta...</span>`;
+        btn.disabled = true;
+
+        setTimeout(() => {
+          btn.innerHTML = `<span class="material-symbols-outlined text-[22px]">done_all</span><span>¡Venta Exitosa!</span>`;
+          btn.classList.remove("from-primary-container", "via-primary");
+          btn.classList.add("bg-primary");
+          setTimeout(() => {
+            btn.innerHTML = originalContent;
+            btn.disabled = false;
+            btn.classList.remove("bg-primary");
+            btn.classList.add("from-primary-container", "via-primary");
+          }, 2000);
+        }, 900);
+      }
+
+      // Agility timer simulation
+      let seconds = 14;
+      setInterval(() => {
+        seconds++;
+        const timerElem = document.getElementById("speed-timer");
+        if (timerElem) {
+          timerElem.textContent = `00:${seconds < 10 ? "0" : ""}${seconds}s`;
+        }
+      }, 1000);
+    </script>
+  </main>
+</section>

@@ -1,0 +1,689 @@
+<section
+  class="bg-surface font-body-md text-body-md text-on-surface min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-on-primary-container"
+>
+  <header
+    class="fixed top-0 w-full z-50 pt-safe bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
+  >
+    <div
+      class="h-16 px-margin-mobile flex items-center justify-between gap-space-sm"
+    >
+      <div class="flex items-center gap-space-sm min-w-0">
+        <button
+          aria-label="Regresar"
+          class="w-11 h-11 rounded-full flex items-center justify-center bg-surface-container-high/60 backdrop-blur-md text-on-surface active:scale-95 transition-all"
+          onclick="history.back()"
+        >
+          <span class="material-symbols-outlined text-[20px]"
+            >arrow_back</span
+          ></button
+        ><img
+          alt="tria-logo.png"
+          class="h-8 w-auto object-contain flex-shrink-0"
+          src="https://lh3.googleusercontent.com/aida/AEtjO1VVnkiN_-OgmRGie5ZKZnXW7yZ2X_VAjsvY_IJYn41xFB-4yxjxzR5-r6rRU4LuE3eOIq5r8kQMURxhCNxevrUeRrolERPms664okx_V9Hf8io5zzGQDZV3EBfLQDOnVwF8jRet9_TmVLpqSbnGKnvTUuvbz9qQ6q275BELRrwL5s0t1KLZOXK7cxmNEF16lG2Sjqsfwi9gt0H8CfoaMz0uyulLyg1DwCklpqKGonxSbiL31TWvIXK4P9zZLFsFZw-VTjDzexLkLA"
+        />
+        <h1
+          class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight truncate"
+        >
+          Nueva Venta
+        </h1>
+      </div>
+      <div
+        class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0"
+      >
+        <span class="material-symbols-outlined text-on-primary text-[18px]"
+          >person</span
+        >
+      </div>
+    </div>
+  </header>
+  <main
+    class="flex-1 flex flex-col relative w-full pt-16 pb-safe bg-surface z-10"
+  >
+    <div class="flex flex-col w-full pb-32">
+      <!-- Ambient Rose Glow Vignette -->
+      <div class="relative w-full overflow-hidden px-margin-mobile pt-space-md">
+        <div
+          class="absolute -top-16 left-1/2 -translate-x-1/2 w-72 h-36 bg-primary-container/20 blur-3xl rounded-full pointer-events-none"
+        ></div>
+        <!-- Editorial Subheader & Context Meta -->
+        <div class="relative z-10 flex flex-col gap-space-xs mb-space-md">
+          <div class="flex items-center justify-between">
+            <span
+              class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-medium"
+            >
+              Atelier Compras · TRÍA
+            </span>
+            <span
+              class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm tracking-wider font-semibold uppercase"
+            >
+              <span
+                class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"
+              ></span>
+              Ingreso por Lote
+            </span>
+          </div>
+          <h2
+            class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-semibold tracking-tight"
+          >
+            Registrar Nuevo Lote
+          </h2>
+          <p class="font-body-sm text-body-sm text-on-surface-variant">
+            Entrada consolidada de compras, costeo unitario y proyección de
+            margen boutique.
+          </p>
+        </div>
+        <!-- Segmented Toggle: Reabastecer vs Nuevo Lote -->
+        <div
+          class="relative z-10 p-1.5 rounded-full bg-surface-container-low shadow-inner flex items-center gap-1 mb-space-lg"
+        >
+          <button
+            class="flex-1 py-2 rounded-full font-label-md text-label-md text-on-surface-variant flex items-center justify-center gap-1.5 transition-all active:scale-95"
+            type="button"
+          >
+            <span class="material-symbols-outlined text-[16px]">sync_alt</span>
+            Reabastecer Existente
+          </button>
+          <button
+            class="flex-1 py-2 rounded-full bg-primary-container text-on-primary-container shadow-md font-label-md text-label-md font-semibold flex items-center justify-center gap-1.5 transition-all"
+            type="button"
+          >
+            <span class="material-symbols-outlined text-[18px]"
+              >inventory_2</span
+            >
+            Nuevo Lote
+          </button>
+        </div>
+        <!-- BLOQUE 1: Bento Card Datos del Lote & Proveedor -->
+        <section
+          class="relative z-10 p-space-md rounded-lg bg-surface-container shadow-md flex flex-col gap-space-md mb-space-lg"
+        >
+          <!-- Header del Bento Card -->
+          <div class="flex items-center justify-between pb-space-xs">
+            <div class="flex items-center gap-2">
+              <div
+                class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-primary"
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >barcode_scanner</span
+                >
+              </div>
+              <div>
+                <span
+                  class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block"
+                  >Identificador</span
+                >
+                <span
+                  class="font-headline-sm text-headline-sm text-on-surface font-bold"
+                  >#LOTE-2025-04</span
+                >
+              </div>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span
+                class="px-2.5 py-1 rounded-full bg-surface-container-highest text-primary font-label-sm text-label-sm font-semibold"
+              >
+                Nuevo Registro
+              </span>
+              <button
+                aria-label="Refrescar código"
+                class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center active:scale-90 transition-transform"
+                type="button"
+              >
+                <span class="material-symbols-outlined text-[16px]"
+                  >refresh</span
+                >
+              </button>
+            </div>
+          </div>
+          <!-- Proveedor Selector -->
+          <div class="flex flex-col gap-1.5">
+            <label
+              class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-medium"
+            >
+              Proveedor o Atelier de Origen
+            </label>
+            <div class="relative flex items-center">
+              <span
+                class="material-symbols-outlined text-primary text-[20px] absolute left-3.5 pointer-events-none"
+                >storefront</span
+              >
+              <select
+                class="w-full pl-11 pr-10 py-3 rounded-full bg-surface-container-low text-on-surface font-body-md text-body-md appearance-none focus:outline-none focus:bg-surface-container-high transition-colors"
+              >
+                <option selected="">
+                  Atelier Silks Medellín (Confección Nacional)
+                </option>
+                <option>Importación Directa Dubai (Seda Pura)</option>
+                <option>Lencería Di Lusso Italia (Distribuidor)</option>
+                <option>Couture Lace Studio Bogotá</option>
+              </select>
+              <span
+                class="material-symbols-outlined text-on-surface-variant text-[20px] absolute right-3.5 pointer-events-none"
+                >expand_more</span
+              >
+            </div>
+          </div>
+          <!-- Grid 2 Columnas: Fecha Recepción & Factura -->
+          <div class="grid grid-cols-2 gap-space-sm">
+            <!-- Fecha -->
+            <div class="flex flex-col gap-1.5">
+              <label
+                class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-medium"
+                >Recepción</label
+              >
+              <div
+                class="h-12 px-3 rounded-full bg-surface-container-low flex items-center gap-2"
+              >
+                <span
+                  class="material-symbols-outlined text-primary text-[18px] flex-shrink-0"
+                  >event</span
+                >
+                <span
+                  class="font-body-sm text-body-sm text-on-surface font-medium truncate"
+                  >Hoy, 10 Sep</span
+                >
+              </div>
+            </div>
+            <!-- Factura Nro -->
+            <div class="flex flex-col gap-1.5">
+              <label
+                class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-medium"
+                >Nº Factura / Remisión</label
+              >
+              <div
+                class="h-12 px-3 rounded-full bg-surface-container-low flex items-center gap-2"
+              >
+                <span
+                  class="material-symbols-outlined text-on-surface-variant text-[18px] flex-shrink-0"
+                  >receipt_long</span
+                >
+                <input
+                  class="w-full bg-transparent font-body-sm text-body-sm text-on-surface focus:outline-none truncate"
+                  type="text"
+                  value="#FAC-9842"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- Adjuntar Soporte de Factura (Microinteracción sutil) -->
+          <div
+            class="p-3 rounded-DEFAULT bg-surface-container-low flex items-center justify-between"
+          >
+            <div class="flex items-center gap-2.5 min-w-0">
+              <div
+                class="w-8 h-8 rounded-full bg-primary-container/40 text-primary flex items-center justify-center flex-shrink-0"
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >attach_file</span
+                >
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span
+                  class="font-body-sm text-body-sm text-on-surface font-medium truncate"
+                  >Factura_Proveedor_09.pdf</span
+                >
+                <span class="font-label-sm text-label-sm text-primary"
+                  >Cargado · 1.4 MB</span
+                >
+              </div>
+            </div>
+            <button
+              class="px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold active:scale-95 transition-transform flex items-center gap-1"
+              type="button"
+            >
+              <span class="material-symbols-outlined text-[14px]"
+                >photo_camera</span
+              >
+              Cambiar
+            </button>
+          </div>
+        </section>
+        <!-- BLOQUE 2: Asociación de Prendas al Lote -->
+        <section class="relative z-10 flex flex-col gap-space-sm mb-space-lg">
+          <div class="flex items-center justify-between px-1">
+            <div class="flex items-center gap-1.5">
+              <h3
+                class="font-headline-sm text-headline-sm text-on-surface font-semibold"
+              >
+                Prendas del Lote
+              </h3>
+              <span
+                class="px-2 py-0.5 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm font-bold"
+              >
+                2 Modelos
+              </span>
+            </div>
+            <span
+              class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider"
+            >
+              25 Unids Totales
+            </span>
+          </div>
+          <!-- ITEM 1: Vestido Satinado Noir -->
+          <div
+            class="p-space-md rounded-lg bg-surface-container shadow-md flex flex-col gap-space-sm"
+          >
+            <div class="flex items-start gap-space-sm">
+              <img
+                class="w-16 h-20 rounded-DEFAULT object-cover flex-shrink-0 bg-surface-container-highest"
+                data-alt="Boutique silk slip dress in deep black noir satin delicately draped on a sculpted marble bust warm rose studio accent lighting high fashion luxury atelier"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNZeNUdTXbZg3iaoMzRmDJa8cktHALB4v75Mc14BmomArmQT-IWEbBMYqNp3XgTNFouHeCQz4OM1gSvTxdY0BP4kiOFESJHRD6t_1q1e16gQVz9EDv7lNddJSpjqfXpL2bMQgbvmeYrdiYBy5U9h3nmaJqhOEuEVMaL_MOMXJvF6BIb57JKXmA1-5zM-KbKFuU35lEND2U3AkT4Uu7Pr2hke8YudsEwhZSbvzIG1HrVWylsDQBUFaA"
+              />
+              <div class="flex-1 min-w-0 flex flex-col">
+                <div class="flex items-center justify-between gap-1">
+                  <span
+                    class="px-2 py-0.5 rounded-full bg-surface-container-high text-secondary font-label-sm text-label-sm font-medium tracking-wider uppercase"
+                    >Fashion Silk</span
+                  >
+                  <button
+                    aria-label="Eliminar producto del lote"
+                    class="text-on-surface-variant hover:text-error transition-colors"
+                    type="button"
+                  >
+                    <span class="material-symbols-outlined text-[18px]"
+                      >close</span
+                    >
+                  </button>
+                </div>
+                <h4
+                  class="font-headline-sm text-headline-sm text-on-surface font-semibold truncate mt-1"
+                >
+                  Vestido Satinado Noir
+                </h4>
+                <span class="font-body-sm text-body-sm text-on-surface-variant">
+                  SKU: TR-VSN-01 · Tallas S / M / L
+                </span>
+              </div>
+            </div>
+            <!-- Inputs de Cantidad & Costo Unitario -->
+            <div class="grid grid-cols-2 gap-2 pt-space-xs">
+              <!-- Stepper Unidades -->
+              <div
+                class="p-2.5 rounded-DEFAULT bg-surface-container-low flex flex-col justify-between"
+              >
+                <span
+                  class="font-label-sm text-label-sm text-on-surface-variant"
+                  >Cantidad en Lote</span
+                >
+                <div class="flex items-center justify-between mt-1.5">
+                  <button
+                    class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center active:scale-90 transition-transform"
+                    type="button"
+                  >
+                    <span class="material-symbols-outlined text-[16px]"
+                      >remove</span
+                    >
+                  </button>
+                  <span
+                    class="font-headline-sm text-headline-sm text-on-surface font-bold"
+                    >15</span
+                  >
+                  <button
+                    class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center active:scale-90 transition-transform"
+                    type="button"
+                  >
+                    <span class="material-symbols-outlined text-[16px]"
+                      >add</span
+                    >
+                  </button>
+                </div>
+              </div>
+              <!-- Costo Unitario Compra -->
+              <div
+                class="p-2.5 rounded-DEFAULT bg-surface-container-low flex flex-col justify-between"
+              >
+                <span
+                  class="font-label-sm text-label-sm text-on-surface-variant"
+                  >Costo Unit. Compra</span
+                >
+                <div class="flex items-center mt-1.5">
+                  <span
+                    class="text-primary font-headline-sm text-headline-sm font-bold"
+                    >$38.000</span
+                  >
+                  <span
+                    class="font-label-sm text-label-sm text-on-surface-variant ml-1"
+                    >COP</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- Metas Financieras del Item (PVP & Margen) -->
+            <div
+              class="p-2.5 rounded-DEFAULT bg-surface-container-high flex items-center justify-between"
+            >
+              <div class="flex flex-col">
+                <span
+                  class="font-label-sm text-label-sm text-on-surface-variant"
+                  >Subtotal Inversión</span
+                >
+                <span
+                  class="font-body-md text-body-md text-on-surface font-semibold"
+                  >$570.000 COP</span
+                >
+              </div>
+              <div class="flex items-center gap-3 text-right">
+                <div class="flex flex-col">
+                  <span
+                    class="font-label-sm text-label-sm text-on-surface-variant"
+                    >PVP Estimado</span
+                  >
+                  <span
+                    class="font-body-sm text-body-sm text-secondary font-medium"
+                    >$80.000 COP</span
+                  >
+                </div>
+                <div
+                  class="px-2.5 py-1 rounded-full bg-surface-container-lowest text-primary font-label-sm text-label-sm font-bold"
+                >
+                  52.5% Mg
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ITEM 2: Body Encaje Noir Couture -->
+          <div
+            class="p-space-md rounded-lg bg-surface-container shadow-md flex flex-col gap-space-sm"
+          >
+            <div class="flex items-start gap-space-sm">
+              <img
+                class="w-16 h-20 rounded-DEFAULT object-cover flex-shrink-0 bg-surface-container-highest"
+                data-alt="High luxury black lace bodysuit intricate floral lingerie details with satin strapping on minimal dark background soft dramatic rose gold ambient reflections"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8skQoeQ6Jfhv6w4x1SOUaW8-M48xYK9tE3XWI1uDmgsiZY_6yhY9BM4ktrd3-IUWgIsycBfE4PuAYDA7U8AfTL_vlssVt7sNREkVCyXMEF8mn3KSHWs2oGLgvTENJp5iQ-zYzBbCQngz5yjiUQ4bUE2ERlFjSv8KhOq-d8tT1h2PSWHgfZcPrsesmfKs9Q4v1RYYqY1AEVB7gektWLBCu_lvSYk5ixkfGpftQPaUBDEQy4O0psuZp"
+              />
+              <div class="flex-1 min-w-0 flex flex-col">
+                <div class="flex items-center justify-between gap-1">
+                  <span
+                    class="px-2 py-0.5 rounded-full bg-surface-container-high text-secondary font-label-sm text-label-sm font-medium tracking-wider uppercase"
+                    >Lingerie Couture</span
+                  >
+                  <button
+                    aria-label="Eliminar producto del lote"
+                    class="text-on-surface-variant hover:text-error transition-colors"
+                    type="button"
+                  >
+                    <span class="material-symbols-outlined text-[18px]"
+                      >close</span
+                    >
+                  </button>
+                </div>
+                <h4
+                  class="font-headline-sm text-headline-sm text-on-surface font-semibold truncate mt-1"
+                >
+                  Body Encaje Noir Couture
+                </h4>
+                <span class="font-body-sm text-body-sm text-on-surface-variant">
+                  SKU: TR-BDY-09 · Tallas XS / S / M
+                </span>
+              </div>
+            </div>
+            <!-- Inputs de Cantidad & Costo Unitario -->
+            <div class="grid grid-cols-2 gap-2 pt-space-xs">
+              <!-- Stepper Unidades -->
+              <div
+                class="p-2.5 rounded-DEFAULT bg-surface-container-low flex flex-col justify-between"
+              >
+                <span
+                  class="font-label-sm text-label-sm text-on-surface-variant"
+                  >Cantidad en Lote</span
+                >
+                <div class="flex items-center justify-between mt-1.5">
+                  <button
+                    class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center active:scale-90 transition-transform"
+                    type="button"
+                  >
+                    <span class="material-symbols-outlined text-[16px]"
+                      >remove</span
+                    >
+                  </button>
+                  <span
+                    class="font-headline-sm text-headline-sm text-on-surface font-bold"
+                    >10</span
+                  >
+                  <button
+                    class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center active:scale-90 transition-transform"
+                    type="button"
+                  >
+                    <span class="material-symbols-outlined text-[16px]"
+                      >add</span
+                    >
+                  </button>
+                </div>
+              </div>
+              <!-- Costo Unitario Compra -->
+              <div
+                class="p-2.5 rounded-DEFAULT bg-surface-container-low flex flex-col justify-between"
+              >
+                <span
+                  class="font-label-sm text-label-sm text-on-surface-variant"
+                  >Costo Unit. Compra</span
+                >
+                <div class="flex items-center mt-1.5">
+                  <span
+                    class="text-primary font-headline-sm text-headline-sm font-bold"
+                    >$22.000</span
+                  >
+                  <span
+                    class="font-label-sm text-label-sm text-on-surface-variant ml-1"
+                    >COP</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- Metas Financieras del Item (PVP & Margen) -->
+            <div
+              class="p-2.5 rounded-DEFAULT bg-surface-container-high flex items-center justify-between"
+            >
+              <div class="flex flex-col">
+                <span
+                  class="font-label-sm text-label-sm text-on-surface-variant"
+                  >Subtotal Inversión</span
+                >
+                <span
+                  class="font-body-md text-body-md text-on-surface font-semibold"
+                  >$220.000 COP</span
+                >
+              </div>
+              <div class="flex items-center gap-3 text-right">
+                <div class="flex flex-col">
+                  <span
+                    class="font-label-sm text-label-sm text-on-surface-variant"
+                    >PVP Estimado</span
+                  >
+                  <span
+                    class="font-body-sm text-body-sm text-secondary font-medium"
+                    >$55.000 COP</span
+                  >
+                </div>
+                <div
+                  class="px-2.5 py-1 rounded-full bg-surface-container-lowest text-primary font-label-sm text-label-sm font-bold"
+                >
+                  60.0% Mg
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Botón Agregar Otro Producto al Lote -->
+          <button
+            class="w-full py-3.5 px-4 rounded-lg bg-surface-container-low text-primary font-label-md text-label-md font-semibold flex items-center justify-center gap-2 active:scale-98 transition-all"
+            type="button"
+          >
+            <span class="material-symbols-outlined text-[20px]"
+              >add_circle</span
+            >
+            Añadir otro producto a este lote
+          </button>
+        </section>
+        <!-- BLOQUE 3: Resumen Financiero & Proyección ROI Live -->
+        <section
+          class="relative z-10 p-space-md rounded-lg bg-surface-container shadow-md flex flex-col gap-space-md mb-space-lg"
+        >
+          <div class="flex items-center justify-between pb-1">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-[20px]"
+                >analytics</span
+              >
+              <h3
+                class="font-headline-sm text-headline-sm text-on-surface font-semibold"
+              >
+                Proyección del Lote
+              </h3>
+            </div>
+            <span
+              class="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold tracking-wider uppercase"
+            >
+              ROI +121.5%
+            </span>
+          </div>
+          <!-- KPI 3 Column Bento Cards -->
+          <div class="grid grid-cols-3 gap-2">
+            <!-- Costo Total Lote -->
+            <div
+              class="p-3 rounded-DEFAULT bg-surface-container-low flex flex-col justify-between"
+            >
+              <span
+                class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider"
+                >Costo Lote</span
+              >
+              <div class="mt-2">
+                <span
+                  class="font-headline-sm text-headline-sm text-primary font-bold block truncate"
+                  >$790K</span
+                >
+                <span class="font-body-sm text-body-sm text-on-surface-variant"
+                  >25 u.</span
+                >
+              </div>
+            </div>
+            <!-- Venta Estimada -->
+            <div
+              class="p-3 rounded-DEFAULT bg-surface-container-low flex flex-col justify-between"
+            >
+              <span
+                class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider"
+                >Venta Est.</span
+              >
+              <div class="mt-2">
+                <span
+                  class="font-headline-sm text-headline-sm text-on-surface font-bold block truncate"
+                  >$1.75M</span
+                >
+                <span class="font-body-sm text-body-sm text-on-surface-variant"
+                  >PVP retail</span
+                >
+              </div>
+            </div>
+            <!-- Ganancia Neta -->
+            <div
+              class="p-3 rounded-DEFAULT bg-secondary-container text-on-secondary-container flex flex-col justify-between"
+            >
+              <span
+                class="font-label-sm text-label-sm text-on-secondary uppercase tracking-wider font-semibold"
+                >Ganancia</span
+              >
+              <div class="mt-2">
+                <span
+                  class="font-headline-sm text-headline-sm font-bold block truncate"
+                  >+$960K</span
+                >
+                <span class="font-body-sm text-body-sm text-on-secondary"
+                  >Margen neto</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Selector de Origen de Pago / Desembolso -->
+          <div class="flex flex-col gap-2 pt-space-xs">
+            <label
+              class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-medium"
+            >
+              Método de Desembolso / Pago al Proveedor
+            </label>
+            <div class="grid grid-cols-3 gap-1.5">
+              <!-- Opción 1: Bancolombia (Activo) -->
+              <button
+                class="p-2.5 rounded-DEFAULT bg-primary-container text-on-primary-container flex flex-col items-center justify-center text-center gap-1 shadow-sm transition-transform active:scale-95"
+                type="button"
+              >
+                <span class="material-symbols-outlined text-[20px]"
+                  >account_balance</span
+                >
+                <span
+                  class="font-label-sm text-label-sm font-semibold leading-tight"
+                  >Transferencia Bancolombia</span
+                >
+              </button>
+              <!-- Opción 2: Efectivo Caja -->
+              <button
+                class="p-2.5 rounded-DEFAULT bg-surface-container-low text-on-surface-variant flex flex-col items-center justify-center text-center gap-1 transition-transform active:scale-95"
+                type="button"
+              >
+                <span class="material-symbols-outlined text-[20px]"
+                  >payments</span
+                >
+                <span class="font-label-sm text-label-sm leading-tight"
+                  >Efectivo Caja Mayor</span
+                >
+              </button>
+              <!-- Opción 3: Crédito Proveedor -->
+              <button
+                class="p-2.5 rounded-DEFAULT bg-surface-container-low text-on-surface-variant flex flex-col items-center justify-center text-center gap-1 transition-transform active:scale-95"
+                type="button"
+              >
+                <span class="material-symbols-outlined text-[20px]"
+                  >pending_actions</span
+                >
+                <span class="font-label-sm text-label-sm leading-tight"
+                  >Crédito a 30 Días</span
+                >
+              </button>
+            </div>
+          </div>
+        </section>
+        <!-- BLOQUE 4: Notas de Recepción & Calidad Atelier -->
+        <section
+          class="relative z-10 p-space-md rounded-lg bg-surface-container shadow-md flex flex-col gap-2 mb-space-lg"
+        >
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-[18px]"
+              >verified</span
+            >
+            <label
+              class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-medium"
+            >
+              Control de Calidad &amp; Notas de Taller
+            </label>
+          </div>
+          <textarea
+            class="w-full p-3 rounded-DEFAULT bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-high transition-colors resize-none"
+            placeholder="Observaciones de empaque, costuras o verificación..."
+            rows="2"
+          >
+Prendas revisadas en taller de inspección, empaque individual de seda y etiquetas doradas verificadas.</textarea
+          >
+        </section>
+      </div>
+      <!-- Barra de Acción Inferior Fija de Neo-Lujo -->
+      <div
+        class="fixed bottom-0 left-0 right-0 z-40 p-margin-mobile pb-safe bg-surface-container-lowest/90 backdrop-blur-2xl shadow-xl flex flex-col items-center gap-2"
+      >
+        <!-- Botón Principal: Confirmar Ingreso -->
+        <button
+          class="w-full h-14 rounded-full bg-primary text-on-primary font-headline-sm text-headline-sm font-semibold flex items-center justify-center gap-2 shadow-lg active:scale-98 transition-all"
+          type="button"
+        >
+          <span class="material-symbols-outlined text-[22px]">inventory_2</span>
+          <span>Ingresar Lote · $790.000 COP</span>
+        </button>
+        <!-- Enlace secundario: Guardar borrador -->
+        <button
+          class="py-1 px-4 text-on-surface-variant hover:text-primary font-label-md text-label-md transition-colors flex items-center gap-1"
+          type="button"
+        >
+          <span class="material-symbols-outlined text-[16px]">save</span>
+          Guardar como borrador para revisión posterior
+        </button>
+      </div>
+    </div>
+  </main>
+</section>

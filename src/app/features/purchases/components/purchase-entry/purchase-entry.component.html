@@ -1,0 +1,712 @@
+<section
+  class="bg-surface font-body-md text-body-md text-on-surface min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-on-primary-container"
+>
+  <header
+    class="fixed top-0 w-full z-50 pt-safe bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
+  >
+    <div
+      class="h-16 px-margin-mobile flex items-center justify-between gap-space-sm"
+    >
+      <div class="flex items-center gap-space-sm min-w-0">
+        <button
+          aria-label="Regresar"
+          class="w-11 h-11 rounded-full flex items-center justify-center bg-surface-container-high/60 backdrop-blur-md text-on-surface active:scale-95 transition-all"
+          onclick="history.back()"
+        >
+          <span class="material-symbols-outlined text-[20px]"
+            >arrow_back</span
+          ></button
+        ><img
+          alt="tria-logo.png"
+          class="h-8 w-auto object-contain flex-shrink-0"
+          src="https://lh3.googleusercontent.com/aida/AEtjO1VVnkiN_-OgmRGie5ZKZnXW7yZ2X_VAjsvY_IJYn41xFB-4yxjxzR5-r6rRU4LuE3eOIq5r8kQMURxhCNxevrUeRrolERPms664okx_V9Hf8io5zzGQDZV3EBfLQDOnVwF8jRet9_TmVLpqSbnGKnvTUuvbz9qQ6q275BELRrwL5s0t1KLZOXK7cxmNEF16lG2Sjqsfwi9gt0H8CfoaMz0uyulLyg1DwCklpqKGonxSbiL31TWvIXK4P9zZLFsFZw-VTjDzexLkLA"
+        />
+        <h1
+          class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight truncate"
+        >
+          Nueva Venta
+        </h1>
+      </div>
+      <div
+        class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0"
+      >
+        <span class="material-symbols-outlined text-on-primary text-[18px]"
+          >person</span
+        >
+      </div>
+    </div>
+  </header>
+  <main
+    class="flex-1 flex flex-col relative w-full pt-16 pb-safe bg-surface z-10"
+  >
+    <div class="flex flex-col w-full pb-32">
+      <!-- Sub-Header Status & Atelier Meta -->
+      <section
+        class="px-margin-mobile pt-space-sm pb-space-xs flex items-center justify-between"
+      >
+        <div class="flex items-center gap-space-xs">
+          <span
+            class="inline-block w-2 h-2 rounded-full bg-primary animate-pulse"
+          ></span>
+          <span
+            class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant"
+            >Atelier Compras · TRÍA</span
+          >
+        </div>
+        <div
+          class="flex items-center gap-space-xs px-3 py-1 rounded-full bg-secondary-container/50 backdrop-blur-md shadow-sm"
+        >
+          <span class="material-symbols-outlined text-primary text-[14px]"
+            >account_balance_wallet</span
+          >
+          <span
+            class="font-label-sm text-label-sm uppercase tracking-widest text-on-secondary-container font-semibold"
+            >Inversión de Capital</span
+          >
+        </div>
+      </section>
+      <!-- Segmented Luxury Pill Tabs -->
+      <section class="px-margin-mobile py-space-sm">
+        <div
+          class="p-1 rounded-full bg-surface-container-high/80 backdrop-blur-xl flex items-center shadow-inner"
+        >
+          <button
+            class="flex-1 py-2.5 px-space-sm rounded-full bg-gradient-to-r from-primary-container to-secondary-container text-on-primary-container font-label-md text-label-md flex items-center justify-center gap-1.5 shadow-md active:scale-95 transition-all"
+            id="tab-restock"
+          >
+            <span class="material-symbols-outlined text-[16px]">sync_alt</span>
+            <span class="">Reabastecer Existente</span>
+          </button>
+          <button
+            class="flex-1 py-2.5 px-space-sm rounded-full text-on-surface-variant font-label-md text-label-md flex items-center justify-center gap-1.5 hover:text-on-surface active:scale-95 transition-all"
+            id="tab-new"
+          >
+            <span class="material-symbols-outlined text-[16px]"
+              >add_circle</span
+            >
+            <span class="">Registrar Nuevo Lote</span>
+          </button>
+        </div>
+      </section>
+      <!-- Main Action & Restock Formulation -->
+      <section class="px-margin-mobile flex flex-col gap-space-md mt-space-xs">
+        <!-- Selector de Producto Activo -->
+        <div
+          class="p-space-md rounded-lg bg-surface-container/70 backdrop-blur-2xl shadow-xl flex flex-col gap-space-sm"
+        >
+          <div class="flex items-center justify-between">
+            <span
+              class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant"
+              >Producto Seleccionado</span
+            >
+            <button
+              class="flex items-center gap-1 text-primary font-label-sm text-label-sm active:opacity-75 transition-opacity"
+            >
+              <span class="material-symbols-outlined text-[15px]"
+                >manage_search</span
+              >
+              <span class="">Cambiar</span>
+            </button>
+          </div>
+          <div class="flex items-center gap-space-md pt-space-xs">
+            <div
+              class="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0 bg-surface-container-highest shadow-inner"
+            >
+              <img
+                class="w-full h-full object-cover"
+                data-alt="Exquisite frosted luxury perfume flacon Yara with shimmering blush rose gold liquid and metallic trim on black reflective velvet pedestal in dramatic soft rim lighting"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl0u3inwwcRGbqU2aMlohhlXiaNm7FcsB_V-MKe2GUsCGIkwnL7GGTPgcdEyp62gOhU5nCT71vvUFjBn5JC4fobCYYr0raU4d8JLEWCUmBKxY62iFQs-vtSaMnFtnoGgxofHW52HaCcY0A1IiNRoMNvAREsQxS__gjfYeHqP-k6gfVof8lv7BYj9XvYmIkWFJbjY44SiTgnV2wupKipwGp_a0fD-2FvxTqCMrgtEV2HImW-S-Gu_FX"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"
+              ></div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2">
+                <h2
+                  class="font-headline-sm text-headline-sm text-on-surface truncate font-semibold"
+                >
+                  Perfume Yara Onlyou 50ml
+                </h2>
+              </div>
+              <p
+                class="font-body-sm text-body-sm text-on-surface-variant mt-0.5"
+              >
+                CÓD · #PRF-012
+              </p>
+              <div
+                class="mt-1.5 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-error-container/40 text-error"
+              >
+                <span class="material-symbols-outlined text-[12px]"
+                  >warning</span
+                >
+                <span class="font-label-sm text-label-sm tracking-wide"
+                  >3 unidades restantes (Stock bajo)</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Formulario de Entrada y Costos -->
+        <div
+          class="p-space-md rounded-lg bg-surface-container/70 backdrop-blur-2xl shadow-xl flex flex-col gap-space-md"
+        >
+          <div class="flex items-center justify-between">
+            <span
+              class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant"
+              >Parámetros de Entrada</span
+            >
+            <span
+              class="font-label-sm text-label-sm text-secondary flex items-center gap-1"
+            >
+              <span class="material-symbols-outlined text-[14px]"
+                >verified</span
+              >
+              Validado
+            </span>
+          </div>
+          <!-- Stepper de Unidades -->
+          <div
+            class="flex items-center justify-between p-space-sm rounded-full bg-surface-container-low shadow-sm"
+          >
+            <div class="pl-space-sm">
+              <p class="font-label-sm text-label-sm text-on-surface-variant">
+                Cantidad a Ingresar
+              </p>
+              <p
+                class="font-headline-sm text-headline-sm text-on-surface font-semibold"
+              >
+                <span id="unit-count" class="">10</span>
+                <span
+                  class="font-body-sm text-body-sm text-on-surface-variant font-normal"
+                  >unidades</span
+                >
+              </p>
+            </div>
+            <div class="flex items-center gap-2 pr-1">
+              <button
+                class="w-10 h-10 rounded-full bg-surface-container-highest text-on-surface flex items-center justify-center active:scale-90 transition-transform shadow"
+                id="btn-decrease"
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >remove</span
+                >
+              </button>
+              <button
+                class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center active:scale-90 transition-transform shadow"
+                id="btn-increase"
+              >
+                <span class="material-symbols-outlined text-[18px]">add</span>
+              </button>
+            </div>
+          </div>
+          <!-- Grid de Inputs Métricos -->
+          <div class="grid grid-cols-1 gap-space-sm">
+            <!-- Costo Unitario -->
+            <div
+              class="p-space-sm rounded-full bg-surface-container-low flex items-center justify-between shadow-sm"
+            >
+              <div class="flex items-center gap-space-sm pl-space-sm">
+                <span
+                  class="material-symbols-outlined text-secondary text-[20px]"
+                  >payments</span
+                >
+                <div>
+                  <label
+                    class="block font-label-sm text-label-sm text-on-surface-variant"
+                    >Costo Unitario Compra</label
+                  >
+                  <input
+                    class="bg-transparent font-headline-sm text-headline-sm text-on-surface font-semibold focus:outline-none w-36"
+                    id="unit-cost-input"
+                    type="text"
+                    value="$9.000 COP"
+                  />
+                </div>
+              </div>
+              <span
+                class="font-label-sm text-label-sm px-3 py-1 rounded-full bg-surface-container-highest text-on-surface-variant mr-1"
+                >Mayorista</span
+              >
+            </div>
+            <!-- Fecha y Lote en fila -->
+            <div class="grid grid-cols-2 gap-space-sm">
+              <div
+                class="p-space-sm rounded-2xl bg-surface-container-low flex flex-col justify-center pl-space-md shadow-sm"
+              >
+                <span
+                  class="font-label-sm text-label-sm text-on-surface-variant"
+                  >Fecha Compra</span
+                >
+                <span
+                  class="font-body-md text-body-md text-on-surface font-medium flex items-center gap-1 mt-0.5"
+                >
+                  <span
+                    class="material-symbols-outlined text-[16px] text-primary"
+                    >calendar_today</span
+                  >
+                  <span class="">09 Sep 2024</span>
+                </span>
+              </div>
+              <div
+                class="p-space-sm rounded-2xl bg-surface-container-low flex flex-col justify-center pl-space-md shadow-sm"
+              >
+                <span
+                  class="font-label-sm text-label-sm text-on-surface-variant"
+                  >Proveedor / Batch</span
+                >
+                <span
+                  class="font-body-md text-body-md text-on-surface font-medium truncate mt-0.5"
+                  >Lote Dubai #03</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Bento Card: Cálculo Automático de Inversión y Proyección Financiera -->
+        <div
+          class="p-space-md rounded-lg bg-gradient-to-br from-surface-container-high/90 via-surface-container/80 to-secondary-container/20 backdrop-blur-2xl shadow-2xl flex flex-col gap-space-md relative overflow-hidden"
+        >
+          <!-- Ambient Glow Orb -->
+          <div
+            class="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-primary/10 blur-2xl pointer-events-none"
+          ></div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-space-xs">
+              <span class="material-symbols-outlined text-primary text-[20px]"
+                >auto_graph</span
+              >
+              <h3
+                class="font-headline-sm text-headline-sm text-on-surface font-semibold"
+              >
+                Proyección del Reabastecimiento
+              </h3>
+            </div>
+            <span
+              class="font-label-sm text-label-sm px-2.5 py-0.5 rounded-full bg-primary/20 text-primary uppercase font-bold tracking-wider"
+              >Live KPI</span
+            >
+          </div>
+          <!-- KPIs Bento Grid -->
+          <div class="grid grid-cols-2 gap-space-sm">
+            <!-- Inversión Requerida -->
+            <div
+              class="p-space-md rounded-2xl bg-surface-container-lowest/80 backdrop-blur-md shadow-md flex flex-col justify-between"
+            >
+              <div>
+                <span
+                  class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant"
+                  >Inversión Total</span
+                >
+                <p
+                  class="font-headline-lg-mobile text-headline-lg-mobile text-primary font-bold mt-1 tracking-tight"
+                  id="total-investment"
+                >
+                  $90.000
+                </p>
+              </div>
+              <span
+                class="font-body-sm text-body-sm text-on-surface-variant mt-2"
+                >10 u × $9.000 COP</span
+              >
+            </div>
+            <!-- Nuevo Stock Proyectado -->
+            <div
+              class="p-space-md rounded-2xl bg-surface-container-lowest/80 backdrop-blur-md shadow-md flex flex-col justify-between"
+            >
+              <div>
+                <span
+                  class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant"
+                  >Nuevo Stock</span
+                >
+                <p
+                  class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-bold mt-1 tracking-tight"
+                  id="projected-stock"
+                >
+                  13
+                  <span class="text-body-md font-normal text-on-surface-variant"
+                    >u</span
+                  >
+                </p>
+              </div>
+              <div
+                class="flex items-center gap-1 text-secondary font-label-sm text-label-sm mt-2"
+              >
+                <span class="material-symbols-outlined text-[14px]"
+                  >arrow_upward</span
+                >
+                <span class="">+300% de bodega</span>
+              </div>
+            </div>
+            <!-- Valor Comercial Proyectado -->
+            <div
+              class="p-space-md rounded-2xl bg-surface-container-lowest/80 backdrop-blur-md shadow-md flex flex-col justify-between"
+            >
+              <div>
+                <span
+                  class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant"
+                  >Venta Estimada</span
+                >
+                <p
+                  class="font-headline-sm text-headline-sm text-on-surface font-semibold mt-1"
+                  id="commercial-value"
+                >
+                  $250.000
+                  <span class="text-[11px] font-normal text-on-surface-variant"
+                    >COP</span
+                  >
+                </p>
+              </div>
+              <span
+                class="font-body-sm text-body-sm text-on-surface-variant mt-1"
+                >PVP $25.000 / u</span
+              >
+            </div>
+            <!-- Retorno Neto Esperado -->
+            <div
+              class="p-space-md rounded-2xl bg-secondary-container/40 backdrop-blur-md shadow-md flex flex-col justify-between"
+            >
+              <div>
+                <span
+                  class="font-label-sm text-label-sm uppercase tracking-wider text-secondary"
+                  >Margen Neto</span
+                >
+                <p
+                  class="font-headline-sm text-headline-sm text-primary font-bold mt-1"
+                  id="net-return"
+                >
+                  +$160.000
+                </p>
+              </div>
+              <div
+                class="inline-flex items-center gap-1 font-label-sm text-label-sm text-primary font-bold mt-1"
+              >
+                <span class="material-symbols-outlined text-[14px]"
+                  >trending_up</span
+                >
+                <span class="">+177% ROI</span>
+              </div>
+            </div>
+          </div>
+          <!-- ROI Progress Mini Visualizer -->
+          <div
+            class="p-space-sm rounded-xl bg-surface-container-lowest/60 flex items-center justify-between gap-space-sm"
+          >
+            <div class="flex items-center gap-2">
+              <div
+                class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary"
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >workspace_premium</span
+                >
+              </div>
+              <div class="min-w-0">
+                <p
+                  class="font-body-sm text-body-sm text-on-surface font-medium truncate"
+                >
+                  Rentabilidad Ultra-Alta
+                </p>
+                <p class="font-label-sm text-label-sm text-on-surface-variant">
+                  TRÍA Atelier Benchmark: &gt; 120%
+                </p>
+              </div>
+            </div>
+            <span
+              class="px-2.5 py-1 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm font-semibold"
+              >Óptimo</span
+            >
+          </div>
+        </div>
+        <!-- CTA Confirmación -->
+        <button
+          class="w-full py-4 rounded-full bg-gradient-to-r from-primary-container via-primary to-secondary text-on-primary font-label-md text-label-md font-bold tracking-wide uppercase flex items-center justify-center gap-2 shadow-xl active:scale-95 transition-all"
+          id="btn-submit"
+        >
+          <span class="material-symbols-outlined text-[20px]">inventory_2</span>
+          <span class="">Confirmar Ingreso de Stock e Inversión</span>
+        </button>
+      </section>
+      <!-- Historial Reciente de Compras de Mercancía -->
+      <section class="px-margin-mobile mt-space-xl flex flex-col gap-space-md">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3
+              class="font-headline-sm text-headline-sm text-on-surface font-semibold"
+            >
+              Historial de Compras
+            </h3>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">
+              Movimientos de reabastecimiento recientes
+            </p>
+          </div>
+          <button
+            class="font-label-sm text-label-sm text-primary flex items-center gap-1 font-medium active:opacity-70 transition-opacity"
+          >
+            <span class="">Ver todas</span>
+            <span class="material-symbols-outlined text-[14px]"
+              >chevron_right</span
+            >
+          </button>
+        </div>
+        <!-- Listado Bento de Órdenes Previas -->
+        <div class="flex flex-col gap-space-sm">
+          <!-- Registro 1: Perfume Yara Hoy -->
+          <div
+            class="p-space-md rounded-2xl bg-surface-container/70 backdrop-blur-xl shadow-md flex items-center justify-between gap-space-sm active:bg-surface-container-high transition-colors"
+          >
+            <div class="flex items-center gap-space-sm min-w-0">
+              <div
+                class="w-12 h-12 rounded-full bg-surface-container-highest overflow-hidden flex-shrink-0"
+              >
+                <img
+                  class="w-full h-full object-cover"
+                  data-alt="Close up of luxury perfume bottle with subtle peach tones and gilded accents isolated on dark obsidian backdrop"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhaUulIFq66mMNP2syBLnp1qFY-ZN4AieqUJFQDD74JFjHu7ryOQXxsnB_dgUjHxM9KwIE5moQgSV7kc0EBaWU2kzCFvBlT-G7BNhOFCFVXZziRx12FPlTDhF3NEW0YL3CpJ6mm3pUMSIjOOXInUUIS_WbjMARLaunO0-YMxyasr-rmvLHDPzcKPOz5IPyH-ZPyZP5WskbJ7WjpQBa26dc5RkxrG-lSRZ61RKBhO3EmA31T7mRVQlX"
+                />
+              </div>
+              <div class="min-w-0">
+                <div class="flex items-center gap-1.5">
+                  <p
+                    class="font-body-md text-body-md text-on-surface font-semibold truncate"
+                  >
+                    Perfume Yara Onlyou
+                  </p>
+                  <span
+                    class="px-2 py-0.5 rounded-full bg-primary/20 text-primary font-label-sm text-label-sm"
+                    >Hoy</span
+                  >
+                </div>
+                <p
+                  class="font-body-sm text-body-sm text-on-surface-variant mt-0.5"
+                >
+                  +10 u · Lote Dubai #03
+                </p>
+              </div>
+            </div>
+            <div class="text-right flex-shrink-0">
+              <p class="font-body-md text-body-md text-on-surface font-bold">
+                $90.000
+              </p>
+              <span class="font-label-sm text-label-sm text-secondary"
+                >COP</span
+              >
+            </div>
+          </div>
+          <!-- Registro 2: Vestido Satinado Noir -->
+          <div
+            class="p-space-md rounded-2xl bg-surface-container/70 backdrop-blur-xl shadow-md flex items-center justify-between gap-space-sm active:bg-surface-container-high transition-colors"
+          >
+            <div class="flex items-center gap-space-sm min-w-0">
+              <div
+                class="w-12 h-12 rounded-full bg-surface-container-highest overflow-hidden flex-shrink-0"
+              >
+                <img
+                  class="w-full h-full object-cover"
+                  data-alt="Sensual couture black silk slip dress draped with delicate golden embroidery and lingerie styling in soft ambient studio shadows"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDd26rW_Nzf0woGaX5x7V-Ff-T7y0QbUnObkG1D_p9TDzcCjTaaRlmsP4zFKFPvV1TQ8-o1d5GqVpZwaK9ILdbROhsC18VKbiO4rL8O9V1cAVTYD5M_fOooqvJLzUMSyAslDDiKMuupw-UWl97Wdb22Ye484KXXPHrPzlq1lGgH6uroj830qFRUadIXOVzCHbz4aL4orW3HSAK3Q0FnC5q1BlWsNhbK9oCbBfewRKcWue0ZAckCEjsw"
+                />
+              </div>
+              <div class="min-w-0">
+                <div class="flex items-center gap-1.5">
+                  <p
+                    class="font-body-md text-body-md text-on-surface font-semibold truncate"
+                  >
+                    Vestido Satinado Noir
+                  </p>
+                  <span
+                    class="font-label-sm text-label-sm text-on-surface-variant"
+                    >05 Sep</span
+                  >
+                </div>
+                <p
+                  class="font-body-sm text-body-sm text-on-surface-variant mt-0.5"
+                >
+                  +8 u · Atelier Silks Col.
+                </p>
+              </div>
+            </div>
+            <div class="text-right flex-shrink-0">
+              <p class="font-body-md text-body-md text-on-surface font-bold">
+                $304.000
+              </p>
+              <span class="font-label-sm text-label-sm text-secondary"
+                >COP</span
+              >
+            </div>
+          </div>
+          <!-- Registro 3: Set Labiales Velvet -->
+          <div
+            class="p-space-md rounded-2xl bg-surface-container/70 backdrop-blur-xl shadow-md flex items-center justify-between gap-space-sm active:bg-surface-container-high transition-colors"
+          >
+            <div class="flex items-center gap-space-sm min-w-0">
+              <div
+                class="w-12 h-12 rounded-full bg-surface-container-highest overflow-hidden flex-shrink-0"
+              >
+                <img
+                  class="w-full h-full object-cover"
+                  data-alt="High end matte lipsticks collection in rose-gold bullet casings resting against deep smoky obsidian silk background"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFxAcHA0aLRI9SRBsE-K_c0_7dHz9zxbuY1MgHl_enps7QQUH6JukaxuEeQtGZbWciBSlE_Gs6LMB_KJEfXRIDy3JX78m68VSIAaQrbq740WMTeVcqKpfXiq5y3rEmOwPhztrEOFpwltxg0cn2loLWEYb4F640BiCChaeqC3-VL7K6MJP2O7bQOtzyeEB13k3g7ixK8U0ZHISJR6bI4jRJFpuMDopz49FtT_QqcoUCzI7vjAU9YIuW"
+                />
+              </div>
+              <div class="min-w-0">
+                <div class="flex items-center gap-1.5">
+                  <p
+                    class="font-body-md text-body-md text-on-surface font-semibold truncate"
+                  >
+                    Set Labiales Velvet
+                  </p>
+                  <span
+                    class="font-label-sm text-label-sm text-on-surface-variant"
+                    >28 Ago</span
+                  >
+                </div>
+                <p
+                  class="font-body-sm text-body-sm text-on-surface-variant mt-0.5"
+                >
+                  +20 u · Milano Batch IV
+                </p>
+              </div>
+            </div>
+            <div class="text-right flex-shrink-0">
+              <p class="font-body-md text-body-md text-on-surface font-bold">
+                $140.000
+              </p>
+              <span class="font-label-sm text-label-sm text-secondary"
+                >COP</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Bottom Floating Luxury 5-Tab Navigation Dock -->
+      <nav class="fixed bottom-4 left-4 right-4 z-40 max-w-md mx-auto">
+        <div
+          class="h-16 px-space-sm rounded-full bg-surface-container-lowest/85 backdrop-blur-2xl shadow-2xl flex items-center justify-around"
+        >
+          <!-- Tab 1: Dashboard -->
+          <button
+            class="flex flex-col items-center justify-center text-on-surface-variant active:scale-95 transition-all"
+          >
+            <span class="material-symbols-outlined text-[22px]">dashboard</span>
+            <span class="font-label-sm text-label-sm tracking-tight mt-0.5"
+              >Inicio</span
+            >
+          </button>
+          <!-- Tab 2: Inventario (Active Sub-Context) -->
+          <button
+            class="relative flex flex-col items-center justify-center text-primary active:scale-95 transition-all"
+          >
+            <div
+              class="px-3.5 py-1 rounded-full bg-primary/15 flex flex-col items-center"
+            >
+              <span
+                class="material-symbols-outlined text-[22px]"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >inventory</span
+              >
+            </div>
+            <span class="w-1 h-1 rounded-full bg-primary mt-0.5"></span>
+          </button>
+          <!-- Tab 3: Ventas / POS -->
+          <button
+            class="flex flex-col items-center justify-center text-on-surface-variant active:scale-95 transition-all"
+          >
+            <span class="material-symbols-outlined text-[22px]"
+              >point_of_sale</span
+            >
+            <span class="font-label-sm text-label-sm tracking-tight mt-0.5"
+              >Ventas</span
+            >
+          </button>
+          <!-- Tab 4: Clientes / Ledger -->
+          <button
+            class="flex flex-col items-center justify-center text-on-surface-variant active:scale-95 transition-all"
+          >
+            <span class="material-symbols-outlined text-[22px]">group</span>
+            <span class="font-label-sm text-label-sm tracking-tight mt-0.5"
+              >Clientes</span
+            >
+          </button>
+          <!-- Tab 5: Finanzas -->
+          <button
+            class="flex flex-col items-center justify-center text-on-surface-variant active:scale-95 transition-all"
+          >
+            <span class="material-symbols-outlined text-[22px]"
+              >more_horiz</span
+            >
+            <span class="font-label-sm text-label-sm tracking-tight mt-0.5"
+              >Más</span
+            >
+          </button>
+        </div>
+      </nav>
+      <!-- Script interactivo de simulación numérica -->
+      <script>
+        (function () {
+          let count = 10;
+          const initialStock = 3;
+          const unitCost = 9000;
+          const retailPrice = 25000;
+
+          const unitCountEl = document.getElementById("unit-count");
+          const totalInvestmentEl = document.getElementById("total-investment");
+          const projectedStockEl = document.getElementById("projected-stock");
+          const commercialValueEl = document.getElementById("commercial-value");
+          const netReturnEl = document.getElementById("net-return");
+
+          const btnInc = document.getElementById("btn-increase");
+          const btnDec = document.getElementById("btn-decrease");
+
+          function formatCOP(num) {
+            return "$" + num.toLocaleString("es-CO");
+          }
+
+          function updateCalculations() {
+            unitCountEl.textContent = count;
+            const totalInvestment = count * unitCost;
+            const totalStock = count + initialStock;
+            const commercialValue = totalStock * retailPrice;
+            const netReturn = commercialValue - totalInvestment;
+
+            totalInvestmentEl.textContent = formatCOP(totalInvestment);
+            projectedStockEl.innerHTML =
+              totalStock +
+              ' <span class="text-body-md font-normal text-on-surface-variant">u</span>';
+            commercialValueEl.innerHTML =
+              formatCOP(commercialValue) +
+              ' <span class="text-[11px] font-normal text-on-surface-variant">COP</span>';
+            netReturnEl.textContent = "+" + formatCOP(netReturn);
+          }
+
+          btnInc?.addEventListener("click", () => {
+            count += 1;
+            updateCalculations();
+          });
+
+          btnDec?.addEventListener("click", () => {
+            if (count > 1) {
+              count -= 1;
+              updateCalculations();
+            }
+          });
+
+          const btnSubmit = document.getElementById("btn-submit");
+          btnSubmit?.addEventListener("click", () => {
+            const originalText = btnSubmit.innerHTML;
+            btnSubmit.innerHTML =
+              '<span class="material-symbols-outlined text-[20px] animate-spin">progress_activity</span><span>Guardando Lote...</span>';
+            btnSubmit.disabled = true;
+            setTimeout(() => {
+              btnSubmit.innerHTML =
+                '<span class="material-symbols-outlined text-[20px]">check_circle</span><span>¡Stock Actualizado con Éxito!</span>';
+              setTimeout(() => {
+                btnSubmit.innerHTML = originalText;
+                btnSubmit.disabled = false;
+              }, 2000);
+            }, 900);
+          });
+        })();
+      </script>
+    </div>
+  </main>
+</section>

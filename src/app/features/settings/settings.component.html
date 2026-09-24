@@ -1,0 +1,734 @@
+<!-- Settings Module Shell -->
+<div
+  class="bg-surface font-body-md text-body-md text-on-surface min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-on-primary-container"
+>
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div
+      class="absolute -top-32 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary-container/15 rounded-full blur-3xl"
+    ></div>
+    <div
+      class="absolute bottom-20 left-1/4 w-80 h-80 bg-secondary-container/10 rounded-full blur-3xl"
+    ></div>
+  </div>
+  <header
+    class="fixed top-0 w-full z-50 pt-safe bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
+  >
+    <div
+      class="h-20 px-margin-mobile flex items-center justify-between gap-gutter-mobile"
+    >
+      <div class="flex items-center gap-space-sm min-w-0">
+        <img
+          alt="tria-logo.png"
+          class="h-8 w-auto object-contain flex-shrink-0"
+          src="https://lh3.googleusercontent.com/aida/AEtjO1VVnkiN_-OgmRGie5ZKZnXW7yZ2X_VAjsvY_IJYn41xFB-4yxjxzR5-r6rRU4LuE3eOIq5r8kQMURxhCNxevrUeRrolERPms664okx_V9Hf8io5zzGQDZV3EBfLQDOnVwF8jRet9_TmVLpqSbnGKnvTUuvbz9qQ6q275BELRrwL5s0t1KLZOXK7cxmNEF16lG2Sjqsfwi9gt0H8CfoaMz0uyulLyg1DwCklpqKGonxSbiL31TWvIXK4P9zZLFsFZw-VTjDzexLkLA"
+        />
+        <div class="flex flex-col min-w-0">
+          <div class="flex items-center gap-space-xs">
+            <span
+              class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight truncate"
+              >TRÍA</span
+            ><span
+              class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse flex-shrink-0"
+            ></span>
+          </div>
+          <span
+            class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant truncate"
+            >Inventario</span
+          >
+        </div>
+      </div>
+      <div class="flex items-center gap-space-sm flex-shrink-0">
+        <button
+          aria-label="Notificaciones"
+          class="w-11 h-11 rounded-full flex items-center justify-center bg-surface-container-high/60 backdrop-blur-md text-on-surface-variant hover:text-on-surface active:scale-95 transition-all"
+        >
+          <span class="material-symbols-outlined text-[20px]"
+            >notifications</span
+          >
+        </button>
+        <div
+          class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"
+        >
+          <span class="material-symbols-outlined text-on-primary text-[18px]"
+            >person</span
+          >
+        </div>
+      </div>
+    </div>
+  </header>
+  <main
+    class="flex-1 flex flex-col relative w-full pt-20 pb-32 bg-surface z-10"
+  >
+    <div class="flex flex-col w-full px-margin-mobile gap-space-lg">
+      <!-- Profile & Atelier Status Card -->
+      <section
+        class="relative overflow-hidden rounded-lg bg-surface-container/70 backdrop-blur-xl p-space-md shadow-xl"
+      >
+        <div
+          class="absolute -right-8 -top-8 w-36 h-36 rounded-full bg-primary-container/20 blur-2xl pointer-events-none"
+        ></div>
+        <div class="flex items-center gap-space-md relative z-10">
+          <div class="relative flex-shrink-0">
+            <div
+              class="w-14 h-14 rounded-full bg-surface-container-high flex items-center justify-center p-2.5 shadow-md"
+            >
+              <img
+                alt="TRÍA Atelier"
+                class="w-full h-full object-contain"
+                src="https://lh3.googleusercontent.com/aida/AEtjO1VVnkiN_-OgmRGie5ZKZnXW7yZ2X_VAjsvY_IJYn41xFB-4yxjxzR5-r6rRU4LuE3eOIq5r8kQMURxhCNxevrUeRrolERPms664okx_V9Hf8io5zzGQDZV3EBfLQDOnVwF8jRet9_TmVLpqSbnGKnvTUuvbz9qQ6q275BELRrwL5s0t1KLZOXK7cxmNEF16lG2Sjqsfwi9gt0H8CfoaMz0uyulLyg1DwCklpqKGonxSbiL31TWvIXK4P9zZLFsFZw-VTjDzexLkLA"
+              />
+            </div>
+            <span
+              class="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-primary ring-2 ring-surface flex items-center justify-center"
+            >
+              <span class="w-1.5 h-1.5 rounded-full bg-on-primary"></span>
+            </span>
+          </div>
+          <div class="flex flex-col min-w-0 flex-1">
+            <div class="flex items-center justify-between gap-space-xs">
+              <h1
+                class="font-headline-sm text-headline-sm text-on-surface truncate"
+              >
+                Administración General TRÍA
+              </h1>
+            </div>
+            <p
+              class="font-body-sm text-body-sm text-on-surface-variant truncate"
+            >
+              administracion&#64;tria.co
+            </p>
+            <div class="mt-space-xs flex items-center gap-space-xs">
+              <span
+                class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-surface-container-highest text-secondary font-label-sm text-label-sm tracking-wider uppercase"
+              >
+                <span
+                  class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"
+                ></span>
+                Boutique Activa
+              </span>
+              <span
+                class="font-label-sm text-label-sm text-on-surface-variant/70"
+                >Atelier Principal</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Editorial Visual Hook: Atelier Lingerie Craft Banner -->
+      <section
+        class="relative overflow-hidden rounded-lg h-36 bg-surface-container-low shadow-md"
+      >
+        <div
+          class="absolute inset-0 bg-cover bg-center w-full h-full opacity-40"
+          data-alt="Close up artisanal high-end lingerie texture with delicate rose gold silk threads, smoked glass background, atmospheric deep shadows and soft ambient lighting"
+          style="
+            background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuCwkqUpgSnGze0ySHojrUi2sSFuJ70-Ox_cz_ac2qx5ZD_XorJ5I-2UUMwSkVk1eowvKTrGz_x72zxjKs3-cM_6Q-Fbgm5neDzmyFAmYymLkoe0N441Qc-5glXGzlwT8BOE_87rGO8mGdSb1bqum1J8KWpvcu-63bZyN9QS2hLs_3Ymk4MiKhWLhpQnRrwFUIWK747Q9k7WDMxBo9EXfw4Hh6wZ2AjpVNiMp58CjXLm8HX8ESRN2at_&quot;);
+          "
+        ></div>
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-surface-container-lowest via-surface-container-lowest/80 to-transparent flex flex-col justify-center px-space-md z-10"
+        >
+          <span
+            class="font-label-sm text-label-sm uppercase tracking-widest text-secondary mb-1"
+            >Centro de Control</span
+          >
+          <h2
+            class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-semibold"
+          >
+            Parámetros Operativos
+          </h2>
+          <p
+            class="font-body-sm text-body-sm text-on-surface-variant max-w-[240px]"
+          >
+            Configuración financiera, flujos de cobranza cordial y
+            sincronización local.
+          </p>
+        </div>
+      </section>
+      <!-- Group 1: Commercial & Financial Metrics -->
+      <section class="flex flex-col gap-space-sm">
+        <div class="flex items-center justify-between px-space-xs">
+          <div class="flex items-center gap-space-xs">
+            <span class="material-symbols-outlined text-secondary text-[20px]"
+              >tune</span
+            >
+            <h3 class="font-headline-sm text-headline-sm text-on-surface">
+              Parámetros Comerciales
+            </h3>
+          </div>
+          <span
+            class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider"
+            >Ajustes Base</span
+          >
+        </div>
+        <div class="grid grid-cols-1 gap-space-sm">
+          <!-- Item: Currency -->
+          <div
+            class="flex items-center justify-between p-space-md rounded-lg bg-surface-container/60 backdrop-blur-md shadow-sm"
+          >
+            <div class="flex items-center gap-space-sm min-w-0">
+              <div
+                class="w-10 h-10 rounded-full bg-secondary-container/30 flex items-center justify-center flex-shrink-0"
+              >
+                <span
+                  class="material-symbols-outlined text-secondary text-[20px]"
+                  >payments</span
+                >
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span
+                  class="font-label-md text-label-md text-on-surface truncate"
+                  >Moneda Predeterminada</span
+                >
+                <span class="font-body-sm text-body-sm text-on-surface-variant"
+                  >Liquidación de tickets y saldos</span
+                >
+              </div>
+            </div>
+            <div class="flex items-center gap-space-xs flex-shrink-0">
+              <span
+                class="font-label-sm text-label-sm bg-surface-container-highest px-3 py-1 rounded-full text-secondary font-semibold"
+                >COP ($)</span
+              >
+              <span
+                class="material-symbols-outlined text-on-surface-variant text-[18px]"
+                >chevron_right</span
+              >
+            </div>
+          </div>
+          <!-- Item: Margin -->
+          <div
+            class="flex items-center justify-between p-space-md rounded-lg bg-surface-container/60 backdrop-blur-md shadow-sm"
+          >
+            <div class="flex items-center gap-space-sm min-w-0">
+              <div
+                class="w-10 h-10 rounded-full bg-primary-container/30 flex items-center justify-center flex-shrink-0"
+              >
+                <span class="material-symbols-outlined text-primary text-[20px]"
+                  >trending_up</span
+                >
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span
+                  class="font-label-md text-label-md text-on-surface truncate"
+                  >Margen Objetivo Boutique</span
+                >
+                <span class="font-body-sm text-body-sm text-on-surface-variant"
+                  >Cálculo de sugerido en piezas nuevas</span
+                >
+              </div>
+            </div>
+            <div class="flex items-center gap-space-xs flex-shrink-0">
+              <span
+                class="font-label-sm text-label-sm bg-primary-container/40 text-on-primary-container px-3 py-1 rounded-full font-semibold"
+                >55% prom.</span
+              >
+              <span
+                class="material-symbols-outlined text-on-surface-variant text-[18px]"
+                >chevron_right</span
+              >
+            </div>
+          </div>
+          <!-- Item: Grace Period -->
+          <div
+            class="flex items-center justify-between p-space-md rounded-lg bg-surface-container/60 backdrop-blur-md shadow-sm"
+          >
+            <div class="flex items-center gap-space-sm min-w-0">
+              <div
+                class="w-10 h-10 rounded-full bg-tertiary-container/30 flex items-center justify-center flex-shrink-0"
+              >
+                <span
+                  class="material-symbols-outlined text-tertiary text-[20px]"
+                  >event_repeat</span
+                >
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span
+                  class="font-label-md text-label-md text-on-surface truncate"
+                  >Plazo para Cobro de Saldo</span
+                >
+                <span class="font-body-sm text-body-sm text-on-surface-variant"
+                  >Límite antes de alerta morosa</span
+                >
+              </div>
+            </div>
+            <div class="flex items-center gap-space-xs flex-shrink-0">
+              <span
+                class="font-label-sm text-label-sm bg-surface-container-highest text-on-surface px-3 py-1 rounded-full font-medium"
+                >15 días</span
+              >
+              <span
+                class="material-symbols-outlined text-on-surface-variant text-[18px]"
+                >chevron_right</span
+              >
+            </div>
+          </div>
+          <!-- Item: Critical Stock Threshold -->
+          <div
+            class="flex items-center justify-between p-space-md rounded-lg bg-surface-container/60 backdrop-blur-md shadow-sm"
+          >
+            <div class="flex items-center gap-space-sm min-w-0">
+              <div
+                class="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center flex-shrink-0"
+              >
+                <span
+                  class="material-symbols-outlined text-secondary-fixed-dim text-[20px]"
+                  >warning_amber</span
+                >
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span
+                  class="font-label-md text-label-md text-on-surface truncate"
+                  >Alerta Stock Crítico</span
+                >
+                <span class="font-body-sm text-body-sm text-on-surface-variant"
+                  >Gatillo para compras del taller</span
+                >
+              </div>
+            </div>
+            <div class="flex items-center gap-space-xs flex-shrink-0">
+              <span
+                class="font-label-sm text-label-sm bg-surface-container-highest text-error px-3 py-1 rounded-full font-semibold"
+                >≤ 3 unids</span
+              >
+              <span
+                class="material-symbols-outlined text-on-surface-variant text-[18px]"
+                >chevron_right</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Group 2: WhatsApp Template Customizer -->
+      <section class="flex flex-col gap-space-sm">
+        <div class="flex items-center justify-between px-space-xs">
+          <div class="flex items-center gap-space-xs">
+            <span class="material-symbols-outlined text-secondary text-[20px]"
+              >chat_bubble</span
+            >
+            <h3 class="font-headline-sm text-headline-sm text-on-surface">
+              Plantilla de WhatsApp
+            </h3>
+          </div>
+          <span
+            class="font-label-sm text-label-sm text-secondary tracking-wider uppercase"
+            >Cobranza Suave</span
+          >
+        </div>
+        <div
+          class="rounded-lg bg-surface-container/70 backdrop-blur-xl p-space-md flex flex-col gap-space-md shadow-md"
+        >
+          <!-- WhatsApp Preview Box -->
+          <div
+            class="relative rounded-lg bg-surface-container-lowest p-space-md shadow-inner flex flex-col gap-space-sm"
+          >
+            <div class="flex items-center justify-between pb-space-xs">
+              <div class="flex items-center gap-space-xs">
+                <span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+                <span
+                  class="font-label-sm text-label-sm text-on-surface-variant tracking-wider uppercase"
+                  >Mensaje Directo al Cliente</span
+                >
+              </div>
+              <span
+                class="font-label-sm text-label-sm text-secondary bg-secondary-container/30 px-2 py-0.5 rounded-full"
+                >Atelier Concierge</span
+              >
+            </div>
+            <div class="rounded-lg bg-surface-container-high/80 p-3 shadow-sm">
+              <p
+                class="font-body-sm text-body-sm text-on-surface leading-relaxed"
+                id="whatsapp-preview-text"
+              >
+                "Hola,
+                <span class="text-primary font-medium">[Clienta]</span> 😊 Te
+                escribimos de TRÍA Boutique para recordarte que tienes un saldo
+                pendiente de
+                <span class="text-secondary font-medium">[Saldo]</span> de tu
+                compra de
+                <span class="text-primary font-medium">[Productos]</span>.
+                ¡Coordinamos cuando gustes! ✨"
+              </p>
+            </div>
+            <div class="flex items-center justify-between pt-space-xs">
+              <div class="flex items-center gap-1.5 text-on-surface-variant">
+                <span class="material-symbols-outlined text-[16px]">call</span>
+                <span
+                  class="font-label-sm text-label-sm text-on-surface-variant"
+                  >Emisor:
+                  <strong class="text-on-surface font-medium"
+                    >+57 314 890 2134</strong
+                  ></span
+                >
+              </div>
+              <span class="font-label-sm text-label-sm text-tertiary"
+                >14:02 • Leído</span
+              >
+            </div>
+          </div>
+          <!-- Action Button -->
+          <button
+            class="w-full h-12 rounded-full bg-surface-container-high hover:bg-surface-bright active:scale-95 transition-all flex items-center justify-center gap-space-xs text-secondary font-label-md text-label-md"
+            id="btn-edit-template"
+          >
+            <span class="material-symbols-outlined text-[18px]">edit_note</span>
+            <span>Personalizar Texto &amp; Tokens</span>
+          </button>
+        </div>
+      </section>
+      <!-- Group 3: Data Management & Ledger Backups -->
+      <section class="flex flex-col gap-space-sm">
+        <div class="flex items-center justify-between px-space-xs">
+          <div class="flex items-center gap-space-xs">
+            <span class="material-symbols-outlined text-secondary text-[20px]"
+              >dataset</span
+            >
+            <h3 class="font-headline-sm text-headline-sm text-on-surface">
+              Datos &amp; Respaldos
+            </h3>
+          </div>
+          <span
+            class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider"
+            >Libro Contable</span
+          >
+        </div>
+        <div class="grid grid-cols-1 gap-space-sm">
+          <!-- Export Catalog -->
+          <div
+            class="flex items-center justify-between p-space-md rounded-lg bg-surface-container/60 backdrop-blur-md shadow-sm active:bg-surface-container-high transition-colors cursor-pointer"
+          >
+            <div class="flex items-center gap-space-sm min-w-0">
+              <div
+                class="w-10 h-10 rounded-full bg-secondary-container/25 flex items-center justify-center flex-shrink-0"
+              >
+                <span
+                  class="material-symbols-outlined text-secondary text-[20px]"
+                  >table_view</span
+                >
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span
+                  class="font-label-md text-label-md text-on-surface truncate"
+                  >Exportar Catálogo Completo</span
+                >
+                <span class="font-body-sm text-body-sm text-on-surface-variant"
+                  >Lencería, tallas, SKU y costos (Excel / CSV)</span
+                >
+              </div>
+            </div>
+            <button
+              class="w-9 h-9 rounded-full bg-surface-container-high flex items-center justify-center text-secondary active:scale-90 transition-transform"
+            >
+              <span class="material-symbols-outlined text-[18px]"
+                >download</span
+              >
+            </button>
+          </div>
+          <!-- Export Accounting Ledger -->
+          <div
+            class="flex items-center justify-between p-space-md rounded-lg bg-surface-container/60 backdrop-blur-md shadow-sm active:bg-surface-container-high transition-colors cursor-pointer"
+          >
+            <div class="flex items-center gap-space-sm min-w-0">
+              <div
+                class="w-10 h-10 rounded-full bg-primary-container/25 flex items-center justify-center flex-shrink-0"
+              >
+                <span class="material-symbols-outlined text-primary text-[20px]"
+                  >receipt_long</span
+                >
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span
+                  class="font-label-md text-label-md text-on-surface truncate"
+                  >Balance Histórico &amp; Cartera</span
+                >
+                <span class="font-body-sm text-body-sm text-on-surface-variant"
+                  >Cierres de caja y estados de cuenta (PDF)</span
+                >
+              </div>
+            </div>
+            <button
+              class="w-9 h-9 rounded-full bg-surface-container-high flex items-center justify-center text-primary active:scale-90 transition-transform"
+            >
+              <span class="material-symbols-outlined text-[18px]"
+                >picture_as_pdf</span
+              >
+            </button>
+          </div>
+          <!-- Cloud Sync & Backup Status Card -->
+          <div
+            class="p-space-md rounded-lg bg-surface-container/80 backdrop-blur-md shadow-sm flex flex-col gap-space-sm"
+          >
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-space-sm">
+                <div
+                  class="w-10 h-10 rounded-full bg-tertiary-container/30 flex items-center justify-center"
+                >
+                  <span
+                    class="material-symbols-outlined text-tertiary text-[20px]"
+                    >cloud_sync</span
+                  >
+                </div>
+                <div class="flex flex-col">
+                  <span class="font-label-md text-label-md text-on-surface"
+                    >Copia en la Nube TRÍA</span
+                  >
+                  <span
+                    class="font-body-sm text-body-sm text-on-surface-variant"
+                    >Último respaldo: Hoy 11:30 AM</span
+                  >
+                </div>
+              </div>
+              <span
+                class="font-label-sm text-label-sm bg-surface-container-highest text-secondary px-2.5 py-1 rounded-full"
+                >Sincronizado</span
+              >
+            </div>
+            <button
+              class="w-full h-11 rounded-full bg-surface-container-high hover:bg-surface-bright active:scale-95 transition-all flex items-center justify-center gap-space-xs text-on-surface font-label-md text-label-md"
+              id="btn-sync-now"
+            >
+              <span class="material-symbols-outlined text-[18px] text-primary"
+                >sync</span
+              >
+              <span>Forzar Respaldo Ahora</span>
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- Group 4: Security & Session Actions -->
+      <section class="flex flex-col gap-space-sm">
+        <div class="flex items-center justify-between px-space-xs">
+          <div class="flex items-center gap-space-xs">
+            <span class="material-symbols-outlined text-secondary text-[20px]"
+              >lock</span
+            >
+            <h3 class="font-headline-sm text-headline-sm text-on-surface">
+              Seguridad &amp; Sesión
+            </h3>
+          </div>
+          <span
+            class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider"
+            >Acceso Privado</span
+          >
+        </div>
+        <div class="flex flex-col gap-space-sm">
+          <!-- Change PIN/Password -->
+          <button
+            class="w-full flex items-center justify-between p-space-md rounded-lg bg-surface-container/60 hover:bg-surface-container-high backdrop-blur-md shadow-sm active:scale-[0.99] transition-all text-left"
+          >
+            <div class="flex items-center gap-space-sm">
+              <div
+                class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center"
+              >
+                <span
+                  class="material-symbols-outlined text-on-surface-variant text-[20px]"
+                  >password</span
+                >
+              </div>
+              <div class="flex flex-col">
+                <span class="font-label-md text-label-md text-on-surface"
+                  >Clave de Acceso al Atelier</span
+                >
+                <span class="font-body-sm text-body-sm text-on-surface-variant"
+                  >Actualizar PIN o contraseña maestra</span
+                >
+              </div>
+            </div>
+            <span
+              class="material-symbols-outlined text-on-surface-variant text-[18px]"
+              >arrow_forward</span
+            >
+          </button>
+          <!-- Logout Button (Luxury Rose Crimson) -->
+          <button
+            class="w-full h-14 rounded-full bg-primary-container hover:bg-secondary-container active:scale-95 transition-all flex items-center justify-center gap-space-xs text-on-primary-container font-label-md text-label-md shadow-lg shadow-primary-container/20"
+            id="btn-logout"
+          >
+            <span class="material-symbols-outlined text-[20px]">logout</span>
+            <span
+              class="font-semibold tracking-wide uppercase font-label-md text-label-md"
+              >Cerrar Sesión Segura</span
+            >
+          </button>
+        </div>
+      </section>
+      <!-- Editorial Aesthetic Imagery Block -->
+      <section class="grid grid-cols-2 gap-space-sm pt-space-xs">
+        <div
+          class="relative rounded-lg h-24 overflow-hidden bg-surface-container-low shadow-sm"
+        >
+          <div
+            class="absolute inset-0 bg-cover bg-center w-full h-full opacity-60"
+            data-alt="Silk ribbon detail, minimalist boutique tailoring tools, warm rose gold light accents on deep black background"
+            style="
+              background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuDBrKZaarRcYwD8qefYQIB6Mdwm0LWK0KmPtrC5RUdZCqKzXKD26FG6D_qsJ4eFtvWa1xQL0Ds2up_9vLFsVH7rftN0pHbxsUXnET0vdCO828MUghFR11vafIXN1Urw60sGQFJdCmCh8_OsfdMDGM5jVWiXwGGk3Q32fy0F-6I4G7ln45UUJBE4cKvf6adI0LIYojxcubMSQtv0jGzYEow6wn3hXkC_ucphec7UYu26JAW8_HWv9PMC&quot;);
+            "
+          ></div>
+          <div
+            class="absolute inset-0 bg-surface-container-lowest/60 p-3 flex flex-col justify-end"
+          >
+            <span class="font-label-sm text-label-sm text-secondary font-medium"
+              >Boutique Privada</span
+            >
+            <span class="font-body-sm text-body-sm text-on-surface-variant"
+              >Bogotá D.C.</span
+            >
+          </div>
+        </div>
+        <div
+          class="relative rounded-lg h-24 overflow-hidden bg-surface-container-low shadow-sm"
+        >
+          <div
+            class="absolute inset-0 bg-cover bg-center w-full h-full opacity-60"
+            data-alt="Haute couture lace sample fabric drape on mannequin, dark editorial luxury lighting with rose-hued soft ambient reflections"
+            style="
+              background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuAIlQzTpqMoSjmq055kVoNSnN07EoOFp6gMUDhw2-RMCKYQ-ZX16q2ZWuq1LN7RJgV_NKElikBokvhaI20NrldEN5o77jLn1xVXoob4cVeVCRsFHoavkvE_ElLUMoT9fgq_a1Be1rn6n5hk2WG2439ixHcV2vYdGGfQCvB-pLRUZHYpDzDPRJl1bFkQl-qFLKvScEAB62pBGBm7UCTRLCcpxEohdW5KF5gMJfz7WKx4NxLqmcL5_qTN&quot;);
+            "
+          ></div>
+          <div
+            class="absolute inset-0 bg-surface-container-lowest/60 p-3 flex flex-col justify-end"
+          >
+            <span class="font-label-sm text-label-sm text-secondary font-medium"
+              >Atelier Exclusivo</span
+            >
+            <span class="font-body-sm text-body-sm text-on-surface-variant"
+              >Colección Activa</span
+            >
+          </div>
+        </div>
+      </section>
+      <!-- App Version Footer -->
+      <footer
+        class="pt-space-md pb-space-lg flex flex-col items-center justify-center text-center gap-1"
+      >
+        <div class="flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+          <span
+            class="font-label-sm text-label-sm text-on-surface tracking-wider uppercase font-semibold"
+            >TRÍA Boutique Management v1.0</span
+          >
+        </div>
+        <p class="font-body-sm text-body-sm text-on-surface-variant/80">
+          Beauty · Fashion · Lingerie
+        </p>
+        <p
+          class="font-label-sm text-label-sm text-on-surface-variant/50 max-w-xs mt-1"
+        >
+          Desarrollado para gestión presencial mobile-first.
+        </p>
+      </footer>
+    </div>
+    <script>
+      (function () {
+        const syncBtn = document.getElementById("btn-sync-now");
+        if (syncBtn) {
+          syncBtn.addEventListener("click", function () {
+            const icon = syncBtn.querySelector(".material-symbols-outlined");
+            if (icon) {
+              icon.classList.add("animate-spin");
+              setTimeout(() => {
+                icon.classList.remove("animate-spin");
+                syncBtn.classList.add("bg-surface-container-highest");
+                const spanText = syncBtn.querySelector(
+                  "span:not(.material-symbols-outlined)",
+                );
+                if (spanText) spanText.textContent = "¡Copia Actualizada!";
+                setTimeout(() => {
+                  if (spanText) spanText.textContent = "Forzar Respaldo Ahora";
+                }, 2500);
+              }, 1200);
+            }
+          });
+        }
+
+        const editBtn = document.getElementById("btn-edit-template");
+        if (editBtn) {
+          editBtn.addEventListener("click", function () {
+            const preview = document.getElementById("whatsapp-preview-text");
+            if (preview) {
+              preview.classList.toggle("ring-1");
+              preview.classList.toggle("ring-primary");
+              const isEditing =
+                preview.getAttribute("contenteditable") === "true";
+              preview.setAttribute("contenteditable", !isEditing);
+              if (!isEditing) {
+                preview.focus();
+                editBtn.innerHTML =
+                  '<span class="material-symbols-outlined text-[18px]">done</span><span>Guardar Plantilla</span>';
+              } else {
+                editBtn.innerHTML =
+                  '<span class="material-symbols-outlined text-[18px]">edit_note</span><span>Personalizar Texto & Tokens</span>';
+              }
+            }
+          });
+        }
+
+        const logoutBtn = document.getElementById("btn-logout");
+        if (logoutBtn) {
+          logoutBtn.addEventListener("click", function () {
+            if (
+              confirm(
+                "¿Deseas cerrar la sesión administrativa de TRÍA Atelier?",
+              )
+            ) {
+              logoutBtn.style.opacity = "0.5";
+              logoutBtn.textContent = "Cerrando sesión...";
+            }
+          });
+        }
+      })();
+    </script>
+  </main>
+  <div class="fixed bottom-0 w-full z-50 pointer-events-none pb-safe">
+    <nav
+      class="pointer-events-auto mx-auto mb-4 px-3 w-[calc(100%-1.5rem)] max-w-md h-20 rounded-full bg-surface-container-lowest/85 backdrop-blur-xl shadow-[0_12px_32px_-8px_rgba(159,98,95,0.28)] flex items-center justify-between"
+      data-active-classes="text-primary bg-primary-container/25"
+    >
+      <a
+        class="flex flex-col items-center justify-center w-14 h-14 rounded-full text-on-surface-variant hover:text-on-surface transition-all duration-200 active:scale-95"
+        data-path="inicio"
+        routerLink="/app/inicio"
+        ><span class="material-symbols-outlined text-[22px]">dashboard</span
+        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
+          >Inicio</span
+        ></a
+      ><a
+        aria-current="page"
+        class="flex flex-col items-center justify-center w-14 h-14 rounded-full transition-all duration-200 active:scale-95 text-primary bg-primary-container/25"
+        data-path="inventario"
+        routerLink="/app/inventario"
+        ><span class="material-symbols-outlined text-[22px]">inventory_2</span
+        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
+          >Stock</span
+        ></a
+      >
+      <div class="relative -top-3">
+        <a
+          class="flex flex-col items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-secondary via-primary to-primary-container text-on-primary shadow-[0_8px_24px_rgba(254,180,176,0.35)] active:scale-95 transition-transform"
+          data-path="ventas"
+          routerLink="/app/ventas"
+          ><span class="material-symbols-outlined text-[24px]"
+            >shopping_bag</span
+          ></a
+        >
+      </div>
+      <a
+        class="flex flex-col items-center justify-center w-14 h-14 rounded-full text-on-surface-variant hover:text-on-surface transition-all duration-200 active:scale-95"
+        data-path="clientes"
+        routerLink="/app/clientes"
+        ><span class="material-symbols-outlined text-[22px]">group</span
+        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
+          >Clientes</span
+        ></a
+      ><a
+        class="flex flex-col items-center justify-center w-14 h-14 rounded-full text-on-surface-variant hover:text-on-surface transition-all duration-200 active:scale-95"
+        data-path="mas"
+        routerLink="/app/configuracion"
+        ><span class="material-symbols-outlined text-[22px]">grid_view</span
+        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
+          >Más</span
+        ></a
+      >
+    </nav>
+  </div>
+</div>

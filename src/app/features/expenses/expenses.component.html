@@ -1,0 +1,577 @@
+<!-- Expenses Module Shell -->
+<section
+  class="bg-surface font-body-md text-body-md text-on-surface min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-on-primary-container"
+>
+  <header
+    class="fixed top-0 w-full z-50 pt-safe bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
+  >
+    <div
+      class="h-16 px-margin-mobile flex items-center justify-between gap-space-sm"
+    >
+      <div class="flex items-center gap-space-sm min-w-0">
+        <button
+          aria-label="Regresar"
+          class="w-11 h-11 rounded-full flex items-center justify-center bg-surface-container-high/60 backdrop-blur-md text-on-surface active:scale-95 transition-all"
+          onclick="history.back()"
+        >
+          <span class="material-symbols-outlined text-[20px]"
+            >arrow_back</span
+          ></button
+        ><img
+          alt="tria-logo.png"
+          class="h-8 w-auto object-contain flex-shrink-0"
+          src="https://lh3.googleusercontent.com/aida/AEtjO1VVnkiN_-OgmRGie5ZKZnXW7yZ2X_VAjsvY_IJYn41xFB-4yxjxzR5-r6rRU4LuE3eOIq5r8kQMURxhCNxevrUeRrolERPms664okx_V9Hf8io5zzGQDZV3EBfLQDOnVwF8jRet9_TmVLpqSbnGKnvTUuvbz9qQ6q275BELRrwL5s0t1KLZOXK7cxmNEF16lG2Sjqsfwi9gt0H8CfoaMz0uyulLyg1DwCklpqKGonxSbiL31TWvIXK4P9zZLFsFZw-VTjDzexLkLA"
+        />
+        <h1
+          class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight truncate"
+        >
+          Nueva Venta
+        </h1>
+      </div>
+      <div
+        class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0"
+      >
+        <span class="material-symbols-outlined text-on-primary text-[18px]"
+          >person</span
+        >
+      </div>
+    </div>
+  </header>
+  <main
+    class="flex-1 flex flex-col relative w-full pt-16 pb-safe bg-surface z-10"
+  >
+    <div class="flex flex-col w-full px-margin-mobile pb-28 gap-space-md">
+      <!-- Header Sub-Bar / Metadatos Contextuales -->
+      <div class="flex items-center justify-between pt-space-sm">
+        <div class="flex flex-col">
+          <span
+            class="font-label-sm text-label-sm text-primary uppercase tracking-widest"
+            >Atelier Financiero</span
+          >
+          <h2 class="font-headline-sm text-headline-sm text-on-surface">
+            Gastos Operativos
+          </h2>
+        </div>
+        <div
+          class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-high text-secondary"
+        >
+          <span
+            class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"
+          ></span>
+          <span class="font-label-sm text-label-sm tracking-wider uppercase"
+            >Caja Menor &amp; Negocio</span
+          >
+        </div>
+      </div>
+      <!-- Selector de Período Pill-Tab -->
+      <div
+        class="flex p-1 rounded-full bg-surface-container-low backdrop-blur-md"
+      >
+        <button
+          class="flex-1 py-2 text-center rounded-full font-label-md text-label-md text-on-surface-variant transition-all hover:text-on-surface"
+        >
+          Hoy
+        </button>
+        <button
+          class="flex-1 py-2 text-center rounded-full font-label-md text-label-md bg-secondary-container text-on-secondary-container shadow-sm font-semibold transition-all"
+        >
+          Esta semana
+        </button>
+        <button
+          class="flex-1 py-2 text-center rounded-full font-label-md text-label-md text-on-surface-variant transition-all hover:text-on-surface"
+        >
+          Este mes
+        </button>
+      </div>
+      <!-- BENTO RESUMEN DE GASTOS -->
+      <div class="flex flex-col gap-space-sm">
+        <!-- Card Principal: Total y Afectación -->
+        <div
+          class="relative overflow-hidden rounded-lg bg-surface-container p-space-md shadow-xl"
+        >
+          <div
+            class="absolute -right-8 -top-8 w-32 h-32 rounded-full bg-primary-container/20 blur-2xl pointer-events-none"
+          ></div>
+          <div class="flex items-start justify-between">
+            <div>
+              <p
+                class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider"
+              >
+                Egresos del Período
+              </p>
+              <div class="flex items-baseline gap-1 mt-1">
+                <span
+                  class="font-headline-xl-mobile text-headline-xl-mobile text-on-surface font-bold tracking-tight"
+                  >$245.000</span
+                >
+                <span class="font-label-sm text-label-sm text-primary uppercase"
+                  >COP</span
+                >
+              </div>
+            </div>
+            <div
+              class="p-2.5 rounded-full bg-secondary-container/40 text-primary"
+            >
+              <span class="material-symbols-outlined text-[20px]"
+                >trending_down</span
+              >
+            </div>
+          </div>
+          <!-- Pill Indicador de Utilidad -->
+          <div
+            class="mt-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-error-container/40 text-error"
+          >
+            <span class="material-symbols-outlined text-[14px]"
+              >south_east</span
+            >
+            <span class="font-label-sm text-label-sm font-medium"
+              >Afecta Utilidad Neta (-19%)</span
+            >
+          </div>
+          <!-- Barra de Distribución Segmentada Proporcional -->
+          <div class="mt-space-md flex flex-col gap-1.5">
+            <div
+              class="h-2 w-full rounded-full bg-surface-container-highest overflow-hidden flex"
+            >
+              <div class="h-full bg-primary" style="width: 35%"></div>
+              <div class="h-full bg-secondary" style="width: 24%"></div>
+              <div class="h-full bg-primary-container" style="width: 29%"></div>
+              <div class="h-full bg-outline" style="width: 12%"></div>
+            </div>
+            <div
+              class="flex justify-between items-center text-on-surface-variant font-label-sm text-label-sm pt-0.5"
+            >
+              <span>Distribución global</span>
+              <span class="text-primary font-medium">4 categorías activas</span>
+            </div>
+          </div>
+        </div>
+        <!-- Desglose por Categorías: Mini Bento 2x2 -->
+        <div class="grid grid-cols-2 gap-space-xs">
+          <!-- Empaques & Bolsas -->
+          <div
+            class="p-3.5 rounded-lg bg-surface-container-low flex flex-col justify-between min-h-[92px]"
+          >
+            <div class="flex items-center justify-between">
+              <span class="w-2 h-2 rounded-full bg-primary"></span>
+              <span class="font-label-sm text-label-sm text-on-surface-variant"
+                >35%</span
+              >
+            </div>
+            <div>
+              <span
+                class="block font-body-sm text-body-sm text-on-surface-variant truncate"
+                >Empaques &amp; Seda</span
+              >
+              <span
+                class="font-headline-sm text-headline-sm text-on-surface font-semibold"
+                >$85.000</span
+              >
+            </div>
+          </div>
+          <!-- Publicidad & Meta -->
+          <div
+            class="p-3.5 rounded-lg bg-surface-container-low flex flex-col justify-between min-h-[92px]"
+          >
+            <div class="flex items-center justify-between">
+              <span class="w-2 h-2 rounded-full bg-primary-container"></span>
+              <span class="font-label-sm text-label-sm text-on-surface-variant"
+                >29%</span
+              >
+            </div>
+            <div>
+              <span
+                class="block font-body-sm text-body-sm text-on-surface-variant truncate"
+                >Pauta Instagram</span
+              >
+              <span
+                class="font-headline-sm text-headline-sm text-on-surface font-semibold"
+                >$70.000</span
+              >
+            </div>
+          </div>
+          <!-- Transporte & Domicilios -->
+          <div
+            class="p-3.5 rounded-lg bg-surface-container-low flex flex-col justify-between min-h-[92px]"
+          >
+            <div class="flex items-center justify-between">
+              <span class="w-2 h-2 rounded-full bg-secondary"></span>
+              <span class="font-label-sm text-label-sm text-on-surface-variant"
+                >24%</span
+              >
+            </div>
+            <div>
+              <span
+                class="block font-body-sm text-body-sm text-on-surface-variant truncate"
+                >Domicilios Flash</span
+              >
+              <span
+                class="font-headline-sm text-headline-sm text-on-surface font-semibold"
+                >$60.000</span
+              >
+            </div>
+          </div>
+          <!-- Otros & Logística -->
+          <div
+            class="p-3.5 rounded-lg bg-surface-container-low flex flex-col justify-between min-h-[92px]"
+          >
+            <div class="flex items-center justify-between">
+              <span class="w-2 h-2 rounded-full bg-outline"></span>
+              <span class="font-label-sm text-label-sm text-on-surface-variant"
+                >12%</span
+              >
+            </div>
+            <div>
+              <span
+                class="block font-body-sm text-body-sm text-on-surface-variant truncate"
+                >Otros / Taller</span
+              >
+              <span
+                class="font-headline-sm text-headline-sm text-on-surface font-semibold"
+                >$30.000</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- FORMULARIO RÁPIDO PARA REGISTRAR GASTO -->
+      <div
+        class="relative rounded-xl bg-surface-container-high/80 backdrop-blur-2xl p-space-md shadow-2xl flex flex-col gap-space-md"
+      >
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-[22px]"
+              >receipt_long</span
+            >
+            <h3
+              class="font-headline-sm text-headline-sm text-on-surface font-semibold"
+            >
+              Registrar Nuevo Gasto
+            </h3>
+          </div>
+          <span
+            class="font-label-sm text-label-sm px-2.5 py-0.5 rounded-full bg-primary/10 text-primary uppercase"
+            >Directo</span
+          >
+        </div>
+        <!-- Chips Horizontales de Selección Rápida -->
+        <div class="flex flex-col gap-1.5">
+          <label class="font-label-sm text-label-sm text-on-surface-variant"
+            >Categoría</label
+          >
+          <div
+            class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1"
+          >
+            <button
+              class="px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-label-md text-label-md whitespace-nowrap active:scale-95 transition-all"
+              type="button"
+            >
+              Empaques
+            </button>
+            <button
+              class="px-3.5 py-1.5 rounded-full bg-surface-container-highest text-on-surface font-label-md text-label-md whitespace-nowrap active:scale-95 transition-all"
+              type="button"
+            >
+              Domicilios
+            </button>
+            <button
+              class="px-3.5 py-1.5 rounded-full bg-surface-container-highest text-on-surface font-label-md text-label-md whitespace-nowrap active:scale-95 transition-all"
+              type="button"
+            >
+              Pauta Meta
+            </button>
+            <button
+              class="px-3.5 py-1.5 rounded-full bg-surface-container-highest text-on-surface font-label-md text-label-md whitespace-nowrap active:scale-95 transition-all"
+              type="button"
+            >
+              Mantenimiento
+            </button>
+            <button
+              class="px-3.5 py-1.5 rounded-full bg-surface-container-highest text-on-surface font-label-md text-label-md whitespace-nowrap active:scale-95 transition-all"
+              type="button"
+            >
+              Otros
+            </button>
+          </div>
+        </div>
+        <!-- Inputs de Monto y Descripción -->
+        <div class="flex flex-col gap-space-sm">
+          <div class="flex flex-col gap-1">
+            <label class="font-label-sm text-label-sm text-on-surface-variant"
+              >Valor del Desembolso</label
+            >
+            <div class="relative flex items-center">
+              <span
+                class="absolute left-4 font-headline-sm text-headline-sm text-primary font-bold"
+                >$</span
+              >
+              <input
+                class="w-full h-12 pl-9 pr-14 rounded-full bg-surface-container-lowest text-on-surface font-headline-sm text-headline-sm font-semibold focus:outline-none focus:bg-surface-container transition-all"
+                placeholder="0"
+                type="text"
+                value="45.000"
+              />
+              <span
+                class="absolute right-4 font-label-sm text-label-sm text-on-surface-variant"
+                >COP</span
+              >
+            </div>
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="font-label-sm text-label-sm text-on-surface-variant"
+              >Concepto o Detalle</label
+            >
+            <div class="relative flex items-center">
+              <input
+                class="w-full h-11 px-4 rounded-full bg-surface-container-lowest text-on-surface font-body-md text-body-md placeholder:text-outline focus:outline-none focus:bg-surface-container transition-all truncate"
+                placeholder="¿En qué se usó el fondo?"
+                type="text"
+                value="Cintas rose gold y papel seda personalizado"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- Método de Pago Selector -->
+        <div class="flex flex-col gap-1.5">
+          <label class="font-label-sm text-label-sm text-on-surface-variant"
+            >Origen de Fondos</label
+          >
+          <div class="grid grid-cols-2 gap-2">
+            <label
+              class="flex items-center gap-2 p-2.5 rounded-full bg-surface-container-lowest cursor-pointer active:scale-95 transition-all"
+            >
+              <input
+                checked=""
+                class="accent-primary ml-1 w-4 h-4"
+                name="payment_source"
+                type="radio"
+              />
+              <span class="font-label-md text-label-md text-on-surface truncate"
+                >Efectivo Caja Menor</span
+              >
+            </label>
+            <label
+              class="flex items-center gap-2 p-2.5 rounded-full bg-surface-container-lowest cursor-pointer active:scale-95 transition-all"
+            >
+              <input
+                class="accent-primary ml-1 w-4 h-4"
+                name="payment_source"
+                type="radio"
+              />
+              <span class="font-label-md text-label-md text-on-surface truncate"
+                >Transferencia</span
+              >
+            </label>
+          </div>
+        </div>
+        <!-- Botón Táctil Principal -->
+        <button
+          class="w-full h-12 mt-1 rounded-full bg-primary text-on-primary font-label-md text-label-md font-bold tracking-wide flex items-center justify-center gap-2 shadow-lg active:scale-[0.98] transition-transform"
+        >
+          <span class="material-symbols-outlined text-[20px]"
+            >remove_circle_outline</span
+          >
+          <span>Deducir &amp; Guardar Gasto</span>
+        </button>
+      </div>
+      <!-- HISTORIAL RECIENTE DE GASTOS -->
+      <div class="flex flex-col gap-space-sm mt-1">
+        <div class="flex items-center justify-between px-1">
+          <h3 class="font-headline-sm text-headline-sm text-on-surface">
+            Historial de Salidas
+          </h3>
+          <button
+            class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-semibold"
+          >
+            Ver Todo
+          </button>
+        </div>
+        <div class="flex flex-col gap-2">
+          <!-- Item 1: Hoy -->
+          <div
+            class="flex items-center justify-between p-3.5 rounded-lg bg-surface-container-low transition-all"
+          >
+            <div class="flex items-center gap-3 min-w-0">
+              <div
+                class="w-10 h-10 rounded-full bg-secondary-container/40 flex items-center justify-center text-primary flex-shrink-0"
+              >
+                <span class="material-symbols-outlined text-[20px]"
+                  >shopping_bag</span
+                >
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span
+                  class="font-body-md text-body-md text-on-surface font-medium truncate"
+                  >Empaques boutique</span
+                >
+                <div class="flex items-center gap-1.5">
+                  <span class="font-label-sm text-label-sm text-primary"
+                    >Hoy · 2:15 PM</span
+                  >
+                  <span class="w-1 h-1 rounded-full bg-outline"></span>
+                  <span
+                    class="font-label-sm text-label-sm text-on-surface-variant truncate"
+                    >Caja Menor</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="text-right flex-shrink-0 pl-2">
+              <span
+                class="font-headline-sm text-headline-sm text-error font-semibold"
+                >-$45.000</span
+              >
+              <span
+                class="block font-label-sm text-label-sm text-on-surface-variant uppercase"
+                >COP</span
+              >
+            </div>
+          </div>
+          <!-- Item 2: Ayer -->
+          <div
+            class="flex items-center justify-between p-3.5 rounded-lg bg-surface-container-low transition-all"
+          >
+            <div class="flex items-center gap-3 min-w-0">
+              <div
+                class="w-10 h-10 rounded-full bg-secondary-container/40 flex items-center justify-center text-secondary flex-shrink-0"
+              >
+                <span class="material-symbols-outlined text-[20px]"
+                  >local_shipping</span
+                >
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span
+                  class="font-body-md text-body-md text-on-surface font-medium truncate"
+                  >Envíos nacionales Servientrega</span
+                >
+                <div class="flex items-center gap-1.5">
+                  <span
+                    class="font-label-sm text-label-sm text-on-surface-variant"
+                    >Ayer · 11:30 AM</span
+                  >
+                  <span class="w-1 h-1 rounded-full bg-outline"></span>
+                  <span
+                    class="font-label-sm text-label-sm text-on-surface-variant truncate"
+                    >Bancolombia</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="text-right flex-shrink-0 pl-2">
+              <span
+                class="font-headline-sm text-headline-sm text-error font-semibold"
+                >-$30.000</span
+              >
+              <span
+                class="block font-label-sm text-label-sm text-on-surface-variant uppercase"
+                >COP</span
+              >
+            </div>
+          </div>
+          <!-- Item 3: Meta Ads -->
+          <div
+            class="flex items-center justify-between p-3.5 rounded-lg bg-surface-container-low transition-all"
+          >
+            <div class="flex items-center gap-3 min-w-0">
+              <div
+                class="w-10 h-10 rounded-full bg-secondary-container/40 flex items-center justify-center text-primary-container flex-shrink-0"
+              >
+                <span class="material-symbols-outlined text-[20px]"
+                  >campaign</span
+                >
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span
+                  class="font-body-md text-body-md text-on-surface font-medium truncate"
+                  >Pauta Meta Campaña Perfumes</span
+                >
+                <div class="flex items-center gap-1.5">
+                  <span
+                    class="font-label-sm text-label-sm text-on-surface-variant"
+                    >07 Sep · 09:00 AM</span
+                  >
+                  <span class="w-1 h-1 rounded-full bg-outline"></span>
+                  <span
+                    class="font-label-sm text-label-sm text-on-surface-variant truncate"
+                    >Tarjeta Débito</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="text-right flex-shrink-0 pl-2">
+              <span
+                class="font-headline-sm text-headline-sm text-error font-semibold"
+                >-$70.000</span
+              >
+              <span
+                class="block font-label-sm text-label-sm text-on-surface-variant uppercase"
+                >COP</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- FLOATING BOTTOM NAVIGATION DOCK (5-TAB BRAND STANDARD) -->
+      <nav
+        class="fixed bottom-3 left-4 right-4 z-40 bg-surface-container-lowest/85 backdrop-blur-2xl rounded-full p-2 flex items-center justify-around shadow-2xl"
+      >
+        <!-- Tab 1: Dashboard -->
+        <button
+          class="flex flex-col items-center justify-center w-12 h-12 rounded-full text-on-surface-variant active:scale-95 transition-all"
+        >
+          <span class="material-symbols-outlined text-[22px]">grid_view</span>
+        </button>
+        <!-- Tab 2: Inventario -->
+        <button
+          class="flex flex-col items-center justify-center w-12 h-12 rounded-full text-on-surface-variant active:scale-95 transition-all"
+        >
+          <span class="material-symbols-outlined text-[22px]">styler</span>
+        </button>
+        <!-- Tab 3: Gastos (Activo con highlight sutil) -->
+        <button
+          class="relative flex flex-col items-center justify-center w-12 h-12 rounded-full bg-primary-container/30 text-primary active:scale-95 transition-all"
+        >
+          <span
+            class="material-symbols-outlined text-[22px]"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >payments</span
+          >
+          <span
+            class="absolute bottom-1 w-1 h-1 rounded-full bg-primary"
+          ></span>
+        </button>
+        <!-- Tab 4: Pedidos -->
+        <button
+          class="flex flex-col items-center justify-center w-12 h-12 rounded-full text-on-surface-variant active:scale-95 transition-all"
+        >
+          <span class="material-symbols-outlined text-[22px]"
+            >auto_stories</span
+          >
+        </button>
+        <!-- Tab 5: Clientes -->
+        <button
+          class="flex flex-col items-center justify-center w-12 h-12 rounded-full text-on-surface-variant active:scale-95 transition-all"
+        >
+          <span class="material-symbols-outlined text-[22px]">group</span>
+        </button>
+      </nav>
+    </div>
+    <script>
+      // Microinteracción para selección fluida de categorías
+      const chips = document.querySelectorAll('button[type="button"]');
+      chips.forEach((chip) => {
+        chip.addEventListener("click", () => {
+          chips.forEach((c) => {
+            c.classList.remove("bg-primary", "text-on-primary");
+            c.classList.add("bg-surface-container-highest", "text-on-surface");
+          });
+          chip.classList.add("bg-primary", "text-on-primary");
+          chip.classList.remove(
+            "bg-surface-container-highest",
+            "text-on-surface",
+          );
+        });
+      });
+    </script>
+  </main>
+</section>
