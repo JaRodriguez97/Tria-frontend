@@ -19,8 +19,70 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
       rel="stylesheet"
     />
+    <!-- Previene el parpadeo visual de iframes no deseados (#nl-badge-frame) antes de ser eliminados -->
+    <style>
+      iframe,
+      #nl-badge-frame,
+      [id*="nl-badge"],
+      netlify-drawer,
+      #netlify-drawer {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+      }
+    </style>
   </head>
   <body>
     <app-root></app-root>
+
+    <!-- Script para eliminar todos los iframes (incluido #nl-badge-frame) una vez cargada la página y monitorear los que se intenten generar -->
+    <script>
+      (function () {
+        const TARGET_SELECTOR = 'iframe, #nl-badge-frame, [id*="nl-badge"], netlify-drawer, #netlify-drawer, [data-netlify-drawer]';
+
+        function removeAllIframes() {
+          const elements = document.querySelectorAll(TARGET_SELECTOR);
+          elements.forEach((el) => el.remove());
+        }
+
+        function initIframeKiller() {
+          // 1. Elimina cualquier iframe (#nl-badge-frame) presente al terminar de cargar todo
+          removeAllIframes();
+
+          // 2. Monitorea el DOM constantemente por si Netlify intenta inyectar el iframe después
+          const observer = new MutationObserver((mutations) => {
+            for (const mutation of mutations) {
+              mutation.addedNodes.forEach((node) => {
+                if (node.nodeType === Node.ELEMENT_NODE) {
+                  if (
+                    node.tagName === 'IFRAME' ||
+                    node.id === 'nl-badge-frame' ||
+                    (node.matches && node.matches(TARGET_SELECTOR))
+                  ) {
+                    node.remove();
+                  } else if (node.querySelectorAll) {
+                    const nested = node.querySelectorAll(TARGET_SELECTOR);
+                    nested.forEach((el) => el.remove());
+                  }
+                }
+              });
+            }
+          });
+
+          observer.observe(document.documentElement || document.body, {
+            childList: true,
+            subtree: true,
+          });
+        }
+
+        // Se ejecuta una vez que toda la página (recursos, estilos, scripts) ha terminado de cargar completamente
+        if (document.readyState === 'complete') {
+          initIframeKiller();
+        } else {
+          window.addEventListener('load', initIframeKiller);
+        }
+      })();
+    </script>
   </body>
 </html>
