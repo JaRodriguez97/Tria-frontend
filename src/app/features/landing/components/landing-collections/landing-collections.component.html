@@ -1,0 +1,259 @@
+<!-- ========================================== -->
+<!-- SECCIÓN 3: COLECCIONES / BENTO GRID        -->
+<!-- ========================================== -->
+<section
+  class="w-full py-space-2xl relative"
+  id="colecciones"
+  style="
+    background: linear-gradient(
+      rgb(248, 213, 220) 0%,
+      rgb(252, 245, 246) 40%,
+      rgb(250, 240, 242) 100%
+    );
+  "
+>
+  <div class="w-full px-gutter-mobile lg:px-margin mx-auto max-w-[1440px]">
+    <div
+      class="flex flex-col md:flex-row md:items-end justify-between mb-space-xl gap-space-md"
+    >
+      <div class="flex flex-col space-y-space-xs">
+        <span
+          class="font-label-md text-label-md tracking-[0.22em] text-primary uppercase font-semibold"
+          >Catálogo Exclusivo</span
+        >
+        <h2
+          class="font-headline-xl text-headline-xl-mobile lg:text-headline-xl text-on-surface font-normal"
+        >
+          Universos Curados
+        </h2>
+      </div>
+      <p
+        class="font-body-md text-body-md text-on-surface-variant max-w-md font-light"
+      >
+        Cada universo responde a un estado del ánimo y a una faceta de tu
+        expresión personal.
+      </p>
+    </div>
+    <!-- Bento Grid Asimétrico con @for y @switch -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-space-md lg:gap-space-lg">
+      @for (item of bentoItems; track item.id) {
+        @switch (item.type) {
+          @case ("hero") {
+            <!-- Hero Card (Moda & Alta Sastrería) -->
+            <div
+              [class]="
+                item.colSpan + ' ' + item.heightClass + ' ' + item.paddingClass
+              "
+              class="relative group rounded-2xl overflow-hidden bg-surface-container shadow-md flex flex-col justify-end transition-all duration-500 hover:shadow-2xl"
+            >
+              <img
+                [alt]="item.alt"
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                [src]="item.image"
+                [width]="item.width"
+                [height]="item.height"
+                loading="lazy"
+                decoding="async"
+              />
+              <div [class]="item.gradientClass" class="absolute inset-0"></div>
+              <div
+                class="relative z-10 flex flex-col space-y-space-xs text-inverse-on-surface"
+              >
+                <div
+                  class="inline-flex items-center gap-2 self-start px-3 py-1 rounded-full bg-surface/20 backdrop-blur-md border border-outline-variant/40"
+                >
+                  <span
+                    class="font-label-sm text-label-sm tracking-[0.2em] text-primary-fixed uppercase font-semibold"
+                    >{{ item.badges[0].text }}</span
+                  >
+                </div>
+                <h3
+                  class="font-headline-lg text-headline-lg font-normal text-inverse-on-surface"
+                >
+                  {{ item.title }}
+                </h3>
+                <p
+                  class="font-body-md text-body-md text-outline-variant max-w-lg font-light leading-relaxed"
+                >
+                  {{ item.description }}
+                </p>
+                <div class="pt-space-xs">
+                  <a
+                    class="inline-flex items-center gap-2 px-space-md py-2 bg-inverse-on-surface text-inverse-surface font-label-md text-label-md uppercase tracking-[0.16em] rounded-lg transition-all duration-300 hover:bg-primary hover:text-on-primary shadow-sm"
+                    [href]="item.ctaHref"
+                  >
+                    <span>{{ item.ctaText }}</span>
+                    <span
+                      class="material-symbols-outlined text-sm"
+                      aria-hidden="true"
+                      >{{ item.ctaIcon }}</span
+                    >
+                  </a>
+                </div>
+              </div>
+            </div>
+          }
+          @case ("editorial") {
+            <!-- Editorial Card (Siluetas & Vestidos) -->
+            <div
+              [class]="
+                item.colSpan + ' ' + item.heightClass + ' ' + item.paddingClass
+              "
+              class="relative group rounded-2xl overflow-hidden bg-surface-container shadow-md flex flex-col justify-end transition-all duration-500 hover:shadow-2xl"
+            >
+              <img
+                [alt]="item.alt"
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                [src]="item.image"
+                [width]="item.width"
+                [height]="item.height"
+                loading="lazy"
+                decoding="async"
+              />
+              <div [class]="item.gradientClass" class="absolute inset-0"></div>
+              <div
+                class="relative z-10 flex flex-col space-y-space-xs text-inverse-on-surface"
+              >
+                <div
+                  class="inline-flex items-center gap-2 self-start px-2.5 py-0.5 rounded-full bg-surface/20 backdrop-blur-md"
+                >
+                  <span
+                    class="font-label-sm text-label-sm tracking-[0.2em] text-secondary-fixed uppercase font-medium"
+                    >{{ item.badges[0].text }}</span
+                  >
+                </div>
+                <h3
+                  class="font-headline-md text-headline-md font-normal text-inverse-on-surface"
+                >
+                  {{ item.title }}
+                </h3>
+                <p
+                  class="font-body-sm text-body-sm text-outline-variant font-light line-clamp-2"
+                >
+                  {{ item.description }}
+                </p>
+                <div class="pt-space-xs">
+                  <a
+                    class="inline-flex items-center gap-1.5 font-label-sm text-label-sm uppercase tracking-wider text-primary-fixed-dim hover:text-white transition-colors"
+                    [href]="item.ctaHref"
+                  >
+                    {{ item.ctaText }}
+                    <span
+                      class="material-symbols-outlined text-xs"
+                      aria-hidden="true"
+                      >{{ item.ctaIcon }}</span
+                    >
+                  </a>
+                </div>
+              </div>
+            </div>
+          }
+          @case ("compact") {
+            <!-- Compact Cards (Lingerie Fine, Rituales de Belleza, Cuidado Botánico) -->
+            <div
+              [class]="
+                item.colSpan + ' ' + item.heightClass + ' ' + item.paddingClass
+              "
+              class="relative group rounded-2xl overflow-hidden bg-surface-container shadow-md flex flex-col justify-end transition-all duration-500 hover:shadow-xl"
+            >
+              <img
+                [alt]="item.alt"
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                [src]="item.image"
+                [width]="item.width"
+                [height]="item.height"
+                loading="lazy"
+                decoding="async"
+              />
+              <div [class]="item.gradientClass" class="absolute inset-0"></div>
+              <div class="relative z-10 flex flex-col justify-between h-full">
+                <div class="flex justify-between items-start gap-1.5 flex-wrap">
+                  @for (badge of item.badges; track badge.text) {
+                    <span
+                      [class]="badge.class"
+                      class="px-2.5 py-1 rounded-full font-label-sm text-label-sm uppercase tracking-wider"
+                      >{{ badge.text }}</span
+                    >
+                  }
+                </div>
+                <div class="flex items-end justify-between">
+                  <div class="flex flex-col text-inverse-on-surface">
+                    <h3
+                      class="font-headline-md text-headline-md font-normal text-inverse-on-surface"
+                    >
+                      {{ item.title }}
+                    </h3>
+                    @if (item.subtitle) {
+                      <span
+                        class="font-body-sm text-body-sm text-outline-variant font-light"
+                        >{{ item.subtitle }}</span
+                      >
+                    }
+                  </div>
+                  <a
+                    class="px-space-sm py-1.5 rounded-lg bg-surface/30 backdrop-blur-md text-inverse-on-surface font-label-sm text-label-sm uppercase tracking-wider hover:bg-primary hover:text-on-primary transition-colors"
+                    [href]="item.ctaHref"
+                    >{{ item.ctaText }}</a
+                  >
+                </div>
+              </div>
+            </div>
+          }
+          @case ("banner") {
+            <!-- Banner Card (Bálsamos & Jade Facial) -->
+            <div
+              [class]="
+                item.colSpan + ' ' + item.heightClass + ' ' + item.paddingClass
+              "
+              class="relative group rounded-2xl overflow-hidden bg-surface-container shadow-md flex flex-col justify-end transition-all duration-500 hover:shadow-xl"
+            >
+              <img
+                [alt]="item.alt"
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                [src]="item.image"
+                [width]="item.width"
+                [height]="item.height"
+                loading="lazy"
+                decoding="async"
+              />
+              <div [class]="item.gradientClass" class="absolute inset-0"></div>
+              <div
+                class="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-space-md"
+              >
+                <div
+                  class="flex flex-col space-y-1 max-w-xl text-inverse-on-surface"
+                >
+                  <div
+                    class="inline-flex items-center gap-2 self-start px-2.5 py-0.5 rounded-full bg-surface/20 backdrop-blur-md"
+                  >
+                    <span
+                      class="font-label-sm text-label-sm tracking-[0.2em] text-primary-fixed uppercase font-semibold"
+                      >{{ item.badges[0].text }}</span
+                    >
+                  </div>
+                  <h3
+                    class="font-headline-md text-headline-md font-normal text-inverse-on-surface"
+                  >
+                    {{ item.title }}
+                  </h3>
+                  @if (item.description) {
+                    <p
+                      class="font-body-sm text-body-sm text-outline-variant font-light"
+                    >
+                      {{ item.description }}
+                    </p>
+                  }
+                </div>
+                <a
+                  class="inline-flex items-center justify-center px-space-md py-2.5 rounded-lg bg-inverse-on-surface text-inverse-surface font-label-md text-label-md uppercase tracking-[0.16em] hover:bg-primary hover:text-on-primary transition-all duration-300 shadow-sm whitespace-nowrap self-start sm:self-center mt-space-sm sm:mt-0"
+                  [href]="item.ctaHref"
+                  >{{ item.ctaText }}</a
+                >
+              </div>
+            </div>
+          }
+        }
+      }
+    </div>
+  </div>
+</section>

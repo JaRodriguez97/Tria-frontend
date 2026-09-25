@@ -1,0 +1,29 @@
+{
+  "name": "TRÍA Boutique",
+  "short_name": "TRÍA",
+  "description": "Boutique de Moda Femenina, Lencería Fina y Belleza en Cali, Colombia",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fcf9f8",
+  "theme_color": "#fcf9f8",
+  "icons": [
+    {
+      "src": "assets/img/tria-logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/img/tria-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/img/tria-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

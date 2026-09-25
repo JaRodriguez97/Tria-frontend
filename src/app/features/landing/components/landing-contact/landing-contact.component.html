@@ -1,0 +1,89 @@
+<!-- SECCIÓN 7: CONVERSIÓN / CONTACTO COMERCIAL -->
+<section
+  class="w-full py-space-2xl bg-surface relative"
+  id="contacto"
+  style="background-color: rgb(248, 213, 220)"
+>
+  <div class="w-full px-gutter-mobile lg:px-margin mx-auto max-w-5xl">
+    <!-- Contenedor de Alto Contraste en Cristal Ahumado con Acentos Rose Gold -->
+    <div
+      class="relative rounded-2xl bg-inverse-surface text-inverse-on-surface p-space-xl lg:p-space-2xl overflow-hidden shadow-2xl"
+    >
+      <!-- Destellos Rose Gold Ambientales -->
+      <div
+        class="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-primary/20 blur-[90px] pointer-events-none"
+      ></div>
+      <div
+        class="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-secondary-fixed/15 blur-[90px] pointer-events-none"
+      ></div>
+
+      <div
+        class="relative z-10 flex flex-col items-center text-center space-y-space-md max-w-2xl mx-auto"
+      >
+        <span
+          class="font-label-sm text-label-sm tracking-[0.25em] uppercase text-primary-fixed font-semibold"
+        >
+          Concierge & Atención Privada
+        </span>
+        <h2
+          class="font-headline-xl text-headline-xl-mobile lg:text-headline-xl text-inverse-on-surface font-normal leading-tight"
+        >
+          Encuentra eso que estabas buscando.
+        </h2>
+        <p
+          class="font-body-lg text-body-lg text-outline-variant font-light leading-relaxed"
+        >
+          ¿Tienes una prenda en mente, quieres conocer la disponibilidad o
+          necesitas ayuda personalizada para elegir tu talla? Nuestro equipo
+          concierge está listo para acompañarte.
+        </p>
+
+        <!-- Botones de Acción Directa -->
+        <div
+          class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-space-md w-full pt-space-sm"
+        >
+          <a
+            class="inline-flex items-center justify-center gap-space-xs px-space-md sm:px-space-xl py-3.5 rounded bg-primary text-on-primary font-label-lg text-label-lg tracking-[0.16em] uppercase shadow-lg transition-all duration-300 hover:bg-tertiary hover:shadow-xl active:scale-95"
+            href="https://wa.me/573011979357"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <span class="material-symbols-outlined text-lg" aria-hidden="true"
+              >chat</span
+            >
+            Hablar por WhatsApp
+          </a>
+          <a
+            class="inline-flex items-center justify-center gap-space-xs px-space-md sm:px-space-xl py-3.5 rounded bg-surface/10 backdrop-blur-md text-inverse-on-surface font-label-lg text-label-lg tracking-[0.16em] uppercase transition-all duration-300 hover:bg-surface/20 hover:text-white"
+            href="https://instagram.com/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <span class="material-symbols-outlined text-lg" aria-hidden="true"
+              >photo_camera</span
+            >
+            <span>Instagram ({{ "@" }}tria.boutique)</span>
+          </a>
+        </div>
+
+        <!-- Microdatos Comerciales & Logística -->
+        <div
+          class="grid grid-cols-1 sm:grid-cols-3 gap-space-md w-full pt-space-lg mt-space-sm border-t border-outline/20"
+        >
+          @for (detail of contactDetails; track detail.title) {
+            <div class="flex flex-col items-center">
+              <span
+                class="font-label-sm text-label-sm tracking-wider uppercase text-primary-fixed-dim"
+                >{{ detail.title }}</span
+              >
+              <span
+                class="font-body-sm text-body-sm text-inverse-on-surface mt-1"
+                >{{ detail.description }}</span
+              >
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,185 @@
+<section
+  class="w-full py-space-2xl relative"
+  style="
+    background: linear-gradient(rgb(248, 213, 220) 0%, rgb(244, 201, 210) 100%);
+  "
+>
+  <div class="w-full px-gutter-mobile lg:px-margin mx-auto max-w-[1440px]">
+    <div
+      class="flex flex-col items-center text-center space-y-space-md py-space-lg"
+    >
+      <!-- Logo Oficial TRÍA Emblema -->
+      <div class="w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center">
+        <img
+          alt="Corona y monograma oficial TRÍA Boutique Cali"
+          class="w-full h-full object-contain filter drop-shadow-sm"
+          src="../../../assets/img/tria-logo.png"
+          width="112"
+          height="112"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <!-- Reafirmación de los 3 Universos -->
+      <div class="flex flex-col space-y-space-xs">
+        <span
+          class="font-label-md text-label-md tracking-[0.25em] text-primary uppercase font-medium"
+          >Belleza · Moda · Lencería</span
+        >
+      </div>
+      <!-- Eslogan Oficial -->
+      <p
+        class="font-headline-sm text-headline-sm italic text-secondary font-light max-w-lg pt-space-xs"
+      >
+        “Para verte. Para sentirte. Para provocarte.”
+      </p>
+      <!-- Navegación de Cierre Rápida -->
+      <div
+        class="flex flex-wrap items-center justify-center gap-space-lg pt-space-sm"
+      >
+        @for (link of cierreLinks; track link.label; let last = $last) {
+          <a
+            class="font-label-md text-label-md uppercase tracking-[0.16em] text-on-surface-variant hover:text-primary transition-colors"
+            [href]="link.href"
+            >{{ link.label }}</a
+          >
+          @if (!last) {
+            <span class="text-outline/40 hidden sm:inline">•</span>
+          }
+        }
+      </div>
+      <p class="font-body-sm text-body-sm text-outline pt-space-md">
+        TRÍA Boutique © 2025. Curaduría exclusiva de belleza, moda femenina y
+        lencería fina. Cali, Colombia.
+      </p>
+    </div>
+  </div>
+</section>
+<footer
+  class="w-full bg-inverse-surface text-inverse-on-surface border-t border-outline/20 relative overflow-hidden"
+>
+  <div class="w-full px-gutter-mobile lg:px-margin pt-space-2xl pb-space-xl mx-auto max-w-[1440px]">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-space-xl">
+      <div class="lg:col-span-5 flex flex-col space-y-space-md">
+        <div class="flex items-center gap-space-sm">
+          <img
+            alt="Logo oficial TRÍA Boutique — moda femenina, lencería y belleza, Cali Colombia"
+            class="h-9 w-auto object-contain"
+            src="../../../assets/img/tria-logo.png"
+            width="144"
+            height="36"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="flex flex-col">
+            <span
+              class="font-headline-md text-headline-md text-inverse-on-surface tracking-wider uppercase"
+              >TRÍA</span
+            ><span
+              class="font-label-sm text-label-sm tracking-[0.25em] text-outline-variant uppercase -mt-1"
+              >Belleza · Moda · Lencería</span
+            >
+          </div>
+        </div>
+        <p
+          class="font-headline-sm text-headline-sm italic text-secondary-fixed font-light max-w-md pt-space-xs"
+        >
+          “Para verte. Para sentirte. Para provocarte.”
+        </p>
+        <p
+          class="font-body-md text-body-md text-outline-variant max-w-md font-light leading-relaxed"
+        >
+          Una curaduría estética de alta distinción donde convergen el glamour
+          editorial, la lencería de autor y los elixires botánicos de belleza
+          absoluta.
+        </p>
+      </div>
+      <div class="lg:col-span-2 flex flex-col space-y-space-sm">
+        <span
+          class="font-label-md text-label-md uppercase tracking-[0.2em] text-tertiary-fixed font-semibold pb-space-xs border-b border-outline/30"
+          >Colecciones</span
+        >
+        <ul class="space-y-space-xs font-body-sm text-body-sm">
+          @for (link of coleccionesLinks; track link.label) {
+            <li class="py-0.5">
+              <a
+                class="text-outline-variant hover:text-inverse-on-surface transition-colors tracking-wide"
+                [href]="link.href"
+                >{{ link.label }}</a
+              >
+            </li>
+          }
+        </ul>
+      </div>
+      <div class="lg:col-span-2 flex flex-col space-y-space-sm">
+        <span
+          class="font-label-md text-label-md uppercase tracking-[0.2em] text-tertiary-fixed font-semibold pb-space-xs border-b border-outline/30"
+          >Navegación</span
+        >
+        <ul class="space-y-space-xs font-body-sm text-body-sm">
+          @for (link of navegacionLinks; track link.label) {
+            <li class="py-0.5">
+              <a
+                class="text-outline-variant hover:text-inverse-on-surface transition-colors tracking-wide"
+                [href]="link.href"
+                >{{ link.label }}</a
+              >
+            </li>
+          }
+        </ul>
+      </div>
+      <div class="lg:col-span-3 flex flex-col space-y-space-sm">
+        <span
+          class="font-label-md text-label-md uppercase tracking-[0.2em] text-tertiary-fixed font-semibold pb-space-xs border-b border-outline/30"
+          >Boutique Social</span
+        >
+        <p class="font-body-sm text-body-sm text-outline-variant">
+          Descubra nuestras cápsulas íntimas, editoriales visuales y nuevas
+          llegadas semanales.
+        </p>
+        <div class="pt-space-xs flex flex-col space-y-space-xs">
+          <a
+            class="inline-flex items-center gap-space-xs font-label-md text-label-md text-secondary-fixed hover:text-on-tertiary transition-colors"
+            href="https://instagram.com/"
+            rel="noopener noreferrer"
+            target="_blank"
+            ><span
+              class="material-symbols-outlined text-[16px]"
+              aria-hidden="true"
+              >photo_camera</span
+            ><span class="">&#64;tria.boutique</span></a
+          ><a
+            class="inline-flex items-center gap-space-xs font-label-md text-label-md text-secondary-fixed hover:text-on-tertiary transition-colors"
+            href="https://wa.me/573011979357"
+            rel="noopener noreferrer"
+            target="_blank"
+            ><span
+              class="material-symbols-outlined text-[16px]"
+              aria-hidden="true"
+              >chat</span
+            >Atención Privada WhatsApp</a
+          >
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-space-2xl pt-space-md border-t border-outline/20 flex flex-col sm:flex-row items-center justify-between gap-space-sm font-label-sm text-label-sm text-outline-variant"
+    >
+      <p>
+        © 2025 TRÍA Boutique. Todos los derechos reservados. Belleza, Moda y
+        Lencería Fina.
+      </p>
+      <div class="flex items-center gap-space-md">
+        <a class="hover:text-inverse-on-surface transition-colors" href="#"
+          >Privacidad</a
+        ><span class="text-outline/40 hidden sm:inline">•</span
+        ><a class="hover:text-inverse-on-surface transition-colors" href="#"
+          >Términos de Servicio</a
+        ><span class="text-outline/40 hidden sm:inline">•</span
+        ><a class="hover:text-inverse-on-surface transition-colors" href="#"
+          >Autenticidad Garantizada</a
+        >
+      </div>
+    </div>
+  </div>
+</footer>

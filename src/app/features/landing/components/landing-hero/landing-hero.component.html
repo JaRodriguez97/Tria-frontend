@@ -1,0 +1,115 @@
+<!-- ========================================== -->
+<!-- SECCIÓN 1: HERO / PRIMERA IMPRESIÓN       -->
+<!-- ========================================== -->
+<section
+  class="relative w-full overflow-hidden py-space-xl lg:py-space-2xl"
+  id="inicio"
+>
+  <div
+    class="relative z-10 w-full px-gutter-mobile lg:px-margin mx-auto max-w-[1440px]"
+  >
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+      <!-- Columna Izquierda: Mensaje & CTA -->
+      <div class="lg:col-span-7 flex flex-col space-y-space-lg">
+        <!-- Tag de Prestigio con H2 Semántico para SEO -->
+        <div
+          class="inline-flex items-center gap-space-xs self-start px-space-md py-1.5 rounded-full bg-surface-container backdrop-blur-md shadow-sm"
+        >
+          <span
+            class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"
+          ></span>
+          <h2
+            class="font-label-md text-label-md tracking-[0.24em] text-primary uppercase font-medium m-0 p-0"
+            >Belleza · Moda · Lencería</h2
+          >
+        </div>
+        <!-- Título Principal H1 -->
+        <div class="flex flex-col space-y-space-xs">
+          <h1
+            class="font-headline-xl text-headline-xl-mobile lg:text-headline-xl text-on-surface leading-[1.08] tracking-tight"
+          >
+            Tu esencia.<br />
+            <span class="font-light italic text-primary">Tu estilo.</span><br />
+            Tu forma de sentirte.
+          </h1>
+          <div
+            class="w-20 h-0.5 bg-gradient-to-r from-primary to-secondary-container rounded-full mt-space-sm"
+          ></div>
+        </div>
+        <!-- Párrafo de Valor con Palabras Clave Principales -->
+        <p
+          class="font-body-lg text-body-lg text-on-surface-variant max-w-xl font-light leading-relaxed"
+        >
+          Boutique exclusiva en Cali, Colombia. Descubre nuestra curaduría de
+          belleza botánica, moda femenina y lencería fina de autor pensada
+          para acompañarte en cada versión de ti. Elegancia táctil y acabados de
+          alta costura.
+        </p>
+        <!-- CTAs -->
+        <div
+          class="flex flex-col sm:flex-row items-stretch sm:items-center gap-space-md pt-space-xs"
+        >
+          <a
+            class="inline-flex items-center justify-center px-space-lg py-3.5 bg-inverse-surface text-inverse-on-surface font-label-lg text-label-lg tracking-[0.16em] uppercase rounded shadow-lg transition-all duration-300 hover:bg-primary hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 text-center"
+            href="#colecciones"
+          >
+            Explorar colecciones
+            <span
+              class="material-symbols-outlined text-sm ml-2"
+              aria-hidden="true"
+              >arrow_forward</span
+            >
+          </a>
+          <a
+            class="inline-flex items-center justify-center px-space-lg py-3.5 bg-surface-container-high/70 backdrop-blur-md text-on-surface font-label-lg text-label-lg tracking-[0.16em] uppercase rounded transition-all duration-300 hover:bg-secondary-container hover:text-on-secondary-container shadow-sm hover:shadow text-center"
+            href="https://wa.me/573011979357"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <span
+              class="material-symbols-outlined text-sm mr-2 text-primary"
+              aria-hidden="true"
+              >chat</span
+            >
+            Hablar con TRÍA
+          </a>
+        </div>
+        <!-- Tri-part indicator con @for -->
+        <div class="grid grid-cols-3 gap-space-sm pt-space-md max-w-lg">
+          @for (item of universes; track item.step) {
+            <div
+              class="flex flex-col p-space-sm rounded bg-surface-container/50 backdrop-blur-sm"
+            >
+              <span
+                class="font-label-sm text-label-sm text-primary tracking-widest uppercase font-semibold"
+                >{{ item.step }}</span
+              >
+              <span
+                class="font-headline-sm text-headline-sm text-on-surface font-light"
+                >{{ item.label }}</span
+              >
+            </div>
+          }
+        </div>
+      </div>
+      <!-- Columna Derecha: Tarjeta Flotante Editorial con Logo Oficial -->
+      <div class="lg:col-span-5 relative flex items-center justify-center">
+        <div class="relative w-full max-w-md flex items-center justify-center">
+          <div
+            class="relative flex items-center justify-center p-2 rounded-2xl"
+          >
+            <img
+              alt="Emblema oficial TRÍA Boutique — moda femenina, lencería fina y belleza en Cali"
+              class="w-full h-auto max-h-[560px] object-contain rounded-2xl transition-transform duration-700 hover:scale-105"
+              src="assets/img/tria-logo.png"
+              width="560"
+              height="560"
+              fetchpriority="high"
+              style="background-color: transparent; mix-blend-mode: multiply"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

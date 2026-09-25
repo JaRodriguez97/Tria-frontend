@@ -1,36 +1,304 @@
-/* Global styles and Tailwind CSS v3 directives */
+/* Tria Boutique Unified Design Tokens */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@layer base {
-  html, body {
-    width: 100vw;
-    margin: 0;
-    padding: 0;
-    background-color: #131313;
-    color: #e5e2e1;
-    overscroll-behavior: none;
-    -webkit-tap-highlight-color: transparent;
-    min-height: max(884px, 100dvh);
-  }
 
-  .pb-safe {
-    padding-bottom: env(safe-area-inset-bottom, 0px);
-  }
-  
-  .pt-safe {
-    padding-top: env(safe-area-inset-top, 0px);
-  }
-  
-  main > :first-child {
-    margin-top: 0 !important;
-  }
-  
-  main > :last-child {
-    margin-bottom: 0 !important;
-  }
+:root {
+  /* COLORS (LANDING DEFAULT) - Usando valores RGB para permitir opacidad en Tailwind */
+  --color-surface-container: 243 240 239;
+  --color-primary: 127 80 71;
+  --color-inverse-primary: 248 183 170;
+  --color-primary-container: 165 114 104;
+  --color-inverse-surface: 55 47 45;
+  --color-tertiary-fixed: 255 223 150;
+  --color-secondary-fixed-dim: 224 190 196;
+  --color-outline-variant: 213 194 190;
+  --color-on-secondary-fixed: 50 16 22;
+  --color-inverse-on-surface: 243 240 239;
+  --color-surface-tint: 127 80 71;
+  --color-surface-dim: 226 216 214;
+  --color-surface-variant: 242 222 218;
+  --color-on-secondary-fixed-variant: 98 57 64;
+  --color-surface-container-lowest: 255 255 255;
+  --color-surface-container-low: 250 248 247;
+  --color-tertiary-container: 201 158 67;
+  --color-on-secondary-container: 61 27 34;
+  --color-tertiary-fixed-dim: 230 184 91;
+  --color-surface-container-highest: 232 224 222;
+  --color-surface: 252 249 248;
+  --color-secondary-container: 253 223 229;
+  --color-surface-bright: 252 249 248;
+  --color-background: 252 249 248;
+  --color-secondary: 124 80 88;
+  --color-primary-fixed-dim: 248 183 170;
+  --color-on-tertiary: 255 255 255;
+  --color-on-background: 34 25 24;
+  --color-primary-fixed: 255 218 211;
+  --color-on-surface-variant: 81 67 64;
+  --color-on-surface: 34 25 24;
+  --color-secondary-fixed: 255 218 223;
+  --color-on-tertiary-fixed-variant: 90 67 0;
+  --color-on-tertiary-fixed: 37 26 0;
+  --color-outline: 132 115 112;
+  --color-on-primary-container: 47 12 5;
+  --color-on-primary-fixed-variant: 99 57 49;
+  --color-on-secondary: 255 255 255;
+  --color-error-container: 255 218 214;
+  --color-error: 186 26 26;
+  --color-on-primary: 255 255 255;
+  --color-surface-container-high: 237 230 228;
+  --color-on-error: 255 255 255;
+  --color-on-error-container: 147 0 10;
+  --color-on-tertiary-container: 46 21 0;
+  --color-on-primary-fixed: 50 17 9;
+  --color-tertiary: 119 89 0;
+
+  /* RADII */
+  --radius-default: 0.125rem;
+  --radius-lg: 0.25rem;
+  --radius-xl: 0.5rem;
+  --radius-full: 0.75rem;
+
+  /* SPACING */
+  --spacing-space-2xl: 4rem;
+  --spacing-gutter-mobile: 1rem;
+  --spacing-margin-mobile: 1.25rem;
+  --spacing-space-sm: 0.5rem;
+  --spacing-space-md: 1rem;
+  --spacing-margin: 3.5rem;
+  --spacing-gutter: 1.5rem;
+  --spacing-space-xs: 0.25rem;
+  --spacing-space-xl: 2.5rem;
+  --spacing-space-lg: 1.5rem;
+  --spacing-margin-md: 3rem;
+  --spacing-margin-lg: 5rem;
+  --spacing-gutter-lg: 2rem;
+
+  /* FONTS */
+  --font-headline-xl-mobile: "Bodoni Moda", serif;
+  --font-headline-lg: "Bodoni Moda", serif;
+  --font-headline-sm: "Bodoni Moda", serif;
+  --font-headline-md: "Bodoni Moda", serif;
+  --font-headline-xl: "Bodoni Moda", serif;
+  --font-body-lg: "Montserrat", sans-serif;
+  --font-body-md: "Montserrat", sans-serif;
+  --font-label-sm: "Montserrat", sans-serif;
+  --font-label-lg: "Montserrat", sans-serif;
+  --font-body-sm: "Montserrat", sans-serif;
+  --font-label-md: "Montserrat", sans-serif;
+  --font-headline-lg-mobile: "Bodoni Moda", serif;
+  --font-caption: "Montserrat", sans-serif;
+  --font-display-lg-mobile: "Bodoni Moda", serif;
+  --font-display-lg: "Bodoni Moda", serif;
+
+  --fs-headline-xl-mobile: 36px;
+  --lh-headline-xl-mobile: 44px;
+  --ls-headline-xl-mobile: -0.01em;
+  --fw-headline-xl-mobile: 400;
+  --fs-headline-lg: 40px;
+  --lh-headline-lg: 48px;
+  --ls-headline-lg: -0.01em;
+  --fw-headline-lg: 400;
+  --fs-headline-sm: 22px;
+  --lh-headline-sm: 28px;
+  --ls-headline-sm: 0.01em;
+  --fw-headline-sm: 500;
+  --fs-headline-md: 28px;
+  --lh-headline-md: 36px;
+  --ls-headline-md: 0em;
+  --fw-headline-md: 500;
+  --fs-headline-xl: 56px;
+  --lh-headline-xl: 64px;
+  --ls-headline-xl: -0.02em;
+  --fw-headline-xl: 400;
+  --fs-body-lg: 16px;
+  --lh-body-lg: 26px;
+  --ls-body-lg: 0.01em;
+  --fw-body-lg: 400;
+  --fs-body-md: 14px;
+  --lh-body-md: 22px;
+  --ls-body-md: 0.02em;
+  --fw-body-md: 400;
+  --fs-label-sm: 9px;
+  --lh-label-sm: 12px;
+  --ls-label-sm: 0.2em;
+  --fw-label-sm: 600;
+  --fs-label-lg: 13px;
+  --lh-label-lg: 16px;
+  --ls-label-lg: 0.12em;
+  --fw-label-lg: 600;
+  --fs-body-sm: 12px;
+  --lh-body-sm: 18px;
+  --ls-body-sm: 0.02em;
+  --fw-body-sm: 400;
+  --fs-label-md: 11px;
+  --lh-label-md: 14px;
+  --ls-label-md: 0.16em;
+  --fw-label-md: 500;
+  --fs-headline-lg-mobile: 28px;
+  --lh-headline-lg-mobile: 36px;
+  --ls-headline-lg-mobile: 0em;
+  --fw-headline-lg-mobile: 400;
+  --fs-caption: 12px;
+  --lh-caption: 16px;
+  --ls-caption: 0.01em;
+  --fw-caption: 500;
+  --fs-display-lg-mobile: 32px;
+  --lh-display-lg-mobile: 40px;
+  --ls-display-lg-mobile: -0.015em;
+  --fw-display-lg-mobile: 700;
+  --fs-display-lg: 48px;
+  --lh-display-lg: 56px;
+  --ls-display-lg: -0.02em;
+  --fw-display-lg: 700;
 }
 
-::-webkit-scrollbar {
-  display: none;
+.theme-admin {
+  /* COLORS (ADMIN/BACK-OFFICE) */
+  --color-surface-variant: 53 53 52;
+  --color-surface-container: 32 31 31;
+  --color-secondary: 246 184 173;
+  --color-tertiary-fixed: 253 218 224;
+  --color-secondary-container: 103 59 51;
+  --color-tertiary-fixed-dim: 224 190 196;
+  --color-on-secondary-fixed: 51 17 11;
+  --color-on-surface-variant: 215 194 192;
+  --color-surface-dim: 19 19 19;
+  --color-secondary-fixed: 255 218 212;
+  --color-primary: 254 180 176;
+  --color-on-tertiary-fixed: 41 22 27;
+  --color-on-tertiary-container: 255 247 247;
+  --color-on-surface: 229 226 225;
+  --color-on-secondary-container: 226 167 156;
+  --color-tertiary: 224 190 196;
+  --color-tertiary-container: 135 107 112;
+  --color-error-container: 147 0 10;
+  --color-on-primary-fixed: 54 14 13;
+  --color-on-primary-container: 255 247 246;
+  --color-surface: 19 19 19;
+  --color-on-primary-fixed-variant: 108 56 54;
+  --color-on-error: 105 0 5;
+  --color-on-tertiary-fixed-variant: 89 64 69;
+  --color-surface-container-lowest: 14 14 14;
+  --color-secondary-fixed-dim: 246 184 173;
+  --color-outline: 159 140 139;
+  --color-on-secondary: 76 37 31;
+  --color-on-primary: 81 34 33;
+  --color-inverse-primary: 136 79 76;
+  --color-surface-bright: 58 57 57;
+  --color-primary-fixed: 255 218 215;
+  --color-on-error-container: 255 218 214;
+  --color-background: 19 19 19;
+  --color-inverse-surface: 229 226 225;
+  --color-inverse-on-surface: 49 48 48;
+  --color-surface-container-highest: 53 53 52;
+  --color-surface-container-low: 28 27 27;
+  --color-primary-fixed-dim: 254 180 176;
+  --color-on-secondary-fixed-variant: 103 59 51;
+  --color-error: 255 180 171;
+  --color-surface-container-high: 42 42 42;
+  --color-on-tertiary: 64 42 47;
+  --color-on-background: 229 226 225;
+  --color-primary-container: 159 98 95;
+  --color-outline-variant: 82 67 66;
+  --color-surface-tint: 254 180 176;
+
+  /* RADII */
+  --radius-default: 1rem;
+  --radius-lg: 2rem;
+  --radius-xl: 3rem;
+  --radius-full: 9999px;
+
+  /* SPACING */
+  --spacing-space-2xl: 4rem;
+  --spacing-gutter-mobile: 1rem;
+  --spacing-margin-mobile: 1.25rem;
+  --spacing-space-sm: 0.5rem;
+  --spacing-space-md: 1rem;
+  --spacing-margin: 1.5rem;
+  --spacing-gutter: 1.5rem;
+  --spacing-space-xs: 0.25rem;
+  --spacing-space-xl: 2.5rem;
+  --spacing-space-lg: 1.5rem;
+  --spacing-margin-md: 3rem;
+  --spacing-margin-lg: 5rem;
+  --spacing-gutter-lg: 2rem;
+
+  /* FONTS */
+  --font-headline-xl-mobile: "Manrope", sans-serif;
+  --font-headline-lg: "Manrope", sans-serif;
+  --font-headline-sm: "Manrope", sans-serif;
+  --font-headline-md: "Manrope", sans-serif;
+  --font-headline-xl: "Manrope", sans-serif;
+  --font-body-lg: "Hanken Grotesk", sans-serif;
+  --font-body-md: "Hanken Grotesk", sans-serif;
+  --font-label-sm: "Hanken Grotesk", sans-serif;
+  --font-label-lg: "Hanken Grotesk", sans-serif;
+  --font-body-sm: "Hanken Grotesk", sans-serif;
+  --font-label-md: "Hanken Grotesk", sans-serif;
+  --font-headline-lg-mobile: "Manrope", sans-serif;
+  --font-caption: "Hanken Grotesk", sans-serif;
+  --font-display-lg-mobile: "Manrope", sans-serif;
+  --font-display-lg: "Manrope", sans-serif;
+
+  --fs-headline-xl-mobile: 26px;
+  --lh-headline-xl-mobile: 34px;
+  --ls-headline-xl-mobile: -0.01em;
+  --fw-headline-xl-mobile: 600;
+  --fs-headline-lg: 28px;
+  --lh-headline-lg: 36px;
+  --ls-headline-lg: -0.01em;
+  --fw-headline-lg: 600;
+  --fs-headline-sm: 18px;
+  --lh-headline-sm: 26px;
+  --ls-headline-sm: 0em;
+  --fw-headline-sm: 600;
+  --fs-headline-md: 22px;
+  --lh-headline-md: 30px;
+  --ls-headline-md: -0.005em;
+  --fw-headline-md: 600;
+  --fs-headline-xl: 36px;
+  --lh-headline-xl: 44px;
+  --ls-headline-xl: -0.02em;
+  --fw-headline-xl: 600;
+  --fs-body-lg: 18px;
+  --lh-body-lg: 28px;
+  --ls-body-lg: 0em;
+  --fw-body-lg: 400;
+  --fs-body-md: 15px;
+  --lh-body-md: 24px;
+  --ls-body-md: 0em;
+  --fw-body-md: 400;
+  --fs-label-sm: 11px;
+  --lh-label-sm: 16px;
+  --ls-label-sm: 0.06em;
+  --fw-label-sm: 600;
+  --fs-label-lg: 13px;
+  --lh-label-lg: 16px;
+  --ls-label-lg: 0.12em;
+  --fw-label-lg: 600;
+  --fs-body-sm: 13px;
+  --lh-body-sm: 20px;
+  --ls-body-sm: 0em;
+  --fw-body-sm: 400;
+  --fs-label-md: 13px;
+  --lh-label-md: 18px;
+  --ls-label-md: 0.04em;
+  --fw-label-md: 600;
+  --fs-headline-lg-mobile: 28px;
+  --lh-headline-lg-mobile: 36px;
+  --ls-headline-lg-mobile: 0em;
+  --fw-headline-lg-mobile: 400;
+  --fs-caption: 12px;
+  --lh-caption: 16px;
+  --ls-caption: 0.01em;
+  --fw-caption: 500;
+  --fs-display-lg-mobile: 32px;
+  --lh-display-lg-mobile: 40px;
+  --ls-display-lg-mobile: -0.015em;
+  --fw-display-lg-mobile: 700;
+  --fs-display-lg: 48px;
+  --lh-display-lg: 56px;
+  --ls-display-lg: -0.02em;
+  --fw-display-lg: 700;
 }

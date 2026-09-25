@@ -1,0 +1,186 @@
+<!-- ========================================== -->
+<!-- SECCIÓN 4: SELECCIÓN DESTACADA             -->
+<!-- ========================================== -->
+<section
+  class="w-full py-space-2xl relative"
+  id="seleccion"
+  style="
+    background: linear-gradient(
+      rgb(250, 240, 242) 0%,
+      rgb(253, 248, 249) 50%,
+      rgb(250, 240, 242) 100%
+    );
+  "
+>
+  <div class="w-full px-gutter-mobile lg:px-margin mx-auto max-w-[1440px]">
+    <div
+      class="flex flex-col items-center text-center space-y-space-xs mb-space-2xl"
+    >
+      <span
+        class="font-label-md text-label-md tracking-[0.22em] text-primary uppercase font-semibold"
+        >Piezas de Autor</span
+      >
+      <h2
+        class="font-headline-xl text-headline-xl-mobile lg:text-headline-xl text-on-surface font-normal"
+      >
+        Selección Destacada
+      </h2>
+      <p
+        class="font-body-lg text-body-lg text-on-surface-variant max-w-lg font-light"
+      >
+        Una selección elegida para destacar lo que te hace única.
+        Disponibilidad limitada por cápsula.
+      </p>
+    </div>
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-space-md lg:gap-space-md"
+    >
+      @for (product of products; track product.id) {
+        @if (!product.isHorizontal) {
+          <!-- Card Vertical (Cards 1 a 7) -->
+          <div
+            [class]="product.colSpan"
+            class="relative group overflow-hidden rounded-2xl bg-surface-container-low shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-0.5 flex flex-col justify-between"
+          >
+            <div
+              [class]="product.aspectClass"
+              class="relative w-full overflow-hidden bg-surface-container"
+            >
+              <img
+                [alt]="product.alt"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                [src]="product.image"
+                [width]="product.width"
+                [height]="product.height"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
+                @for (badge of product.badges; track badge.text) {
+                  <span
+                    [class]="badge.class"
+                    class="px-2.5 py-1 rounded-full font-label-sm text-label-sm uppercase tracking-wider"
+                  >
+                    {{ badge.text }}
+                  </span>
+                }
+              </div>
+              @if (product.bottomBadge) {
+                <span
+                  class="absolute bottom-3 right-3 px-2.5 py-0.5 rounded-full bg-secondary-container/90 backdrop-blur-md text-on-secondary-container font-label-sm text-label-sm uppercase tracking-wider font-medium"
+                >
+                  {{ product.bottomBadge }}
+                </span>
+              }
+            </div>
+            <div
+              class="p-space-md flex flex-col flex-grow justify-between space-y-space-sm"
+            >
+              <div>
+                <span
+                  class="font-label-sm text-label-sm uppercase tracking-widest text-outline block"
+                  >{{ product.category }}</span
+                >
+                <h3
+                  class="font-headline-sm text-headline-sm text-on-surface font-normal group-hover:text-primary transition-colors"
+                >
+                  {{ product.title }}
+                </h3>
+                <p
+                  class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2 leading-relaxed"
+                >
+                  {{ product.description }}
+                </p>
+              </div>
+              <a
+                class="w-full py-2.5 px-space-sm rounded bg-inverse-surface text-inverse-on-surface font-label-md text-label-md uppercase tracking-[0.14em] text-center transition-all duration-300 hover:bg-primary flex items-center justify-center gap-1.5 shadow-sm mt-space-xs"
+                [href]="'https://wa.me/573011979357?text=' + product.waQuery"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <span
+                  class="material-symbols-outlined text-[16px]"
+                  aria-hidden="true"
+                  >{{ product.ctaIcon }}</span
+                >
+                {{ product.ctaText }}
+              </a>
+            </div>
+          </div>
+        } @else {
+          <!-- Card Horizontal Dual (Cards 8 y 9) -->
+          <div
+            [class]="product.colSpan"
+            class="relative group overflow-hidden rounded-2xl bg-surface-container-low shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-0.5 flex flex-col sm:flex-row"
+          >
+            <div
+              class="relative w-full sm:w-1/2 aspect-square sm:aspect-auto overflow-hidden bg-surface-container"
+            >
+              <img
+                [alt]="product.alt"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                [src]="product.image"
+                [width]="product.width"
+                [height]="product.height"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
+                @for (badge of product.badges; track badge.text) {
+                  <span
+                    [class]="badge.class"
+                    class="px-2.5 py-1 rounded-full font-label-sm text-label-sm uppercase tracking-wider"
+                  >
+                    {{ badge.text }}
+                  </span>
+                }
+              </div>
+            </div>
+            <div
+              class="p-space-md sm:p-space-lg flex flex-col justify-between flex-1 space-y-space-sm"
+            >
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <span
+                    class="font-label-sm text-label-sm uppercase tracking-widest text-outline block"
+                    >{{ product.category }}</span
+                  >
+                  @if (product.subCategoryTag) {
+                    <span
+                      class="px-2 py-0.5 rounded-full bg-secondary-container/80 text-on-secondary-container font-label-sm text-label-sm uppercase"
+                    >
+                      {{ product.subCategoryTag }}
+                    </span>
+                  }
+                </div>
+                <h3
+                  class="font-headline-sm text-headline-sm text-on-surface font-normal group-hover:text-primary transition-colors"
+                >
+                  {{ product.title }}
+                </h3>
+                <p
+                  class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2 leading-relaxed"
+                >
+                  {{ product.description }}
+                </p>
+              </div>
+              <a
+                class="w-full py-2.5 px-space-sm rounded bg-inverse-surface text-inverse-on-surface font-label-md text-label-md uppercase tracking-[0.14em] text-center transition-all duration-300 hover:bg-primary flex items-center justify-center gap-1.5 shadow-sm mt-space-sm"
+                [href]="'https://wa.me/573011979357?text=' + product.waQuery"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <span
+                  class="material-symbols-outlined text-[16px]"
+                  aria-hidden="true"
+                  >{{ product.ctaIcon }}</span
+                >
+                {{ product.ctaText }}
+              </a>
+            </div>
+          </div>
+        }
+      }
+    </div>
+  </div>
+</section>

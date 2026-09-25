@@ -1,0 +1,68 @@
+<!-- ========================================== -->
+<!-- SECCIÓN 5: EXPERIENCIA TRÍA / BENEFICIOS    -->
+<!-- ========================================== -->
+<section
+  class="w-full py-space-2xl relative"
+  id="beneficios"
+  style="
+    background: linear-gradient(
+      rgb(250, 240, 242) 0%,
+      rgb(245, 206, 214) 50%,
+      rgb(250, 240, 242) 100%
+    );
+  "
+>
+  <div class="w-full px-gutter-mobile lg:px-margin mx-auto max-w-[1440px]">
+    <div class="max-w-2xl mb-space-2xl">
+      <span
+        class="font-label-md text-label-md tracking-[0.22em] text-primary uppercase font-semibold"
+        >Compromiso &amp; Atención</span
+      >
+      <h2
+        class="font-headline-xl text-headline-xl-mobile lg:text-headline-xl text-on-surface font-normal mt-space-xs"
+      >
+        Más que una compra, una elección que se siente tuya.
+      </h2>
+      <div class="w-16 h-0.5 bg-primary/40 rounded-full mt-space-sm"></div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-lg">
+      @for (item of benefits; track item.step) {
+        <div
+          class="rounded-xl p-space-lg bg-surface-container-lowest shadow-sm flex flex-col justify-between transition-all duration-300 hover:shadow-md hover:-translate-y-1"
+        >
+          <div class="flex flex-col space-y-space-sm">
+            <span
+              class="font-label-sm text-label-sm tracking-widest text-primary font-semibold"
+              >{{ item.step }}</span
+            >
+            <div
+              class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-primary"
+            >
+              <span
+                class="material-symbols-outlined text-xl"
+                aria-hidden="true"
+                >{{ item.icon }}</span
+              >
+            </div>
+            <h3
+              class="font-headline-sm text-headline-sm text-on-surface font-medium"
+            >
+              {{ item.title }}
+            </h3>
+            <p
+              class="font-body-md text-body-md text-on-surface-variant font-light"
+            >
+              {{ item.description }}
+            </p>
+          </div>
+          <div class="pt-space-md mt-space-sm">
+            <span
+              class="font-label-sm text-label-sm text-outline uppercase tracking-wider"
+              >{{ item.footer }}</span
+            >
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
