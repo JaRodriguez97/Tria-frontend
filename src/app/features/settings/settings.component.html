@@ -2,60 +2,8 @@
 <div
   class="bg-surface font-body-md text-body-md text-on-surface min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-on-primary-container"
 >
-  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-    <div
-      class="absolute -top-32 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary-container/15 rounded-full blur-3xl"
-    ></div>
-    <div
-      class="absolute bottom-20 left-1/4 w-80 h-80 bg-secondary-container/10 rounded-full blur-3xl"
-    ></div>
-  </div>
-  <header
-    class="fixed top-0 w-full z-50 pt-safe bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
-  >
-    <div
-      class="h-20 px-margin-mobile flex items-center justify-between gap-gutter-mobile"
-    >
-      <div class="flex items-center gap-space-sm min-w-0">
-        <img
-          alt="tria-logo.png"
-          class="h-8 w-auto object-contain flex-shrink-0"
-          src="https://lh3.googleusercontent.com/aida/AEtjO1VVnkiN_-OgmRGie5ZKZnXW7yZ2X_VAjsvY_IJYn41xFB-4yxjxzR5-r6rRU4LuE3eOIq5r8kQMURxhCNxevrUeRrolERPms664okx_V9Hf8io5zzGQDZV3EBfLQDOnVwF8jRet9_TmVLpqSbnGKnvTUuvbz9qQ6q275BELRrwL5s0t1KLZOXK7cxmNEF16lG2Sjqsfwi9gt0H8CfoaMz0uyulLyg1DwCklpqKGonxSbiL31TWvIXK4P9zZLFsFZw-VTjDzexLkLA"
-        />
-        <div class="flex flex-col min-w-0">
-          <div class="flex items-center gap-space-xs">
-            <span
-              class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight truncate"
-              >TRÍA</span
-            ><span
-              class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse flex-shrink-0"
-            ></span>
-          </div>
-          <span
-            class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant truncate"
-            >Inventario</span
-          >
-        </div>
-      </div>
-      <div class="flex items-center gap-space-sm flex-shrink-0">
-        <button
-          aria-label="Notificaciones"
-          class="w-11 h-11 rounded-full flex items-center justify-center bg-surface-container-high/60 backdrop-blur-md text-on-surface-variant hover:text-on-surface active:scale-95 transition-all"
-        >
-          <span class="material-symbols-outlined text-[20px]"
-            >notifications</span
-          >
-        </button>
-        <div
-          class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"
-        >
-          <span class="material-symbols-outlined text-on-primary text-[18px]"
-            >person</span
-          >
-        </div>
-      </div>
-    </div>
-  </header>
+  <app-top-bar subtitle="Configuración"></app-top-bar>
+
   <main
     class="flex-1 flex flex-col relative w-full pt-20 pb-32 bg-surface z-10"
   >
@@ -89,13 +37,13 @@
               <h1
                 class="font-headline-sm text-headline-sm text-on-surface truncate"
               >
-                Administración General TRÍA
+                {{ settings.storeName }}
               </h1>
             </div>
             <p
               class="font-body-sm text-body-sm text-on-surface-variant truncate"
             >
-              administracion&#64;tria.co
+              {{ settings.email }}
             </p>
             <div class="mt-space-xs flex items-center gap-space-xs">
               <span
@@ -188,17 +136,14 @@
             <div class="flex items-center gap-space-xs flex-shrink-0">
               <span
                 class="font-label-sm text-label-sm bg-surface-container-highest px-3 py-1 rounded-full text-secondary font-semibold"
-                >COP ($)</span
-              >
-              <span
-                class="material-symbols-outlined text-on-surface-variant text-[18px]"
-                >chevron_right</span
+                >{{ settings.currency }}</span
               >
             </div>
           </div>
           <!-- Item: Margin -->
           <div
-            class="flex items-center justify-between p-space-md rounded-lg bg-surface-container/60 backdrop-blur-md shadow-sm"
+            (click)="openEditParam('margin')"
+            class="flex items-center justify-between p-space-md rounded-lg bg-surface-container/60 backdrop-blur-md shadow-sm cursor-pointer hover:bg-surface-container/80 transition-colors"
           >
             <div class="flex items-center gap-space-sm min-w-0">
               <div
@@ -221,7 +166,7 @@
             <div class="flex items-center gap-space-xs flex-shrink-0">
               <span
                 class="font-label-sm text-label-sm bg-primary-container/40 text-on-primary-container px-3 py-1 rounded-full font-semibold"
-                >55% prom.</span
+                >{{ settings.targetMargin }}% prom.</span
               >
               <span
                 class="material-symbols-outlined text-on-surface-variant text-[18px]"
@@ -231,7 +176,8 @@
           </div>
           <!-- Item: Grace Period -->
           <div
-            class="flex items-center justify-between p-space-md rounded-lg bg-surface-container/60 backdrop-blur-md shadow-sm"
+            (click)="openEditParam('grace')"
+            class="flex items-center justify-between p-space-md rounded-lg bg-surface-container/60 backdrop-blur-md shadow-sm cursor-pointer hover:bg-surface-container/80 transition-colors"
           >
             <div class="flex items-center gap-space-sm min-w-0">
               <div
@@ -255,7 +201,7 @@
             <div class="flex items-center gap-space-xs flex-shrink-0">
               <span
                 class="font-label-sm text-label-sm bg-surface-container-highest text-on-surface px-3 py-1 rounded-full font-medium"
-                >15 días</span
+                >{{ settings.gracePeriodDays }} días</span
               >
               <span
                 class="material-symbols-outlined text-on-surface-variant text-[18px]"
@@ -265,7 +211,8 @@
           </div>
           <!-- Item: Critical Stock Threshold -->
           <div
-            class="flex items-center justify-between p-space-md rounded-lg bg-surface-container/60 backdrop-blur-md shadow-sm"
+            (click)="openEditParam('stock')"
+            class="flex items-center justify-between p-space-md rounded-lg bg-surface-container/60 backdrop-blur-md shadow-sm cursor-pointer hover:bg-surface-container/80 transition-colors"
           >
             <div class="flex items-center gap-space-sm min-w-0">
               <div
@@ -289,7 +236,7 @@
             <div class="flex items-center gap-space-xs flex-shrink-0">
               <span
                 class="font-label-sm text-label-sm bg-surface-container-highest text-error px-3 py-1 rounded-full font-semibold"
-                >≤ 3 unids</span
+                >≤ {{ settings.criticalStockThreshold }} unids</span
               >
               <span
                 class="material-symbols-outlined text-on-surface-variant text-[18px]"
@@ -337,18 +284,18 @@
             </div>
             <div class="rounded-lg bg-surface-container-high/80 p-3 shadow-sm">
               <p
+                *ngIf="!isEditingTemplate"
                 class="font-body-sm text-body-sm text-on-surface leading-relaxed"
                 id="whatsapp-preview-text"
               >
-                "Hola,
-                <span class="text-primary font-medium">[Clienta]</span> 😊 Te
-                escribimos de TRÍA Boutique para recordarte que tienes un saldo
-                pendiente de
-                <span class="text-secondary font-medium">[Saldo]</span> de tu
-                compra de
-                <span class="text-primary font-medium">[Productos]</span>.
-                ¡Coordinamos cuando gustes! ✨"
+                {{ settings.whatsappTemplate }}
               </p>
+              <textarea
+                *ngIf="isEditingTemplate"
+                [(ngModel)]="currentTemplate"
+                rows="4"
+                class="w-full p-2 rounded-lg bg-surface-container-lowest text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary"
+              ></textarea>
             </div>
             <div class="flex items-center justify-between pt-space-xs">
               <div class="flex items-center gap-1.5 text-on-surface-variant">
@@ -356,9 +303,9 @@
                 <span
                   class="font-label-sm text-label-sm text-on-surface-variant"
                   >Emisor:
-                  <strong class="text-on-surface font-medium"
-                    >+57 314 890 2134</strong
-                  ></span
+                  <strong class="text-on-surface font-medium">{{
+                    settings.phone
+                  }}</strong></span
                 >
               </div>
               <span class="font-label-sm text-label-sm text-tertiary"
@@ -368,11 +315,18 @@
           </div>
           <!-- Action Button -->
           <button
+            (click)="toggleEditTemplate()"
             class="w-full h-12 rounded-full bg-surface-container-high hover:bg-surface-bright active:scale-95 transition-all flex items-center justify-center gap-space-xs text-secondary font-label-md text-label-md"
             id="btn-edit-template"
           >
-            <span class="material-symbols-outlined text-[18px]">edit_note</span>
-            <span>Personalizar Texto &amp; Tokens</span>
+            <span class="material-symbols-outlined text-[18px]">{{
+              isEditingTemplate ? "check" : "edit_note"
+            }}</span>
+            <span>{{
+              isEditingTemplate
+                ? "Guardar Plantilla"
+                : "Personalizar Texto & Tokens"
+            }}</span>
           </button>
         </div>
       </section>
@@ -395,6 +349,7 @@
         <div class="grid grid-cols-1 gap-space-sm">
           <!-- Export Catalog -->
           <div
+            (click)="exportCatalog()"
             class="flex items-center justify-between p-space-md rounded-lg bg-surface-container/60 backdrop-blur-md shadow-sm active:bg-surface-container-high transition-colors cursor-pointer"
           >
             <div class="flex items-center gap-space-sm min-w-0">
@@ -426,6 +381,7 @@
           </div>
           <!-- Export Accounting Ledger -->
           <div
+            (click)="exportLedger()"
             class="flex items-center justify-between p-space-md rounded-lg bg-surface-container/60 backdrop-blur-md shadow-sm active:bg-surface-container-high transition-colors cursor-pointer"
           >
             <div class="flex items-center gap-space-sm min-w-0">
@@ -442,7 +398,7 @@
                   >Balance Histórico &amp; Cartera</span
                 >
                 <span class="font-body-sm text-body-sm text-on-surface-variant"
-                  >Cierres de caja y estados de cuenta (PDF)</span
+                  >Cierres de caja y estados de cuenta (CSV)</span
                 >
               </div>
             </div>
@@ -474,23 +430,33 @@
                   >
                   <span
                     class="font-body-sm text-body-sm text-on-surface-variant"
-                    >Último respaldo: Hoy 11:30 AM</span
+                    >Último respaldo:
+                    {{ settings.lastSyncDate | date: "shortTime" }}</span
                   >
                 </div>
               </div>
               <span
                 class="font-label-sm text-label-sm bg-surface-container-highest text-secondary px-2.5 py-1 rounded-full"
-                >Sincronizado</span
+                >{{ syncSuccess ? "¡Actualizado!" : "Sincronizado" }}</span
               >
             </div>
             <button
+              (click)="triggerSync()"
               class="w-full h-11 rounded-full bg-surface-container-high hover:bg-surface-bright active:scale-95 transition-all flex items-center justify-center gap-space-xs text-on-surface font-label-md text-label-md"
               id="btn-sync-now"
             >
-              <span class="material-symbols-outlined text-[18px] text-primary"
+              <span
+                [class.animate-spin]="isSyncing"
+                class="material-symbols-outlined text-[18px] text-primary"
                 >sync</span
               >
-              <span>Forzar Respaldo Ahora</span>
+              <span>{{
+                isSyncing
+                  ? "Sincronizando con Atelier Cloud..."
+                  : syncSuccess
+                    ? "¡Copia Actualizada!"
+                    : "Forzar Respaldo Ahora"
+              }}</span>
             </button>
           </div>
         </div>
@@ -514,6 +480,11 @@
         <div class="flex flex-col gap-space-sm">
           <!-- Change PIN/Password -->
           <button
+            (click)="
+              showToast(
+                'Función de PIN maestro disponible en configuración avanzada'
+              )
+            "
             class="w-full flex items-center justify-between p-space-md rounded-lg bg-surface-container/60 hover:bg-surface-container-high backdrop-blur-md shadow-sm active:scale-[0.99] transition-all text-left"
           >
             <div class="flex items-center gap-space-sm">
@@ -541,6 +512,7 @@
           </button>
           <!-- Logout Button (Luxury Rose Crimson) -->
           <button
+            (click)="logout()"
             class="w-full h-14 rounded-full bg-primary-container hover:bg-secondary-container active:scale-95 transition-all flex items-center justify-center gap-space-xs text-on-primary-container font-label-md text-label-md shadow-lg shadow-primary-container/20"
             id="btn-logout"
           >
@@ -618,117 +590,74 @@
         </p>
       </footer>
     </div>
-    <script>
-      (function () {
-        const syncBtn = document.getElementById("btn-sync-now");
-        if (syncBtn) {
-          syncBtn.addEventListener("click", function () {
-            const icon = syncBtn.querySelector(".material-symbols-outlined");
-            if (icon) {
-              icon.classList.add("animate-spin");
-              setTimeout(() => {
-                icon.classList.remove("animate-spin");
-                syncBtn.classList.add("bg-surface-container-highest");
-                const spanText = syncBtn.querySelector(
-                  "span:not(.material-symbols-outlined)",
-                );
-                if (spanText) spanText.textContent = "¡Copia Actualizada!";
-                setTimeout(() => {
-                  if (spanText) spanText.textContent = "Forzar Respaldo Ahora";
-                }, 2500);
-              }, 1200);
-            }
-          });
-        }
 
-        const editBtn = document.getElementById("btn-edit-template");
-        if (editBtn) {
-          editBtn.addEventListener("click", function () {
-            const preview = document.getElementById("whatsapp-preview-text");
-            if (preview) {
-              preview.classList.toggle("ring-1");
-              preview.classList.toggle("ring-primary");
-              const isEditing =
-                preview.getAttribute("contenteditable") === "true";
-              preview.setAttribute("contenteditable", !isEditing);
-              if (!isEditing) {
-                preview.focus();
-                editBtn.innerHTML =
-                  '<span class="material-symbols-outlined text-[18px]">done</span><span>Guardar Plantilla</span>';
-              } else {
-                editBtn.innerHTML =
-                  '<span class="material-symbols-outlined text-[18px]">edit_note</span><span>Personalizar Texto & Tokens</span>';
-              }
-            }
-          });
-        }
-
-        const logoutBtn = document.getElementById("btn-logout");
-        if (logoutBtn) {
-          logoutBtn.addEventListener("click", function () {
-            if (
-              confirm(
-                "¿Deseas cerrar la sesión administrativa de TRÍA Atelier?",
-              )
-            ) {
-              logoutBtn.style.opacity = "0.5";
-              logoutBtn.textContent = "Cerrando sesión...";
-            }
-          });
-        }
-      })();
-    </script>
-  </main>
-  <div class="fixed bottom-0 w-full z-50 pointer-events-none pb-safe">
-    <nav
-      class="pointer-events-auto mx-auto mb-4 px-3 w-[calc(100%-1.5rem)] max-w-md h-20 rounded-full bg-surface-container-lowest/85 backdrop-blur-xl shadow-[0_12px_32px_-8px_rgba(159,98,95,0.28)] flex items-center justify-between"
-      data-active-classes="text-primary bg-primary-container/25"
+    <!-- Parameter Edit Modal -->
+    <div
+      *ngIf="showParamModal"
+      class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in"
     >
-      <a
-        class="flex flex-col items-center justify-center w-14 h-14 rounded-full text-on-surface-variant hover:text-on-surface transition-all duration-200 active:scale-95"
-        data-path="inicio"
-        routerLink="/app/inicio"
-        ><span class="material-symbols-outlined text-[22px]">dashboard</span
-        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
-          >Inicio</span
-        ></a
-      ><a
-        aria-current="page"
-        class="flex flex-col items-center justify-center w-14 h-14 rounded-full transition-all duration-200 active:scale-95 text-primary bg-primary-container/25"
-        data-path="inventario"
-        routerLink="/app/inventario"
-        ><span class="material-symbols-outlined text-[22px]">inventory_2</span
-        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
-          >Stock</span
-        ></a
+      <div
+        class="w-full max-w-sm rounded-2xl bg-surface-container-low p-6 shadow-2xl flex flex-col gap-4 border border-outline-variant/30"
       >
-      <div class="relative -top-3">
-        <a
-          class="flex flex-col items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-secondary via-primary to-primary-container text-on-primary shadow-[0_8px_24px_rgba(254,180,176,0.35)] active:scale-95 transition-transform"
-          data-path="ventas"
-          routerLink="/app/ventas"
-          ><span class="material-symbols-outlined text-[24px]"
-            >shopping_bag</span
-          ></a
+        <div
+          class="flex items-center justify-between pb-2 border-b border-outline-variant/20"
         >
+          <h3
+            class="font-headline-sm text-headline-sm font-semibold text-on-surface"
+          >
+            {{ paramModalTitle }}
+          </h3>
+          <button
+            (click)="closeParamModal()"
+            class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant"
+          >
+            <span class="material-symbols-outlined text-[18px]">close</span>
+          </button>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label class="font-label-sm text-label-sm text-on-surface-variant"
+            >Valor</label
+          >
+          <input
+            [(ngModel)]="paramModalValue"
+            type="number"
+            class="w-full h-12 px-4 rounded-full bg-surface-container-lowest text-on-surface font-headline-sm font-bold text-primary focus:outline-none focus:ring-1 focus:ring-primary"
+          />
+        </div>
+
+        <div class="pt-2 flex items-center justify-end gap-2">
+          <button
+            (click)="closeParamModal()"
+            class="px-4 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-md"
+          >
+            Cancelar
+          </button>
+          <button
+            (click)="saveParam()"
+            class="px-5 py-2 rounded-full bg-primary text-on-primary font-label-md font-semibold active:scale-95 transition-transform"
+          >
+            Guardar
+          </button>
+        </div>
       </div>
-      <a
-        class="flex flex-col items-center justify-center w-14 h-14 rounded-full text-on-surface-variant hover:text-on-surface transition-all duration-200 active:scale-95"
-        data-path="clientes"
-        routerLink="/app/clientes"
-        ><span class="material-symbols-outlined text-[22px]">group</span
-        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
-          >Clientes</span
-        ></a
-      ><a
-        class="flex flex-col items-center justify-center w-14 h-14 rounded-full text-on-surface-variant hover:text-on-surface transition-all duration-200 active:scale-95"
-        data-path="mas"
-        routerLink="/app/configuracion"
-        ><span class="material-symbols-outlined text-[22px]">grid_view</span
-        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
-          >Más</span
-        ></a
+    </div>
+
+    <!-- Toast Notification -->
+    <div
+      class="fixed top-24 left-1/2 -translate-x-1/2 z-50 px-5 py-3 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm flex items-center gap-2 shadow-2xl transition-all duration-300"
+      [ngClass]="
+        toastVisible
+          ? 'opacity-100 translate-y-0 pointer-events-auto'
+          : 'opacity-0 -translate-y-4 pointer-events-none'
+      "
+    >
+      <span class="material-symbols-outlined text-primary text-[18px]"
+        >verified</span
       >
-    </nav>
-  </div>
+      <span>{{ toastMessage }}</span>
+    </div>
+  </main>
+
+  <app-bottom-nav></app-bottom-nav>
 </div>

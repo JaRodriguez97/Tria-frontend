@@ -106,12 +106,8 @@
           <!-- Credenciales Form -->
           <form
             class="flex flex-col gap-space-md"
-            onsubmit="
-              event.preventDefault();
-              document
-                .getElementById('login-feedback')
-                .classList.remove('hidden');
-            "
+            [formGroup]="loginForm"
+            (ngSubmit)="login()"
           >
             <!-- Campo: Credencial / Correo -->
             <div class="flex flex-col gap-space-xs">
@@ -135,6 +131,7 @@
                   placeholder="administracion@tria.co"
                   required=""
                   type="email"
+                  formControlName="credencial"
                 />
               </div>
             </div>
@@ -164,6 +161,7 @@
                   placeholder="••••••••••••"
                   required=""
                   type="password"
+                  formControlName="password"
                 />
                 <button
                   aria-label="Mostrar u ocultar contraseña"
@@ -203,9 +201,9 @@
             </div>
             <!-- Botón Primario de Lujo -->
             <button
-              class="mt-space-xs w-full h-14 rounded-full bg-gradient-to-r from-secondary via-primary to-primary-container text-on-primary font-headline-sm text-headline-sm font-semibold tracking-wide shadow-[0_12px_28px_rgba(254,180,176,0.25)] active:scale-[0.98] hover:opacity-95 transition-all flex items-center justify-center gap-space-sm group"
-              type="button"
-              routerLink="/app/inicio"
+              class="mt-space-xs w-full h-14 rounded-full bg-gradient-to-r from-secondary via-primary to-primary-container text-on-primary font-headline-sm text-headline-sm font-semibold tracking-wide shadow-[0_12px_28px_rgba(254,180,176,0.25)] active:scale-[0.98] hover:opacity-95 transition-all flex items-center justify-center gap-space-sm group disabled:opacity-50"
+              type="submit"
+              [disabled]="loginForm.invalid || isAuthenticating"
             >
               <span class="">Ingresar al Atelier</span>
               <span
@@ -214,24 +212,46 @@
               >
             </button>
           </form>
-          <!-- Feedback Banner (Oculto por defecto, activado por interacción) -->
-          <div
-            class="hidden rounded-lg bg-surface-container-high/90 p-space-sm flex items-center gap-space-sm animate-pulse"
-            id="login-feedback"
-          >
-            <span class="material-symbols-outlined text-primary text-[20px]"
-              >sync</span
+          <!-- Feedback Banner -->
+          @if (isAuthenticating) {
+            <div
+              class="rounded-lg bg-surface-container-high/90 p-space-sm flex items-center gap-space-sm animate-pulse mt-4"
+              id="login-feedback"
             >
-            <div class="flex flex-col">
-              <span class="font-label-sm text-label-sm text-primary font-medium"
-                >Verificando firma criptográfica...</span
+              <span class="material-symbols-outlined text-primary text-[20px]"
+                >sync</span
               >
-              <span
-                class="font-body-sm text-body-sm text-on-surface-variant text-[11px]"
-                >Sincronizando boveda de boutique TRÍA</span
-              >
+              <div class="flex flex-col">
+                <span
+                  class="font-label-sm text-label-sm text-primary font-medium"
+                  >Verificando firma criptográfica...</span
+                >
+                <span
+                  class="font-body-sm text-body-sm text-on-surface-variant text-[11px]"
+                  >Sincronizando boveda de boutique TRÍA</span
+                >
+              </div>
             </div>
-          </div>
+          }
+
+          @if (loginError) {
+            <div
+              class="rounded-lg bg-error-container/90 p-space-sm flex items-center gap-space-sm mt-4"
+            >
+              <span class="material-symbols-outlined text-error text-[20px]"
+                >error</span
+              >
+              <div class="flex flex-col">
+                <span class="font-label-sm text-label-sm text-error font-medium"
+                  >Credenciales inválidas</span
+                >
+                <span
+                  class="font-body-sm text-body-sm text-on-error-container text-[11px]"
+                  >Por favor revisa el ID o la contraseña.</span
+                >
+              </div>
+            </div>
+          }
         </div>
         <!-- Editorial Preview Grid / Atmósfera de Lujo -->
         <div

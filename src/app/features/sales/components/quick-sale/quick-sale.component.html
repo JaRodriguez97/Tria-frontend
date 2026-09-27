@@ -62,7 +62,7 @@
           <span
             class="font-label-sm text-label-sm font-semibold text-primary"
             id="speed-timer"
-            >00:14s</span
+            >{{ formattedTimer }}</span
           >
         </div>
       </div>
@@ -175,7 +175,7 @@
               <div class="flex items-baseline gap-space-xs">
                 <span
                   class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary"
-                  >$120.000</span
+                  >{{ unitPrice | currency: "COP" : "$" : "1.0-0" }}</span
                 >
                 <span
                   class="font-body-sm text-body-sm text-outline line-through"
@@ -203,7 +203,7 @@
               <button
                 aria-label="Disminuir"
                 class="w-8 h-8 rounded-full bg-surface-variant text-on-surface flex items-center justify-center font-bold text-body-lg active:scale-90 transition-transform select-none"
-                id="btn-dec"
+                (click)="decQty()"
                 type="button"
               >
                 −
@@ -211,12 +211,12 @@
               <span
                 class="font-headline-sm text-headline-sm font-semibold text-on-surface w-4 text-center"
                 id="qty-val"
-                >1</span
+                >{{ currentQty }}</span
               >
               <button
                 aria-label="Aumentar"
                 class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-body-lg active:scale-90 transition-transform select-none"
-                id="btn-inc"
+                (click)="incQty()"
                 type="button"
               >
                 +
@@ -309,9 +309,13 @@
         <div class="grid grid-cols-3 gap-2" id="payment-tabs">
           <!-- Full Payment -->
           <button
-            class="p-3 rounded-DEFAULT bg-surface-container text-left flex flex-col justify-between gap-2 transition-all active:scale-95"
+            [ngClass]="{
+              'bg-primary-container/30 shadow-md': currentMode === 'full',
+              'bg-surface-container': currentMode !== 'full',
+            }"
+            class="p-3 rounded-DEFAULT text-left flex flex-col justify-between gap-2 transition-all active:scale-95"
             id="tab-full"
-            onclick="setPaymentMode('full')"
+            (click)="setPaymentMode('full')"
             type="button"
           >
             <span
@@ -332,9 +336,13 @@
           </button>
           <!-- Installment / Abono (Active by default) -->
           <button
-            class="p-3 rounded-DEFAULT bg-primary-container/30 shadow-md text-left flex flex-col justify-between gap-2 transition-all active:scale-95"
+            [ngClass]="{
+              'bg-primary-container/30 shadow-md': currentMode === 'abono',
+              'bg-surface-container': currentMode !== 'abono',
+            }"
+            class="p-3 rounded-DEFAULT text-left flex flex-col justify-between gap-2 transition-all active:scale-95"
             id="tab-abono"
-            onclick="setPaymentMode('abono')"
+            (click)="setPaymentMode('abono')"
             type="button"
           >
             <div class="flex items-center justify-between w-full">
@@ -344,7 +352,10 @@
                 style="font-variation-settings: &quot;FILL&quot; 1"
                 >payments</span
               >
-              <span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+              <span
+                class="w-2 h-2 rounded-full bg-primary animate-ping"
+                *ngIf="currentMode === 'abono'"
+              ></span>
             </div>
             <div>
               <p class="font-label-md text-label-md font-semibold text-primary">
@@ -357,9 +368,13 @@
           </button>
           <!-- Fiado (Credit) -->
           <button
-            class="p-3 rounded-DEFAULT bg-surface-container text-left flex flex-col justify-between gap-2 transition-all active:scale-95"
+            [ngClass]="{
+              'bg-secondary-container/40 shadow-md': currentMode === 'fiado',
+              'bg-surface-container': currentMode !== 'fiado',
+            }"
+            class="p-3 rounded-DEFAULT text-left flex flex-col justify-between gap-2 transition-all active:scale-95"
             id="tab-fiado"
-            onclick="setPaymentMode('fiado')"
+            (click)="setPaymentMode('fiado')"
             type="button"
           >
             <span
@@ -406,9 +421,10 @@
               <input
                 class="w-full bg-transparent font-headline-sm text-headline-sm text-on-surface font-bold focus:outline-none"
                 id="abono-input"
+                [(ngModel)]="abonoInput"
+                [disabled]="currentMode !== 'abono'"
                 step="5000"
                 type="number"
-                value="50000"
               />
               <span
                 class="font-label-sm text-label-sm text-outline uppercase font-semibold"
@@ -423,28 +439,28 @@
             >
             <button
               class="px-3 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm active:scale-95 transition-transform"
-              onclick="setAbonoAmount(30000)"
+              (click)="setAbonoAmount(30000)"
               type="button"
             >
               $30.000
             </button>
             <button
               class="px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold active:scale-95 transition-transform"
-              onclick="setAbonoAmount(50000)"
+              (click)="setAbonoAmount(50000)"
               type="button"
             >
               $50.000
             </button>
             <button
               class="px-3 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm active:scale-95 transition-transform"
-              onclick="setAbonoAmount(60000)"
+              (click)="setAbonoAmount(60000)"
               type="button"
             >
               50% ($60k)
             </button>
             <button
               class="px-3 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm active:scale-95 transition-transform"
-              onclick="setAbonoAmount(100000)"
+              (click)="setAbonoAmount(100000)"
               type="button"
             >
               $100.000
@@ -458,14 +474,14 @@
               <span class="text-on-surface-variant"
                 >Valor Total de Compra:</span
               >
-              <span class="font-semibold text-on-surface" id="txt-subtotal"
-                >$120.000</span
-              >
+              <span class="font-semibold text-on-surface" id="txt-subtotal">{{
+                currentTotal | currency: "COP" : "$" : "1.0-0"
+              }}</span>
             </div>
             <div class="flex justify-between items-center text-body-sm">
               <span class="text-secondary font-medium">Abono Recibido:</span>
               <span class="font-semibold text-secondary" id="txt-paid"
-                >-$50.000</span
+                >-{{ abono | currency: "COP" : "$" : "1.0-0" }}</span
               >
             </div>
             <div class="h-px bg-surface-variant w-full my-1"></div>
@@ -482,7 +498,7 @@
               <span
                 class="font-headline-sm text-headline-sm font-bold text-error"
                 id="txt-pending"
-                >$70.000</span
+                >{{ pending | currency: "COP" : "$" : "1.0-0" }}</span
               >
             </div>
           </div>
@@ -508,154 +524,51 @@
         class="fixed bottom-3 left-0 right-0 px-margin-mobile z-40 max-w-md mx-auto"
       >
         <button
-          class="w-full py-4 rounded-full bg-gradient-to-r from-primary-container via-primary to-secondary text-on-primary font-headline-sm text-headline-sm font-bold flex items-center justify-center gap-2 shadow-2xl active:scale-98 transition-all"
+          class="w-full py-4 rounded-full text-on-primary font-headline-sm text-headline-sm font-bold flex items-center justify-center gap-2 shadow-2xl transition-all"
+          [ngClass]="{
+            'bg-primary scale-98': isSaved,
+            'from-primary-container via-primary to-secondary bg-gradient-to-r active:scale-98':
+              !isSaved,
+          }"
+          [disabled]="isSaving || isSaved"
           id="btn-submit"
-          onclick="confirmSale()"
+          (click)="confirmSale()"
           type="button"
         >
           <span
+            *ngIf="!isSaving && !isSaved"
             class="material-symbols-outlined text-[22px]"
             style="font-variation-settings: &quot;FILL&quot; 1"
             >check_circle</span
           >
-          <span id="submit-text">Registrar Abono ($50.000)</span>
+          <span
+            *ngIf="isSaving"
+            class="material-symbols-outlined animate-spin text-[22px]"
+            >progress_activity</span
+          >
+          <span *ngIf="isSaved" class="material-symbols-outlined text-[22px]"
+            >done_all</span
+          >
+
+          <span *ngIf="!isSaving && !isSaved">
+            {{
+              currentMode === "full"
+                ? "Cobro Total (" +
+                  (currentTotal | currency: "COP" : "$" : "1.0-0") +
+                  ")"
+                : currentMode === "fiado"
+                  ? "Registrar Fiado (" +
+                    (currentTotal | currency: "COP" : "$" : "1.0-0") +
+                    ")"
+                  : "Registrar Abono (" +
+                    (abono | currency: "COP" : "$" : "1.0-0") +
+                    ")"
+            }}
+          </span>
+          <span *ngIf="isSaving">Guardando venta...</span>
+          <span *ngIf="isSaved">¡Venta Exitosa!</span>
         </button>
       </div>
     </div>
-    <script>
-      let currentTotal = 120000;
-      let currentQty = 1;
-      let unitPrice = 120000;
-      let currentMode = "abono";
-
-      const abonoInput = document.getElementById("abono-input");
-      const txtSubtotal = document.getElementById("txt-subtotal");
-      const txtPaid = document.getElementById("txt-paid");
-      const txtPending = document.getElementById("txt-pending");
-      const submitText = document.getElementById("submit-text");
-      const qtyVal = document.getElementById("qty-val");
-
-      function formatMoney(amount) {
-        return "$" + amount.toLocaleString("es-CO");
-      }
-
-      function updateMath() {
-        currentTotal = unitPrice * currentQty;
-        let abono = parseInt(abonoInput.value) || 0;
-
-        if (currentMode === "full") {
-          abono = currentTotal;
-        } else if (currentMode === "fiado") {
-          abono = 0;
-        } else {
-          if (abono > currentTotal) abono = currentTotal;
-          if (abono < 0) abono = 0;
-        }
-
-        const pending = currentTotal - abono;
-
-        txtSubtotal.textContent = formatMoney(currentTotal);
-        txtPaid.textContent = "-" + formatMoney(abono);
-        txtPending.textContent = formatMoney(pending);
-
-        if (currentMode === "full") {
-          submitText.textContent = `Cobro Total (${formatMoney(currentTotal)})`;
-        } else if (currentMode === "fiado") {
-          submitText.textContent = `Registrar Fiado (${formatMoney(currentTotal)})`;
-        } else {
-          submitText.textContent = `Registrar Abono (${formatMoney(abono)})`;
-        }
-      }
-
-      function setAbonoAmount(val) {
-        abonoInput.value = val;
-        updateMath();
-      }
-
-      function setPaymentMode(mode) {
-        currentMode = mode;
-        const tabFull = document.getElementById("tab-full");
-        const tabAbono = document.getElementById("tab-abono");
-        const tabFiado = document.getElementById("tab-fiado");
-        const abonoContainer = document.getElementById("abono-container");
-
-        // Reset base styles
-        [tabFull, tabAbono, tabFiado].forEach((tab) => {
-          tab.className =
-            "p-3 rounded-DEFAULT bg-surface-container text-left flex flex-col justify-between gap-2 transition-all active:scale-95";
-        });
-
-        if (mode === "full") {
-          tabFull.className =
-            "p-3 rounded-DEFAULT bg-primary-container/30 shadow-md text-left flex flex-col justify-between gap-2 transition-all active:scale-95";
-          abonoInput.value = currentTotal;
-          abonoInput.disabled = true;
-        } else if (mode === "abono") {
-          tabAbono.className =
-            "p-3 rounded-DEFAULT bg-primary-container/30 shadow-md text-left flex flex-col justify-between gap-2 transition-all active:scale-95";
-          abonoInput.disabled = false;
-          if (!abonoInput.value || parseInt(abonoInput.value) === 0) {
-            abonoInput.value = 50000;
-          }
-        } else if (mode === "fiado") {
-          tabFiado.className =
-            "p-3 rounded-DEFAULT bg-secondary-container/40 shadow-md text-left flex flex-col justify-between gap-2 transition-all active:scale-95";
-          abonoInput.value = 0;
-          abonoInput.disabled = true;
-        }
-        updateMath();
-      }
-
-      document.getElementById("btn-inc").addEventListener("click", () => {
-        if (currentQty < 3) {
-          currentQty++;
-          qtyVal.textContent = currentQty;
-          updateMath();
-        }
-      });
-
-      document.getElementById("btn-dec").addEventListener("click", () => {
-        if (currentQty > 1) {
-          currentQty--;
-          qtyVal.textContent = currentQty;
-          updateMath();
-        }
-      });
-
-      abonoInput.addEventListener("input", () => {
-        if (currentMode === "abono") {
-          updateMath();
-        }
-      });
-
-      function confirmSale() {
-        const btn = document.getElementById("btn-submit");
-        const originalContent = btn.innerHTML;
-        btn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[22px]">progress_activity</span><span>Guardando venta...</span>`;
-        btn.disabled = true;
-
-        setTimeout(() => {
-          btn.innerHTML = `<span class="material-symbols-outlined text-[22px]">done_all</span><span>¡Venta Exitosa!</span>`;
-          btn.classList.remove("from-primary-container", "via-primary");
-          btn.classList.add("bg-primary");
-          setTimeout(() => {
-            btn.innerHTML = originalContent;
-            btn.disabled = false;
-            btn.classList.remove("bg-primary");
-            btn.classList.add("from-primary-container", "via-primary");
-          }, 2000);
-        }, 900);
-      }
-
-      // Agility timer simulation
-      let seconds = 14;
-      setInterval(() => {
-        seconds++;
-        const timerElem = document.getElementById("speed-timer");
-        if (timerElem) {
-          timerElem.textContent = `00:${seconds < 10 ? "0" : ""}${seconds}s`;
-        }
-      }, 1000);
-    </script>
   </main>
 </section>

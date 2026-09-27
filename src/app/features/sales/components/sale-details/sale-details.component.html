@@ -1,60 +1,8 @@
 <section
   class="bg-surface font-body-md text-body-md text-on-surface min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-on-primary-container"
 >
-  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-    <div
-      class="absolute -top-32 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary-container/15 rounded-full blur-3xl"
-    ></div>
-    <div
-      class="absolute bottom-20 left-1/4 w-80 h-80 bg-secondary-container/10 rounded-full blur-3xl"
-    ></div>
-  </div>
-  <header
-    class="fixed top-0 w-full z-50 pt-safe bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
-  >
-    <div
-      class="h-20 px-margin-mobile flex items-center justify-between gap-gutter-mobile"
-    >
-      <div class="flex items-center gap-space-sm min-w-0">
-        <img
-          alt="tria-logo.png"
-          class="h-8 w-auto object-contain flex-shrink-0"
-          src="https://lh3.googleusercontent.com/aida/AEtjO1VVnkiN_-OgmRGie5ZKZnXW7yZ2X_VAjsvY_IJYn41xFB-4yxjxzR5-r6rRU4LuE3eOIq5r8kQMURxhCNxevrUeRrolERPms664okx_V9Hf8io5zzGQDZV3EBfLQDOnVwF8jRet9_TmVLpqSbnGKnvTUuvbz9qQ6q275BELRrwL5s0t1KLZOXK7cxmNEF16lG2Sjqsfwi9gt0H8CfoaMz0uyulLyg1DwCklpqKGonxSbiL31TWvIXK4P9zZLFsFZw-VTjDzexLkLA"
-        />
-        <div class="flex flex-col min-w-0">
-          <div class="flex items-center gap-space-xs">
-            <span
-              class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight truncate"
-              >TRÍA</span
-            ><span
-              class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse flex-shrink-0"
-            ></span>
-          </div>
-          <span
-            class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant truncate"
-            >Inicio</span
-          >
-        </div>
-      </div>
-      <div class="flex items-center gap-space-sm flex-shrink-0">
-        <button
-          aria-label="Notificaciones"
-          class="w-11 h-11 rounded-full flex items-center justify-center bg-surface-container-high/60 backdrop-blur-md text-on-surface-variant hover:text-on-surface active:scale-95 transition-all"
-        >
-          <span class="material-symbols-outlined text-[20px]"
-            >notifications</span
-          >
-        </button>
-        <div
-          class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"
-        >
-          <span class="material-symbols-outlined text-on-primary text-[18px]"
-            >person</span
-          >
-        </div>
-      </div>
-    </div>
-  </header>
+  <app-top-bar subtitle="Detalle de Venta"></app-top-bar>
+
   <main
     class="flex-1 flex flex-col relative w-full pt-20 pb-32 bg-surface z-10"
   >
@@ -572,56 +520,5 @@
       </script>
     </div>
   </main>
-  <div class="fixed bottom-0 w-full z-50 pointer-events-none pb-safe">
-    <nav
-      class="pointer-events-auto mx-auto mb-4 px-3 w-[calc(100%-1.5rem)] max-w-md h-20 rounded-full bg-surface-container-lowest/85 backdrop-blur-xl shadow-[0_12px_32px_-8px_rgba(159,98,95,0.28)] flex items-center justify-between"
-      data-active-classes="text-primary bg-primary-container/25"
-    >
-      <a
-        aria-current="page"
-        class="flex flex-col items-center justify-center w-14 h-14 rounded-full transition-all duration-200 active:scale-95 text-primary bg-primary-container/25"
-        data-path="inicio"
-        href="#"
-        ><span class="material-symbols-outlined text-[22px]">dashboard</span
-        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
-          >Inicio</span
-        ></a
-      ><a
-        class="flex flex-col items-center justify-center w-14 h-14 rounded-full text-on-surface-variant hover:text-on-surface transition-all duration-200 active:scale-95"
-        data-path="inventario"
-        href="#"
-        ><span class="material-symbols-outlined text-[22px]">inventory_2</span
-        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
-          >Stock</span
-        ></a
-      >
-      <div class="relative -top-3">
-        <a
-          class="flex flex-col items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-secondary via-primary to-primary-container text-on-primary shadow-[0_8px_24px_rgba(254,180,176,0.35)] active:scale-95 transition-transform"
-          data-path="ventas"
-          href="#"
-          ><span class="material-symbols-outlined text-[24px]"
-            >shopping_bag</span
-          ></a
-        >
-      </div>
-      <a
-        class="flex flex-col items-center justify-center w-14 h-14 rounded-full text-on-surface-variant hover:text-on-surface transition-all duration-200 active:scale-95"
-        data-path="clientes"
-        href="#"
-        ><span class="material-symbols-outlined text-[22px]">group</span
-        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
-          >Clientes</span
-        ></a
-      ><a
-        class="flex flex-col items-center justify-center w-14 h-14 rounded-full text-on-surface-variant hover:text-on-surface transition-all duration-200 active:scale-95"
-        data-path="mas"
-        href="#"
-        ><span class="material-symbols-outlined text-[22px]">grid_view</span
-        ><span class="font-label-sm text-label-sm text-[10px] mt-0.5"
-          >Más</span
-        ></a
-      >
-    </nav>
-  </div>
+  <app-bottom-nav></app-bottom-nav>
 </section>

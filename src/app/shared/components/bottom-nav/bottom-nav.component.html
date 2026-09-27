@@ -1,0 +1,172 @@
+<div class="fixed bottom-0 w-full z-50 pointer-events-none pb-safe">
+  <!-- Backdrop al abrir el menú desplegable -->
+  <div
+    *ngIf="isMenuOpen"
+    class="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm pointer-events-auto transition-opacity"
+    (click)="closeMenu()"
+  ></div>
+
+  <!-- Menú flotante de opciones (Compras, Gastos, Reportes) -->
+  <div
+    *ngIf="isMenuOpen"
+    class="relative pointer-events-auto mx-auto mb-3 w-[calc(100%-2rem)] max-w-sm rounded-3xl bg-surface-container-lowest/95 backdrop-blur-2xl shadow-[0_16px_40px_-8px_rgba(159,98,95,0.35)] border border-outline-variant/30 p-3.5 z-50 flex flex-col gap-1.5 transition-all"
+  >
+    <div
+      class="px-3 py-1 flex items-center justify-between border-b border-outline-variant/20 mb-1"
+    >
+      <span
+        class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold"
+        >Más Módulos</span
+      >
+      <button
+        (click)="closeMenu()"
+        class="w-6 h-6 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors"
+      >
+        <span class="material-symbols-outlined text-[15px]">close</span>
+      </button>
+    </div>
+
+    <!-- Opción 1: Compras -->
+    <a
+      routerLink="/app/compras"
+      (click)="closeMenu()"
+      class="flex items-center gap-3.5 p-3 rounded-2xl hover:bg-surface-container-high/60 active:scale-[0.98] transition-all group"
+    >
+      <div
+        class="w-10 h-10 rounded-full bg-secondary-container/40 flex items-center justify-center text-secondary group-hover:scale-105 transition-transform flex-shrink-0"
+      >
+        <span class="material-symbols-outlined text-[20px]"
+          >local_shipping</span
+        >
+      </div>
+      <div class="flex flex-col min-w-0 flex-1">
+        <span
+          class="font-headline-sm text-body-md font-semibold text-on-surface"
+          >Compras</span
+        >
+        <span class="font-body-sm text-[12px] text-on-surface-variant truncate"
+          >Ingreso de lotes y pedidos de taller</span
+        >
+      </div>
+      <span
+        class="material-symbols-outlined text-outline text-[18px] group-hover:text-primary transition-colors"
+        >chevron_right</span
+      >
+    </a>
+
+    <!-- Opción 2: Gastos -->
+    <a
+      routerLink="/app/gastos"
+      (click)="closeMenu()"
+      class="flex items-center gap-3.5 p-3 rounded-2xl hover:bg-surface-container-high/60 active:scale-[0.98] transition-all group"
+    >
+      <div
+        class="w-10 h-10 rounded-full bg-primary-container/40 flex items-center justify-center text-primary group-hover:scale-105 transition-transform flex-shrink-0"
+      >
+        <span class="material-symbols-outlined text-[20px]">payments</span>
+      </div>
+      <div class="flex flex-col min-w-0 flex-1">
+        <span
+          class="font-headline-sm text-body-md font-semibold text-on-surface"
+          >Gastos</span
+        >
+        <span class="font-body-sm text-[12px] text-on-surface-variant truncate"
+          >Egresos operativos y caja menor</span
+        >
+      </div>
+      <span
+        class="material-symbols-outlined text-outline text-[18px] group-hover:text-primary transition-colors"
+        >chevron_right</span
+      >
+    </a>
+
+    <!-- Opción 3: Reportes -->
+    <a
+      routerLink="/app/reportes"
+      (click)="closeMenu()"
+      class="flex items-center gap-3.5 p-3 rounded-2xl hover:bg-surface-container-high/60 active:scale-[0.98] transition-all group"
+    >
+      <div
+        class="w-10 h-10 rounded-full bg-tertiary-container/40 flex items-center justify-center text-tertiary group-hover:scale-105 transition-transform flex-shrink-0"
+      >
+        <span class="material-symbols-outlined text-[20px]">bar_chart</span>
+      </div>
+      <div class="flex flex-col min-w-0 flex-1">
+        <span
+          class="font-headline-sm text-body-md font-semibold text-on-surface"
+          >Reportes</span
+        >
+        <span class="font-body-sm text-[12px] text-on-surface-variant truncate"
+          >Balance de ventas y estadísticas</span
+        >
+      </div>
+      <span
+        class="material-symbols-outlined text-outline text-[18px] group-hover:text-primary transition-colors"
+        >chevron_right</span
+      >
+    </a>
+  </div>
+
+  <nav
+    class="pointer-events-auto mx-auto mb-4 px-3 w-[calc(100%-1.5rem)] max-w-md h-20 rounded-full bg-surface-container-lowest/85 backdrop-blur-xl shadow-[0_12px_32px_-8px_rgba(159,98,95,0.28)] flex items-center justify-between"
+  >
+    <a
+      class="flex flex-col items-center justify-center w-14 h-14 rounded-full transition-all duration-200 active:scale-95"
+      routerLink="/app/inicio"
+      routerLinkActive="text-primary bg-primary-container/25"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [class.text-on-surface-variant]="true"
+      [class.hover:text-on-surface]="true"
+    >
+      <span class="material-symbols-outlined text-[22px]">dashboard</span>
+      <span class="font-label-sm text-label-sm text-[10px] mt-0.5">Inicio</span>
+    </a>
+    <a
+      class="flex flex-col items-center justify-center w-14 h-14 rounded-full transition-all duration-200 active:scale-95"
+      routerLink="/app/inventario"
+      routerLinkActive="text-primary bg-primary-container/25"
+      [class.text-on-surface-variant]="true"
+      [class.hover:text-on-surface]="true"
+    >
+      <span class="material-symbols-outlined text-[22px]">inventory_2</span>
+      <span class="font-label-sm text-label-sm text-[10px] mt-0.5">Stock</span>
+    </a>
+    <div class="relative -top-3">
+      <a
+        class="flex flex-col items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-secondary via-primary to-primary-container text-on-primary shadow-[0_8px_24px_rgba(254,180,176,0.35)] active:scale-95 transition-transform"
+        routerLink="/app/ventas/rapida"
+      >
+        <span class="material-symbols-outlined text-[24px]">shopping_bag</span>
+      </a>
+    </div>
+    <a
+      class="flex flex-col items-center justify-center w-14 h-14 rounded-full transition-all duration-200 active:scale-95"
+      routerLink="/app/clientes"
+      routerLinkActive="text-primary bg-primary-container/25"
+      [class.text-on-surface-variant]="true"
+      [class.hover:text-on-surface]="true"
+    >
+      <span class="material-symbols-outlined text-[22px]">group</span>
+      <span class="font-label-sm text-label-sm text-[10px] mt-0.5"
+        >Clientes</span
+      >
+    </a>
+    <button
+      type="button"
+      (click)="toggleMenu()"
+      class="flex flex-col items-center justify-center w-14 h-14 rounded-full transition-all duration-200 active:scale-95 cursor-pointer"
+      [ngClass]="
+        isMenuOpen || isMoreActive()
+          ? 'text-primary bg-primary-container/25'
+          : 'text-on-surface-variant hover:text-on-surface'
+      "
+    >
+      <span
+        class="material-symbols-outlined text-[22px] transition-transform duration-200"
+        [class.rotate-45]="isMenuOpen"
+        >grid_view</span
+      >
+      <span class="font-label-sm text-label-sm text-[10px] mt-0.5">Más</span>
+    </button>
+  </nav>
+</div>
