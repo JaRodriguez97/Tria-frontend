@@ -37,17 +37,23 @@ export class AuthComponent {
       this.isAuthenticating = true;
       this.loginError = false;
 
-      const pin = this.loginForm.get('password')?.value;
+      const cred = this.loginForm.get('credencial')?.value;
+      const pwd = this.loginForm.get('password')?.value;
 
-      // Simulate network request
-      setTimeout(() => {
-        const success = this.authService.login(pin);
-        if (success) this.router.navigate(['/app/inicio']);
-        else {
-          this.loginError = true;
+      this.authService.login(cred, pwd).subscribe({
+        next: (success) => {
           this.isAuthenticating = false;
-        }
-      }, 800);
+          if (success) {
+            this.router.navigate(['/app/inicio']);
+          } else {
+            this.loginError = true;
+          }
+        },
+        error: () => {
+          this.isAuthenticating = false;
+          this.loginError = true;
+        },
+      });
     }
   }
 }

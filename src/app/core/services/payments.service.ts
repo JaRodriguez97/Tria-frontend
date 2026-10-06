@@ -1,8 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { ApiService } from './api.service';
 
 export interface DebtAccount {
   id: string;
+  saleId?: string;
   orderId: string;
   clientName: string;
   clientPhone: string;
@@ -22,77 +24,27 @@ export interface DebtAccount {
   providedIn: 'root',
 })
 export class PaymentsService {
-  private initialDebts: DebtAccount[] = [
-    {
-      id: 'DEBT-001',
-      orderId: '0012',
-      clientName: 'María Rodríguez',
-      clientPhone: '300 123 4567',
-      // clientAvatar:
-      // 'https://lh3.googleusercontent.com/aida-public/AB6AXuAFKVn21WVNb9BIWbo9jh9zg3zN0B0QtC6O2Sff7x_XQIw8JU7JA8XMiAcO-9lt6UxdwFewnPHq4ARKnf80KXz1CvhI-eBYD2dkLNQdZhg4SRjNccufqzMtxPpFRq0K6HMPZStv2cAyMoVQv--XCaQMlhGsQyTWtqNxgmSE6hGkJ12Miy1wJAMwkQL9dM-2Zbb7o2Ysl7sFgYyW7zOWy2h8IKiN43ADhc06tKHd3PcSMSXlZs8eVUHh',
-      itemsDescription: 'Vestido Seda & Perfume',
-      totalAmount: 120000,
-      paidAmount: 50000,
-      balance: 70000,
-      lastPaymentDate: '09 Sep',
-      dueDate: '12 Sep',
-      daysRemaining: 3,
-      type: 'partial',
-    },
-    {
-      id: 'DEBT-002',
-      orderId: '0015',
-      clientName: 'Valentina Gómez',
-      clientPhone: '312 987 6543',
-      initials: 'VG',
-      itemsDescription: 'Bralette Seda Blanco & Panty',
-      totalAmount: 130000,
-      paidAmount: 90000,
-      balance: 40000,
-      lastPaymentDate: '12 Sep',
-      dueDate: '19 Sep',
-      daysRemaining: 7,
-      type: 'partial',
-    },
-    {
-      id: 'DEBT-003',
-      orderId: '0018',
-      clientName: 'Camila Torres',
-      clientPhone: '320 456 7890',
-      initials: 'CT',
-      itemsDescription: 'Body Encaje Floral',
-      totalAmount: 150000,
-      paidAmount: 125000,
-      balance: 25000,
-      lastPaymentDate: '15 Sep',
-      dueDate: '20 Sep',
-      daysRemaining: 5,
-      type: 'partial',
-    },
-    {
-      id: 'DEBT-004',
-      orderId: '0021',
-      clientName: 'Sofía Vergara',
-      clientPhone: '301 555 1234',
-      initials: 'SV',
-      itemsDescription: 'Colección Seda Edición Limitada',
-      totalAmount: 350000,
-      paidAmount: 330000,
-      balance: 20000,
-      lastPaymentDate: '18 Sep',
-      dueDate: '30 Sep',
-      daysRemaining: 12,
-      type: 'full_credit',
-    },
-  ];
-
-  private debtsSubject = new BehaviorSubject<DebtAccount[]>(this.initialDebts);
+  private api = inject(ApiService);
+  private debtsSubject = new BehaviorSubject<DebtAccount[]>([]);
   debts$: Observable<DebtAccount[]> = this.debtsSubject.asObservable();
 
-  private totalCollectedMonthSubject = new BehaviorSubject<number>(1195000);
+  private totalCollectedMonthSubject = new BehaviorSubject<number>(0);
   totalCollectedMonth$ = this.totalCollectedMonthSubject.asObservable();
 
-  constructor() {}
+  constructor() {
+    this.refreshDebts();
+  }
+
+  refreshDebts(): void {
+    this.api.get<{ data: DebtAccount[] }>('/receivables').subscribe({
+      next: (res) => {
+        if (res?.data && res.data.length > 0) {
+          this.debtsSubject.next(res.data);
+        }
+      },
+      error: () => {},
+    });
+  }
 
   getDebts(): DebtAccount[] {
     return this.debtsSubject.value;
@@ -130,6 +82,21 @@ export class PaymentsService {
     this.totalCollectedMonthSubject.next(
       this.totalCollectedMonthSubject.value + effectiveAmount,
     );
+
+    // Enviar a la API del backend
+    const targetSaleId = item.saleId || item.orderId;
+    this.api.post<{ data: { newBalance: number; clientName: string } }>(
+      `/sales/${targetSaleId}/payments`,
+      { amount: effectiveAmount },
+    ).subscribe({
+      next: (res) => {
+        if (res?.data) {
+          item.balance = res.data.newBalance;
+          this.debtsSubject.next([...this.debtsSubject.value]);
+        }
+      },
+      error: () => {},
+    });
 
     return {
       success: true,

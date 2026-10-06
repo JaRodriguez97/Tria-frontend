@@ -26,7 +26,8 @@
             <div class="flex items-center gap-space-xs text-on-surface-variant">
               <span class="w-2 h-2 rounded-full bg-secondary-fixed-dim"></span>
               <p class="font-body-sm text-body-sm text-on-surface-variant">
-                48 Referencias · 142 Unidades
+                {{ totalRefs$ | async }} Referencias ·
+                {{ totalUnits$ | async }} Unidades
               </p>
             </div>
           </div>
@@ -66,266 +67,303 @@
           class="flex items-center gap-space-xs overflow-x-auto no-scrollbar py-space-xs -mx-margin-mobile px-margin-mobile"
         >
           <button
-            class="status-chip active flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-primary-container/30 text-primary font-label-md text-label-md whitespace-nowrap active:scale-95 transition-all duration-150"
-            data-filter="all"
+            class="status-chip flex items-center gap-1.5 px-space-md py-1.5 rounded-full font-label-md text-label-md whitespace-nowrap active:scale-95 transition-all duration-150"
+            [ngClass]="
+              (selectedStockFilter$ | async) === 'all'
+                ? 'bg-primary-container/30 text-primary active'
+                : 'bg-surface-container-high/40 text-on-surface-variant hover:text-on-surface'
+            "
+            (click)="setStockFilter('all')"
             type="button"
           >
             <span>Todos</span>
             <span
               class="text-on-surface-variant text-[11px] font-medium bg-surface-container-highest/60 px-1.5 py-0.5 rounded-full"
-              >48</span
+              >{{ countAll$ | async }}</span
             >
           </button>
           <button
-            class="status-chip flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-surface-container-high/40 text-on-surface-variant hover:text-on-surface font-label-md text-label-md whitespace-nowrap active:scale-95 transition-all duration-150"
-            data-filter="available"
+            class="status-chip flex items-center gap-1.5 px-space-md py-1.5 rounded-full font-label-md text-label-md whitespace-nowrap active:scale-95 transition-all duration-150"
+            [ngClass]="
+              (selectedStockFilter$ | async) === 'available'
+                ? 'bg-primary-container/30 text-primary active'
+                : 'bg-surface-container-high/40 text-on-surface-variant hover:text-on-surface'
+            "
+            (click)="setStockFilter('available')"
             type="button"
           >
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
             <span>Disponibles</span>
-            <span class="text-[11px] font-medium opacity-70">42</span>
+            <span class="text-[11px] font-medium opacity-70">{{
+              countAvailable$ | async
+            }}</span>
           </button>
           <button
-            class="status-chip flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-surface-container-high/40 text-on-surface-variant hover:text-on-surface font-label-md text-label-md whitespace-nowrap active:scale-95 transition-all duration-150"
-            data-filter="low"
+            class="status-chip flex items-center gap-1.5 px-space-md py-1.5 rounded-full font-label-md text-label-md whitespace-nowrap active:scale-95 transition-all duration-150"
+            [ngClass]="
+              (selectedStockFilter$ | async) === 'low'
+                ? 'bg-primary-container/30 text-primary active'
+                : 'bg-surface-container-high/40 text-on-surface-variant hover:text-on-surface'
+            "
+            (click)="setStockFilter('low')"
             type="button"
           >
             <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
             <span>Stock Bajo</span>
-            <span class="text-[11px] font-medium opacity-70">4</span>
+            <span class="text-[11px] font-medium opacity-70">{{
+              countLow$ | async
+            }}</span>
           </button>
           <button
-            class="status-chip flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-surface-container-high/40 text-on-surface-variant hover:text-on-surface font-label-md text-label-md whitespace-nowrap active:scale-95 transition-all duration-150"
-            data-filter="out"
+            class="status-chip flex items-center gap-1.5 px-space-md py-1.5 rounded-full font-label-md text-label-md whitespace-nowrap active:scale-95 transition-all duration-150"
+            [ngClass]="
+              (selectedStockFilter$ | async) === 'out'
+                ? 'bg-primary-container/30 text-primary active'
+                : 'bg-surface-container-high/40 text-on-surface-variant hover:text-on-surface'
+            "
+            (click)="setStockFilter('out')"
             type="button"
           >
             <span class="w-1.5 h-1.5 rounded-full bg-error"></span>
             <span>Agotados</span>
-            <span class="text-[11px] font-medium opacity-70">2</span>
+            <span class="text-[11px] font-medium opacity-70">{{
+              countOut$ | async
+            }}</span>
           </button>
         </div>
         <div
           class="flex flex-col gap-space-sm p-space-md rounded-lg bg-surface-container-low/70 backdrop-blur-xl"
         >
-          <div
-            class="grid grid-cols-3 gap-space-xs p-1 rounded-full bg-surface-container-lowest/80"
-          >
-            <button
-              class="cat-pill active flex items-center justify-center gap-1.5 py-2 px-space-xs rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md font-medium transition-all duration-200"
-              data-cat="beauty"
-              type="button"
+          @if ((universes$ | async)?.length) {
+            <div
+              class="grid gap-space-xs p-1 rounded-full bg-surface-container-lowest/80"
+              [ngStyle]="{'grid-template-columns': 'repeat(' + ((universes$ | async)?.length || 1) + ', minmax(0, 1fr))'}"
             >
-              <span class="material-symbols-outlined text-[16px]">brush</span>
-              <span class="tracking-wide">BEAUTY</span>
-            </button>
-            <button
-              class="cat-pill flex items-center justify-center gap-1.5 py-2 px-space-xs rounded-full text-on-surface-variant hover:text-on-surface font-label-md text-label-md font-medium transition-all duration-200"
-              data-cat="fashion"
-              type="button"
-            >
-              <span class="material-symbols-outlined text-[16px]">styler</span>
-              <span class="tracking-wide">FASHION</span>
-            </button>
-            <button
-              class="cat-pill flex items-center justify-center gap-1.5 py-2 px-space-xs rounded-full text-on-surface-variant hover:text-on-surface font-label-md text-label-md font-medium transition-all duration-200"
-              data-cat="lingerie"
-              type="button"
-            >
-              <span class="material-symbols-outlined text-[16px]"
-                >favorite</span
-              >
-              <span class="tracking-wide">LINGERIE</span>
-            </button>
-          </div>
+              @for (universe of universes$ | async; track universe.id) {
+                <button
+                  [ngClass]="
+                    (selectedUniverse$ | async) === universe.id
+                      ? 'bg-primary-container text-on-primary-container font-medium'
+                      : 'text-on-surface-variant hover:text-on-surface'
+                  "
+                  (click)="toggleUniverse(universe.id)"
+                  class="cat-pill flex items-center justify-center gap-1.5 py-2 px-space-xs rounded-full font-label-md text-label-md transition-all duration-200"
+                  type="button"
+                >
+                  <span class="material-symbols-outlined text-[16px]">{{
+                    universe.id === 'belleza' ? 'brush' :
+                    universe.id === 'moda' ? 'styler' :
+                    universe.id === 'lenceria' ? 'favorite' : 'category'
+                  }}</span>
+                  <span class="tracking-wide uppercase">{{ universe.name }}</span>
+                </button>
+              }
+            </div>
+          } @else {
+            <div class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-lowest/80 text-on-surface-variant text-sm">
+              <span class="material-symbols-outlined text-[16px]">info</span>
+              <span>No hay universos configurados.</span>
+            </div>
+          }
           <div class="overflow-x-auto no-scrollbar pt-space-xs">
             <div class="flex items-center gap-space-xs" id="subcatBeauty">
               <span
-                class="px-space-sm py-1 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm whitespace-nowrap"
-                >Todas (16)</span
+                class="px-space-sm py-1 rounded-full font-label-sm text-label-sm whitespace-nowrap cursor-pointer transition-colors"
+                [ngClass]="
+                  (selectedUniverse$ | async) === 'all'
+                    ? 'bg-surface-container-high text-primary'
+                    : 'bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface'
+                "
+                (click)="setUniverse('all')"
+                >Todas</span
               >
               <span
-                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
-                >Perfumes</span
-              >
-              <span
-                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
-                >Maquillaje</span
-              >
-              <span
-                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
-                >Cuidado Facial</span
-              >
-              <span
-                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
-                >Uñas</span
-              >
-              <span
-                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
-                >Accesorios</span
-              >
-            </div>
-            <div class="hidden items-center gap-space-xs" id="subcatFashion">
-              <span
-                class="px-space-sm py-1 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm whitespace-nowrap"
-                >Todas (18)</span
-              >
-              <span
-                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
-                >Vestidos</span
-              >
-              <span
-                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
-                >Blusas</span
-              >
-              <span
-                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
-                >Tops</span
-              >
-              <span
-                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
-                >Faldas</span
-              >
-              <span
-                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
-                >Pantalones</span
-              >
-              <span
-                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
-                >Jeans</span
-              >
-              <span
-                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
-                >Bodys</span
-              >
-            </div>
-            <div class="hidden items-center gap-space-xs" id="subcatLingerie">
-              <span
-                class="px-space-sm py-1 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm whitespace-nowrap"
-                >Todas (14)</span
-              >
-              <span
-                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
-                >Conjuntos</span
-              >
-              <span
-                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
-                >Bodys Encaje</span
-              >
-              <span
-                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
-                >Brasieres</span
-              >
-              <span
-                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
-                >Panties</span
-              >
-              <span
-                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
-                >Baby Dolls</span
-              >
-              <span
-                class="px-space-sm py-1 rounded-full bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap cursor-pointer"
-                >Pijamas Satén</span
+                *ngFor="let cat of uniqueCategories$ | async"
+                class="px-space-sm py-1 rounded-full font-label-sm text-label-sm whitespace-nowrap cursor-pointer transition-colors"
+                [ngClass]="
+                  (selectedUniverse$ | async)?.toLowerCase() ===
+                  cat.toLowerCase()
+                    ? 'bg-surface-container-high text-primary'
+                    : 'bg-surface-container-lowest/40 text-on-surface-variant hover:text-on-surface'
+                "
+                (click)="setUniverse(cat.toLowerCase())"
+                >{{ cat }}</span
               >
             </div>
           </div>
         </div>
         <div class="flex flex-col gap-y-space-md">
           @for (product of products$ | async; track product.id) {
-          <div
-            class="flex flex-col p-space-md rounded-lg bg-surface-container-low/75 backdrop-blur-xl shadow-md gap-space-md transition-all hover:bg-surface-container-low"
-            [ngClass]="{'opacity-75 grayscale': product.stock === 0}"
-          >
-            <div class="flex items-start gap-space-md">
-              <div
-                class="relative w-20 h-20 rounded-DEFAULT overflow-hidden bg-surface-container-highest flex-shrink-0"
-              >
-                <div class="w-full h-full bg-secondary-container/50 text-on-secondary-container flex items-center justify-center">
-                  <span class="material-symbols-outlined text-[32px]">inventory_2</span>
-                </div>
-                <span
-                  class="absolute top-1 left-1 px-1.5 py-0.5 rounded-full bg-surface-container-lowest/80 text-[10px] font-label-sm text-primary tracking-widest uppercase font-semibold"
-                  >TRÍA</span
-                >
-              </div>
-              <div
-                class="flex-1 min-w-0 flex flex-col justify-between self-stretch"
-              >
-                <div class="flex items-start justify-between gap-space-xs">
-                  <div class="min-w-0">
-                    <span
-                      class="font-label-sm text-label-sm uppercase tracking-wider text-secondary-container bg-surface-container-highest/50 px-2 py-0.5 rounded-full"
-                      >{{ product.category }}</span
-                    >
-                    <h2
-                      class="font-headline-sm text-headline-sm text-on-surface font-semibold truncate mt-1"
-                    >
-                      {{ product.name }}
-                    </h2>
-                    <p class="font-body-sm text-body-sm text-outline">
-                      Cód #{{ product.sku }}
-                    </p>
-                  </div>
-                  <span
-                    class="px-2.5 py-1 rounded-full font-label-sm text-label-sm font-semibold tracking-wide flex items-center gap-1 flex-shrink-0"
-                    [ngClass]="{
-                      'bg-emerald-950/70 text-emerald-300': product.stock > 5,
-                      'bg-amber-950/70 text-amber-300': product.stock > 0 && product.stock <= 5,
-                      'bg-error-container text-error': product.stock === 0
-                    }"
-                  >
-                    <span
-                      class="w-1.5 h-1.5 rounded-full"
-                      [ngClass]="{
-                        'bg-emerald-400': product.stock > 5,
-                        'bg-amber-400 animate-pulse': product.stock > 0 && product.stock <= 5,
-                        'bg-error': product.stock === 0
-                      }"
-                    ></span>
-                    {{ product.stock === 0 ? 'Agotado' : product.stock + ' unids' }}
-                  </span>
-                </div>
-                <div class="flex items-baseline gap-space-sm pt-1">
-                  <span
-                    class="font-headline-sm text-headline-sm text-on-surface font-bold"
-                    >{{ product.price | currency:'COP':'symbol-narrow':'1.0-0' }}</span
-                  >
-                  <span class="font-body-sm text-body-sm text-outline"
-                    >Costo {{ product.price * 0.4 | currency:'COP':'symbol-narrow':'1.0-0' }}</span
-                  >
-                </div>
-              </div>
-            </div>
             <div
-              class="flex items-center justify-between pt-space-xs border-t-0 bg-surface-container-highest/30 p-space-sm rounded-DEFAULT"
+              class="flex flex-col p-space-md rounded-lg bg-surface-container-low/75 backdrop-blur-xl shadow-md gap-space-md transition-all hover:bg-surface-container-low"
+              [ngClass]="{ 'opacity-75 grayscale': product.stock === 0 }"
             >
-              <div class="flex items-center gap-space-xs">
-                <span
-                  class="material-symbols-outlined text-secondary text-[18px]"
-                  >trending_up</span
+              <div class="flex items-start gap-space-md">
+                <div
+                  class="relative w-20 h-20 rounded-DEFAULT overflow-hidden bg-surface-container-highest flex-shrink-0"
                 >
-                <span class="font-body-sm text-body-sm text-on-surface-variant"
-                  >Margen:
-                  <strong class="text-secondary">+{{ product.price * 0.6 | currency:'COP':'symbol-narrow':'1.0-0' }} (60%)</strong></span
+                  <img
+                    *ngIf="product.image"
+                    [src]="product.image"
+                    [alt]="product.name"
+                    (error)="product.image = ''"
+                    class="w-full h-full object-cover"
+                  />
+                  <div
+                    *ngIf="!product.image"
+                    class="w-full h-full bg-secondary-container/50 text-on-secondary-container flex items-center justify-center"
+                  >
+                    <span class="material-symbols-outlined text-[32px]"
+                      >inventory_2</span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="flex-1 min-w-0 flex flex-col justify-between self-stretch"
                 >
+                  <div class="flex items-start justify-between gap-space-xs">
+                    <div class="min-w-0">
+                      <span
+                        class="font-label-sm text-label-sm uppercase tracking-wider text-secondary-container bg-surface-container-highest/50 px-2 py-0.5 rounded-full"
+                        >{{ product.category }}</span
+                      >
+                      <h2
+                        class="font-headline-sm text-headline-sm text-on-surface font-semibold truncate mt-1"
+                      >
+                        {{ product.name }}
+                      </h2>
+                      <p class="font-body-sm text-body-sm text-outline">
+                        Cód #{{ product.sku }}
+                      </p>
+                    </div>
+                    <span
+                      class="px-2.5 py-1 rounded-full font-label-sm text-label-sm font-semibold tracking-wide flex items-center gap-1 flex-shrink-0"
+                      [ngClass]="{
+                        'bg-emerald-950/70 text-emerald-300': product.stock > 5,
+                        'bg-amber-950/70 text-amber-300':
+                          product.stock > 0 && product.stock <= 5,
+                        'bg-error-container text-error': product.stock === 0,
+                      }"
+                    >
+                      <span
+                        class="w-1.5 h-1.5 rounded-full"
+                        [ngClass]="{
+                          'bg-emerald-400': product.stock > 5,
+                          'bg-amber-400 animate-pulse':
+                            product.stock > 0 && product.stock <= 5,
+                          'bg-error': product.stock === 0,
+                        }"
+                      ></span>
+                      {{
+                        product.stock === 0
+                          ? "Agotado"
+                          : product.stock + " unids"
+                      }}
+                    </span>
+                  </div>
+                  <div class="flex items-baseline gap-space-sm pt-1">
+                    <span
+                      class="font-headline-sm text-headline-sm text-on-surface font-bold"
+                      >{{
+                        product.price
+                          | currency: "COP" : "symbol-narrow" : "1.0-0"
+                      }}</span
+                    >
+                    <span class="font-body-sm text-body-sm text-outline"
+                      >Costo
+                      {{
+                        product.price * 0.4
+                          | currency: "COP" : "symbol-narrow" : "1.0-0"
+                      }}</span
+                    >
+                  </div>
+                </div>
               </div>
-              <button
-                class="flex items-center gap-1 px-space-md py-1.5 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md active:scale-95 transition-transform"
-                type="button"
+              <div
+                class="flex items-center justify-between pt-space-xs border-t-0 bg-surface-container-highest/30 p-space-sm rounded-DEFAULT"
               >
-                <span class="material-symbols-outlined text-[16px]"
-                  >point_of_sale</span
-                >
-                <span>+ Vender</span>
-              </button>
+                <div class="flex items-center gap-space-xs">
+                  <span
+                    class="material-symbols-outlined text-secondary text-[18px]"
+                    >trending_up</span
+                  >
+                  <span
+                    class="font-body-sm text-body-sm text-on-surface-variant"
+                    >Margen:
+                    <strong class="text-secondary"
+                      >+{{
+                        product.price * 0.6
+                          | currency: "COP" : "symbol-narrow" : "1.0-0"
+                      }}
+                      (60%)</strong
+                    ></span
+                  >
+                </div>
+                @if (getItemQtyInDraft(product.id) === 0) {
+                  <button
+                    (click)="addProductToDraft(product)"
+                    [disabled]="product.stock === 0"
+                    class="flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md active:scale-95 transition-all disabled:opacity-40 disabled:cursor-not-allowed hover:bg-primary hover:text-on-primary shadow-sm"
+                    type="button"
+                  >
+                    <span class="material-symbols-outlined text-[16px]"
+                      >add_shopping_cart</span
+                    >
+                    <span>+ Agregar</span>
+                  </button>
+                } @else {
+                  <div
+                    class="flex items-center gap-1.5 bg-surface-container-highest/90 rounded-full px-1.5 py-1 border border-primary/40 shadow-inner"
+                  >
+                    <button
+                      (click)="decrementDraft(product.id)"
+                      type="button"
+                      class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface hover:text-primary flex items-center justify-center active:scale-90 transition-transform"
+                      title="Disminuir"
+                    >
+                      <span class="material-symbols-outlined text-[16px]"
+                        >remove</span
+                      >
+                    </button>
+                    <span
+                      class="font-label-md text-label-md font-bold text-primary px-2 min-w-[22px] text-center"
+                    >
+                      {{ getItemQtyInDraft(product.id) }}
+                    </span>
+                    <button
+                      (click)="incrementDraft(product)"
+                      [disabled]="
+                        getItemQtyInDraft(product.id) >= product.stock
+                      "
+                      type="button"
+                      class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center active:scale-90 transition-transform disabled:opacity-30 disabled:cursor-not-allowed"
+                      title="Aumentar"
+                    >
+                      <span class="material-symbols-outlined text-[16px]"
+                        >add</span
+                      >
+                    </button>
+                  </div>
+                }
+              </div>
             </div>
-          </div>
           } @empty {
-          <div class="flex flex-col items-center justify-center p-space-2xl rounded-lg bg-surface-container-low/50">
-            <span class="material-symbols-outlined text-[48px] text-outline mb-space-sm">inventory_2</span>
-            <p class="font-headline-sm text-headline-sm text-on-surface-variant">No se encontraron productos</p>
-            <p class="font-body-md text-body-md text-outline mt-1">Intenta con otra búsqueda o agrega uno nuevo.</p>
-          </div>
+            <div
+              class="flex flex-col items-center justify-center p-space-2xl rounded-lg bg-surface-container-low/50"
+            >
+              <span
+                class="material-symbols-outlined text-[48px] text-outline mb-space-sm"
+                >inventory_2</span
+              >
+              <p
+                class="font-headline-sm text-headline-sm text-on-surface-variant"
+              >
+                No se encontraron productos
+              </p>
+              <p class="font-body-md text-body-md text-outline mt-1">
+                Intenta con otra búsqueda o agrega uno nuevo.
+              </p>
+            </div>
           }
         </div>
         <div
@@ -383,72 +421,62 @@
         </div>
       </div>
     </div>
-    <script>
-      (function () {
-        const catButtons = document.querySelectorAll(".cat-pill");
-        const subcats = {
-          beauty: document.getElementById("subcatBeauty"),
-          fashion: document.getElementById("subcatFashion"),
-          lingerie: document.getElementById("subcatLingerie"),
-        };
 
-        catButtons.forEach((btn) => {
-          btn.addEventListener("click", () => {
-            catButtons.forEach((b) => {
-              b.classList.remove(
-                "active",
-                "bg-primary-container",
-                "text-on-primary-container",
-              );
-              b.classList.add("text-on-surface-variant");
-            });
-            btn.classList.add(
-              "active",
-              "bg-primary-container",
-              "text-on-primary-container",
-            );
-            btn.classList.remove("text-on-surface-variant");
-
-            const cat = btn.getAttribute("data-cat");
-            Object.keys(subcats).forEach((k) => {
-              if (k === cat) {
-                subcats[k].classList.remove("hidden");
-                subcats[k].classList.add("flex");
-              } else {
-                subcats[k].classList.add("hidden");
-                subcats[k].classList.remove("flex");
-              }
-            });
-          });
-        });
-
-        const statusChips = document.querySelectorAll(".status-chip");
-        statusChips.forEach((chip) => {
-          chip.addEventListener("click", () => {
-            statusChips.forEach((c) => {
-              c.classList.remove(
-                "active",
-                "bg-primary-container/30",
-                "text-primary",
-              );
-              c.classList.add(
-                "bg-surface-container-high/40",
-                "text-on-surface-variant",
-              );
-            });
-            chip.classList.remove(
-              "bg-surface-container-high/40",
-              "text-on-surface-variant",
-            );
-            chip.classList.add(
-              "active",
-              "bg-primary-container/30",
-              "text-primary",
-            );
-          });
-        });
-      })();
-    </script>
+    <!-- Barra Flotante de Venta Rápida (cuando hay productos seleccionados) -->
+    @if (draftCount$ | async; as draftCount) {
+      @if (draftCount > 0) {
+        <div
+          class="fixed bottom-24 left-4 right-4 max-w-lg mx-auto z-40 animate-fade-in-up"
+        >
+          <div
+            class="p-3.5 px-4 rounded-2xl bg-surface-container-highest/95 backdrop-blur-xl border border-primary/40 shadow-2xl flex items-center justify-between gap-3 text-on-surface ring-1 ring-primary/20"
+          >
+            <div class="flex items-center gap-3">
+              <div
+                class="relative w-10 h-10 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold"
+              >
+                <span class="material-symbols-outlined text-[20px]"
+                  >shopping_bag</span
+                >
+                <span
+                  class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-primary text-on-primary text-[10px] font-bold flex items-center justify-center shadow"
+                >
+                  {{ draftCount }}
+                </span>
+              </div>
+              <div>
+                <p
+                  class="font-label-md font-semibold text-primary leading-tight"
+                >
+                  {{ draftCount }}
+                  {{ draftCount === 1 ? "prenda lista" : "prendas listas" }}
+                </p>
+                <p
+                  class="font-body-sm text-on-surface-variant font-medium leading-tight"
+                >
+                  Total:
+                  {{
+                    draftTotal$
+                      | async
+                      | currency: "COP" : "symbol-narrow" : "1.0-0"
+                  }}
+                </p>
+              </div>
+            </div>
+            <button
+              (click)="goToQuickSale()"
+              type="button"
+              class="px-4 py-2.5 rounded-full bg-primary text-on-primary font-label-md font-medium flex items-center gap-1.5 shadow-lg shadow-primary/30 active:scale-95 transition-all hover:bg-primary-hover"
+            >
+              <span>Venta Rápida</span>
+              <span class="material-symbols-outlined text-[16px]"
+                >arrow_forward</span
+              >
+            </button>
+          </div>
+        </div>
+      }
+    }
   </main>
   <app-bottom-nav></app-bottom-nav>
 </section>

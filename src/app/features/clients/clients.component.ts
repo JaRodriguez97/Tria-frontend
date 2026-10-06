@@ -26,8 +26,6 @@ export class ClientsComponent implements OnInit {
   // New client form
   newClientName: string = '';
   newClientPhone: string = '';
-  newClientInitialDebt: number = 0;
-  newClientNote: string = '';
 
   constructor(public clientsService: ClientsService) {}
 
@@ -114,8 +112,6 @@ export class ClientsComponent implements OnInit {
   openNewClientModal(): void {
     this.newClientName = '';
     this.newClientPhone = '';
-    this.newClientInitialDebt = 0;
-    this.newClientNote = '';
     this.showNewClientModal = true;
   }
 
@@ -129,17 +125,17 @@ export class ClientsComponent implements OnInit {
       return;
     }
 
-    const debt = Number(this.newClientInitialDebt) || 0;
     this.clientsService.addClient({
       name: this.newClientName.trim(),
       phone: this.newClientPhone.trim(),
-      totalPurchases: debt,
+      totalPurchases: 0,
       totalPaid: 0,
-      balance: debt,
-      status: debt > 0 ? 'debt' : 'settled',
-      lastPurchase: this.newClientNote.trim() || 'Apertura de ficha',
+      balance: 0,
+      status: 'active',
+      lastPurchase: 'Apertura de ficha',
+    }).subscribe({
+      next: () => this.closeNewClientModal(),
+      error: () => alert('Error al crear la clienta.')
     });
-
-    this.closeNewClientModal();
   }
 }

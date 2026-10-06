@@ -274,13 +274,13 @@
       </div>
 
       <!-- Chips Subcategorías -->
-      <div class="flex flex-wrap gap-2 pt-1" id="subcat-container">
+      <div class="flex flex-wrap items-center gap-2 pt-1" id="subcat-container">
         @for (subcat of subcategories; track subcat) {
           <button
             [ngClass]="
               selectedSubcategory === subcat
                 ? 'bg-primary text-on-primary shadow-sm'
-                : 'bg-surface-container-high text-on-surface-variant'
+                : 'bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest'
             "
             class="subcat-chip px-4 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-wider active:scale-95 transition-all"
             (click)="setSubcategory(subcat)"
@@ -289,7 +289,49 @@
             {{ subcat }}
           </button>
         }
+
+        @if (!showNewCategoryInput) {
+          <button
+            (click)="showNewCategoryInput = true"
+            type="button"
+            class="px-3.5 py-1.5 rounded-full border border-dashed border-primary/60 text-primary hover:bg-primary/5 font-label-sm text-label-sm flex items-center gap-1 active:scale-95 transition-all"
+            title="Crear nueva categoría en este universo"
+          >
+            <span class="material-symbols-outlined text-[16px]">add</span>
+            <span>Nueva categoría</span>
+          </button>
+        }
       </div>
+
+      @if (showNewCategoryInput) {
+        <div class="flex items-center gap-2 p-2.5 rounded-xl bg-surface-container border border-primary/20 animate-fade-in mt-1">
+          <span class="material-symbols-outlined text-primary text-[18px]">category</span>
+          <input
+            [(ngModel)]="newCategoryName"
+            (keyup.enter)="saveNewCategory()"
+            placeholder="Ej. Salidas de Baño..."
+            class="flex-1 bg-transparent text-on-surface text-body-sm placeholder:text-outline outline-none"
+            [disabled]="isCreatingCategory"
+            autofocus
+          />
+          <button
+            (click)="saveNewCategory()"
+            [disabled]="!newCategoryName.trim() || isCreatingCategory"
+            type="button"
+            class="px-3 py-1 rounded-full bg-primary text-on-primary font-label-sm text-label-sm font-semibold hover:opacity-95 disabled:opacity-40 transition-opacity"
+          >
+            {{ isCreatingCategory ? 'Guardando...' : 'Crear' }}
+          </button>
+          <button
+            (click)="showNewCategoryInput = false; newCategoryName = ''"
+            [disabled]="isCreatingCategory"
+            type="button"
+            class="px-2.5 py-1 rounded-full text-on-surface-variant hover:bg-surface-container-high font-label-sm text-label-sm transition-colors"
+          >
+            Cancelar
+          </button>
+        </div>
+      }
     </section>
 
     <!-- BLOQUE 3: INFORMACIÓN COMERCIAL & CÁLCULOS -->

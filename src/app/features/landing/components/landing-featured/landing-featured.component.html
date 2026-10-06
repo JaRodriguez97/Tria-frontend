@@ -35,7 +35,7 @@
     <div
       class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-space-md lg:gap-space-md"
     >
-      @for (product of products; track product.id) {
+      @for (product of products$ | async; track product.id) {
         @if (!product.isHorizontal) {
           <!-- Card Vertical (Cards 1 a 7) -->
           <div
@@ -46,15 +46,21 @@
               [class]="product.aspectClass"
               class="relative w-full overflow-hidden bg-surface-container"
             >
-              <img
-                [alt]="product.alt"
-                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                [src]="product.image"
-                [width]="product.width"
-                [height]="product.height"
-                loading="lazy"
-                decoding="async"
-              />
+              @if (product.image) {
+                <img
+                  [alt]="product.alt"
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  [src]="product.image"
+                  [width]="product.width"
+                  [height]="product.height"
+                  loading="lazy"
+                  decoding="async"
+                />
+              } @else {
+                <div class="w-full h-full flex items-center justify-center bg-surface-variant text-on-surface-variant">
+                  <span class="material-symbols-outlined text-[48px]">inventory_2</span>
+                </div>
+              }
               <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
                 @for (badge of product.badges; track badge.text) {
                   <span
@@ -116,15 +122,21 @@
             <div
               class="relative w-full sm:w-1/2 aspect-square sm:aspect-auto overflow-hidden bg-surface-container"
             >
-              <img
-                [alt]="product.alt"
-                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                [src]="product.image"
-                [width]="product.width"
-                [height]="product.height"
-                loading="lazy"
-                decoding="async"
-              />
+              @if (product.image) {
+                <img
+                  [alt]="product.alt"
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  [src]="product.image"
+                  [width]="product.width"
+                  [height]="product.height"
+                  loading="lazy"
+                  decoding="async"
+                />
+              } @else {
+                <div class="w-full h-full flex items-center justify-center bg-surface-variant text-on-surface-variant">
+                  <span class="material-symbols-outlined text-[48px]">inventory_2</span>
+                </div>
+              }
               <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
                 @for (badge of product.badges; track badge.text) {
                   <span
@@ -180,6 +192,14 @@
             </div>
           </div>
         }
+      } @empty {
+        <div class="col-span-full py-12 text-center flex flex-col items-center">
+          <span class="material-symbols-outlined text-6xl text-outline mb-4">inventory_2</span>
+          <h3 class="font-headline-md text-headline-md text-on-surface">Cápsula en preparación</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant mt-2 max-w-md mx-auto">
+            Actualmente no hay productos disponibles en esta selección. Vuelve pronto para descubrir nuestras nuevas colecciones.
+          </p>
+        </div>
       }
     </div>
   </div>

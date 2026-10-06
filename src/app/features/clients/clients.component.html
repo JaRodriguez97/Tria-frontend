@@ -383,10 +383,10 @@
 
         <div class="flex flex-col gap-2">
           <h4 class="font-label-md text-label-md uppercase tracking-wider text-secondary font-semibold">
-            Historial de Adquisiciones ({{ selectedClientForHistory.history.length }})
+            Historial de Adquisiciones ({{ selectedClientForHistory.history?.length || 0 }})
           </h4>
           <div
-            *ngIf="selectedClientForHistory.history.length === 0"
+            *ngIf="!selectedClientForHistory.history || selectedClientForHistory.history.length === 0"
             class="p-4 rounded-lg bg-surface-container text-center text-on-surface-variant text-body-sm"
           >
             No hay compras registradas en este período.
@@ -463,25 +463,7 @@
             />
           </div>
 
-          <div class="flex flex-col gap-1">
-            <label class="font-label-sm text-label-sm text-on-surface-variant">Saldo o Cartera Inicial (Opcional)</label>
-            <input
-              [(ngModel)]="newClientInitialDebt"
-              placeholder="0"
-              type="number"
-              class="w-full h-11 px-4 rounded-full bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-md focus:outline-none focus:ring-1 focus:ring-primary"
-            />
-          </div>
 
-          <div class="flex flex-col gap-1">
-            <label class="font-label-sm text-label-sm text-on-surface-variant">Nota / Preferencia de Talla</label>
-            <input
-              [(ngModel)]="newClientNote"
-              placeholder="Ej. Talla 34B, prefiere tonos nude"
-              type="text"
-              class="w-full h-11 px-4 rounded-full bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-md focus:outline-none focus:ring-1 focus:ring-primary"
-            />
-          </div>
         </div>
 
         <div class="pt-3 flex items-center justify-end gap-2">

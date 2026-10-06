@@ -24,25 +24,41 @@ export class ProductCreationComponent {
   selectedUniverse = 'moda';
   selectedSubcategory = 'Vestidos';
 
+  showNewCategoryInput = false;
+  newCategoryName = '';
+  isCreatingCategory = false;
+
   get creationId(): string {
     const count = this.inventoryService.getProducts().length + 1;
     return count.toString().padStart(3, '0');
   }
 
   get subcategories(): string[] {
-    switch (this.selectedUniverse) {
-      case 'belleza':
-        return ['Maquillaje', 'Limpieza Facial', 'Perfumes'];
-      case 'moda':
-        return ['Vestidos', 'Bodys'];
-      case 'lenceria':
-        return ['Lencería', 'Tangas'];
-      default:
-        return [];
-    }
+    return this.inventoryService.getCategoriesByUniverse(this.selectedUniverse);
   }
 
-  constructor(private location: Location, private inventoryService: InventoryService) {}
+  saveNewCategory() {
+    const trimmed = this.newCategoryName.trim();
+    if (!trimmed) return;
+    this.isCreatingCategory = true;
+    this.inventoryService.createCategory(trimmed, this.selectedUniverse).subscribe({
+      next: (cat) => {
+        this.selectedSubcategory = cat.name;
+        this.newCategoryName = '';
+        this.showNewCategoryInput = false;
+        this.isCreatingCategory = false;
+        this.regenerateSKU();
+      },
+      error: () => {
+        this.isCreatingCategory = false;
+      },
+    });
+  }
+
+  constructor(
+    private location: Location,
+    private inventoryService: InventoryService,
+  ) {}
 
   goBack() {
     this.location.back();
@@ -67,14 +83,19 @@ export class ProductCreationComponent {
     return (
       this.name.trim().length > 0 &&
       this.sku.trim().length > 0 &&
-      this.price !== null && this.price > 0 &&
-      this.cost !== null && this.cost >= 0 &&
+      this.price !== null &&
+      this.price > 0 &&
+      this.cost !== null &&
+      this.cost >= 0 &&
       !this.inventoryService.checkSkuExists(this.sku)
     );
   }
 
   get isSkuDuplicate(): boolean {
-    return this.sku.trim().length > 0 && this.inventoryService.checkSkuExists(this.sku);
+    return (
+      this.sku.trim().length > 0 &&
+      this.inventoryService.checkSkuExists(this.sku)
+    );
   }
 
   get unitGain() {
@@ -82,11 +103,15 @@ export class ProductCreationComponent {
   }
 
   get margin() {
-    return (this.price || 0) > 0 ? ((this.unitGain / (this.price || 1)) * 100).toFixed(1) : '0.0';
+    return (this.price || 0) > 0
+      ? ((this.unitGain / (this.price || 1)) * 100).toFixed(1)
+      : '0.0';
   }
 
   get multiplier() {
-    return (this.cost || 0) > 0 ? ((this.price || 0) / (this.cost || 1)).toFixed(1) : '0.0';
+    return (this.cost || 0) > 0
+      ? ((this.price || 0) / (this.cost || 1)).toFixed(1)
+      : '0.0';
   }
 
   get totalCost() {
@@ -114,8 +139,8 @@ export class ProductCreationComponent {
   }
 
   regenerateSKU() {
-    const prefix = this.selectedSubcategory 
-      ? this.selectedSubcategory.substring(0, 3).toUpperCase() 
+    const prefix = this.selectedSubcategory
+      ? this.selectedSubcategory.substring(0, 3).toUpperCase()
       : 'TRA';
 
     const num = Math.floor(100 + Math.random() * 900);
@@ -126,19 +151,22 @@ export class ProductCreationComponent {
     if (!this.isValid) return;
 
     this.isSaving = true;
-    
+
     const newProduct = {
-      id: '', // will be set by service
       name: this.name,
       sku: this.sku,
       category: this.selectedSubcategory,
-      price: this.price,
+      universe: this.selectedUniverse as 'belleza' | 'moda' | 'lenceria',
+      price: this.price || 0,
       stock: this.currentStock,
-      status: this.currentStock > 0 ? 'active' : 'out_of_stock'
+      image: this.imagePreview || undefined,
+      status: (this.currentStock > 0 ? 'active' : 'inactive') as
+        | 'active'
+        | 'inactive',
     };
 
     setTimeout(() => {
-      this.inventoryService.addProduct(newProduct as any);
+      this.inventoryService.addProduct(newProduct);
       this.isSaving = false;
       this.isSaved = true;
       setTimeout(() => this.goBack(), 700);

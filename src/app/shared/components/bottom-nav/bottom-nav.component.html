@@ -133,10 +133,19 @@
     </a>
     <div class="relative -top-3">
       <a
-        class="flex flex-col items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-secondary via-primary to-primary-container text-on-primary shadow-[0_8px_24px_rgba(254,180,176,0.35)] active:scale-95 transition-transform"
+        class="relative flex flex-col items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-secondary via-primary to-primary-container text-on-primary shadow-[0_8px_24px_rgba(254,180,176,0.35)] active:scale-95 transition-transform"
         routerLink="/app/ventas/rapida"
       >
         <span class="material-symbols-outlined text-[24px]">shopping_bag</span>
+        @if (draftCount$ | async; as count) {
+          @if (count > 0) {
+            <span
+              class="absolute -top-1 -right-1 min-w-[20px] h-5 px-1 rounded-full bg-white text-primary text-[10px] font-bold flex items-center justify-center shadow-md border border-primary/20 animate-pulse"
+            >
+              {{ count }}
+            </span>
+          }
+        }
       </a>
     </div>
     <a

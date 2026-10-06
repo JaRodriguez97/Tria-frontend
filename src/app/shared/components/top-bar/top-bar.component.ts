@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -10,4 +10,11 @@ import { RouterLink } from '@angular/router';
 })
 export class TopBarComponent {
   @Input() subtitle: string = '';
+  @Input() showBackButton: boolean = false;
+
+  constructor(private location: Location) {}
+
+  goBack() {
+    this.location.back();
+  }
 }

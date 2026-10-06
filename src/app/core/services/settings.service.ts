@@ -1,5 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { ApiService } from './api.service';
+import { InventoryService } from './inventory.service';
+import { SalesService } from './sales.service';
 
 export interface BoutiqueSettings {
   storeName: string;
@@ -17,6 +20,10 @@ export interface BoutiqueSettings {
   providedIn: 'root',
 })
 export class SettingsService {
+  private api = inject(ApiService);
+  private inventory = inject(InventoryService);
+  private sales = inject(SalesService);
+
   private defaultSettings: BoutiqueSettings = {
     storeName: 'Administración General TRÍA',
     email: 'administracion@tria.co',
@@ -33,48 +40,95 @@ export class SettingsService {
   private settingsSubject = new BehaviorSubject<BoutiqueSettings>(this.defaultSettings);
   settings$: Observable<BoutiqueSettings> = this.settingsSubject.asObservable();
 
-  constructor() {}
+  constructor() {
+    this.refresh();
+  }
+
+  refresh(): void {
+    this.api.get<{ data: BoutiqueSettings }>('/settings').subscribe({
+      next: (res) => {
+        if (res?.data) {
+          this.settingsSubject.next({
+            ...this.defaultSettings,
+            ...res.data,
+            lastSyncDate: new Date(res.data.lastSyncDate || Date.now()),
+          });
+        }
+      },
+      error: () => {
+        // Fallback a configuración local
+      },
+    });
+  }
 
   getSettings(): BoutiqueSettings {
     return this.settingsSubject.value;
   }
 
   updateSettings(partial: Partial<BoutiqueSettings>): void {
-    this.settingsSubject.next({
+    const updated = {
       ...this.settingsSubject.value,
       ...partial,
+      lastSyncDate: new Date(),
+    };
+    this.settingsSubject.next(updated);
+
+    // Persistir en backend
+    this.api.patch<{ data: BoutiqueSettings }>('/settings', partial).subscribe({
+      next: (res) => {
+        if (res?.data) {
+          this.settingsSubject.next({
+            ...this.settingsSubject.value,
+            ...res.data,
+            lastSyncDate: new Date(res.data.lastSyncDate || Date.now()),
+          });
+        }
+      },
+      error: () => {
+        // Mantiene actualización local
+      },
     });
   }
 
   updateWhatsappTemplate(newTemplate: string): void {
-    this.settingsSubject.next({
-      ...this.settingsSubject.value,
-      whatsappTemplate: newTemplate,
-    });
+    this.updateSettings({ whatsappTemplate: newTemplate });
   }
 
   triggerCloudSync(): Observable<boolean> {
     return new Observable((subscriber) => {
-      setTimeout(() => {
-        this.settingsSubject.next({
-          ...this.settingsSubject.value,
-          lastSyncDate: new Date(),
-        });
-        subscriber.next(true);
-        subscriber.complete();
-      }, 1000);
+      this.api.get<{ data: BoutiqueSettings }>('/settings').subscribe({
+        next: (res) => {
+          if (res?.data) {
+            this.settingsSubject.next({
+              ...this.settingsSubject.value,
+              ...res.data,
+              lastSyncDate: new Date(),
+            });
+          }
+          subscriber.next(true);
+          subscriber.complete();
+        },
+        error: () => {
+          this.settingsSubject.next({
+            ...this.settingsSubject.value,
+            lastSyncDate: new Date(),
+          });
+          subscriber.next(true);
+          subscriber.complete();
+        },
+      });
     });
   }
 
   downloadCatalogCSV(): void {
     if (typeof window === 'undefined') return;
-    const csvContent =
-      'SKU,Nombre,Categoría,Precio_COP,Stock,Estado\n' +
-      'LNC-001,Conjunto Lencería Encaje Negro,Conjuntos,120000,15,Activo\n' +
-      'BRL-002,Bralette Seda Blanco,Bralettes,85000,8,Activo\n' +
-      'PNT-003,Panty Tiro Alto Clásico,Panties,45000,24,Activo\n' +
-      'BDY-004,Body Encaje Floral,Bodys,150000,5,Activo\n' +
-      'PJM-005,Pijama Satín Dos Piezas,Pijamas,180000,12,Activo\n';
+    const products = this.inventory.getProducts();
+    let csvContent = 'SKU,Nombre,Categoría,Precio_COP,Stock,Estado\n';
+    products.forEach(p => {
+      // Usar comillas dobles para escapar comas en los nombres
+      const name = `"${p.name.replace(/"/g, '""')}"`;
+      csvContent += `${p.sku},${name},${p.category},${p.price},${p.stock},${p.status}\n`;
+    });
 
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
@@ -88,13 +142,13 @@ export class SettingsService {
 
   downloadLedgerCSV(): void {
     if (typeof window === 'undefined') return;
-    const csvContent =
-      'Orden,Clienta,Teléfono,Concepto,Total_COP,Abonado_COP,Saldo_COP,Estado\n' +
-      '0012,María Rodríguez,+57 300 123 4567,Vestido Seda & Perfume,120000,50000,70000,Pendiente\n' +
-      '0015,Valentina Gómez,+57 312 987 6543,Bralette Seda Blanco & Panty,130000,90000,40000,Pendiente\n' +
-      '0018,Camila Torres,+57 320 456 7890,Body Encaje Floral,150000,125000,25000,Pendiente\n' +
-      '0021,Sofía Vergara,+57 301 555 1234,Colección Seda Edición Limitada,350000,330000,20000,Pendiente\n' +
-      '0008,Isabella Restrepo,+57 310 888 9900,Pijama Satín Dos Piezas,180000,180000,0,Paz y Salvo\n';
+    const salesList = this.sales.getSales();
+    let csvContent = 'Orden,Clienta,Teléfono,Método,Total_COP,Abonado_COP,Saldo_COP\n';
+    salesList.forEach(s => {
+      const clientName = `"${(s.clientName || 'Ocasional').replace(/"/g, '""')}"`;
+      const phone = `"${(s.clientPhone || '').replace(/"/g, '""')}"`;
+      csvContent += `${s.id},${clientName},${phone},${s.paymentMethod},${s.total},${s.abono || 0},${s.pendingBalance || 0}\n`;
+    });
 
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);

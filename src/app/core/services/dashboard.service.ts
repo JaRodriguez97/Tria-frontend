@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { ApiService } from './api.service';
 
 export interface DashboardMetrics {
   totalSales: number;
@@ -42,6 +43,7 @@ export interface ActivityLog {
   providedIn: 'root'
 })
 export class DashboardService {
+  private api = inject(ApiService);
   private metricsSubject = new BehaviorSubject<DashboardMetrics>({
     totalSales: 1280000,
     salesGrowth: 14,
@@ -117,5 +119,33 @@ export class DashboardService {
   topProducts$ = this.topProductsSubject.asObservable();
   activityLog$ = this.activityLogSubject.asObservable();
 
-  constructor() {}
+  constructor() {
+    this.refresh();
+  }
+
+  refresh(period: 'today' | 'week' | 'month' | 'year' = 'today'): void {
+    this.api
+      .get<{
+        metrics: DashboardMetrics;
+        topProducts: TopProduct[];
+        activityLog: ActivityLog[];
+      }>(`/dashboard?period=${period}`)
+      .subscribe({
+        next: (res) => {
+          if (res?.metrics) {
+            this.metricsSubject.next(res.metrics);
+          }
+          if (res?.topProducts) {
+            this.topProductsSubject.next(res.topProducts);
+          }
+          if (res?.activityLog) {
+            this.activityLogSubject.next(res.activityLog);
+          }
+        },
+        error: () => {
+          // Mantener valores de contingencia / offline si la API no está disponible
+        },
+      });
+  }
 }
+
