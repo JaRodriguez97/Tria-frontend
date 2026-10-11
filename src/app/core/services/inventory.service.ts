@@ -18,6 +18,7 @@ export interface Product {
   stock: number;
   image?: string;
   status: 'active' | 'inactive';
+  description?: string;
 }
 
 export interface UniverseWithCategories {
@@ -175,15 +176,10 @@ export class InventoryService {
         this.isLoadingProducts = false;
         this.productsLoaded = true;
         if (res?.data) {
-          const uploadsUrl = environment.apiUrl.replace(/\/api$/, '/uploads/');
           const formattedData = res.data.map((p) => ({
             ...p,
-            image:
-              p.image &&
-              !p.image.startsWith('http') &&
-              !p.image.startsWith('data:')
-                ? uploadsUrl + p.image
-                : p.image,
+            sku: p.sku ? p.sku.replace(/^#+/, '') : '',
+            image: this.formatImageUrl(p.image),
           }));
           this.productsSubject.next(formattedData);
         }
@@ -202,16 +198,26 @@ export class InventoryService {
     return this.productsSubject.value.find((p) => p.id === id);
   }
 
-  addProduct(product: Omit<Product, 'id'> & { cost?: number }): void {
+  addProduct(
+    product: Omit<Product, 'id'> & { cost?: number },
+  ): Observable<{ data: Product }> {
     const matchedCategory = this.categoriesCache.find(
       (c) => c.name.toLowerCase() === product.category.toLowerCase(),
     );
 
-    if (matchedCategory) {
+    if (!matchedCategory) {
+      return new Observable((sub) =>
+        sub.error(new Error('Categoría no encontrada')),
+      );
+    }
+
+    const cleanSku = product.sku.trim().replace(/^#+/, '').toUpperCase();
+
+    return new Observable((subscriber) => {
       this.api
         .post<{ data: Product }>('/products', {
           name: product.name,
-          sku: product.sku,
+          sku: cleanSku,
           categoryId: matchedCategory.id,
           price: product.price,
           cost: product.cost ?? Math.round(product.price * 0.5),
@@ -221,15 +227,112 @@ export class InventoryService {
         .subscribe({
           next: (res) => {
             if (res?.data) {
+              const newProduct = {
+                ...res.data,
+                sku: res.data.sku ? res.data.sku.replace(/^#+/, '') : cleanSku,
+                image: this.formatImageUrl(res.data.image),
+              };
               const currentProducts = this.productsSubject.value;
-              this.productsSubject.next([...currentProducts, res.data]);
+              this.productsSubject.next([newProduct, ...currentProducts]);
+              subscriber.next(res);
+              subscriber.complete();
             }
           },
           error: (err) => {
             console.error('Error creando producto en BD:', err);
+            subscriber.error(err);
           },
         });
+    });
+  }
+
+  updateProduct(
+    id: string,
+    updates: {
+      name?: string;
+      sku?: string;
+      category?: string;
+      categoryId?: string;
+      price?: number;
+      cost?: number;
+      stock?: number;
+      description?: string;
+      image?: string;
+      imageBase64?: string;
+    },
+  ): Observable<Product> {
+    let categoryId = updates.categoryId;
+    if (!categoryId && updates.category) {
+      const matched = this.categoriesCache.find(
+        (c) => c.name.toLowerCase() === updates.category!.toLowerCase(),
+      );
+      if (matched) categoryId = matched.id;
     }
+
+    const cleanSku = updates.sku
+      ? updates.sku.trim().replace(/^#+/, '').toUpperCase()
+      : undefined;
+
+    return new Observable((subscriber) => {
+      this.api
+        .put<{ data: Product }>(`/products/${id}`, {
+          name: updates.name,
+          sku: cleanSku,
+          categoryId,
+          price: updates.price,
+          cost: updates.cost,
+          stock: updates.stock,
+          description: updates.description,
+          imageUrl:
+            updates.image && !updates.image.startsWith('data:')
+              ? updates.image
+              : undefined,
+          imageBase64:
+            updates.imageBase64 ||
+            (updates.image?.startsWith('data:') ? updates.image : undefined),
+        })
+        .subscribe({
+          next: (res) => {
+            if (res?.data) {
+              const updatedProduct = {
+                ...res.data,
+                sku: res.data.sku ? res.data.sku.replace(/^#+/, '') : (cleanSku || ''),
+                image: this.formatImageUrl(res.data.image),
+              };
+              const products = this.productsSubject.value.map((p) =>
+                p.id === id ? updatedProduct : p,
+              );
+              this.productsSubject.next(products);
+              subscriber.next(updatedProduct);
+              subscriber.complete();
+            }
+          },
+          error: (err) => {
+            console.error('Error actualizando producto:', err);
+            subscriber.error(err);
+          },
+        });
+    });
+  }
+
+  deleteProduct(id: string): Observable<{ success: boolean }> {
+    return new Observable((subscriber) => {
+      this.api
+        .delete<{ data: { success: boolean; id: string } }>(`/products/${id}`)
+        .subscribe({
+          next: () => {
+            // Eliminar reactivamente de la lista activa
+            const products = this.productsSubject.value.filter((p) => p.id !== id);
+            this.productsSubject.next(products);
+            subscriber.next({ success: true });
+            subscriber.complete();
+          },
+          error: (err) => {
+            console.error('Error eliminando producto:', err);
+            subscriber.error(err);
+          },
+        });
+    });
   }
 
   decrementStock(productId: string, quantity: number): boolean {
@@ -247,17 +350,39 @@ export class InventoryService {
   search(query: string): Product[] {
     const term = query.toLowerCase().trim();
     if (!term) return this.productsSubject.value;
+    const termClean = term.replace(/^#+/, '');
     return this.productsSubject.value.filter(
       (p) =>
         p.name.toLowerCase().includes(term) ||
-        p.sku.toLowerCase().includes(term) ||
+        (p.sku &&
+          (p.sku.toLowerCase().includes(term) ||
+            p.sku.toLowerCase().includes(termClean))) ||
         p.category.toLowerCase().includes(term),
     );
   }
 
   checkSkuExists(sku: string): boolean {
+    const clean = sku.trim().replace(/^#+/, '').toLowerCase();
+    if (!clean) return false;
     return this.productsSubject.value.some(
-      (p) => p.sku.toLowerCase() === sku.toLowerCase(),
+      (p) => (p.sku || '').toLowerCase().replace(/^#+/, '') === clean,
     );
+  }
+
+  private formatImageUrl(imagePath?: string): string | undefined {
+    if (!imagePath) return imagePath;
+    if (imagePath.startsWith('http') || imagePath.startsWith('data:'))
+      return imagePath;
+
+    // Si estamos en localhost, forzamos la ruta al backend explícitamente sin depender del entorno
+    if (
+      typeof window !== 'undefined' &&
+      window.location.origin.includes('localhost:4200')
+    ) {
+      return 'http://localhost:3000' + imagePath;
+    }
+
+    const baseUrl = environment.apiUrl.replace(/\/api$/, '');
+    return baseUrl + imagePath;
   }
 }

@@ -25,6 +25,9 @@ export interface FeaturedProduct {
   category: string;
   subCategoryTag?: string;
   title: string;
+  sku: string;
+  stock: number;
+  price?: number;
   description: string;
   waQuery: string;
   ctaText: string;
@@ -47,47 +50,51 @@ export class LandingFeaturedComponent implements OnInit {
     this.products$ = this.inventoryService.products$.pipe(
       map((products) => {
         const bentoLayouts = [
+          // Fila 1: 3 cards principales perfectamente equilibradas (4 + 4 + 4 = 12 columnas)
           {
-            colSpan: 'lg:col-span-5',
-            aspectClass: 'aspect-[4/5]',
+            colSpan: 'lg:col-span-4',
+            aspectClass: 'aspect-[3/4]',
             isHorizontal: false,
           },
           {
             colSpan: 'lg:col-span-4',
-            aspectClass: 'aspect-[4/5]',
+            aspectClass: 'aspect-[3/4]',
+            isHorizontal: false,
+          },
+          {
+            colSpan: 'lg:col-span-4',
+            aspectClass: 'aspect-[3/4]',
+            isHorizontal: false,
+          },
+          // Fila 2: 4 cards secundarias (3 + 3 + 3 + 3 = 12 columnas)
+          {
+            colSpan: 'lg:col-span-3',
+            aspectClass: 'aspect-[3/4]',
             isHorizontal: false,
           },
           {
             colSpan: 'lg:col-span-3',
-            aspectClass: 'aspect-[4/5]',
+            aspectClass: 'aspect-[3/4]',
             isHorizontal: false,
           },
           {
             colSpan: 'lg:col-span-3',
-            aspectClass: 'aspect-square',
+            aspectClass: 'aspect-[3/4]',
             isHorizontal: false,
           },
           {
             colSpan: 'lg:col-span-3',
-            aspectClass: 'aspect-square',
+            aspectClass: 'aspect-[3/4]',
             isHorizontal: false,
           },
-          {
-            colSpan: 'lg:col-span-3',
-            aspectClass: 'aspect-square',
-            isHorizontal: false,
-          },
-          {
-            colSpan: 'lg:col-span-3',
-            aspectClass: 'aspect-square',
-            isHorizontal: false,
-          },
+          // Fila 3: 2 cards panorámicas horizontales (6 + 6 = 12 columnas)
           { colSpan: 'lg:col-span-6', aspectClass: '', isHorizontal: true },
           { colSpan: 'lg:col-span-6', aspectClass: '', isHorizontal: true },
         ];
 
         return products.slice(0, 9).map((prod, index) => {
-          const layout = bentoLayouts[index] || bentoLayouts[3];
+          const layout = bentoLayouts[index] || bentoLayouts[0];
+          const cleanSku = prod.sku ? prod.sku.replace(/^#+/, '') : '';
           return {
             id: prod.id,
             colSpan: layout.colSpan,
@@ -101,14 +108,17 @@ export class LandingFeaturedComponent implements OnInit {
               {
                 text: prod.universe || 'Catálogo',
                 class:
-                  'bg-surface-container-lowest/90 backdrop-blur-md text-primary font-semibold',
+                  'bg-white/95 backdrop-blur-md text-primary font-semibold border border-white/40',
               },
             ],
             category: prod.category,
             title: prod.name,
-            description: `Ref: #${prod.sku} · ${prod.stock > 0 ? 'Stock Disponible' : 'Agotado'}`,
+            sku: cleanSku,
+            stock: prod.stock,
+            price: prod.price,
+            description: `Ref: #${cleanSku} · ${prod.stock > 0 ? 'Stock Disponible' : 'Agotado'}`,
             waQuery: encodeURIComponent(
-              `Hola TRÍA, deseo consultar la disponibilidad del producto ${prod.name}`,
+              `Hola TRÍA, deseo consultar la disponibilidad del producto ${prod.name} (Ref: #${cleanSku})`,
             ),
             ctaText: 'Consultar',
             ctaIcon: 'chat',

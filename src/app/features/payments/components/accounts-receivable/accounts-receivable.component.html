@@ -75,7 +75,7 @@
                 >
                 Riesgo controlado
               </span>
-              <span class="text-primary font-semibold">93.4% recuperable</span>
+              <span class="text-primary font-semibold">{{ recoveryRate }}% recuperable</span>
             </div>
           </div>
           <!-- Bento Tile 2: Total Cobrado Mes -->
@@ -103,9 +103,9 @@
                 class="flex items-center gap-1 mt-1 text-[11px] text-secondary"
               >
                 <span class="material-symbols-outlined text-[13px]"
-                  >arrow_upward</span
+                  >calendar_today</span
                 >
-                <span>+18% vs agosto</span>
+                <span>Mes en curso</span>
               </div>
             </div>
           </div>
@@ -164,7 +164,7 @@
             "
             class="px-4 py-2 rounded-full flex-shrink-0 active:scale-95 transition-all"
           >
-            Abono Parcial (3)
+            Abono Parcial ({{ partialDebtsCount }})
           </button>
           <button
             (click)="setFilter('unpaid')"
@@ -175,7 +175,7 @@
             "
             class="px-4 py-2 rounded-full flex-shrink-0 active:scale-95 transition-all"
           >
-            Fiado Total (1)
+            Fiado Total ({{ unpaidDebtsCount }})
           </button>
           <button
             (click)="setFilter('settled')"
@@ -186,7 +186,7 @@
             "
             class="px-4 py-2 rounded-full flex-shrink-0 active:scale-95 transition-all"
           >
-            Historial Pagadas
+            Historial Pagadas ({{ settledDebtsCount }})
           </button>
         </div>
 

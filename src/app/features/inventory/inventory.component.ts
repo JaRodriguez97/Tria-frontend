@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
-import { ReactiveFormsModule, FormControl } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule, FormControl } from '@angular/forms';
 import {
   InventoryService,
   Product,
@@ -17,6 +17,9 @@ import {
 } from 'rxjs';
 import { BottomNavComponent } from '../../shared/components/bottom-nav/bottom-nav.component';
 import { TopBarComponent } from '../../shared/components/top-bar/top-bar.component';
+import { ProductDetailModalComponent } from './components/product-detail-modal/product-detail-modal.component';
+import { ProductEditModalComponent } from './components/product-edit-modal/product-edit-modal.component';
+import { ProductDeleteModalComponent } from './components/product-delete-modal/product-delete-modal.component';
 
 @Component({
   selector: 'app-inventory',
@@ -25,8 +28,12 @@ import { TopBarComponent } from '../../shared/components/top-bar/top-bar.compone
     CommonModule,
     RouterLink,
     ReactiveFormsModule,
+    FormsModule,
     BottomNavComponent,
     TopBarComponent,
+    ProductDetailModalComponent,
+    ProductEditModalComponent,
+    ProductDeleteModalComponent,
   ],
   templateUrl: './inventory.component.html',
   styleUrl: './inventory.component.scss',
@@ -68,6 +75,11 @@ export class InventoryComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    if (typeof window !== 'undefined') {
+      this.isPrivateMode =
+        localStorage.getItem('tria_inventory_private_mode') === 'true';
+    }
+
     this.universes$ = this.inventoryService.universes$;
 
     this.uniqueCategories$ = this.inventoryService.products$.pipe(
@@ -158,10 +170,12 @@ export class InventoryComponent implements OnInit {
         }
         if (term) {
           const q = term.toLowerCase().trim();
+          const qClean = q.replace(/^#+/, '');
           result = result.filter(
             (p) =>
               p.name.toLowerCase().includes(q) ||
               p.sku.toLowerCase().includes(q) ||
+              p.sku.toLowerCase().includes(qClean) ||
               p.category.toLowerCase().includes(q),
           );
         }
@@ -209,5 +223,82 @@ export class InventoryComponent implements OnInit {
 
   goToQuickSale() {
     this.router.navigate(['/app/ventas/rapida']);
+  }
+
+  // Modo Discreto / Modo Vitrina (Ocultar costos y márgenes ante clientas)
+  isPrivateMode = false;
+
+  togglePrivateMode() {
+    this.isPrivateMode = !this.isPrivateMode;
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(
+        'tria_inventory_private_mode',
+        String(this.isPrivateMode),
+      );
+    }
+    this.showToast(
+      this.isPrivateMode
+        ? 'Modo Atelier: Costos y utilidades visibles para administración'
+        : 'Modo Vitrina: Costos y márgenes protegidos ante clientas',
+    );
+  }
+
+  // Estado de los Modales
+  selectedProduct: Product | null = null;
+  isDetailOpen = false;
+  isEditModalOpen = false;
+  isDeleteConfirmOpen = false;
+
+  // Notificaciones Toast
+  toastVisible = false;
+  toastMessage = '';
+
+  openProductDetail(product: Product) {
+    this.selectedProduct = product;
+    this.isDetailOpen = true;
+  }
+
+  closeProductDetail() {
+    this.isDetailOpen = false;
+    this.selectedProduct = null;
+  }
+
+  openEditModal(product: Product) {
+    this.selectedProduct = product;
+    this.isDetailOpen = false;
+    this.isEditModalOpen = true;
+  }
+
+  closeEditModal() {
+    this.isEditModalOpen = false;
+  }
+
+  onProductSaved(updated: Product) {
+    this.selectedProduct = updated;
+    this.closeEditModal();
+    this.showToast('¡Pieza actualizada con éxito en el catálogo!');
+  }
+
+  openDeleteConfirm(product: Product) {
+    this.selectedProduct = product;
+    this.isDeleteConfirmOpen = true;
+  }
+
+  closeDeleteConfirm() {
+    this.isDeleteConfirmOpen = false;
+  }
+
+  onProductDeleted(deleted: Product) {
+    this.closeDeleteConfirm();
+    this.closeProductDetail();
+    this.showToast('Pieza retirada del catálogo con éxito (baja segura)');
+  }
+
+  showToast(message: string) {
+    this.toastMessage = message;
+    this.toastVisible = true;
+    setTimeout(() => {
+      this.toastVisible = false;
+    }, 3200);
   }
 }

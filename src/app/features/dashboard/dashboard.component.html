@@ -3,7 +3,7 @@
   class="bg-surface font-body-md text-body-md text-on-surface min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-on-primary-container"
 >
   <app-top-bar subtitle="Inicio"></app-top-bar>
-  
+
   <main
     class="flex-1 flex flex-col relative w-full pt-20 pb-32 bg-surface z-10"
     *ngIf="metrics$ | async as metrics"
@@ -24,13 +24,13 @@
               Boutique Abierta
             </span>
             <span class="font-label-sm text-label-sm text-on-surface-variant"
-              >09 Sep 2024</span
+              >{{ currentDate | date:'dd MMM yyyy':'':'es-CO' }}</span
             >
           </div>
           <h1
             class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-tight truncate"
           >
-            Buenos días,
+            {{ greeting }},
             <span class="text-primary italic font-serif">TRÍA</span>
           </h1>
         </div>
@@ -54,26 +54,32 @@
           class="flex items-center gap-space-xs min-w-max p-1 bg-surface-container-low/70 backdrop-blur-xl rounded-full"
         >
           <button
-            class="px-4 py-1.5 rounded-full bg-gradient-to-r from-secondary-container via-primary-container to-primary/80 text-on-primary-container font-label-md text-label-md shadow-[0_2px_8px_rgba(159,98,95,0.35)] transition-all"
+            class="px-4 py-1.5 rounded-full font-label-md text-label-md transition-all active:scale-95"
+            [ngClass]="activePeriod === 'today' ? 'bg-gradient-to-r from-secondary-container via-primary-container to-primary/80 text-on-primary-container shadow-[0_2px_8px_rgba(159,98,95,0.35)]' : 'text-on-surface-variant hover:text-on-surface'"
+            (click)="setPeriod('today')"
           >
             Hoy
           </button>
           <button
-            class="px-4 py-1.5 rounded-full text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all active:scale-95"
+            class="px-4 py-1.5 rounded-full font-label-md text-label-md transition-all active:scale-95"
+            [ngClass]="activePeriod === 'week' ? 'bg-gradient-to-r from-secondary-container via-primary-container to-primary/80 text-on-primary-container shadow-[0_2px_8px_rgba(159,98,95,0.35)]' : 'text-on-surface-variant hover:text-on-surface'"
+            (click)="setPeriod('week')"
           >
             Esta semana
           </button>
           <button
-            class="px-4 py-1.5 rounded-full text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all active:scale-95"
+            class="px-4 py-1.5 rounded-full font-label-md text-label-md transition-all active:scale-95"
+            [ngClass]="activePeriod === 'month' ? 'bg-gradient-to-r from-secondary-container via-primary-container to-primary/80 text-on-primary-container shadow-[0_2px_8px_rgba(159,98,95,0.35)]' : 'text-on-surface-variant hover:text-on-surface'"
+            (click)="setPeriod('month')"
           >
             Este mes
           </button>
           <button
-            class="flex items-center gap-1 px-3 py-1.5 rounded-full text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all active:scale-95"
+            class="flex items-center gap-1 px-3 py-1.5 rounded-full font-label-md text-label-md transition-all active:scale-95"
+            [ngClass]="activePeriod === 'custom' ? 'bg-gradient-to-r from-secondary-container via-primary-container to-primary/80 text-on-primary-container shadow-[0_2px_8px_rgba(159,98,95,0.35)]' : 'text-on-surface-variant hover:text-on-surface'"
+            (click)="setPeriod('custom')"
           >
-            <span class="material-symbols-outlined text-[16px]"
-              >calendar_today</span
-            >
+            <span class="material-symbols-outlined text-[16px]">calendar_today</span>
             Personalizado
           </button>
         </div>
@@ -100,7 +106,10 @@
               <div class="flex items-baseline gap-2 mt-1">
                 <span
                   class="font-headline-xl-mobile text-headline-xl-mobile text-on-surface font-semibold tracking-tight"
-                  >{{ metrics.totalSales | currency:'COP':'symbol-narrow':'1.0-0' }}</span
+                  >{{
+                    metrics.totalSales
+                      | currency: "COP" : "symbol-narrow" : "1.0-0"
+                  }}</span
                 >
               </div>
             </div>
@@ -131,7 +140,10 @@
                 >
                 <span
                   class="font-body-lg text-body-lg font-semibold text-secondary-fixed"
-                  >{{ metrics.moneyCollected | currency:'COP':'symbol-narrow':'1.0-0' }}</span
+                  >{{
+                    metrics.moneyCollected
+                      | currency: "COP" : "symbol-narrow" : "1.0-0"
+                  }}</span
                 >
               </div>
             </div>
@@ -165,11 +177,18 @@
             <div>
               <span
                 class="font-headline-sm text-headline-sm font-semibold text-on-surface block"
-                >{{ metrics.grossMargin | currency:'COP':'symbol-narrow':'1.0-0' }}</span
+                >{{
+                  metrics.grossMargin
+                    | currency: "COP" : "symbol-narrow" : "1.0-0"
+                }}</span
               >
               <span
                 class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 block truncate"
-                >Costo: {{ metrics.totalCost | currency:'COP':'symbol-narrow':'1.0-0' }}</span
+                >Costo:
+                {{
+                  metrics.totalCost
+                    | currency: "COP" : "symbol-narrow" : "1.0-0"
+                }}</span
               >
             </div>
             <div
@@ -198,11 +217,17 @@
             <div>
               <span
                 class="font-headline-sm text-headline-sm font-semibold text-secondary-fixed block"
-                >{{ metrics.netProfit | currency:'COP':'symbol-narrow':'1.0-0' }}</span
+                >{{
+                  metrics.netProfit
+                    | currency: "COP" : "symbol-narrow" : "1.0-0"
+                }}</span
               >
               <span
                 class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 block truncate"
-                >Gastos: -{{ metrics.totalExpenses | currency:'COP':'symbol-narrow':'1.0-0' }}</span
+                >Gastos: -{{
+                  metrics.totalExpenses
+                    | currency: "COP" : "symbol-narrow" : "1.0-0"
+                }}</span
               >
             </div>
             <div class="mt-space-sm flex items-center justify-between">
@@ -231,11 +256,15 @@
               >
               <span
                 class="font-headline-sm text-headline-sm text-on-surface font-semibold truncate"
-                >{{ metrics.pendingCollection | currency:'COP':'symbol-narrow':'1.0-0' }}</span
+                >{{
+                  metrics.pendingCollection
+                    | currency: "COP" : "symbol-narrow" : "1.0-0"
+                }}</span
               >
               <span
                 class="font-body-sm text-body-sm text-on-surface-variant truncate"
-                >{{ metrics.pendingClientsCount }} clientas con saldo activo</span
+                >{{ metrics.pendingClientsCount }} clientas con saldo
+                activo</span
               >
             </div>
           </div>
@@ -263,36 +292,31 @@
         <!-- Sub-Acciones Horizontales -->
         <div class="grid grid-cols-2 gap-space-xs">
           <button
+            routerLink="/app/inventario/nuevo"
             class="h-12 rounded-full bg-surface-container-high/50 hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center justify-center gap-2 backdrop-blur-md active:scale-95 transition-all"
           >
-            <span class="material-symbols-outlined text-[18px] text-primary"
-              >add_box</span
-            >
+            <span class="material-symbols-outlined text-[18px] text-primary">add_box</span>
             Nuevo Producto
           </button>
           <button
+            routerLink="/app/compras/ingreso"
             class="h-12 rounded-full bg-surface-container-high/50 hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center justify-center gap-2 backdrop-blur-md active:scale-95 transition-all"
           >
-            <span class="material-symbols-outlined text-[18px] text-secondary"
-              >post_add</span
-            >
+            <span class="material-symbols-outlined text-[18px] text-secondary">post_add</span>
             Ingresar Stock
           </button>
           <button
+            routerLink="/app/gastos"
             class="h-12 rounded-full bg-surface-container-high/50 hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center justify-center gap-2 backdrop-blur-md active:scale-95 transition-all"
           >
-            <span
-              class="material-symbols-outlined text-[18px] text-on-surface-variant"
-              >receipt_long</span
-            >
+            <span class="material-symbols-outlined text-[18px] text-on-surface-variant">receipt_long</span>
             Registrar Gasto
           </button>
           <button
+            routerLink="/app/pagos/cuentas-por-cobrar"
             class="h-12 rounded-full bg-surface-container-high/50 hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center justify-center gap-2 backdrop-blur-md active:scale-95 transition-all"
           >
-            <span class="material-symbols-outlined text-[18px] text-primary"
-              >contact_phone</span
-            >
+            <span class="material-symbols-outlined text-[18px] text-primary">contact_phone</span>
             Libreta Cuentas
           </button>
         </div>
@@ -312,31 +336,27 @@
           </div>
           <span
             class="font-label-sm text-label-sm text-secondary-fixed bg-secondary-container/40 px-2 py-0.5 rounded-full"
-            >4 pendientes</span
+            >{{ metrics.pendingClientsCount }} pendientes</span
           >
         </div>
-        <!-- Card Preview de Cobro Inmediato (María Rodríguez) -->
-        <div
+        
+        <div *ngIf="priorityDebt$ | async as priorityDebt; else noDebts"
           class="rounded-lg bg-surface-container/70 backdrop-blur-xl p-space-md flex flex-col gap-space-sm shadow-md shadow-surface-container-lowest/50"
         >
           <div class="flex items-start justify-between gap-space-sm">
             <div class="flex items-center gap-3">
               <div
-                class="relative w-11 h-11 rounded-full overflow-hidden bg-surface-container-highest flex-shrink-0"
+                class="relative w-11 h-11 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant flex-shrink-0"
               >
-                <img
-                  class="w-full h-full object-cover"
-                  data-alt="High-fashion close portrait of a stylish woman with soft lighting and minimalist aesthetic, dark warm tone background reflecting haute couture luxury mood"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUaifabtt8D4fFqthznxP4p8rGw4BhF5su7DtUfUn_wJLTpKDzMRVGMs8AKrOUdkUp-220tgNJC2MHSCy6zTeB8DvhjTBmRegfzjP8_cvpfNQO-HSU53rM5YueTesM3WYqCkSGBQI6ffwgsQJhU_C8nEKqFA8B2M3u8jxxkKHHGtbfgPb3C0gOnlQLlWQNP30kSDHP44ZgrjWphRcyZZ6DqhFUltrSEOBPuZqIM3SKCMVvPqJMvfEc"
-                />
+                <span class="font-headline-sm text-headline-sm uppercase">{{ priorityDebt.clientName.substring(0, 2) }}</span>
               </div>
               <div class="flex flex-col min-w-0">
                 <span
                   class="font-body-lg text-body-lg font-semibold text-on-surface truncate"
-                  >María Rodríguez</span
+                  >{{ priorityDebt.clientName }}</span
                 >
                 <span class="font-body-sm text-body-sm text-on-surface-variant"
-                  >Último abono: Hace 3 días</span
+                  >Último pago: {{ priorityDebt.lastPaymentDate }}</span
                 >
               </div>
             </div>
@@ -347,7 +367,7 @@
               >
               <span
                 class="block font-headline-sm text-headline-sm text-secondary-fixed font-semibold"
-                >$70.000</span
+                >{{ priorityDebt.balance | currency: "COP" : "symbol-narrow" : "1.0-0" }}</span
               >
             </div>
           </div>
@@ -359,19 +379,19 @@
                 >inventory_2</span
               >
               <span class="font-body-sm text-body-sm truncate"
-                >Vestido Satinado Noir (Talla M)</span
+                >{{ priorityDebt.itemsDescription }}</span
               >
             </div>
             <span
               class="inline-flex px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm"
             >
-              Abonado $30.000
+              Abonado {{ priorityDebt.paidAmount | currency: "COP" : "symbol-narrow" : "1.0-0" }}
             </span>
           </div>
           <div class="grid grid-cols-2 gap-space-xs mt-1">
             <a
               class="h-11 rounded-full bg-surface-container-highest hover:bg-surface-bright text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors active:scale-95"
-              href="https://wa.me/?text=Hola%20Mar%C3%ADa,%20te%20saludamos%20de%20TR%C3%8DA%20para%20recordarte%20tu%20saldo%20pendiente..."
+              [href]="getWhatsAppLink(priorityDebt)"
               target="_blank"
             >
               <span class="material-symbols-outlined text-[18px] text-[#25D366]"
@@ -380,15 +400,23 @@
               Recordar WhatsApp
             </a>
             <button
+              routerLink="/app/pagos/cuentas-por-cobrar"
               class="h-11 rounded-full bg-gradient-to-r from-secondary-container to-primary-container text-on-primary-container font-label-md text-label-md flex items-center justify-center gap-1.5 active:scale-95 transition-all"
             >
               <span class="material-symbols-outlined text-[18px]"
                 >add_card</span
               >
-              Registrar Abono
+              Cobrar
             </button>
           </div>
         </div>
+
+        <ng-template #noDebts>
+          <div class="p-space-lg rounded-lg bg-surface-container/30 text-center text-on-surface-variant border border-dashed border-outline-variant">
+            <span class="material-symbols-outlined text-[24px] mb-2 opacity-50">task_alt</span>
+            <p class="font-body-sm text-body-sm">No hay cobros prioritarios activos.</p>
+          </div>
+        </ng-template>
       </section>
       <!-- Top Productos Vendidos -->
       <section class="flex flex-col gap-space-sm">
@@ -428,7 +456,8 @@
                   class="font-body-md text-body-md font-medium text-on-surface truncate"
                   >{{ product.name }}</span
                 >
-                <span class="font-body-sm text-body-sm text-on-surface-variant"
+                <span
+                  class="font-body-sm text-body-sm text-on-surface-variant"
                   >{{ product.description }}</span
                 >
               </div>
@@ -461,12 +490,6 @@
               Inventario Global
             </h2>
           </div>
-          <span
-            class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-container/50 text-secondary font-label-sm text-label-sm"
-          >
-            <span class="material-symbols-outlined text-[13px]">warning</span>
-            2 en stock crítico
-          </span>
         </div>
         <div class="grid grid-cols-3 gap-2 py-space-xs text-center">
           <div
@@ -491,7 +514,10 @@
             >
             <span
               class="font-headline-sm text-headline-sm font-semibold text-on-surface mt-0.5"
-              >{{ metrics.globalInventory.totalCostValue | currency:'COP':'symbol-narrow':'1.0-0' }}</span
+              >{{
+                metrics.globalInventory.totalCostValue
+                  | currency: "COP" : "symbol-narrow" : "1.0-0"
+              }}</span
             >
             <span class="font-label-sm text-label-sm text-on-surface-variant"
               >Inversión</span
@@ -505,7 +531,10 @@
             >
             <span
               class="font-headline-sm text-headline-sm font-semibold text-secondary-fixed mt-0.5"
-              >{{ metrics.globalInventory.potentialValue | currency:'COP':'symbol-narrow':'1.0-0' }}</span
+              >{{
+                metrics.globalInventory.potentialValue
+                  | currency: "COP" : "symbol-narrow" : "1.0-0"
+              }}</span
             >
             <span class="font-label-sm text-label-sm text-secondary"
               >Estimado</span
@@ -536,18 +565,32 @@
           class="relative pl-6 space-y-4 before:absolute before:left-2 before:top-2 before:bottom-2 before:w-[2px] before:bg-surface-container-highest"
         >
           <!-- Evento iterativo -->
-          <div class="relative flex flex-col" *ngFor="let log of activityLog$ | async">
+          <div
+            class="relative flex flex-col"
+            *ngFor="let log of activityLog$ | async"
+          >
             <span
               class="absolute -left-6 top-1 w-3 h-3 rounded-full ring-4 ring-surface"
-              [ngClass]="{'bg-primary': log.type === 'sale', 'bg-secondary': log.type === 'payment', 'bg-on-surface-variant': log.type === 'expense'}"
+              [ngClass]="{
+                'bg-primary': log.type === 'sale',
+                'bg-secondary': log.type === 'payment',
+                'bg-on-surface-variant': log.type === 'expense',
+              }"
             ></span>
             <div class="flex items-center justify-between text-on-surface">
-              <span class="font-body-md text-body-md font-medium"
-                >{{ log.title }}</span
-              >
-              <span class="font-label-sm text-label-sm"
-                [ngClass]="{'text-secondary': log.type === 'sale', 'text-secondary-fixed': log.type === 'payment', 'text-on-surface-variant': log.type === 'expense'}"
-                >{{ log.amount | currency:'COP':'symbol-narrow':'1.0-0' }}</span
+              <span class="font-body-md text-body-md font-medium">{{
+                log.title
+              }}</span>
+              <span
+                class="font-label-sm text-label-sm"
+                [ngClass]="{
+                  'text-secondary': log.type === 'sale',
+                  'text-secondary-fixed': log.type === 'payment',
+                  'text-on-surface-variant': log.type === 'expense',
+                }"
+                >{{
+                  log.amount | currency: "COP" : "symbol-narrow" : "1.0-0"
+                }}</span
               >
             </div>
             <span class="font-body-sm text-body-sm text-on-surface-variant"
@@ -557,7 +600,6 @@
         </div>
       </section>
     </div>
-
   </main>
   <app-bottom-nav></app-bottom-nav>
 </div>

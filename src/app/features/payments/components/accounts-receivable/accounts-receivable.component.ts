@@ -54,6 +54,25 @@ export class AccountsReceivableComponent implements OnInit {
     return this.paymentsService.getActiveDebtsCount();
   }
 
+  get partialDebtsCount(): number {
+    return this.debts.filter((d) => d.paidAmount > 0 && d.balance > 0).length;
+  }
+
+  get unpaidDebtsCount(): number {
+    return this.debts.filter((d) => d.paidAmount === 0 && d.balance > 0).length;
+  }
+
+  get settledDebtsCount(): number {
+    return this.debts.filter((d) => d.balance === 0).length;
+  }
+
+  get recoveryRate(): number {
+    const active = this.debts.filter((d) => d.balance > 0);
+    if (active.length === 0) return 100;
+    const onTime = active.filter((d) => (d.daysRemaining ?? 0) >= 0).length;
+    return Math.round((onTime / active.length) * 100);
+  }
+
   setFilter(filter: 'all' | 'partial' | 'unpaid' | 'settled'): void {
     this.activeFilter = filter;
   }
@@ -90,17 +109,23 @@ export class AccountsReceivableComponent implements OnInit {
   confirmPayment(): void {
     if (!this.selectedDebt || this.paymentInput <= 0) return;
 
-    const res = this.paymentsService.registerAbono(
+    this.paymentsService.registerAbono(
       this.selectedDebt.id,
       this.paymentInput,
-    );
-    if (res.success) {
-      const amountFormatted = this.paymentInput.toLocaleString('es-CO');
-      this.closePaymentSheet();
-      this.showToastNotification(
-        `¡Abono de $${amountFormatted} registrado con éxito en TRÍA!`,
-      );
-    }
+    ).subscribe({
+      next: (res) => {
+        if (res.success) {
+          const amountFormatted = this.paymentInput.toLocaleString('es-CO');
+          this.closePaymentSheet();
+          this.showToastNotification(
+            `¡Abono de $${amountFormatted} registrado con éxito en TRÍA!`,
+          );
+        }
+      },
+      error: () => {
+        alert('Hubo un error al registrar el abono. Intenta de nuevo.');
+      }
+    });
   }
 
   showToastNotification(message: string): void {

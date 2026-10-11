@@ -1,0 +1,328 @@
+@if (isOpen && product) {
+  <div
+    class="fixed inset-0 z-[100] bg-black/80 backdrop-blur-md flex items-center justify-center p-3.5 sm:p-6 animate-fade-in"
+    (click)="onClose()"
+  >
+    <div
+      class="w-full sm:max-w-lg bg-surface-container-low rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[86vh] sm:max-h-[90vh] border border-outline-variant/30 animate-scale-in"
+      (click)="$event.stopPropagation()"
+    >
+      <!-- Modal Top Bar -->
+      <div
+        class="flex-shrink-0 px-5 py-3.5 border-b border-surface-container-highest/60 flex items-center justify-between bg-surface-container/60"
+      >
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+          <span
+            class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold"
+          >
+            Ficha Atelier · {{ product.category }}
+          </span>
+        </div>
+        <button
+          (click)="onClose()"
+          class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface flex items-center justify-center active:scale-90 transition-transform"
+          type="button"
+          title="Cerrar ficha"
+        >
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+
+      <!-- Scrollable Modal Content -->
+      <div class="flex-1 p-5 overflow-y-auto no-scrollbar space-y-5">
+        <!-- Hero Image & Zoom Trigger -->
+        <div
+          class="relative w-full h-64 sm:h-80 rounded-2xl overflow-hidden bg-surface-container-highest group shadow-inner"
+        >
+          @if (product.image) {
+            <img
+              [src]="product.image"
+              [alt]="product.name"
+              class="w-full h-full object-cover cursor-pointer group-hover:scale-105 transition-transform duration-500"
+              (click)="toggleImageZoom()"
+            />
+            <button
+              (click)="toggleImageZoom()"
+              class="absolute bottom-3 right-3 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md text-white text-label-sm font-label-sm flex items-center gap-1.5 shadow-lg hover:bg-black/80 active:scale-95 transition-all"
+              type="button"
+            >
+              <span class="material-symbols-outlined text-[16px]">zoom_in</span>
+              <span>Ver en Grande</span>
+            </button>
+          } @else {
+            <div
+              class="w-full h-full flex flex-col items-center justify-center text-outline gap-2"
+            >
+              <span class="material-symbols-outlined text-[48px]">image</span>
+              <span class="text-body-sm font-body-sm">Sin imagen cargada</span>
+            </div>
+          }
+
+          <!-- Stock Pill Badge -->
+          <div class="absolute top-3 left-3">
+            <span
+              class="px-3 py-1 rounded-full font-label-sm text-label-sm font-semibold tracking-wide flex items-center gap-1.5 shadow-md"
+              [ngClass]="{
+                'bg-emerald-950/85 text-emerald-300 border border-emerald-700/50':
+                  product.stock > 5,
+                'bg-amber-950/85 text-amber-300 border border-amber-700/50':
+                  product.stock > 0 && product.stock <= 5,
+                'bg-error-container/90 text-error border border-error/50':
+                  product.stock === 0,
+              }"
+            >
+              <span
+                class="w-2 h-2 rounded-full"
+                [ngClass]="{
+                  'bg-emerald-400': product.stock > 5,
+                  'bg-amber-400 animate-pulse':
+                    product.stock > 0 && product.stock <= 5,
+                  'bg-error': product.stock === 0,
+                }"
+              ></span>
+              {{
+                product.stock === 0
+                  ? "Agotado en Vitrina"
+                  : product.stock + " Unidades Disponibles"
+              }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Product Title, SKU, and Category Header -->
+        <div class="space-y-1">
+          <div class="flex items-center justify-between">
+            <span
+              class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-medium"
+            >
+              {{ product.universeName || product.universe || "Alta Costura" }}
+            </span>
+            <span
+              class="px-2.5 py-0.5 rounded-full bg-surface-container-high text-primary font-mono text-label-sm font-semibold"
+            >
+              #{{ product.sku }}
+            </span>
+          </div>
+          <h2
+            class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight"
+          >
+            {{ product.name }}
+          </h2>
+        </div>
+
+        <!-- Commercial Pricing & Financial Bento -->
+        @if (showPrivateMetrics) {
+          <!-- MODO ATELIER (Métricas Privadas Visibles) -->
+          <div
+            class="p-3.5 rounded-2xl bg-surface-container/70 border border-secondary/30 shadow-sm space-y-2 animate-fade-in"
+          >
+            <div
+              class="flex items-center justify-between pb-1.5 border-b border-outline-variant/15"
+            >
+              <span
+                class="text-[11px] font-label-sm uppercase tracking-wider text-secondary font-medium flex items-center gap-1"
+              >
+                <span class="material-symbols-outlined text-[14px]"
+                  >visibility</span
+                >
+                Métricas Atelier (Modo Privado)
+              </span>
+              <button
+                (click)="togglePrivateMode.emit()"
+                class="px-2 py-0.5 rounded-full bg-surface-container-high hover:bg-surface-container text-on-surface-variant text-[11px] font-label-sm flex items-center gap-1 transition-colors"
+                type="button"
+                title="Ocultar costos (activar Modo Vitrina)"
+              >
+                <span class="material-symbols-outlined text-[13px]"
+                  >visibility_off</span
+                >
+                <span>Modo Vitrina</span>
+              </button>
+            </div>
+            <div class="grid grid-cols-3 gap-2.5">
+              <div class="flex flex-col">
+                <span class="text-[11px] font-label-sm uppercase text-outline"
+                  >PVP TRÍA</span
+                >
+                <span
+                  class="font-headline-sm text-headline-sm text-primary font-bold"
+                >
+                  ${{ product.price | number }}
+                </span>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-[11px] font-label-sm uppercase text-outline"
+                  >Costo Atelier</span
+                >
+                <span
+                  class="font-headline-sm text-headline-sm text-on-surface font-semibold"
+                >
+                  ${{
+                    (product.cost !== undefined
+                      ? product.cost
+                      : product.price * 0.5
+                    ) | number
+                  }}
+                </span>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-[11px] font-label-sm uppercase text-outline"
+                  >Margen Estimado</span
+                >
+                <span
+                  class="font-headline-sm text-headline-sm text-secondary font-bold"
+                >
+                  +${{
+                    product.price -
+                      (product.cost !== undefined
+                        ? product.cost
+                        : product.price * 0.5) | number
+                  }}
+                </span>
+              </div>
+            </div>
+          </div>
+        } @else {
+          <!-- MODO VITRINA (Seguro para Clientas, Costo y Margen 100% Ocultos) -->
+          <div
+            class="p-3.5 rounded-2xl bg-gradient-to-r from-surface-container/80 to-surface-container-high/60 border border-surface-container-highest/60 shadow-sm flex items-center justify-between animate-fade-in"
+          >
+            <div class="flex flex-col">
+              <span
+                class="text-[11px] font-label-sm uppercase tracking-wider text-outline font-medium"
+                >Precio Boutique</span
+              >
+              <div class="flex items-baseline gap-1 mt-0.5">
+                <span class="text-primary font-bold text-[28px] leading-none">
+                  ${{ product.price | number }}
+                </span>
+                <span class="text-[12px] text-outline font-medium uppercase"
+                  >COP</span
+                >
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="flex flex-col items-end">
+                <span
+                  class="text-[11px] font-label-sm text-outline uppercase tracking-wider"
+                  >Disponibilidad</span
+                >
+                <span
+                  class="text-body-sm font-semibold mt-0.5"
+                  [ngClass]="
+                    product.stock > 0 ? 'text-emerald-400' : 'text-error'
+                  "
+                >
+                  {{ product.stock > 0 ? "Disponible en Tienda" : "Agotado" }}
+                </span>
+              </div>
+              <button
+                (click)="togglePrivateMode.emit()"
+                class="w-7 h-7 rounded-full bg-surface-container-high/50 hover:bg-surface-container-highest text-outline hover:text-on-surface flex items-center justify-center transition-colors active:scale-90 ml-1"
+                type="button"
+                title="Ver costos internos (Modo Atelier)"
+              >
+                <span class="material-symbols-outlined text-[15px]"
+                  >visibility</span
+                >
+              </button>
+            </div>
+          </div>
+        }
+
+        <!-- Technical Notes / Craftsmanship -->
+        <div
+          class="p-3.5 rounded-2xl bg-surface-container/40 space-y-1 border border-outline-variant/10"
+        >
+          <span
+            class="text-[11px] font-label-sm uppercase tracking-wider text-outline flex items-center gap-1"
+          >
+            <span class="material-symbols-outlined text-[14px]"
+              >stylus_note</span
+            >
+            Notas de Patronaje &amp; Confección
+          </span>
+          <p class="font-body-sm text-body-sm text-on-surface-variant italic">
+            {{
+              product.description ||
+                "Pieza exclusiva diseñada y confeccionada para boutique TRÍA Atelier."
+            }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Modal Bottom Actions Footer -->
+      <div
+        class="flex-shrink-0 p-4 border-t border-surface-container-highest/60 bg-surface-container flex items-center gap-2"
+      >
+        <button
+          (click)="onEdit()"
+          class="flex-1 py-3 px-4 rounded-full bg-gradient-to-r from-primary-container via-secondary-container to-primary text-on-primary font-label-md text-label-md font-medium flex items-center justify-center gap-2 active:scale-95 transition-all shadow-md"
+          type="button"
+        >
+          <span class="material-symbols-outlined text-[18px]">edit</span>
+          <span>Editar Pieza</span>
+        </button>
+
+        <button
+          (click)="onDelete()"
+          class="py-3 px-4 rounded-full bg-error-container/20 text-error hover:bg-error-container/40 font-label-md text-label-md flex items-center justify-center gap-1.5 active:scale-95 transition-all"
+          type="button"
+          title="Retirar del catálogo activo (baja lógica)"
+        >
+          <span class="material-symbols-outlined text-[18px]"
+            >delete_outline</span
+          >
+          <span class="hidden sm:inline">Retirar</span>
+        </button>
+
+        @if (product.stock > 0) {
+          <button
+            (click)="onAddToSale()"
+            class="py-3 px-4 rounded-full bg-surface-container-highest text-on-surface hover:text-primary font-label-md text-label-md flex items-center justify-center gap-1.5 active:scale-95 transition-all"
+            type="button"
+            title="Agregar al carrito de venta rápida"
+          >
+            <span class="material-symbols-outlined text-[18px]"
+              >add_shopping_cart</span
+            >
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+}
+
+<!-- MODAL: ZOOM DE IMAGEN EN PANTALLA COMPLETA -->
+@if (isImageZoomOpen && product?.image) {
+  <div
+    class="fixed inset-0 z-[110] bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center p-4 animate-fade-in"
+    (click)="toggleImageZoom()"
+  >
+    <button
+      (click)="toggleImageZoom()"
+      class="absolute top-6 right-6 w-11 h-11 rounded-full bg-surface-container-high/80 text-white flex items-center justify-center active:scale-90 transition-transform shadow-xl hover:bg-surface-container-highest"
+      type="button"
+    >
+      <span class="material-symbols-outlined text-[24px]">close</span>
+    </button>
+
+    <img
+      [src]="product!.image"
+      [alt]="product!.name"
+      class="max-h-[82vh] max-w-full rounded-2xl object-contain shadow-[0_20px_60px_rgba(0,0,0,0.9)]"
+      (click)="$event.stopPropagation()"
+    />
+
+    <div
+      class="mt-4 text-center text-white/90"
+      (click)="$event.stopPropagation()"
+    >
+      <h3 class="font-headline-sm font-semibold">{{ product!.name }}</h3>
+      <p class="font-mono text-secondary text-body-sm">
+        #{{ product!.sku }} · {{ product!.category }}
+      </p>
+    </div>
+  </div>
+}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, Router } from '@angular/router';
 import {
@@ -16,7 +16,7 @@ import { AuthService } from '../../core/services/auth.service';
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss',
 })
-export class AuthComponent {
+export class AuthComponent implements OnInit {
   loginForm: FormGroup;
   loginError = false;
   isAuthenticating = false;
@@ -30,6 +30,10 @@ export class AuthComponent {
       credencial: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
+  }
+
+  ngOnInit(): void {
+    this.authService.clearSession();
   }
 
   login(): void {

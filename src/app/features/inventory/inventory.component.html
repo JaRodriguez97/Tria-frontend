@@ -31,15 +31,41 @@
               </p>
             </div>
           </div>
-          <button
-            class="relative group flex items-center justify-center gap-space-xs px-space-md py-space-sm rounded-full bg-gradient-to-br from-secondary via-primary to-primary-container text-on-primary font-label-md text-label-md shadow-md active:scale-95 transition-all duration-150 flex-shrink-0"
-            type="button"
-            routerLink="/app/inventario/nuevo"
-          >
-            <span class="material-symbols-outlined text-[18px]">add</span>
-            <span class="hidden sm:inline">Agregar Producto</span>
-            <span class="sm:hidden">Nuevo</span>
-          </button>
+          <div class="flex items-center gap-2">
+            <!-- Switch Modo Vitrina / Modo Atelier -->
+            <button
+              (click)="togglePrivateMode()"
+              type="button"
+              [title]="
+                isPrivateMode
+                  ? 'Modo Atelier activo (costos visibles). Clic para activar Modo Vitrina (ocultar costos ante clientas)'
+                  : 'Modo Vitrina activo (costos ocultos). Clic para revelar métricas de taller'
+              "
+              [ngClass]="
+                isPrivateMode
+                  ? 'bg-secondary-container/60 text-secondary border border-secondary/40 shadow-xs'
+                  : 'bg-surface-container-high/70 text-on-surface-variant hover:text-on-surface border border-outline-variant/30'
+              "
+              class="flex items-center gap-1.5 px-3 py-2 rounded-full font-label-sm text-label-sm transition-all active:scale-95 flex-shrink-0"
+            >
+              <span class="material-symbols-outlined text-[18px]">
+                {{ isPrivateMode ? "visibility" : "visibility_off" }}
+              </span>
+              <span class="hidden sm:inline">
+                {{ isPrivateMode ? "Modo Atelier" : "Modo Vitrina" }}
+              </span>
+            </button>
+
+            <button
+              class="relative group flex items-center justify-center gap-space-xs px-space-md py-space-sm rounded-full bg-gradient-to-br from-secondary via-primary to-primary-container text-on-primary font-label-md text-label-md shadow-md active:scale-95 transition-all duration-150 flex-shrink-0"
+              type="button"
+              routerLink="/app/inventario/nuevo"
+            >
+              <span class="material-symbols-outlined text-[18px]">add</span>
+              <span class="hidden sm:inline">Agregar Producto</span>
+              <span class="sm:hidden">Nuevo</span>
+            </button>
+          </div>
         </div>
         <div class="flex items-center gap-space-sm w-full">
           <div class="relative flex-1 flex items-center">
@@ -137,7 +163,12 @@
           @if ((universes$ | async)?.length) {
             <div
               class="grid gap-space-xs p-1 rounded-full bg-surface-container-lowest/80"
-              [ngStyle]="{'grid-template-columns': 'repeat(' + ((universes$ | async)?.length || 1) + ', minmax(0, 1fr))'}"
+              [ngStyle]="{
+                'grid-template-columns':
+                  'repeat(' +
+                  ((universes$ | async)?.length || 1) +
+                  ', minmax(0, 1fr))',
+              }"
             >
               @for (universe of universes$ | async; track universe.id) {
                 <button
@@ -151,16 +182,24 @@
                   type="button"
                 >
                   <span class="material-symbols-outlined text-[16px]">{{
-                    universe.id === 'belleza' ? 'brush' :
-                    universe.id === 'moda' ? 'styler' :
-                    universe.id === 'lenceria' ? 'favorite' : 'category'
+                    universe.id === "belleza"
+                      ? "brush"
+                      : universe.id === "moda"
+                        ? "styler"
+                        : universe.id === "lenceria"
+                          ? "favorite"
+                          : "category"
                   }}</span>
-                  <span class="tracking-wide uppercase">{{ universe.name }}</span>
+                  <span class="tracking-wide uppercase">{{
+                    universe.name
+                  }}</span>
                 </button>
               }
             </div>
           } @else {
-            <div class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-lowest/80 text-on-surface-variant text-sm">
+            <div
+              class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-lowest/80 text-on-surface-variant text-sm"
+            >
               <span class="material-symbols-outlined text-[16px]">info</span>
               <span>No hay universos configurados.</span>
             </div>
@@ -195,19 +234,20 @@
         <div class="flex flex-col gap-y-space-md">
           @for (product of products$ | async; track product.id) {
             <div
-              class="flex flex-col p-space-md rounded-lg bg-surface-container-low/75 backdrop-blur-xl shadow-md gap-space-md transition-all hover:bg-surface-container-low"
+              class="flex flex-col p-space-md rounded-lg bg-surface-container-low/75 backdrop-blur-xl shadow-md gap-space-md transition-all hover:bg-surface-container-low cursor-pointer group active:scale-[0.99]"
               [ngClass]="{ 'opacity-75 grayscale': product.stock === 0 }"
+              (click)="openProductDetail(product)"
             >
               <div class="flex items-start gap-space-md">
                 <div
-                  class="relative w-20 h-20 rounded-DEFAULT overflow-hidden bg-surface-container-highest flex-shrink-0"
+                  class="relative w-20 h-20 rounded-DEFAULT overflow-hidden bg-surface-container-highest flex-shrink-0 group-hover:ring-2 ring-primary/40 transition-all"
                 >
                   <img
                     *ngIf="product.image"
                     [src]="product.image"
                     [alt]="product.name"
                     (error)="product.image = ''"
-                    class="w-full h-full object-cover"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div
                     *ngIf="!product.image"
@@ -215,6 +255,14 @@
                   >
                     <span class="material-symbols-outlined text-[32px]"
                       >inventory_2</span
+                    >
+                  </div>
+                  <div
+                    class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity"
+                  >
+                    <span
+                      class="material-symbols-outlined text-[20px] text-white drop-shadow"
+                      >zoom_in</span
                     >
                   </div>
                 </div>
@@ -269,82 +317,141 @@
                           | currency: "COP" : "symbol-narrow" : "1.0-0"
                       }}</span
                     >
-                    <span class="font-body-sm text-body-sm text-outline"
-                      >Costo
-                      {{
-                        product.price * 0.4
-                          | currency: "COP" : "symbol-narrow" : "1.0-0"
-                      }}</span
-                    >
+                    @if (isPrivateMode) {
+                      <span
+                        class="font-body-sm text-body-sm text-outline animate-fade-in"
+                        >Costo
+                        {{
+                          (product.cost !== undefined
+                            ? product.cost
+                            : product.price * 0.5
+                          ) | currency: "COP" : "symbol-narrow" : "1.0-0"
+                        }}</span
+                      >
+                    }
                   </div>
                 </div>
               </div>
               <div
                 class="flex items-center justify-between pt-space-xs border-t-0 bg-surface-container-highest/30 p-space-sm rounded-DEFAULT"
               >
-                <div class="flex items-center gap-space-xs">
-                  <span
-                    class="material-symbols-outlined text-secondary text-[18px]"
-                    >trending_up</span
+                @if (isPrivateMode) {
+                  <!-- Modo Atelier: Margen de Ganancia Visible -->
+                  <div class="flex items-center gap-space-xs animate-fade-in">
+                    <span
+                      class="material-symbols-outlined text-secondary text-[18px]"
+                      >trending_up</span
+                    >
+                    <span
+                      class="font-body-sm text-body-sm text-on-surface-variant"
+                      >Margen:
+                      <strong class="text-secondary"
+                        >+{{
+                          product.price -
+                            (product.cost !== undefined
+                              ? product.cost
+                              : product.price * 0.5)
+                            | currency: "COP" : "symbol-narrow" : "1.0-0"
+                        }}
+                        ({{
+                          (
+                            ((product.price -
+                              (product.cost !== undefined
+                                ? product.cost
+                                : product.price * 0.5)) /
+                              (product.price || 1)) *
+                            100
+                          ).toFixed(0)
+                        }}%)</strong
+                      ></span
+                    >
+                  </div>
+                } @else {
+                  <!-- Modo Vitrina: Protección para Clientas (Muestra Universo / Colección) -->
+                  <div
+                    class="flex items-center gap-1.5 text-on-surface-variant text-body-sm animate-fade-in"
                   >
-                  <span
-                    class="font-body-sm text-body-sm text-on-surface-variant"
-                    >Margen:
-                    <strong class="text-secondary"
-                      >+{{
-                        product.price * 0.6
-                          | currency: "COP" : "symbol-narrow" : "1.0-0"
+                    <span
+                      class="material-symbols-outlined text-[16px] text-primary"
+                      >diamond</span
+                    >
+                    <span
+                      class="font-label-sm text-label-sm tracking-wider uppercase opacity-85"
+                    >
+                      {{
+                        product.universeName ||
+                          product.universe ||
+                          "TRÍA Atelier"
                       }}
-                      (60%)</strong
-                    ></span
-                  >
-                </div>
-                @if (getItemQtyInDraft(product.id) === 0) {
+                    </span>
+                  </div>
+                }
+                <div class="flex items-center gap-2">
                   <button
-                    (click)="addProductToDraft(product)"
-                    [disabled]="product.stock === 0"
-                    class="flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md active:scale-95 transition-all disabled:opacity-40 disabled:cursor-not-allowed hover:bg-primary hover:text-on-primary shadow-sm"
+                    (click)="$event.stopPropagation(); openEditModal(product)"
+                    class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant hover:text-primary flex items-center justify-center active:scale-90 transition-transform"
+                    title="Editar pieza"
                     type="button"
                   >
                     <span class="material-symbols-outlined text-[16px]"
-                      >add_shopping_cart</span
+                      >edit</span
                     >
-                    <span>+ Agregar</span>
                   </button>
-                } @else {
-                  <div
-                    class="flex items-center gap-1.5 bg-surface-container-highest/90 rounded-full px-1.5 py-1 border border-primary/40 shadow-inner"
-                  >
+
+                  @if (getItemQtyInDraft(product.id) === 0) {
                     <button
-                      (click)="decrementDraft(product.id)"
-                      type="button"
-                      class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface hover:text-primary flex items-center justify-center active:scale-90 transition-transform"
-                      title="Disminuir"
-                    >
-                      <span class="material-symbols-outlined text-[16px]"
-                        >remove</span
-                      >
-                    </button>
-                    <span
-                      class="font-label-md text-label-md font-bold text-primary px-2 min-w-[22px] text-center"
-                    >
-                      {{ getItemQtyInDraft(product.id) }}
-                    </span>
-                    <button
-                      (click)="incrementDraft(product)"
-                      [disabled]="
-                        getItemQtyInDraft(product.id) >= product.stock
+                      (click)="
+                        $event.stopPropagation(); addProductToDraft(product)
                       "
+                      [disabled]="product.stock === 0"
+                      class="flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md active:scale-95 transition-all disabled:opacity-40 disabled:cursor-not-allowed hover:bg-primary hover:text-on-primary shadow-sm"
                       type="button"
-                      class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center active:scale-90 transition-transform disabled:opacity-30 disabled:cursor-not-allowed"
-                      title="Aumentar"
                     >
                       <span class="material-symbols-outlined text-[16px]"
-                        >add</span
+                        >add_shopping_cart</span
                       >
+                      <span>+ Vender</span>
                     </button>
-                  </div>
-                }
+                  } @else {
+                    <div
+                      class="flex items-center gap-1.5 bg-surface-container-highest/90 rounded-full px-1.5 py-1 border border-primary/40 shadow-inner"
+                      (click)="$event.stopPropagation()"
+                    >
+                      <button
+                        (click)="
+                          $event.stopPropagation(); decrementDraft(product.id)
+                        "
+                        type="button"
+                        class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface hover:text-primary flex items-center justify-center active:scale-90 transition-transform"
+                        title="Disminuir"
+                      >
+                        <span class="material-symbols-outlined text-[16px]"
+                          >remove</span
+                        >
+                      </button>
+                      <span
+                        class="font-label-md text-label-md font-bold text-primary px-2 min-w-[22px] text-center"
+                      >
+                        {{ getItemQtyInDraft(product.id) }}
+                      </span>
+                      <button
+                        (click)="
+                          $event.stopPropagation(); incrementDraft(product)
+                        "
+                        [disabled]="
+                          getItemQtyInDraft(product.id) >= product.stock
+                        "
+                        type="button"
+                        class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center active:scale-90 transition-transform disabled:opacity-30 disabled:cursor-not-allowed"
+                        title="Aumentar"
+                      >
+                        <span class="material-symbols-outlined text-[16px]"
+                          >add</span
+                        >
+                      </button>
+                    </div>
+                  }
+                </div>
               </div>
             </div>
           } @empty {
@@ -366,8 +473,9 @@
             </div>
           }
         </div>
+        <!-- Card Resumen de Inventario (Adaptativo a Modo Vitrina / Modo Atelier) -->
         <div
-          class="p-space-lg rounded-lg bg-gradient-to-br from-surface-container-high via-surface-container to-surface-container-low shadow-lg flex flex-col gap-space-md"
+          class="p-space-lg rounded-2xl bg-gradient-to-br from-surface-container-high via-surface-container to-surface-container-low shadow-lg flex flex-col gap-space-md border border-outline-variant/20"
         >
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-space-xs">
@@ -375,49 +483,113 @@
                 >account_balance_wallet</span
               >
               <span
-                class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant"
-                >Valorización del Inventario</span
+                class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-medium"
               >
-            </div>
-            <span class="font-label-sm text-label-sm text-secondary font-medium"
-              >Boutique TRÍA</span
-            >
-          </div>
-          <div class="grid grid-cols-2 gap-space-md">
-            <div
-              class="flex flex-col p-space-sm rounded-DEFAULT bg-surface-container-lowest/60"
-            >
-              <span class="font-body-sm text-body-sm text-outline"
-                >Inversión Costo</span
-              >
-              <span
-                class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight mt-0.5"
-                >$1.850.000</span
-              >
-              <span class="font-label-sm text-label-sm text-outline mt-1"
-                >142 unidades físicas</span
-              >
-            </div>
-            <div
-              class="flex flex-col p-space-sm rounded-DEFAULT bg-surface-container-lowest/60"
-            >
-              <span class="font-body-sm text-body-sm text-outline"
-                >Comercial Estimado</span
-              >
-              <span
-                class="font-headline-sm text-headline-sm text-secondary-fixed font-bold tracking-tight mt-0.5"
-                >$4.270.000</span
-              >
-              <span
-                class="font-label-sm text-label-sm text-emerald-400 mt-1 flex items-center gap-0.5"
-              >
-                <span class="material-symbols-outlined text-[12px]"
-                  >north_east</span
-                >
-                +$2.420.000 utilidad
+                {{
+                  isPrivateMode
+                    ? "Valorización del Inventario (Atelier)"
+                    : "Resumen de Vitrina Activa"
+                }}
               </span>
             </div>
+            <button
+              (click)="togglePrivateMode()"
+              type="button"
+              class="flex items-center gap-1 text-[11px] font-label-sm text-secondary hover:underline cursor-pointer"
+              title="Cambiar modo de privacidad"
+            >
+              <span class="material-symbols-outlined text-[14px]">
+                {{ isPrivateMode ? "visibility" : "visibility_off" }}
+              </span>
+              <span>{{ isPrivateMode ? "Modo Atelier" : "Modo Vitrina" }}</span>
+            </button>
           </div>
+
+          @if (isPrivateMode) {
+            <!-- MODO ATELIER: Costo de Inversión y Margen Visible -->
+            <div class="grid grid-cols-2 gap-space-md animate-fade-in">
+              <div
+                class="flex flex-col p-space-sm rounded-DEFAULT bg-surface-container-lowest/60"
+              >
+                <span class="font-body-sm text-body-sm text-outline"
+                  >Inversión Costo</span
+                >
+                <span
+                  class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight mt-0.5"
+                  >{{
+                    (totalCost$ | async) || 0 | currency: "COP" : "$" : "1.0-0"
+                  }}</span
+                >
+                <span class="font-label-sm text-label-sm text-outline mt-1"
+                  >{{ totalUnits$ | async }} unidades físicas</span
+                >
+              </div>
+              <div
+                class="flex flex-col p-space-sm rounded-DEFAULT bg-surface-container-lowest/60"
+              >
+                <span class="font-body-sm text-body-sm text-outline"
+                  >Comercial Estimado</span
+                >
+                <span
+                  class="font-headline-sm text-headline-sm text-secondary-fixed font-bold tracking-tight mt-0.5"
+                  >{{
+                    (totalRetailValue$ | async) || 0
+                      | currency: "COP" : "$" : "1.0-0"
+                  }}</span
+                >
+                <span
+                  class="font-label-sm text-label-sm text-emerald-400 mt-1 flex items-center gap-0.5"
+                >
+                  <span class="material-symbols-outlined text-[12px]"
+                    >north_east</span
+                  >
+                  +{{
+                    (totalProfit$ | async) || 0
+                      | currency: "COP" : "$" : "1.0-0"
+                  }}
+                  utilidad
+                </span>
+              </div>
+            </div>
+          } @else {
+            <!-- MODO VITRINA: Métricas Seguras para Clientas -->
+            <div class="grid grid-cols-2 gap-space-md animate-fade-in">
+              <div
+                class="flex flex-col p-space-sm rounded-DEFAULT bg-surface-container-lowest/60"
+              >
+                <span class="font-body-sm text-body-sm text-outline"
+                  >Unidades en Boutique</span
+                >
+                <span
+                  class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight mt-0.5"
+                  >{{ (totalUnits$ | async) || 0 }} Piezas</span
+                >
+                <span
+                  class="font-label-sm text-label-sm text-emerald-400 mt-1 flex items-center gap-0.5"
+                >
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  Listas para entrega
+                </span>
+              </div>
+              <div
+                class="flex flex-col p-space-sm rounded-DEFAULT bg-surface-container-lowest/60"
+              >
+                <span class="font-body-sm text-body-sm text-outline"
+                  >Valor Total en Vitrina</span
+                >
+                <span
+                  class="font-headline-sm text-headline-sm text-primary font-bold tracking-tight mt-0.5"
+                  >{{
+                    (totalRetailValue$ | async) || 0
+                      | currency: "COP" : "$" : "1.0-0"
+                  }}</span
+                >
+                <span class="font-label-sm text-label-sm text-outline mt-1"
+                  >{{ totalRefs$ | async }} referencias exclusivas</span
+                >
+              </div>
+            </div>
+          }
         </div>
       </div>
     </div>
@@ -478,5 +650,47 @@
       }
     }
   </main>
+
+  <!-- ======================================================== -->
+  <!-- MODALES MODULARIZADOS: DETALLE, EDICIÓN Y RETIRO         -->
+  <!-- ======================================================== -->
+  <app-product-detail-modal
+    [isOpen]="isDetailOpen"
+    [product]="selectedProduct"
+    [showPrivateMetrics]="isPrivateMode"
+    (togglePrivateMode)="togglePrivateMode()"
+    (close)="closeProductDetail()"
+    (edit)="openEditModal($event)"
+    (delete)="openDeleteConfirm($event)"
+    (addToSale)="addProductToDraft($event)"
+  ></app-product-detail-modal>
+
+  <app-product-edit-modal
+    [isOpen]="isEditModalOpen"
+    [product]="selectedProduct"
+    (close)="closeEditModal()"
+    (saved)="onProductSaved($event)"
+  ></app-product-edit-modal>
+
+  <app-product-delete-modal
+    [isOpen]="isDeleteConfirmOpen"
+    [product]="selectedProduct"
+    (close)="closeDeleteConfirm()"
+    (confirmed)="onProductDeleted($event)"
+  ></app-product-delete-modal>
+
+  <!-- ======================================================== -->
+  <!-- TOAST NOTIFICACIÓN                                       -->
+  <!-- ======================================================== -->
+  @if (toastVisible) {
+    <div
+      class="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 px-5 py-3 rounded-sm bg-surface-container-highest/95 backdrop-blur-xl border border-primary/40 text-on-surface shadow-2xl flex items-center gap-2 animate-fade-in text-label-md font-label-md"
+    >
+      <span class="material-symbols-outlined text-primary text-[18px]"
+        >check_circle</span
+      >
+      <span>{{ toastMessage }}</span>
+    </div>
+  }
   <app-bottom-nav></app-bottom-nav>
 </section>

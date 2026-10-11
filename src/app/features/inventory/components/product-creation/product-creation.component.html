@@ -41,7 +41,132 @@
       </span>
     </div>
 
-    <!-- BLOQUE 1: INFORMACIÓN BÁSICA -->
+    <!-- BLOQUE 1: CLASIFICACIÓN TRÍA -->
+    <section class="flex flex-col space-y-space-md">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-space-xs">
+          <span class="material-symbols-outlined text-primary text-[20px]"
+            >category</span
+          >
+          <h2
+            class="font-headline-sm text-headline-sm text-on-surface font-semibold"
+          >
+            1. Clasificación TRÍA
+          </h2>
+        </div>
+        <span class="font-label-sm text-label-sm text-primary font-medium"
+          >Universo &amp; Categoría</span
+        >
+      </div>
+
+      <!-- Tabs Universos TRÍA -->
+      <div
+        class="p-1 rounded-full bg-surface-container flex items-center justify-between shadow-inner"
+      >
+        <button
+          [ngClass]="
+            selectedUniverse === 'belleza'
+              ? 'bg-primary-container text-on-primary-container shadow-md'
+              : 'text-on-surface-variant'
+          "
+          class="universe-tab flex-1 py-2.5 rounded-full text-center font-label-md text-label-md tracking-wider transition-all"
+          (click)="setUniverse('belleza')"
+          type="button"
+        >
+          BELLEZA
+        </button>
+        <button
+          [ngClass]="
+            selectedUniverse === 'moda'
+              ? 'bg-primary-container text-on-primary-container shadow-md'
+              : 'text-on-surface-variant'
+          "
+          class="universe-tab flex-1 py-2.5 rounded-full text-center font-label-md text-label-md tracking-wider transition-all"
+          (click)="setUniverse('moda')"
+          type="button"
+        >
+          MODA
+        </button>
+        <button
+          [ngClass]="
+            selectedUniverse === 'lenceria'
+              ? 'bg-primary-container text-on-primary-container shadow-md'
+              : 'text-on-surface-variant'
+          "
+          class="universe-tab flex-1 py-2.5 rounded-full text-center font-label-md text-label-md tracking-wider transition-all uppercase"
+          (click)="setUniverse('lenceria')"
+          type="button"
+        >
+          LENCERÍA
+        </button>
+      </div>
+
+      <!-- Chips Subcategorías -->
+      <div class="flex flex-wrap items-center gap-2 pt-1" id="subcat-container">
+        @for (subcat of subcategories; track subcat) {
+          <button
+            [ngClass]="
+              selectedSubcategory === subcat
+                ? 'bg-primary text-on-primary shadow-sm'
+                : 'bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest'
+            "
+            class="subcat-chip px-4 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-wider active:scale-95 transition-all"
+            (click)="setSubcategory(subcat)"
+            type="button"
+          >
+            {{ subcat }}
+          </button>
+        }
+
+        @if (!showNewCategoryInput) {
+          <button
+            (click)="showNewCategoryInput = true"
+            type="button"
+            class="px-3.5 py-1.5 rounded-full border border-dashed border-primary/60 text-primary hover:bg-primary/5 font-label-sm text-label-sm flex items-center gap-1 active:scale-95 transition-all"
+            title="Crear nueva categoría en este universo"
+          >
+            <span class="material-symbols-outlined text-[16px]">add</span>
+            <span>Nueva categoría</span>
+          </button>
+        }
+      </div>
+
+      @if (showNewCategoryInput) {
+        <div
+          class="flex items-center gap-2 p-2.5 rounded-xl bg-surface-container border border-primary/20 animate-fade-in mt-1"
+        >
+          <span class="material-symbols-outlined text-primary text-[18px]"
+            >category</span
+          >
+          <input
+            [(ngModel)]="newCategoryName"
+            (keyup.enter)="saveNewCategory()"
+            placeholder="Ej. Salidas de Baño..."
+            class="flex-1 bg-transparent text-on-surface text-body-sm placeholder:text-outline outline-none"
+            [disabled]="isCreatingCategory"
+            autofocus
+          />
+          <button
+            (click)="saveNewCategory()"
+            [disabled]="!newCategoryName.trim() || isCreatingCategory"
+            type="button"
+            class="px-3 py-1 rounded-full bg-primary text-on-primary font-label-sm text-label-sm font-semibold hover:opacity-95 disabled:opacity-40 transition-opacity"
+          >
+            {{ isCreatingCategory ? "Guardando..." : "Crear" }}
+          </button>
+          <button
+            (click)="showNewCategoryInput = false; newCategoryName = ''"
+            [disabled]="isCreatingCategory"
+            type="button"
+            class="px-2.5 py-1 rounded-full text-on-surface-variant hover:bg-surface-container-high font-label-sm text-label-sm transition-colors"
+          >
+            Cancelar
+          </button>
+        </div>
+      }
+    </section>
+
+    <!-- BLOQUE 2: INFORMACIÓN DE LA PIEZA & REFERENCIA -->
     <section class="flex flex-col space-y-space-md">
       <div class="flex items-center justify-between">
         <div class="flex items-center space-x-space-xs">
@@ -51,7 +176,7 @@
           <h2
             class="font-headline-sm text-headline-sm text-on-surface font-semibold"
           >
-            1. Información Básica
+            2. Información de la Pieza &amp; Referencia
           </h2>
         </div>
         <span class="font-label-sm text-label-sm text-on-surface-variant"
@@ -148,7 +273,7 @@
               >Código de Referencia / SKU</label
             >
             <span class="font-label-sm text-label-sm text-primary"
-              >Autogenerado</span
+              >Consecutivo Sugerido</span
             >
           </div>
           <div class="flex items-center gap-2">
@@ -169,17 +294,21 @@
                 [ngClass]="{ 'text-error': isSkuDuplicate }"
                 id="prod-sku"
                 type="text"
-                placeholder="#VES-090"
+                placeholder="VES-001"
                 [(ngModel)]="sku"
+                (ngModelChange)="onSkuManualChange()"
               />
             </div>
             <button
               class="px-4 py-3 rounded-full bg-surface-container-highest text-primary font-label-md text-label-md flex items-center gap-1 active:scale-95 transition-all"
-              (click)="regenerateSKU()"
+              (click)="generateConsecutiveSKU(true)"
               type="button"
+              title="Calcular siguiente número consecutivo automático"
             >
-              <span class="material-symbols-outlined text-[16px]">sync</span>
-              <span class="">Generar</span>
+              <span class="material-symbols-outlined text-[16px]"
+                >auto_awesome</span
+              >
+              <span class="">Consecutivo</span>
             </button>
           </div>
           @if (isSkuDuplicate) {
@@ -187,7 +316,8 @@
               class="text-error font-label-sm text-[11px] mt-1 ml-4 flex items-center gap-1"
             >
               <span class="material-symbols-outlined text-[12px]">error</span>
-              Este código ya está registrado. Genera uno nuevo.
+              Este código ya está registrado. Genera uno nuevo o ajusta el
+              consecutivo.
             </p>
           }
         </div>
@@ -196,7 +326,7 @@
           <label
             class="block font-label-md text-label-md text-on-surface-variant mb-space-xs"
             for="prod-desc"
-            >Notas de Confección & Acabados</label
+            >Notas de Confección &amp; Acabados</label
           >
           <div
             class="px-4 py-3 rounded-2xl bg-surface-container-high text-on-surface"
@@ -211,127 +341,6 @@
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- BLOQUE 2: CLASIFICACIÓN TRÍA -->
-    <section class="flex flex-col space-y-space-md">
-      <div class="flex items-center justify-between">
-        <div class="flex items-center space-x-space-xs">
-          <span class="material-symbols-outlined text-primary text-[20px]"
-            >category</span
-          >
-          <h2
-            class="font-headline-sm text-headline-sm text-on-surface font-semibold"
-          >
-            2. Clasificación TRÍA
-          </h2>
-        </div>
-        <span class="font-label-sm text-label-sm text-primary"
-          >Colección 2025</span
-        >
-      </div>
-
-      <!-- Tabs Universos TRÍA -->
-      <div
-        class="p-1 rounded-full bg-surface-container flex items-center justify-between shadow-inner"
-      >
-        <button
-          [ngClass]="
-            selectedUniverse === 'belleza'
-              ? 'bg-primary-container text-on-primary-container shadow-md'
-              : 'text-on-surface-variant'
-          "
-          class="universe-tab flex-1 py-2.5 rounded-full text-center font-label-md text-label-md tracking-wider transition-all"
-          (click)="setUniverse('belleza')"
-          type="button"
-        >
-          BELLEZA
-        </button>
-        <button
-          [ngClass]="
-            selectedUniverse === 'moda'
-              ? 'bg-primary-container text-on-primary-container shadow-md'
-              : 'text-on-surface-variant'
-          "
-          class="universe-tab flex-1 py-2.5 rounded-full text-center font-label-md text-label-md tracking-wider transition-all"
-          (click)="setUniverse('moda')"
-          type="button"
-        >
-          MODA
-        </button>
-        <button
-          [ngClass]="
-            selectedUniverse === 'lenceria'
-              ? 'bg-primary-container text-on-primary-container shadow-md'
-              : 'text-on-surface-variant'
-          "
-          class="universe-tab flex-1 py-2.5 rounded-full text-center font-label-md text-label-md tracking-wider transition-all uppercase"
-          (click)="setUniverse('lenceria')"
-          type="button"
-        >
-          LENCERÍA
-        </button>
-      </div>
-
-      <!-- Chips Subcategorías -->
-      <div class="flex flex-wrap items-center gap-2 pt-1" id="subcat-container">
-        @for (subcat of subcategories; track subcat) {
-          <button
-            [ngClass]="
-              selectedSubcategory === subcat
-                ? 'bg-primary text-on-primary shadow-sm'
-                : 'bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest'
-            "
-            class="subcat-chip px-4 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-wider active:scale-95 transition-all"
-            (click)="setSubcategory(subcat)"
-            type="button"
-          >
-            {{ subcat }}
-          </button>
-        }
-
-        @if (!showNewCategoryInput) {
-          <button
-            (click)="showNewCategoryInput = true"
-            type="button"
-            class="px-3.5 py-1.5 rounded-full border border-dashed border-primary/60 text-primary hover:bg-primary/5 font-label-sm text-label-sm flex items-center gap-1 active:scale-95 transition-all"
-            title="Crear nueva categoría en este universo"
-          >
-            <span class="material-symbols-outlined text-[16px]">add</span>
-            <span>Nueva categoría</span>
-          </button>
-        }
-      </div>
-
-      @if (showNewCategoryInput) {
-        <div class="flex items-center gap-2 p-2.5 rounded-xl bg-surface-container border border-primary/20 animate-fade-in mt-1">
-          <span class="material-symbols-outlined text-primary text-[18px]">category</span>
-          <input
-            [(ngModel)]="newCategoryName"
-            (keyup.enter)="saveNewCategory()"
-            placeholder="Ej. Salidas de Baño..."
-            class="flex-1 bg-transparent text-on-surface text-body-sm placeholder:text-outline outline-none"
-            [disabled]="isCreatingCategory"
-            autofocus
-          />
-          <button
-            (click)="saveNewCategory()"
-            [disabled]="!newCategoryName.trim() || isCreatingCategory"
-            type="button"
-            class="px-3 py-1 rounded-full bg-primary text-on-primary font-label-sm text-label-sm font-semibold hover:opacity-95 disabled:opacity-40 transition-opacity"
-          >
-            {{ isCreatingCategory ? 'Guardando...' : 'Crear' }}
-          </button>
-          <button
-            (click)="showNewCategoryInput = false; newCategoryName = ''"
-            [disabled]="isCreatingCategory"
-            type="button"
-            class="px-2.5 py-1 rounded-full text-on-surface-variant hover:bg-surface-container-high font-label-sm text-label-sm transition-colors"
-          >
-            Cancelar
-          </button>
-        </div>
-      }
     </section>
 
     <!-- BLOQUE 3: INFORMACIÓN COMERCIAL & CÁLCULOS -->
@@ -373,7 +382,7 @@
             />
           </div>
           <span class="text-outline font-body-sm text-body-sm block mt-1"
-            >COP Atelier</span
+            >Atelier</span
           >
         </div>
 
@@ -396,7 +405,7 @@
             />
           </div>
           <span class="text-outline font-body-sm text-body-sm block mt-1"
-            >COP Boutique</span
+            >Boutique</span
           >
         </div>
       </div>
@@ -563,11 +572,8 @@
             <span
               class="font-headline-lg-mobile text-headline-lg-mobile text-primary font-bold tracking-tight"
               id="proj-gain"
-              >{{ totalGain >= 0 ? "+" : "" }}${{
-                totalGain | number
-              }}
-              COP</span
-            >
+              >{{ totalGain >= 0 ? "+" : "" }}${{ totalGain | number }}
+            </span>
           </div>
         </div>
       </div>

@@ -1,0 +1,330 @@
+@if (isOpen && product) {
+  <div
+    class="fixed inset-0 z-[100] bg-black/80 backdrop-blur-md flex items-center justify-center p-3.5 sm:p-6 animate-fade-in"
+    (click)="onClose()"
+  >
+    <div
+      class="w-full sm:max-w-lg bg-surface-container-low rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[88vh] sm:max-h-[92vh] border border-outline-variant/30 animate-scale-in"
+      (click)="$event.stopPropagation()"
+    >
+      <!-- Modal Top Bar -->
+      <div
+        class="flex-shrink-0 px-5 py-3.5 border-b border-surface-container-highest/60 flex items-center justify-between bg-surface-container/60"
+      >
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-[20px]"
+            >edit_square</span
+          >
+          <span
+            class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold"
+          >
+            Modificar Pieza · Atelier
+          </span>
+        </div>
+        <button
+          (click)="onClose()"
+          class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface flex items-center justify-center active:scale-90 transition-transform"
+          type="button"
+          title="Cerrar edición"
+        >
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+
+      <!-- Form Scrollable Area -->
+      <div class="flex-1 p-5 overflow-y-auto no-scrollbar space-y-4">
+        @if (errorMessage) {
+          <div
+            class="p-3 rounded-xl bg-error-container/40 border border-error/40 text-error text-body-sm flex items-center gap-2 animate-fade-in"
+          >
+            <span class="material-symbols-outlined text-[18px]">error</span>
+            <span>{{ errorMessage }}</span>
+          </div>
+        }
+
+        <!-- Cambiar Imagen -->
+        <div
+          class="flex items-center gap-4 p-3.5 rounded-2xl bg-surface-container/60 border border-outline-variant/10"
+        >
+          <div
+            class="relative w-20 h-20 rounded-xl overflow-hidden bg-surface-container-highest flex-shrink-0 shadow-inner"
+          >
+            @if (editImagePreview) {
+              <img
+                [src]="editImagePreview"
+                class="w-full h-full object-cover"
+              />
+            } @else {
+              <div
+                class="w-full h-full flex items-center justify-center text-outline"
+              >
+                <span class="material-symbols-outlined text-[28px]">image</span>
+              </div>
+            }
+          </div>
+          <div class="flex-1 min-w-0 flex flex-col gap-1">
+            <label
+              class="font-label-sm text-label-sm text-on-surface font-medium"
+              >Fotografía de la Pieza</label
+            >
+            <label
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-highest text-primary font-label-sm text-label-sm cursor-pointer hover:bg-surface-container transition-colors w-max active:scale-95 shadow-xs"
+            >
+              <span class="material-symbols-outlined text-[16px]"
+                >photo_camera</span
+              >
+              <span>Cambiar Foto</span>
+              <input
+                type="file"
+                accept="image/png, image/jpeg, image/webp"
+                class="hidden"
+                (change)="onEditFileSelected($event)"
+              />
+            </label>
+            <span class="text-[10px] text-outline"
+              >Se optimizará a WebP automáticamente</span
+            >
+          </div>
+        </div>
+
+        <!-- Nombre de la Pieza -->
+        <div>
+          <label
+            class="block font-label-md text-label-md text-on-surface-variant mb-1"
+            for="edit-name"
+          >
+            Nombre de la Pieza
+          </label>
+          <input
+            id="edit-name"
+            [(ngModel)]="editName"
+            class="w-full px-4 py-2.5 rounded-full bg-surface-container-high text-on-surface font-body-md text-body-md focus:bg-surface-container-highest outline-none transition-colors border border-transparent focus:border-primary/30"
+            placeholder="Ej. Corset Noir Satinado"
+            type="text"
+          />
+        </div>
+
+        <!-- SKU / Referencia -->
+        <div>
+          <label
+            class="block font-label-md text-label-md text-on-surface-variant mb-1"
+            for="edit-sku"
+          >
+            Código de Referencia / SKU
+          </label>
+          <div
+            class="flex items-center px-4 py-2.5 rounded-full bg-surface-container-high text-on-surface border border-transparent focus-within:border-primary/30 transition-colors"
+          >
+            <span class="text-outline font-mono mr-1.5 text-body-md select-none"
+              >#</span
+            >
+            <input
+              id="edit-sku"
+              [(ngModel)]="editSku"
+              class="w-full bg-transparent text-on-surface font-mono text-body-md uppercase outline-none"
+              placeholder="VES-001"
+              type="text"
+            />
+          </div>
+        </div>
+
+        <!-- Universo Tabs -->
+        <div>
+          <label
+            class="block font-label-md text-label-md text-on-surface-variant mb-1"
+          >
+            Universo TRÍA
+          </label>
+          <div
+            class="p-1 rounded-full bg-surface-container flex items-center justify-between shadow-inner text-label-sm"
+          >
+            <button
+              type="button"
+              [ngClass]="
+                editUniverse === 'belleza'
+                  ? 'bg-primary-container text-on-primary-container shadow-md font-semibold'
+                  : 'text-on-surface-variant'
+              "
+              class="flex-1 py-1.5 rounded-full text-center transition-all"
+              (click)="setEditUniverse('belleza')"
+            >
+              BELLEZA
+            </button>
+            <button
+              type="button"
+              [ngClass]="
+                editUniverse === 'moda'
+                  ? 'bg-primary-container text-on-primary-container shadow-md font-semibold'
+                  : 'text-on-surface-variant'
+              "
+              class="flex-1 py-1.5 rounded-full text-center transition-all"
+              (click)="setEditUniverse('moda')"
+            >
+              MODA
+            </button>
+            <button
+              type="button"
+              [ngClass]="
+                editUniverse === 'lenceria'
+                  ? 'bg-primary-container text-on-primary-container shadow-md font-semibold'
+                  : 'text-on-surface-variant'
+              "
+              class="flex-1 py-1.5 rounded-full text-center transition-all uppercase"
+              (click)="setEditUniverse('lenceria')"
+            >
+              LENCERÍA
+            </button>
+          </div>
+        </div>
+
+        <!-- Categoría Chips -->
+        <div>
+          <label
+            class="block font-label-md text-label-md text-on-surface-variant mb-1"
+          >
+            Categoría
+          </label>
+          <div class="flex flex-wrap items-center gap-1.5">
+            @for (cat of editSubcategories; track cat) {
+              <button
+                type="button"
+                [ngClass]="
+                  editCategory === cat
+                    ? 'bg-primary text-on-primary shadow-sm font-medium'
+                    : 'bg-surface-container-high text-on-surface-variant'
+                "
+                class="px-3 py-1.5 rounded-full font-label-sm text-label-sm active:scale-95 transition-all"
+                (click)="setEditCategory(cat)"
+              >
+                {{ cat }}
+              </button>
+            }
+          </div>
+        </div>
+
+        <!-- Precio (PVP) & Costo -->
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label
+              class="block font-label-md text-label-md text-primary mb-1"
+              for="edit-price"
+            >
+              PVP TRÍA ($)
+            </label>
+            <input
+              id="edit-price"
+              [(ngModel)]="editPrice"
+              type="number"
+              class="w-full px-4 py-2.5 rounded-full bg-surface-container-high text-on-surface font-semibold text-body-md focus:bg-surface-container-highest outline-none transition-colors border border-transparent focus:border-primary/30"
+              placeholder="80000"
+            />
+          </div>
+          <div>
+            <label
+              class="block font-label-md text-label-md text-on-surface-variant mb-1"
+              for="edit-cost"
+            >
+              Costo Atelier ($)
+            </label>
+            <input
+              id="edit-cost"
+              [(ngModel)]="editCost"
+              type="number"
+              class="w-full px-4 py-2.5 rounded-full bg-surface-container-high text-on-surface font-semibold text-body-md focus:bg-surface-container-highest outline-none transition-colors border border-transparent focus:border-primary/30"
+              placeholder="35000"
+            />
+          </div>
+        </div>
+
+        <!-- Stock Stepper -->
+        <div>
+          <label
+            class="block font-label-md text-label-md text-on-surface-variant mb-1"
+          >
+            Stock Físico en Vitrina
+          </label>
+          <div
+            class="flex items-center justify-between p-2.5 px-4 rounded-full bg-surface-container-high"
+          >
+            <span class="text-body-sm text-on-surface-variant"
+              >Unidades Disponibles</span
+            >
+            <div class="flex items-center gap-2">
+              <button
+                type="button"
+                (click)="modifyEditStock(-1)"
+                class="w-7 h-7 rounded-full bg-surface-container text-on-surface flex items-center justify-center active:scale-90 transition-transform"
+                title="Disminuir unidad"
+              >
+                <span class="material-symbols-outlined text-[16px]"
+                  >remove</span
+                >
+              </button>
+              <input
+                [(ngModel)]="editStock"
+                type="number"
+                class="w-12 text-center bg-transparent font-bold text-primary text-body-md outline-none"
+              />
+              <button
+                type="button"
+                (click)="modifyEditStock(1)"
+                class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center active:scale-90 transition-transform"
+                title="Aumentar unidad"
+              >
+                <span class="material-symbols-outlined text-[16px]">add</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notas / Descripción -->
+        <div>
+          <label
+            class="block font-label-md text-label-md text-on-surface-variant mb-1"
+            for="edit-desc"
+          >
+            Notas de Confección &amp; Acabados
+          </label>
+          <textarea
+            id="edit-desc"
+            [(ngModel)]="editDescription"
+            rows="2"
+            class="w-full p-3 rounded-2xl bg-surface-container-high text-on-surface font-body-md text-body-md focus:bg-surface-container-highest outline-none transition-colors resize-none border border-transparent focus:border-primary/30"
+            placeholder="Detalles sobre telas, seda cruda o patronaje..."
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- Edit Modal Footer -->
+      <div
+        class="flex-shrink-0 p-4 border-t border-surface-container-highest/60 bg-surface-container flex items-center gap-2"
+      >
+        <button
+          (click)="saveProductEdit()"
+          [disabled]="isSaving || !editName.trim() || !editSku.trim()"
+          class="flex-1 py-3 px-4 rounded-full bg-gradient-to-r from-primary via-secondary to-primary-fixed text-on-primary font-label-md text-label-md font-semibold flex items-center justify-center gap-2 active:scale-95 transition-all shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+          type="button"
+        >
+          @if (isSaving) {
+            <span class="material-symbols-outlined animate-spin text-[18px]"
+              >progress_activity</span
+            >
+            <span>Guardando Cambios...</span>
+          } @else {
+            <span class="material-symbols-outlined text-[18px]">save</span>
+            <span>Guardar Cambios</span>
+          }
+        </button>
+
+        <button
+          (click)="onClose()"
+          [disabled]="isSaving"
+          class="py-3 px-4 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-md text-label-md active:scale-95 transition-all"
+          type="button"
+        >
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+}

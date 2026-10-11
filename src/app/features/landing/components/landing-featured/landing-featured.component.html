@@ -40,8 +40,9 @@
           <!-- Card Vertical (Cards 1 a 7) -->
           <div
             [class]="product.colSpan"
-            class="relative group overflow-hidden rounded-2xl bg-surface-container-low shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-0.5 flex flex-col justify-between"
+            class="relative group overflow-hidden rounded-2xl bg-white border border-outline-variant/30 shadow-[0_4px_20px_rgba(127,80,71,0.06)] transition-all duration-500 hover:shadow-[0_16px_36px_rgba(127,80,71,0.12)] hover:-translate-y-1 flex flex-col justify-between"
           >
+            <!-- Imagen con ratio uniforme -->
             <div
               [class]="product.aspectClass"
               class="relative w-full overflow-hidden bg-surface-container"
@@ -49,7 +50,7 @@
               @if (product.image) {
                 <img
                   [alt]="product.alt"
-                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  class="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
                   [src]="product.image"
                   [width]="product.width"
                   [height]="product.height"
@@ -61,11 +62,11 @@
                   <span class="material-symbols-outlined text-[48px]">inventory_2</span>
                 </div>
               }
-              <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
+              <div class="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10">
                 @for (badge of product.badges; track badge.text) {
                   <span
                     [class]="badge.class"
-                    class="px-2.5 py-1 rounded-full font-label-sm text-label-sm uppercase tracking-wider"
+                    class="px-2.5 py-1 rounded-full font-label-sm text-[10px] uppercase tracking-widest shadow-sm"
                   >
                     {{ badge.text }}
                   </span>
@@ -73,39 +74,62 @@
               </div>
               @if (product.bottomBadge) {
                 <span
-                  class="absolute bottom-3 right-3 px-2.5 py-0.5 rounded-full bg-secondary-container/90 backdrop-blur-md text-on-secondary-container font-label-sm text-label-sm uppercase tracking-wider font-medium"
+                  class="absolute bottom-3 right-3 px-2.5 py-0.5 rounded-full bg-secondary-container/90 backdrop-blur-md text-on-secondary-container font-label-sm text-[10px] uppercase tracking-wider font-medium shadow-sm z-10"
                 >
                   {{ product.bottomBadge }}
                 </span>
               }
             </div>
+
+            <!-- Cuerpo de la tarjeta -->
             <div
-              class="p-space-md flex flex-col flex-grow justify-between space-y-space-sm"
+              class="p-5 sm:p-6 flex flex-col flex-grow justify-between gap-4"
             >
               <div>
-                <span
-                  class="font-label-sm text-label-sm uppercase tracking-widest text-outline block"
-                  >{{ product.category }}</span
-                >
+                <div class="flex items-center justify-between gap-2 mb-1.5">
+                  <span
+                    class="font-label-sm text-[11px] uppercase tracking-[0.2em] text-primary font-semibold"
+                    >{{ product.category }}</span
+                  >
+                  @if (product.price) {
+                    <span class="font-headline-sm text-sm sm:text-base font-semibold text-on-surface">
+                      ${{ product.price | number:'1.0-0' }}
+                    </span>
+                  }
+                </div>
                 <h3
-                  class="font-headline-sm text-headline-sm text-on-surface font-normal group-hover:text-primary transition-colors"
+                  class="font-headline-md text-lg sm:text-xl text-on-surface font-normal group-hover:text-primary transition-colors line-clamp-1"
                 >
                   {{ product.title }}
                 </h3>
-                <p
-                  class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2 leading-relaxed"
-                >
-                  {{ product.description }}
-                </p>
+                <div class="flex items-center gap-2 mt-2 text-xs text-on-surface-variant">
+                  @if (product.sku) {
+                    <span class="inline-flex items-center px-2 py-0.5 rounded bg-surface-container text-on-surface-variant text-[11px] font-mono font-medium">
+                      #{{ product.sku }}
+                    </span>
+                  }
+                  <span
+                    class="inline-flex items-center gap-1.5 text-[11px] font-medium"
+                    [class.text-emerald-700]="product.stock > 0"
+                    [class.text-error]="product.stock <= 0"
+                  >
+                    <span
+                      class="w-1.5 h-1.5 rounded-full"
+                      [class.bg-emerald-500]="product.stock > 0"
+                      [class.bg-error]="product.stock <= 0"
+                    ></span>
+                    {{ product.stock > 0 ? 'Stock Disponible' : 'Agotado' }}
+                  </span>
+                </div>
               </div>
               <a
-                class="w-full py-2.5 px-space-sm rounded bg-inverse-surface text-inverse-on-surface font-label-md text-label-md uppercase tracking-[0.14em] text-center transition-all duration-300 hover:bg-primary flex items-center justify-center gap-1.5 shadow-sm mt-space-xs"
+                class="w-full py-3 px-4 rounded-xl bg-inverse-surface text-inverse-on-surface font-label-md text-xs uppercase tracking-[0.16em] font-semibold text-center transition-all duration-300 hover:bg-primary hover:text-on-primary flex items-center justify-center gap-2 shadow-sm hover:shadow-md mt-2 group/btn"
                 [href]="'https://wa.me/573011979357?text=' + product.waQuery"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <span
-                  class="material-symbols-outlined text-[16px]"
+                  class="material-symbols-outlined text-[16px] transition-transform duration-300 group-hover/btn:scale-110"
                   aria-hidden="true"
                   >{{ product.ctaIcon }}</span
                 >
@@ -117,7 +141,7 @@
           <!-- Card Horizontal Dual (Cards 8 y 9) -->
           <div
             [class]="product.colSpan"
-            class="relative group overflow-hidden rounded-2xl bg-surface-container-low shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-0.5 flex flex-col sm:flex-row"
+            class="relative group overflow-hidden rounded-2xl bg-white border border-outline-variant/30 shadow-[0_4px_20px_rgba(127,80,71,0.06)] transition-all duration-500 hover:shadow-[0_16px_36px_rgba(127,80,71,0.12)] hover:-translate-y-1 flex flex-col sm:flex-row"
           >
             <div
               class="relative w-full sm:w-1/2 aspect-square sm:aspect-auto overflow-hidden bg-surface-container"
@@ -125,7 +149,7 @@
               @if (product.image) {
                 <img
                   [alt]="product.alt"
-                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  class="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
                   [src]="product.image"
                   [width]="product.width"
                   [height]="product.height"
@@ -137,11 +161,11 @@
                   <span class="material-symbols-outlined text-[48px]">inventory_2</span>
                 </div>
               }
-              <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
+              <div class="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10">
                 @for (badge of product.badges; track badge.text) {
                   <span
                     [class]="badge.class"
-                    class="px-2.5 py-1 rounded-full font-label-sm text-label-sm uppercase tracking-wider"
+                    class="px-2.5 py-1 rounded-full font-label-sm text-[10px] uppercase tracking-widest shadow-sm"
                   >
                     {{ badge.text }}
                   </span>
@@ -149,41 +173,62 @@
               </div>
             </div>
             <div
-              class="p-space-md sm:p-space-lg flex flex-col justify-between flex-1 space-y-space-sm"
+              class="p-5 sm:p-6 flex flex-col justify-between flex-1 gap-4"
             >
               <div>
-                <div class="flex items-center gap-2 mb-1">
-                  <span
-                    class="font-label-sm text-label-sm uppercase tracking-widest text-outline block"
-                    >{{ product.category }}</span
-                  >
-                  @if (product.subCategoryTag) {
+                <div class="flex items-center justify-between gap-2 mb-1.5">
+                  <div class="flex items-center gap-2">
                     <span
-                      class="px-2 py-0.5 rounded-full bg-secondary-container/80 text-on-secondary-container font-label-sm text-label-sm uppercase"
+                      class="font-label-sm text-[11px] uppercase tracking-[0.2em] text-primary font-semibold"
+                      >{{ product.category }}</span
                     >
-                      {{ product.subCategoryTag }}
+                    @if (product.subCategoryTag) {
+                      <span
+                        class="px-2 py-0.5 rounded-full bg-secondary-container/80 text-on-secondary-container font-label-sm text-[10px] uppercase"
+                      >
+                        {{ product.subCategoryTag }}
+                      </span>
+                    }
+                  </div>
+                  @if (product.price) {
+                    <span class="font-headline-sm text-sm sm:text-base font-semibold text-on-surface">
+                      ${{ product.price | number:'1.0-0' }}
                     </span>
                   }
                 </div>
                 <h3
-                  class="font-headline-sm text-headline-sm text-on-surface font-normal group-hover:text-primary transition-colors"
+                  class="font-headline-md text-lg sm:text-xl text-on-surface font-normal group-hover:text-primary transition-colors line-clamp-1"
                 >
                   {{ product.title }}
                 </h3>
-                <p
-                  class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2 leading-relaxed"
-                >
-                  {{ product.description }}
-                </p>
+                <div class="flex items-center gap-2 mt-2 text-xs text-on-surface-variant">
+                  @if (product.sku) {
+                    <span class="inline-flex items-center px-2 py-0.5 rounded bg-surface-container text-on-surface-variant text-[11px] font-mono font-medium">
+                      #{{ product.sku }}
+                    </span>
+                  }
+                  <span
+                    class="inline-flex items-center gap-1.5 text-[11px] font-medium"
+                    [class.text-emerald-700]="product.stock > 0"
+                    [class.text-error]="product.stock <= 0"
+                  >
+                    <span
+                      class="w-1.5 h-1.5 rounded-full"
+                      [class.bg-emerald-500]="product.stock > 0"
+                      [class.bg-error]="product.stock <= 0"
+                    ></span>
+                    {{ product.stock > 0 ? 'Stock Disponible' : 'Agotado' }}
+                  </span>
+                </div>
               </div>
               <a
-                class="w-full py-2.5 px-space-sm rounded bg-inverse-surface text-inverse-on-surface font-label-md text-label-md uppercase tracking-[0.14em] text-center transition-all duration-300 hover:bg-primary flex items-center justify-center gap-1.5 shadow-sm mt-space-sm"
+                class="w-full py-3 px-4 rounded-xl bg-inverse-surface text-inverse-on-surface font-label-md text-xs uppercase tracking-[0.16em] font-semibold text-center transition-all duration-300 hover:bg-primary hover:text-on-primary flex items-center justify-center gap-2 shadow-sm hover:shadow-md mt-2 group/btn"
                 [href]="'https://wa.me/573011979357?text=' + product.waQuery"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <span
-                  class="material-symbols-outlined text-[16px]"
+                  class="material-symbols-outlined text-[16px] transition-transform duration-300 group-hover/btn:scale-110"
                   aria-hidden="true"
                   >{{ product.ctaIcon }}</span
                 >

@@ -38,8 +38,17 @@ export class PaymentsService {
   refreshDebts(): void {
     this.api.get<{ data: DebtAccount[] }>('/receivables').subscribe({
       next: (res) => {
-        if (res?.data && res.data.length > 0) {
+        if (res?.data) {
           this.debtsSubject.next(res.data);
+        }
+      },
+      error: () => {},
+    });
+
+    this.api.get<{ data: { metrics: { moneyCollected: number } } }>('/dashboard?period=month').subscribe({
+      next: (res) => {
+        if (res?.data?.metrics?.moneyCollected !== undefined) {
+          this.totalCollectedMonthSubject.next(res.data.metrics.moneyCollected);
         }
       },
       error: () => {},
@@ -61,48 +70,55 @@ export class PaymentsService {
   registerAbono(
     debtId: string,
     amount: number,
-  ): { success: boolean; newBalance: number; clientName: string } {
+  ): Observable<{ success: boolean; newBalance: number; clientName: string }> {
     const debts = this.debtsSubject.value;
     const index = debts.findIndex(
       (d) => d.id === debtId || d.orderId === debtId,
     );
-    if (index === -1) return { success: false, newBalance: 0, clientName: '' };
+    if (index === -1) {
+      return new Observable(sub => sub.error(new Error('Deuda no encontrada')));
+    }
 
     const item = { ...debts[index] };
     const effectiveAmount = Math.min(amount, item.balance);
-    item.paidAmount += effectiveAmount;
-    item.balance = Math.max(0, item.balance - effectiveAmount);
-    item.lastPaymentDate = 'Hoy';
-
-    const updated = [...debts];
-    updated[index] = item;
-    this.debtsSubject.next(updated);
-
-    // Increase total collected this month
-    this.totalCollectedMonthSubject.next(
-      this.totalCollectedMonthSubject.value + effectiveAmount,
-    );
-
-    // Enviar a la API del backend
     const targetSaleId = item.saleId || item.orderId;
-    this.api.post<{ data: { newBalance: number; clientName: string } }>(
-      `/sales/${targetSaleId}/payments`,
-      { amount: effectiveAmount },
-    ).subscribe({
-      next: (res) => {
-        if (res?.data) {
-          item.balance = res.data.newBalance;
-          this.debtsSubject.next([...this.debtsSubject.value]);
-        }
-      },
-      error: () => {},
-    });
 
-    return {
-      success: true,
-      newBalance: item.balance,
-      clientName: item.clientName,
-    };
+    return new Observable(subscriber => {
+      this.api.post<{ data: { newBalance: number; clientName: string } }>(
+        `/sales/${targetSaleId}/payments`,
+        { amount: effectiveAmount },
+      ).subscribe({
+        next: (res) => {
+          if (res?.data) {
+            item.paidAmount += effectiveAmount;
+            item.balance = res.data.newBalance;
+            item.lastPaymentDate = 'Hoy';
+
+            const updated = [...this.debtsSubject.value];
+            const activeIndex = updated.findIndex((d) => d.id === debtId || d.orderId === debtId);
+            if (activeIndex > -1) {
+              updated[activeIndex] = item;
+              this.debtsSubject.next(updated);
+            }
+
+            // Increase total collected this month
+            this.totalCollectedMonthSubject.next(
+              this.totalCollectedMonthSubject.value + effectiveAmount,
+            );
+
+            subscriber.next({
+              success: true,
+              newBalance: item.balance,
+              clientName: res.data.clientName,
+            });
+            subscriber.complete();
+          }
+        },
+        error: (err) => {
+          subscriber.error(err);
+        },
+      });
+    });
   }
 
   generateWhatsAppUrl(debt: DebtAccount): string {

@@ -42,6 +42,17 @@ export class AuthService {
     }
   }
 
+  clearSession(): void {
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.removeItem('tria_user');
+        sessionStorage.clear();
+      } catch {}
+    }
+    this.currentUserSubject.next(null);
+    this.isAuthenticatedSubject.next(false);
+  }
+
   checkSession(): void {
     this.api.get<{ data: { user: UserProfile } }>('/auth/me').subscribe({
       next: (res) => {
@@ -51,9 +62,13 @@ export class AuthService {
           if (typeof window !== 'undefined') {
             localStorage.setItem('tria_user', JSON.stringify(res.data.user));
           }
+        } else {
+          this.clearSession();
         }
       },
-      error: () => {},
+      error: () => {
+        this.clearSession();
+      },
     });
   }
 
@@ -83,14 +98,10 @@ export class AuthService {
   }
 
   logout(): void {
+    this.clearSession();
     this.api.post('/auth/logout', {}).subscribe({
       next: () => {},
       error: () => {},
     });
-    if (typeof window !== 'undefined' && window.localStorage) {
-      localStorage.removeItem('tria_user');
-    }
-    this.currentUserSubject.next(null);
-    this.isAuthenticatedSubject.next(false);
   }
 }
