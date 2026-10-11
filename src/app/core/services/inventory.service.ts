@@ -375,20 +375,16 @@ export class InventoryService {
 
   private formatImageUrl(imagePath?: string): string | undefined {
     if (!imagePath) return imagePath;
-    if (imagePath.startsWith('http') || imagePath.startsWith('data:'))
-      return imagePath;
 
-    // Si estamos en localhost, forzamos la ruta al backend explícitamente sin depender del entorno
-    if (
-      typeof window !== 'undefined' &&
-      window.location.origin.includes('localhost:4200')
-    ) {
-      return 'http://localhost:3003' + imagePath;
+    // Si la imagen en base de datos quedó guardada con la URL vieja 'http://localhost:3000'
+    let path = imagePath.replace(/^http:\/\/localhost:3000/, '');
+
+    if (path.startsWith('http') || path.startsWith('data:')) {
+      return path;
     }
+
     // Normalizar la ruta asegurando que inicie con slash
-    const normalizedPath = imagePath.startsWith('/')
-      ? imagePath
-      : `/${imagePath}`;
+    const normalizedPath = path.startsWith('/') ? path : `/${path}`;
 
     // Obtener la URL base del backend desde environment.apiUrl (removiendo el prefijo /api)
     const baseUrl = environment.apiUrl.replace(/\/api\/?$/, '');
