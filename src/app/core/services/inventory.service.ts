@@ -296,7 +296,9 @@ export class InventoryService {
             if (res?.data) {
               const updatedProduct = {
                 ...res.data,
-                sku: res.data.sku ? res.data.sku.replace(/^#+/, '') : (cleanSku || ''),
+                sku: res.data.sku
+                  ? res.data.sku.replace(/^#+/, '')
+                  : cleanSku || '',
                 image: this.formatImageUrl(res.data.image),
               };
               const products = this.productsSubject.value.map((p) =>
@@ -322,7 +324,9 @@ export class InventoryService {
         .subscribe({
           next: () => {
             // Eliminar reactivamente de la lista activa
-            const products = this.productsSubject.value.filter((p) => p.id !== id);
+            const products = this.productsSubject.value.filter(
+              (p) => p.id !== id,
+            );
             this.productsSubject.next(products);
             subscriber.next({ success: true });
             subscriber.complete();
@@ -379,10 +383,15 @@ export class InventoryService {
       typeof window !== 'undefined' &&
       window.location.origin.includes('localhost:4200')
     ) {
-      return 'http://localhost:3000' + imagePath;
+      return 'http://localhost:3003' + imagePath;
     }
+    // Normalizar la ruta asegurando que inicie con slash
+    const normalizedPath = imagePath.startsWith('/')
+      ? imagePath
+      : `/${imagePath}`;
 
-    const baseUrl = environment.apiUrl.replace(/\/api$/, '');
-    return baseUrl + imagePath;
+    // Obtener la URL base del backend desde environment.apiUrl (removiendo el prefijo /api)
+    const baseUrl = environment.apiUrl.replace(/\/api\/?$/, '');
+    return `${baseUrl}${normalizedPath}`;
   }
 }

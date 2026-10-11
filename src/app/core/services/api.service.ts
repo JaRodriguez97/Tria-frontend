@@ -14,7 +14,7 @@ export class ApiService {
   private platformId = inject(PLATFORM_ID);
   private isBrowser = isPlatformBrowser(this.platformId);
   private transferState = inject(TransferState);
-  private baseUrl = this.isBrowser ? environment.apiUrl : 'http://localhost:3000/api';
+  private baseUrl = this.isBrowser ? environment.apiUrl : 'http://localhost:3003/api';
 
   private router = inject(Router);
 

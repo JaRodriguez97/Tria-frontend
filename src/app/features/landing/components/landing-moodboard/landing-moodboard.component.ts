@@ -30,7 +30,7 @@ export class LandingMoodboardComponent {
       id: 'encaje',
       image:
         'https://lh3.googleusercontent.com/aida-public/AB6AXuA3mWTKr3nvmkRnm6_B47JOQ9Z7j0M7XUwiW8yKwXyw5jRBtH3uqcUY25oKI1ENI_oSMYOPXIhPR54NYKkS2GmIgBXf2SAwdoryZ0_GfKLooWyZQPQZ4_VVQtkOdSmJb8Y4QRBoe6h7kJhUAqGFxUNopIkxlSQH9yAYcP8YFSFk91yS8-_mNJu3H3Cpew6FKJk1iBUgBIrJWrJfViPjkOtXVWboquAK5kmAfyw8J-MRU11tuTZrak1i5w',
-      alt: 'Lencería fina y detalles de encaje artesanal — TRÍA Lingerie',
+      alt: 'Lencería fina y detalles de encaje artesanal — TRÍA Lenceria',
       tag: 'Intimidad & Encaje',
       offset: true,
     },
@@ -38,7 +38,7 @@ export class LandingMoodboardComponent {
       id: 'rituales',
       image:
         'https://lh3.googleusercontent.com/aida-public/AB6AXuCKB_fGGjyWKfdPJK73udIuF9S3ly3LNqtY9ouhw6O1pT07eFtHiUmtrzTV4B4rHgfIUdZNzO-t9GPHlLxjOan4i5vMz7SG0h3iIwUWZNkzKPWqZBaPdQx_NK2w17xnDld4QL762kesSv4Nf8O5hrKoyZ4rhs6mNf1oPw6Q-63JJSVX4zjxtibHsuZf6HjFQYcsNNlSzjDKQXQwUJIEEPBzBDAoBJa5o1YqAqnV_HEbg8CpJTzNKW-suQ',
-      alt: 'Fragancia de autor y rituales de belleza — TRÍA Beauty',
+      alt: 'Fragancia de autor y rituales de belleza — TRÍA Belleza',
       tag: 'Rituales de Belleza',
       offset: false,
     },

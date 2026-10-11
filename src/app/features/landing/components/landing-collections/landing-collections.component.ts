@@ -171,7 +171,7 @@ export class LandingCollectionsComponent {
       paddingClass: 'p-space-lg',
       image:
         'https://lh3.googleusercontent.com/aida-public/AB6AXuAR43ITa_JfjBdQlc238SpfDk9Iqo7Pz2r21xEY_EQ1Rf9ha5dW5iYEs3gZJSjR0RAfrseBpiAxhfiuM4nNygJNRi1u0Z7a4GQi9bQW1hmBflA-4DZRILcHOm9GVPdadgXi1JhZcym2n-OCRW4ET26fC7kliPuEildHXv5bgfGMHaFtIKS_OguxcRP1AZzMhPw6-qerkqLoGkwpdDJtDhOb3PJMAVXOL8fEzNVCpRWeuw_tgBOkBjj65Q',
-      alt: 'Universo Belleza — TRÍA Beauty',
+      alt: 'Universo Belleza — TRÍA Belleza',
       width: 1200,
       height: 240,
       gradientClass:
